@@ -42,6 +42,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 * 建议准备 :
       * WinRAR ( http://www.winrar.com.cn/ ) 
       * NotePad++ ( http://notepad-plus-plus.org/ ) 
+      * MySQL ( http://dev.mysql.com/downloads/ )
 
 ======================
 
@@ -57,6 +58,15 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 * 当SVN数据全部同步到本地之后, 会建立 branches tags trunk 三个目录. 其中trunk为主要目录.
 * 打开trunk目录, 双击批处理文件[一键启动RoSFus仙境单机服务端.bat], 此时会弹出4个窗口. 3个RO单机版程序, 1个MySQL管理器. 等待4个程序全部运行即可.
 * 请注意由于是服务端程序, 而且使用了特殊的端口 6900 5121 6121, 因此可能会被一些程序判定需要拦截. 此时请选择放行.
+
+##### MySQL #####
+* 自行导入MySQL数据的时候, 请至少导入主数据库目录中的3个文件表.
+      * sql-files\main.sql
+      * sql-files\logs.sql
+      * sql-files\item_db2.sql
+* 并且导入2个更新文件. 方可完成MySQL数据库创建.
+      * sql-files\upgrades\2013-11-15--00-06.sql
+      * sql-files\upgrades\2013-11-18--08-23.sql 
 
 ##### Files #####
 * \branches\
