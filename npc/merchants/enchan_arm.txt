@@ -1,0 +1,149 @@
+//=====RoSF.us Script =======================================
+//= Armor Enchanter
+//===== By: =========Translation:============================= 
+//= kobra_k88        安赫尔|20130713[ROSF.US]
+//===== Current Version: ===================================== 
+//= 1.3a
+//===== Description: =========================================
+//= [Official Conversion]
+//= Add a +1, +2, or +3 random stat to a specified armor.
+//===== Additional Comments: ================================= 
+//= 1.0 First version.
+//= 1.1 Corrected typo (Sit -> Suit) (bugreport:4586)
+//= 1.2 Optimized. [Euphy]
+//= 1.3 Fixed some typos and optimized a little more. [Daegaladh]
+//= 1.3a Added 'disable_items' command. [Euphy]
+//============================================================ 
+
+prontera,165,60,2	script	实习附魔师	1_F_MERCHANT_01,{
+	disable_items;
+	mes "[实习附魔师]";
+	if (Zeny >= 400000) {
+		mes "我一直致力于研究如何提高装备的最大能力.";
+		next;
+		mes "[实习附魔师]";
+		mes "为装备附魔就是一种很高级的技能, 可以将神秘的能力注入到装备的卡片插槽里.";
+		next;
+		mes "[实习附魔师]";
+		mes "然而, 你一定要记住如果你带来两件相同的装备, 那将按照它们在物品栏的存放位置的先后进行附魔.";
+		next;
+		mes "[实习附魔师]";
+		mes "假若那样的话, 可能你不想要附魔的装备都会被附魔了. 所以一定只带来^5555ff一件^000000你想要附魔的装备, 这样才最为安全...";
+		next;
+		mes "[实习附魔师]";
+		mes "如果你带来多件同样的装备, 如果有什么意外的话, 我可不负任何责任.";
+		next;
+		switch(select("- 无洞装备.:- 有洞装备.:- 高级系列装备.:- 下次再说.")) {
+		case 1:
+			setarray .@items[0],2307,2309,2314,2316,2321,2325,2327,2328,2330,2332,2334,2335,2341,2344,2346,2348,2350,2337,2386,2394,2395,2396;
+			set .@j,50;
+			break;
+		case 2:
+			setarray .@items[0],2311,2318,2319,2320,2308,2310,2315,2317,2322,2324,2326,2331,2333,2336,2342,2345,2347,2349,2351;
+			set .@j,55;
+			set .@k,1;
+			break;
+		case 3:
+			setarray .@items[0],2364,2365,2391,2374,2375,2376,2377,2378,2379,2380,2381,2382,2387,2388,2389,2390;
+			set .@j,60;
+			break;
+		case 4:
+			mes "[实习附魔师]";
+			mes "如果你对装备附魔感兴趣, 可以随时来找我.";
+			close;
+		}
+		set .@menu$,"";
+		for(set .@i,0; .@i<getarraysize(.@items); set .@i,.@i+1)
+			set .@menu$, .@menu$+getitemname(.@items[.@i])+((.@k)?" [1]":"")+":";
+		callsub S_EnchantArmor, .@items[select(.@menu$)-1], .@j;
+		end;
+	}
+	mes "我负责装备的附魔工作. 简单来说, 我一直致力于研究如何提高装备的能力.";
+	next;
+	mes "[实习附魔师]";
+	mes "如果你有兴趣想要给你的装备附魔的话, 请带着400,000 zeny 和你想要附魔的装备来找我.";
+	close;
+
+S_EnchantArmor:
+	set .@itemid,getarg(0);
+	set .@failrate,getarg(1);
+	mes "[实习附魔师]";
+	if (countitem(.@itemid) == 1) {
+		mes "附魔将需要400,000 zeny. 而且附魔的结果可是随机的. 当然了, 很可能在附魔的时候, 你的装备会损毁掉.";
+		next;
+		mes "[实习附魔师]";
+		mes "最重要的一点就是.";
+		mes "^ff5555被附魔的装备当前的";
+		mes "精炼度和卡片都会消失.^000000";
+		mes "那么你还要继续附魔吗?";
+		next;
+		if(select("- 嗯... 我再考虑考虑吧.:- 继续附魔.")==1) {
+			mes "[实习附魔师]";
+			mes "好的, 我不会怪你的. 安全第一才最重要, 对吧?";
+			mes "那就祝你愉快了.";
+			close;
+		}
+		mes "[实习附魔师]";
+		mes "想要来一次真正的冒险吧? 好的, 那咱们开始了?";
+		close2;
+		specialeffect2 EF_MAPPILLAR;
+		if (Zeny < 400000) {
+			mes "[实习附魔师]";
+			mes "抱歉啊, 你可没有足够的钱.";
+			close;
+		}
+		progressbar "ffff00",7;
+		set Zeny, Zeny - 400000;
+		delitem .@itemid,1;
+		switch (rand(1,.@failrate)) {
+			case 1: set .@addpart,4702;break;
+			case 2: set .@addpart,4712;break;
+			case 3: set .@addpart,4722;break;
+			case 4: set .@addpart,4732;break;
+			case 5: set .@addpart,4742;break;
+			case 6: set .@addpart,4752;break;
+			case 7:
+			case 8: set .@addpart,4701;break;
+			case 9:
+			case 10: set .@addpart,4711;break;
+			case 11:
+			case 12: set .@addpart,4721;break;
+			case 13:
+			case 14: set .@addpart,4731;break;
+			case 15:
+			case 16: set .@addpart,4741;break;
+			case 17:
+			case 18: set .@addpart,4751;break;
+			case 19:
+			case 20:
+			case 21: set .@addpart,4700;break;
+			case 22:
+			case 23:
+			case 24: set .@addpart,4710;break;
+			case 25:
+			case 26:
+			case 27: set .@addpart,4720;break;
+			case 28:
+			case 29:
+			case 30: set .@addpart,4730;break;
+			case 31:
+			case 32:
+			case 33: set .@addpart,4740;break;
+			case 34:
+			case 35:
+			case 36: set .@addpart,4750;break;
+			default:
+				specialeffect2 EF_PHARMACY_FAIL;
+				mes "[实习附魔师]";
+				mes "噢, 真是太不幸了.";
+				mes "附魔竟然失败了.";
+				close;
+		}
+		getitem2 .@itemid, 1, 1, 0, 0, 0, 0, 0, .@addpart;
+	}
+	else {
+		mes "嗯? 没有东西可以被附魔呀!";
+		mes "请确定你只带来了一件要附魔的装备.";
+		close;
+	}
+}

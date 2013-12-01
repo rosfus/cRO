@@ -1,0 +1,74 @@
+// Guild Castles Database
+//
+// Structure of Database:
+// CastleID,MapName,CastleName,OnGuildBreakEventName,Flag
+//
+// 01. CastleID                  Unique ID of the castle. Must remain unique across all map-servers.
+// 02. MapName                   Map name to be considered as the castle map.
+// 03. CastleName                Name of the castle (used by scripts and guardian name tags).
+// 04. OnGuildBreakEventName     NPC unique name to invoke ::OnGuildBreak on, when a occupied
+//                               castle is abandoned during guild break.
+// 05. Flag                      Switch flag (reserved as of athena-dev mod0796~0801, not used by server).
+
+
+//================
+// Al De Baran
+//================
+0,aldeg_cas01,新天鹅堡,Agit#aldeg_cas01,1       // kRO : Noisyubantian
+1,aldeg_cas02,旧天鹅堡,Agit#aldeg_cas02,1       // kRO : Hohensyubangawoo
+2,aldeg_cas03,纽伦堡,Agit#aldeg_cas03,1            // kRO : Nyirenverk
+3,aldeg_cas04,维尔茨堡,Agit#aldeg_cas04,1            // kRO : Byirtsburi
+4,aldeg_cas05,罗滕堡,Agit#aldeg_cas05,1           // kRO : Rotenburk
+
+//================
+// Geffen
+//================
+5,gefg_cas01,瑞普利恩,Agit#gefg_cas01,1              // kRO : Reprion
+6,gefg_cas02,约普利格,Agit#gefg_cas02,1           // kRO : Yolbriger
+7,gefg_cas03,伊斯尼普,Agit#gefg_cas03,1               // kRO : Isinlife
+8,gefg_cas04,培勒格尔,Agit#gefg_cas04,1                 // kRO : Berigel
+9,gefg_cas05,梅瑟特兹,Agit#gefg_cas05,1           // kRO : Melsedetsu
+
+//================
+// Payon
+//================
+10,payg_cas01,明亭,Agit#payg_cas01,1          // kRO : Mingting
+11,payg_cas02,天坛,Agit#payg_cas02,1        // kRO : Tiantan
+12,payg_cas03,佛影,Agit#payg_cas03,1           // kRO : Fuying
+13,payg_cas04,红楼,Agit#payg_cas04,1          // kRO : Honglou
+14,payg_cas05,竹林岘,Agit#payg_cas05,1     // kRO : Zhulinxian
+
+//================
+// Prontera
+//================
+15,prtg_cas01,克林希特,Agit#prtg_cas01,1             // kRO : Creamhilt
+16,prtg_cas02,斯般希特,Agit#prtg_cas02,1              // kRO : Sbanhealt
+17,prtg_cas03,拉兹立克斯,Agit#prtg_cas03,1             // kRO : Lazrigees
+18,prtg_cas04,司葵古,Agit#prtg_cas04,1               // kRO : Squagul
+19,prtg_cas05,关德,Agit#prtg_cas05,1                // kRO : Guindull
+
+//================
+// Novice Guilds
+//================
+20,nguild_alde,初心者.地,Agit_N01,2
+21,nguild_gef,初心者.风,Agit_N02,2
+22,nguild_pay,初心者.水,Agit_N03,2
+23,nguild_prt,初心者.火,Agit_N04,2
+
+//================
+// Yuno
+//================
+24,schg_cas01,喜民,Manager#schg_cas01,1             // kRO : Himinn
+25,schg_cas02,安德郎克,Manager#schg_cas02,1           // kRO : Andlangr
+26,schg_cas03,维布莱尼,Manager#schg_cas03,1           // kRO : Viblainn
+27,schg_cas04,赫里奥德,Manager#schg_cas04,1              // kRO : Hljod
+28,schg_cas05,思卡迪布拉德尼尔,Manager#schg_cas05,1        // kRO : Skidbladnir
+
+//================
+// Rachel
+//================
+29,arug_cas01,马杜,Manager#arug_cas01,1             // kRO : Mardol
+30,arug_cas02,希乐,Manager#arug_cas02,1                // kRO : Cyr
+31,arug_cas03,霍伦,Manager#arug_cas03,1               // kRO : Horn
+32,arug_cas04,吉本,Manager#arug_cas04,1               // kRO : Gefn
+33,arug_cas05,巴拿迪斯,Manager#arug_cas05,1             // kRO : Bandis

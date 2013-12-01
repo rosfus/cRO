@@ -1,0 +1,87 @@
+//===== rAthena Script =======================================
+//= Stylist with Autoscroll
+//===== By: ==================================================
+//= Brian
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= Changes your hair style, hair color, and cloth color.
+//= Allows users to autoscroll with 1-second progressbars.
+//===== Additional Comments: =================================
+//= 
+//============================================================
+
+prontera,170,180,1	script	Stylist#autoscroll	122,{
+OnProgressbarEnd:
+	setarray .@max[1], 
+		// wedding palettes only go up to 77
+		checkoption(0x1000) ? 77 : getbattleflag("max_cloth_color"),
+		getbattleflag("max_hair_style"),
+		getbattleflag("max_hair_color");
+	setarray .@Look[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
+	
+	if (@autoscroll) {
+		set @autoscroll, 0;
+	} else {
+		set @s, select(" ~ Cloth color (^0055FF"+getlook(LOOK_CLOTHES_COLOR)+"^000000): ~ Hairstyle (^0055FF"+getlook(LOOK_HAIR)+"^000000): ~ Hair color (^0055FF"+getlook(LOOK_HAIR_COLOR)+"^000000)");
+		set @Revert, getlook(.@Look[@s]);
+	}
+	set .@Style, getlook(.@Look[@s]);
+	
+	while(1) {
+		set .@menu$, (.@previous ? (": ~ Previous (^0055FF"+((.@Style>1)?.@Style-1:.@max[@s])+"^000000): ~ Next (^0055FF"+((.@Style<.@max[@s])?.@Style+1:1)+"^000000)") 
+		           : (" ~ Next (^0055FF"+((.@Style<.@max[@s])?.@Style+1:1)+"^000000): ~ Previous (^0055FF"+((.@Style>1)?.@Style-1:.@max[@s])+"^000000):")) 
+		           + ": ~ Next ^008000autoscroll^000000: ~ Previous ^008000autoscroll^000000:"
+		           + " ~ Jump to...: ~ Revert to original (^0055FF"+@Revert+"^000000)";
+		switch(select(.@menu$)) {
+			case 1:
+			case 3:
+				set .@previous,0;
+				set .@Style, ((.@Style<.@max[@s])?.@Style+1:1);
+				break;
+			case 2:
+				set .@previous,1;
+				set .@Style, ((.@Style>1)?.@Style-1:.@max[@s]);
+				break;
+				
+			case 4:
+				mes "Click close to begin autoscroll...";
+				mes " ";
+				mes "Move your character to return to the menu.";
+				close2;
+				set @autoscroll, 1;
+				addtimer 1,strnpcinfo(3)+"::OnProgressbarEnd";
+				while (1) {
+					set .@Style, ((.@Style<.@max[@s])?.@Style+1:1);
+					setlook .@Look[@s], .@Style;
+					message strcharinfo(0),"This is style #"+.@Style+".";
+					progressbar "FFFF00",1;
+				}
+				end;
+			case 5:
+				mes "Click close to begin autoscroll...";
+				mes " ";
+				mes "Move your character to return to the menu.";
+				close2;
+				set @autoscroll, 1;
+				addtimer 1,strnpcinfo(3)+"::OnProgressbarEnd";
+				while (1) {
+					set .@Style, ((.@Style>1)?.@Style-1:.@max[@s]);
+					setlook .@Look[@s], .@Style;
+					message strcharinfo(0),"This is style #"+.@Style+".";
+					progressbar "FFFF00",1;
+				}
+				end;
+			
+			case 6: message strcharinfo(0),"Choose a style between 1 - "+.@max[@s]+".";
+				input .@Style,0,.@max[@s];
+				if (!.@Style) set .@Style, rand(1,.@max[@s]);
+				break;
+			case 7: set .@Style, @Revert; setlook .@Look[@s], @Revert; break;
+		}
+		setlook .@Look[@s], .@Style;
+		message strcharinfo(0),"This is style #"+.@Style+".";
+	}
+}

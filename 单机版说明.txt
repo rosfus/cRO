@@ -1,0 +1,79 @@
+更新支持一些新功能
+
+更换SVN标签
+
+更新至rAthena SVN 17526
+修复弓箭无法装备的问题
+新增独立MySQL应用程序, 已包含数据. 真正一键启动.
+定义复制技能数据表.
+删除了部分不常用的插件.
+
+
+更新至rAthena SVN 17520
+常规修正,技能/手推车等.
+优化语言环境, 默认初始值设置为中文.
+增加了一些商业化的程序, 如果快捷监控系统等.
+关闭了ASPD补偿机制.
+开启了一些有趣的设置.
+
+
+更新至rAthena SVN 17516BugFix
+最新的架设指南, 贴吧的有点老了
+http://bbs.rosf.us/forum.php?mod=viewthread&tid=595&extra=page%3D1
+修正了早上发布的一个SQL导入错误
+增加了petdb数据
+
+
+更新至rAthena SVN 17516
+简化安装过程所有的MySQL帐号密码均修改为ragnarok[帐号/密码/数据库名]
+为了便于测试,现金商店的物品修改为1C
+取消了自定义的EDP系统.
+skill db的结构继续升级.
+
+
+更新至rAthena SVN 17484
+共享了现有的db数据
+影子系统和反叛者调试了部分
+更新了db和skill的结构
+
+
+更新至rAthena SVN 17454
+伊斯鲁德全面升级
+补全Malaya任务
+新增了数百DB
+
+
+更新至rAthena SVN 17442
+修复了商场的Bug, 增加了一些游戏辅助道具.
+
+
+更新至rAthena SVN 17435
+不过出了个bug, CASHSHOP没法用了比较可惜
+经玩家要求,增加了部分DB. [大概100条吧]都是新装备. 当然比我们自己用的要查好几百条.
+不过这次更新增加了古城副本. 还是非常赞的.
+DIY脚本和汉化脚本我们暂时不提供, 毕竟都是耗时耗力汉化出来的. 对比的话可以进我们的LOKI看看.
+或者有玩家愿意汉化的,我们可以来次Exchange~ 互惠互利嘛.
+
+
+最后更新日 20130910.
+安赫尔
+
+强烈鄙视看贴不回!
+
+RoSF.US单机版架设指南[20分钟自己架设单机版]
+http://bbs.rosf.us/forum.php?mod=viewthread&tid=595&extra=page%3D1
+
+单机版常见问题
+http://bbs.rosf.us/forum.php?mod=viewthread&tid=597&extra=page%3D2
+
+服务端下载地址
+http://bbs.rosf.us/forum.php?mod=viewthread&tid=601&extra=page%3D2
+
+客户端下载地址
+http://bbs.rosf.us/forum.php?mod=viewthread&tid=80&extra=page%3D1
+
+功能性改进
+http://bbs.rosf.us/forum.php?mod=viewthread&tid=590&extra=page%3D1
+
+内容性改进
+http://bbs.rosf.us/forum.php?mod=viewthread&tid=15&extra=page%3D1

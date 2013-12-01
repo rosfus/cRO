@@ -1,0 +1,161 @@
+//===== RoSF.us Script ======================================
+//= Advanced Refiner
+//===== By: =========Translation:============================= 
+//= L0ne_W0lf        安赫尔|20130701[ROSF.US]
+//===== Current Version: =====================================
+//= 1.5
+//===== Description: =========================================
+//= [Official Conversion]
+//= Refiner that uses Enriched ores to increase upgrade success.
+//= After a conversation with Doddler, it's been established that
+//= the advanced refiner works similar the the "Bubble Gum" item.
+//= The success percentage is not "increased" however, if it fails
+//= You get a second try. This tries twice at the same time,
+//= effectively giving you a re-roll on your attempt.
+//= - Dialog is only partly official to iRO.
+//= - Uses the iRO position for this NPC.
+//===== Additional Comments: =================================
+//= 1.0 First Version. [L0ne_W0lf]
+//= 1.1 Fixed a weird carriage return. o_o [L0ne_W0lf]
+//= 1.2 Optimizing refine method [Zephyrus]
+//= 1.3 Typo fixes [Yommy]
+//= 1.4 Removed unnecessary dialogs [Zephyrus]
+//= 1.4a Added 'disable_items' command. [Euphy]
+//= 1.4b Fixed coordinates. [Euphy]
+//= 1.5 Some official script updates. [Euphy]
+//============================================================
+
+payon,157,146,6	script	Suhnbi#cash	4_M_03,{
+	disable_items;
+	mes "[Suhnbi]";
+	mes "我是装备工匠";
+	mes "我能够精炼各种武器, ";
+	mes "防具以及装备, 所以请让我";
+	mes "知道你想精炼什么装备?";
+	next;
+
+	setarray .@position$[1], "头部","衣服","左手","右手","披风","鞋子","装饰品1","装饰品2","头中","头下";
+	set .@menu$,"";
+	for(set .@i,1; .@i<=10; set .@i,.@i+1) {
+		if (getequipisequiped(.@i)) {
+			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+			set .@equipped,1;
+		}
+		set .@menu$, .@menu$ + ":";
+	}
+	if (.@equipped == 0) {
+		mes "[Suhnbi]";
+		mes "我觉得我没办法精炼你所选择的物品.";
+		close;
+	}
+	set .@part, select(.@menu$);
+
+	if (!getequipisequiped(.@part)) //custom check
+		close;
+	if (!getequipisenableref(.@part)) {
+		mes "[Suhnbi]";
+		mes "你可以去找别的铁匠, 这件装备无法精炼.";
+		close;
+	}
+	if (getequiprefinerycnt(.@part) >= 10) {
+		mes "[Suhnbi]";
+		mes "唔……已经有人把这件装备打造到极致了, 我无法继续精炼了.";
+		close;
+	}
+
+	// Make sure you have the neccessary items and Zeny to refine your items
+	// Determines chance of failure and verifies that you want to continue.
+	switch(getequipweaponlv(.@part)) {
+		case 1: callsub S_RefineValidate,1,7620,50,.@part; break;
+		case 2: callsub S_RefineValidate,2,7620,200,.@part; break;
+		case 3: callsub S_RefineValidate,3,7620,5000,.@part; break;
+		case 4: callsub S_RefineValidate,4,7620,20000,.@part; break;
+		default: callsub S_RefineValidate,0,7619,2000,.@part; break;
+	}
+
+	mes "[Suhnbi]";
+	mes "Clang! Clang! Clang!";
+	if (getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100)) {
+		successrefitem .@part;
+		next;
+		emotion e_no1;
+		mes "[Suhnbi]";
+		mes "走你!搞定了!";
+		mes "我已经很久没有精炼 "+((getequipweaponlv(.@part))?"weapon":"armor")+". 这样的装备了.这件装备变强我想你一定很高兴.";
+		close;
+	}
+	failedrefitem .@part;
+	next;
+	emotion (!rand(5))?e_cash:e_omg;
+	mes "[Suhnbi]";
+	mes "哦不.";
+	next;
+	mes "[Suhnbi]";
+	mes "...";
+	mes ".....";
+	mes ".......呼呼呼呼呼~";
+	mes "........这是你的选择和我的能力所限, 不要后悔!";
+	close;
+
+S_RefineValidate:
+	mes "[Suhnbi]";
+	if (getarg(0))
+		mes "你想精炼这件强化 " + getarg(0) + " 的武器?";
+	mes "要精练它, 你需要带着一个 ^ff9999" + getitemname(getarg(1)) + "^000000 和 " + getarg(2) + " Zeny.";
+	mes "你想继续嘛?";
+	next;
+	if(select("是:否") == 1) {
+		if (getequippercentrefinery(getarg(3)) < 100) {
+			if (getarg(0)) {
+				mes "[Suhnbi]";
+				mes "Wow!!";
+				mes "这件武器好像";
+				mes "已经被精炼了";
+				mes "很多次……";
+				mes "如果你继续精炼";
+				mes "可能会导致损毁.";
+				next;
+				mes "如果它损毁了, ";
+				mes "你就无法再使用它了!";
+				mes "所插的卡片以及属性 ^ff0000将会消失^000000!";
+				mes "^ff0000同时, 装备也会消失!^000000";
+				mes "你确定你仍然想继续吗?";
+				next;
+				if(select("是:否") == 2) {
+					mes "[Suhnbi]";
+					mes "很好.";
+					mes "因为如果武器因为不理智的精炼而损毁, 我也会很难过的.";
+					close;
+				}
+			} else {
+				mes "[Suhnbi]";
+				mes "呵呵呵呵.你真有胆, 居然敢精炼这货.";
+				mes "你知道这很有风险的吧?";
+				next;
+				mes "如果你的防具损坏了, 你就再也不能使用了.";
+				mes "甚至所插的卡片以及精炼值也会 ^ff0000完全消失^000000.";
+				//mes "所有东西都会消失, 就这样……没了!";
+				mes "你真的想要继续吗?";
+				next;
+				if(select("是:否") == 2) {
+					mes "[Suhnbi]";
+					mes "无理取闹, 你浪费了我宝贵的时间.";
+					mes "从我面前消失!废物.";
+					close;
+				}
+			}
+		}
+		if (countitem(getarg(1)) > 0 && Zeny > getarg(2)) {
+			delitem getarg(1),1;
+			set Zeny, Zeny - getarg(2);
+			return;
+		}
+		mes "[Suhnbi]";
+		mes "你就带了这些东西来?";
+		mes "对不起, 你材料不足我没法精炼.而且我应该获得我应得的报酬, 不是吗?";
+		close;
+	}
+	mes "[Suhnbi]";
+	mes "如果你自己都不高兴做, 那恕我不能帮助你.";
+	close;
+}

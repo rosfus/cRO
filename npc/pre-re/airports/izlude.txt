@@ -1,0 +1,11 @@
+//===== RoSF.us Script ======================================
+//= Izlude Airport NPCs
+//===== By: =========Translation:============================= 
+//= rAthena Dev Team °²ºÕ¶û|20130701[ROSF.US]
+//===== Description: =========================================
+//= Izlude Airport NPCs
+//===== Additional Comments: =================================
+//= Official NPCs.
+//============================================================
+
+izlude,206,55,3	duplicate(Airship_Staff_izlude)	Airship Staff#izlude	4_F_01

@@ -1,0 +1,281 @@
+//×÷ÕßÎªÎŞÃû
+prontera.gat,164,107,4	script	ÂÖÅÌ	80,{
+	if ( Zeny >= 1000000000 ) goto NPLB;
+	mes "[ÂÖÅÌ]  £¯£Ü£ß____£ß£¯£Ü";
+	mes ".     £¯  £¯£Ü_£²_£¯£Ü¡.Ü";
+	mes ".   £¯  £¯£± ¡ø¡¡¡ø £³£Ü  £Ü";
+	mes ". ¡¡©¤©¤©¤©¤©¤ ¡ğ ©¤©¤©¤©¤©¤";
+	mes ".   £Ü  £Ü£³£Ü ¡ø £¯£±£¯  £¯";
+	mes ".   ¡.Ü  £Ü£¯_£²_£Ü£¯  £¯";
+	mes ".     ¡.Ü£¯£ß____£ß£Ü£¯";
+	mes "Ã¿ÍæÒ»´ÎÎª1000000z!!";
+	mes "¹ÀÖĞÑÕÉ«2±¶½±½ğ!!";
+	mes "¹ÀÖĞÊı×Ö3±¶½±½ğ!!";
+	mes "Í¬Ê±¹ÀÖĞÊı×ÖºÍÑÕÉ«6±¶½±½ğ!!";
+	next;
+	menu 
+	"ÂòºÚ°×",bw1,
+	"ÂòÊıÄ¿",bw2,
+	"ÂòºÚ°×ºÍÊıÄ¿",bw3,
+	"ÎÒ²»Íæ",NPLB;
+	close;
+	end;
+bw1:
+	mes "[ÂÖÅÌ]";
+	mes "Ö»Òª²¨×ÓÍ£ÔÚÄãÂòµÄÑÕÉ«ÉÏÄã¾ÍÓ®!!";
+	mes "ÇëÑ¡ÔñÑÕÉ«";
+	next;
+	menu 
+	"ÂòºÚÉ«",bw4,
+	"Âò°×É«",bw5,
+	"ÎÒ²»Íæ",NPLB;
+	close;
+	end;
+bw2:
+	mes "[ÂÖÅÌ]";
+	mes "Ö»Òª²¨×ÓÍ£ÔÚÄãÂòµÄÊı×ÖÉÏÄã¾ÍÓ®!!";
+	mes "ÇëÑ¡ÔñÊı×Ö";
+	next;
+	menu 
+	"Âò1ºÅ",bw6,
+	"Âò2ºÅ",bw7,
+	"Âò3ºÅ",bw8,
+	"ÎÒ²»Íæ",NPLB;
+	close;
+	end;
+bw3:
+	mes "[ÂÖÅÌ]";
+	mes "Ö»Òª²¨×ÓÍ£ÔÚ,";
+	mes "ÄãÂòµÄÊı×ÖºÍÑÕÉ«ÉÏÄã¾ÍÓ®!!";
+	mes "ÇëÑ¡ÔñÑÕÉ«";
+	next;
+	menu 
+	"Âò1ºÅºÚÉ«",bw9,
+	"Âò1ºÅ°×É«",bw10,
+	"Âò2ºÅºÚÉ«",bw11,
+	"Âò2ºÅ°×É«",bw12,
+	"Âò3ºÅºÚÉ«",bw13,
+	"Âò3ºÅ°×É«",bw14,
+	"ÎÒ²»Íæ",sxnotplay;
+	close;
+	end;
+
+bw4:
+	set @gsblb,10;
+	goto bw15;
+	close;
+	end;
+bw5:
+	set @gsblb,11;
+	goto bw15;
+	close;
+	end;
+bw6:
+	set @gsblb,21;
+	goto bw15;
+	close;
+	end;
+bw7:
+	set @gsblb,22;
+	goto bw15;
+	close;
+	end;
+bw8:
+	set @gsblb,23;
+	goto bw15;
+	close;
+	end;
+bw9:
+	set @gsblb,1;
+	goto bw15;
+	close;
+	end;
+bw10:
+	set @gsblb,2;
+	goto bw15;
+	close;
+	end;
+bw11:
+	set @gsblb,3;
+	goto bw15;
+	close;
+	end;
+bw12:
+	set @gsblb,4;
+	goto bw15;
+	close;
+	end;
+bw13:
+	set @gsblb,5;
+	goto bw15;
+	close;
+	end;
+bw14:
+	set @gsblb,6;
+	goto bw15;
+	close;
+	end;
+bw15:
+	if ( Zeny < 1000000 ) goto NPLB;
+	set Zeny,Zeny-1000000;
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) goto GLBR1;
+	if ( @BRR == 1 ) goto GLBR2;
+	if ( @BRR == 2 ) goto GLBR3;
+	if ( @BRR == 3 ) goto GLBR4;
+	if ( @BRR == 4 ) goto GLBR5;
+	if ( @BRR == 5 ) goto GLBR6;
+	close;
+	end;
+
+GLBR1:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000Í£ÁË= =^000000]£¯£Ü£ß____£ß£¯£Ü";
+	if ( @BRR >= 1 ) mes "[×ª.....]£¯£Ü£ß____£ß£¯£Ü";
+	mes ".      £¯¡ñ£¯£Ü_£²_£¯£Ü¡.Ü";
+	mes ".    £¯  £¯£± ¡ø¡¡¡ø £³£Ü  £Ü";
+	mes ".  ¡¡©¤©¤©¤©¤©¤ ¡ğ ©¤©¤©¤©¤©¤";
+	mes ".    £Ü  £Ü£³£Ü ¡ø £¯£±£¯  £¯";
+	mes ".    ¡.Ü  £Ü£¯_£²_£Ü£¯  £¯";
+	mes ".      ¡.Ü£¯£ß____£ß£Ü£¯";
+	next;
+	if ( @BRR == 0 ) set @PPW1,10;
+	if ( @BRR == 0 ) set @PPW2,21;
+	if ( @BRR == 0 ) set @PPW3,1;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR2;
+	close;
+	end;
+GLBR2:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000Í£ÁË= =^000000]£¯£Ü£ß__¡ñ£ß£¯£Ü";
+	if ( @BRR >= 1 ) mes "[.×ª....]£¯£Ü£ß__¡ñ£ß£¯£Ü";
+	mes ".      £¯  £¯£Ü_£²_£¯£Ü¡.Ü";
+	mes ".    £¯  £¯£± ¡ø¡¡¡ø £³£Ü  £Ü";
+	mes ".  ¡¡©¤©¤©¤©¤©¤ ¡ğ ©¤©¤©¤©¤©¤";
+	mes ".    £Ü  £Ü£³£Ü ¡ø £¯£±£¯  £¯";
+	mes ".    ¡.Ü  £Ü£¯_£²_£Ü£¯  £¯";
+	mes ".      ¡.Ü£¯£ß____£ß£Ü£¯";
+	next;
+	if ( @BRR == 0 ) set @PPW1,11;
+	if ( @BRR == 0 ) set @PPW2,22;
+	if ( @BRR == 0 ) set @PPW3,4;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR3;
+	close;
+	end;
+GLBR3:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000Í£ÁË= =^000000]£¯£Ü£ß____£ß£¯£Ü";
+	if ( @BRR >= 1 ) mes "[..×ª...]£¯£Ü£ß____£ß£¯£Ü";
+	mes ".      £¯  £¯£Ü_£²_£¯£Ü¡.Ü";
+	mes ".    £¯  £¯£± ¡ø¡¡¡ø £³£Ü¡ñ£Ü";
+	mes ".  ¡¡©¤©¤©¤©¤©¤ ¡ğ ©¤©¤©¤©¤©¤";
+	mes ".    £Ü  £Ü£³£Ü ¡ø £¯£±£¯  £¯";
+	mes ".    ¡.Ü  £Ü£¯_£²_£Ü£¯  £¯";
+	mes ".      ¡.Ü£¯£ß____£ß£Ü£¯";
+	next;
+	if ( @BRR == 0 ) set @PPW1,10;
+	if ( @BRR == 0 ) set @PPW2,23;
+	if ( @BRR == 0 ) set @PPW3,5;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR4;
+	close;
+	end;
+GLBR4:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000Í£ÁË= =^000000]£¯£Ü£ß____£ß£¯£Ü";
+	if ( @BRR >= 1 ) mes "[...×ª..]£¯£Ü£ß____£ß£¯£Ü";
+	mes ".      £¯  £¯£Ü_£²_£¯£Ü¡.Ü";
+	mes ".    £¯  £¯£± ¡ø¡¡¡ø £³£Ü  £Ü";
+	mes ".  ¡¡©¤©¤©¤©¤©¤ ¡ğ ©¤©¤©¤©¤©¤";
+	mes ".    £Ü  £Ü£³£Ü ¡ø £¯£±£¯  £¯";
+	mes ".    ¡.Ü  £Ü£¯_£²_£Ü£¯¡ñ£¯";
+	mes ".      ¡.Ü£¯£ß____£ß£Ü£¯";
+	next;
+	if ( @BRR == 0 ) set @PPW1,11;
+	if ( @BRR == 0 ) set @PPW2,21;
+	if ( @BRR == 0 ) set @PPW3,2;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR5;
+	close;
+	end;
+GLBR5:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000Í£ÁË= =^000000]£¯£Ü£ß____£ß£¯£Ü";
+	if ( @BRR >= 1 ) mes "[....×ª.]£¯£Ü£ß____£ß£¯£Ü";
+	mes ".      £¯  £¯£Ü_£²_£¯£Ü¡.Ü";
+	mes ".    £¯  £¯£± ¡ø¡¡¡ø £³£Ü  £Ü";
+	mes ".  ¡¡©¤©¤©¤©¤©¤ ¡ğ ©¤©¤©¤©¤©¤";
+	mes ".    £Ü  £Ü£³£Ü ¡ø £¯£±£¯  £¯";
+	mes ".    ¡.Ü  £Ü£¯_£²_£Ü£¯  £¯";
+	mes ".      ¡.Ü£¯£ß¡ñ__£ß£Ü£¯";
+	next;
+	if ( @BRR == 0 ) set @PPW1,10;
+	if ( @BRR == 0 ) set @PPW2,22;
+	if ( @BRR == 0 ) set @PPW3,3;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR6;
+	close;
+	end;
+GLBR6:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000Í£ÁË= =^000000]£¯£Ü£ß____£ß£¯£Ü";
+	if ( @BRR >= 1 ) mes "[.....×ª]£¯£Ü£ß____£ß£¯£Ü";
+	mes ".      £¯  £¯£Ü_£²_£¯£Ü¡.Ü";
+	mes ".    £¯  £¯£± ¡ø¡¡¡ø £³£Ü  £Ü";
+	mes ".  ¡¡©¤©¤©¤©¤©¤ ¡ğ ©¤©¤©¤©¤©¤";
+	mes ".    £Ü¡ñ£Ü£³£Ü ¡ø £¯£±£¯  £¯";
+	mes ".    ¡.Ü  £Ü£¯_£²_£Ü£¯  £¯";
+	mes ".      ¡.Ü£¯£ß____£ß£Ü£¯";
+	next;
+	if ( @BRR == 0 ) set @PPW1,11;
+	if ( @BRR == 0 ) set @PPW2,23;
+	if ( @BRR == 0 ) set @PPW3,6;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR1;
+	close;
+	end;
+VBLP:
+	if (@gsblb == @PPW1) goto VBLP2;
+	if (@gsblb == @PPW2) goto VBLP3;
+	if (@gsblb == @PPW3) goto VBLP4;
+	mes "[ÂÖÅÌ]";
+	mes "Ì«¿ÉÏ§ÁËÄãÃ»ÖĞ½±";
+	mes "ÏÂ´ÎÔÙ¼û";
+	close;
+	end;
+VBLP2:
+	mes "[ÂÖÅÌ]";
+	mes "ÖĞ½±";
+	mes "ÏÂ´ÎÔÙ¼û";
+	set Zeny,Zeny+2000000;
+	close;
+	end;
+VBLP3:
+	mes "[ÂÖÅÌ]";
+	mes "ÖĞ½±";
+	mes "ÏÂ´ÎÔÙ¼û";
+	set Zeny,Zeny+3000000;
+	close;
+	end;
+VBLP4:
+	mes "[ÂÖÅÌ]";
+	mes "ÖĞ½±";
+	mes "ÏÂ´ÎÔÙ¼û";
+	set Zeny,Zeny+10000000;
+	close;
+	end;
+
+NPLB:	
+	mes "[ÂÖÅÌ]";
+	if ( Zeny >= 1000000000 ) mes "Äã½ğÇ®Ì«¶à!!";
+	if ( Zeny < 1000000 )mes "Äã½ğÇ®²»×ã!!";
+	mes "ÄÇÃ´ÏÂ´ÎÔÙ¼û!!";
+	close;
+	end;
+
+OnInit:
+	waitingroom "ÂÖÅÌ",0;
+	end;
+}

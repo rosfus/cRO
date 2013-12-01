@@ -1,0 +1,125 @@
+//===== rAthena Script =======================================
+//= Bullet Dealers
+//===== By ==================Translation:=====================
+//= Playtester, Paradox924X  安赫尔/Money[RoSF.us]20131006
+//===== Version ==============================================
+//= 1.5
+//===== Compatible With ======================================
+//= rAthena SVN
+//===== Description ==========================================
+//= Bullet trader.
+//===== Comments =============================================
+//= 1.0 First version [Playtester]
+//= 1.1 Converted from Aegis [Paradox924X]
+//= 1.2 More optimized conversion [Legionaire]
+//= 1.2a Removed .GATs [Lupus]
+//= 1.3 Fixed [Playtester] Optimized. Got rid of @vars [Lupus]
+//= 1.4 Updated to match AEGIS script. [Kisuka]
+//= 1.5 Updated to match AEGIS script again. [Masao]
+//= 1.6 Moved Izlude duplicate to pre-re/re paths. [Euphy]
+//============================================================
+
+alberta,118,160,3	script	弹药经销商 托尼#alb::bdt	86,{
+	if (BaseJob == Job_Gunslinger) {
+		mes "[托尼]";
+		mes "我是弹药经销商托尼. ";
+		mes "当您的子弹不够的时候就请来";
+		mes "找我. 只要给我一些材料, ";
+		mes "我就能为您制造您想要的";
+		mes "子弹. ";
+		next;
+		switch(select("- 毒子弹:- 火枪子弹:- 雷击子弹:- 失明子弹:- 冰冻子弹:- 取消")) {
+		case 1: callfunc "Bullet_Trade",937,10,13205; break;
+		case 2: callfunc "Bullet_Trade",7097,2,13203; break;
+		case 3: callfunc "Bullet_Trade",7053,3,13204; break;
+		case 4: callfunc "Bullet_Trade",1024,5,13206; break;
+		case 5: callfunc "Bullet_Trade",7054,2,13207; break;
+		case 6:
+			mes "[托尼]";
+			mes "改变主意了吗?";
+			mes "好吧, 如果您还要子弹, ";
+			mes "我一直在这里. ";
+			mes "如果您需要更多的子弹";
+			mes "可以随时回来这里";
+			mes "找我, 枪手. ";
+			close;
+		}
+	}
+	mes "[托尼]";
+	mes "嘿, 你好我是托尼, 我负责";
+	mes "帮枪手分配并制作子弹. ";
+	mes "这只是";
+	mes "我们工会喜欢的";
+	mes "一种形式方式";
+	mes "而已. ";
+	next;
+	mes "[托尼]";
+	mes "对不起, 如果您";
+	mes "是来这里买子弹的. ";
+	mes "我这只和已经";
+	mes "转职的枪手交易. ";
+	close;
+}
+
+function	script	Bullet_Trade	{
+	mes "[托尼]";
+	mes "对于一组";
+	mes "30个"+getitemname(getarg(2));
+	mes "你需要支付我";
+	mes "一个 强化武器金属-级数二 , ";
+	mes "一个 强化武器金属-级数一 , 以及";
+	mes ""+getarg(1)+" "+getitemname(getarg(0));
+	next;
+	mes "[托尼]";
+	mes "请记得我一次";
+	mes "最多只能给您500组";
+	mes "30发的弹药. 请输入";
+	mes "您想要兑换的";
+	mes "弹药数量. 如果您想要";
+	mes "取消, 只需要输入''0.''";
+	next;
+	input .@amount;
+	if (.@amount < 1 || .@amount > 500) {
+		mes "[托尼]";
+		mes "嘿!我不能给您那么多子弹. ";
+		mes "如果您真的想要";
+		mes "用物品来兑换子弹";
+		mes "就请记得";
+		mes "不要输入超过";
+		mes "500的数字. ";
+		close;
+	}
+	if (countitem(1010) >= .@amount && countitem(1011) >= .@amount && countitem(getarg(0)) >= (.@amount*getarg(1))) {
+		if (checkweight(getarg(2),.@amount * 30) == 0) {
+			mes "[托尼]";
+			mes "呃?你的背包里好像";
+			mes "没有足够的空间来存放";
+			mes "这些子弹. 等你清理出";
+			mes "更多的空间的时候, 再来";
+			mes "找我. 你可以把一些东西";
+			mes "存放到卡普拉仓库中. ";
+			close;
+		} else {
+			mes "[托尼]";
+			mes "太好了, 似乎一切都";
+			mes "井井有条的样子. 让我用";
+			mes "这些材料帮您兑换";
+			mes "子弹. 很高兴能和您";
+			mes "做生意~";
+			delitem 1010,.@amount;
+			delitem 1011,.@amount;
+			delitem getarg(0),.@amount * getarg(1);
+			getitem getarg(2),.@amount * 30;
+			close;
+		}
+	} else {
+		mes "[托尼]";
+		mes "呼, 看起来您没有";
+		mes "足以制作那么多子弹的";
+		mes "材料. 好吧, ";
+		mes "没关系. 等您集齐了";
+		mes "所有需要的材料, ";
+		mes "再来找我吧, 好吗?";
+		close;
+	}
+}

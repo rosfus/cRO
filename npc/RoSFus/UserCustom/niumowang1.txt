@@ -1,0 +1,46 @@
+//ĞÂÈË×°±¸·¢ËÍÔ±
+//by ÎØÎØ
+
+prontera.gat,164,85,4	script	·ÊáÌÏÈÉú	711,{
+mes "[·ÊáÌÏÈÉú]";
+mes "ÄãºÃ, ÎÒÊÇ·ÊáÌÏÈÉú!";
+mes "ÎÒÎªÃ¿Î»³õÑ§¶¼·¢·ÅÒ»Ğ©×°±¸ºÍÒ©Æ·!";
+mes "Ã¿¸öÈËÖ»ÄÜÁìÒ»´ÎÅ¶!";
+next;
+menu "ÎÒÒªÁìÈ.¡",LGET,"ÍË³ö",LCLOSE;
+
+//¿ªÊ¼
+LGET:
+		if (g==2) goto OREADY;
+
+		set g,2;
+		getitem	1208,1;	
+		getitem	2102,1;	
+		getitem	2278,1;	
+		getitem	2221,1;	
+		getitem	2306,1;	
+		getitem	2402,1;	
+		getitem	2502,1;	
+		getitem	2607,1;	
+		getitem	2607,1;	
+		getitem	645,10;	
+		getitem	501,20;
+                getitem	9601,1;
+                getitem	9602,1;                
+		goto LOK;
+OREADY:
+		mes "[·ÊáÌÏÈÉú]";
+		mes "Áì¹ıÁË²»ÄÜÔÙÁìÅ¶!";
+		goto LCLOSE;
+LOK:
+		mes "[·ÊáÌÏÈÉú]";
+		mes "Ï£ÍûÄãÍæµÃÓä¿ì!";
+		goto LCLOSE;	
+LCLOSE:
+		close;
+OnInit:
+	waitingroom "ĞÂÈË×°±¸·¢ËÍÔ±!",0;
+	end;
+	
+	
+}

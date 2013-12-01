@@ -1,0 +1,49 @@
+//===== RoSF.us Script ======================================
+//= Izlude Airport NPCs
+//===== By: =========Translation:============================= 
+//= RoSF.us Dev Team 安赫尔|20130701[ROSF.US]
+//===== Description: =========================================
+//= Izlude Airport NPCs
+//===== Additional Comments: =================================
+//= Official NPCs.
+//============================================================ 
+
+-	script	::Airship_Staff_izlude	-1,{
+	mes "[机场 工作人员]";
+	mes "欢迎!";
+	mes "您是否想要登上";
+	mes "飞往朱诺以及拉赫的";
+	mes "飞空艇?";
+	next;
+	if (select("登机前往朱诺/拉赫:取消") == 1) {
+		mes "[机场 工作人员]";
+		mes "登机费是";
+		mes "1,200 zeny.然而";
+		mes "如果您持有免费飞空艇使用券, ";
+		mes "您就可以免登机费.那么您";
+		mes "是否想要登机?";
+		next;
+		if (select("是:否") == 1) {
+			if (countitem(7311) > 0) {
+				delitem 7311,1; //Free_Flying_Ship_Ticket
+				warp "airplane_01",244,58;
+				end;
+			}
+			if (Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp "airplane_01",244,58;
+				end;
+			}
+			mes "[机场 工作人员]";
+			mes "对不起, 您没有足够的金钱";
+			mes "1,200 zeny 来支付";
+			mes "登机费.";
+			close;
+		}
+	}
+	mes "[机场 工作人员]";
+	mes "谢谢您!";
+	mes "下次再会!";
+	mes "祝您愉快~";
+	close;
+}

@@ -1,0 +1,14 @@
+//===== RoSF.us Script ======================================
+//= Turbo Track
+//===== By: =========Translation:============================= 
+//= Euphy            °²ºÕ¶û|20130701[ROSF.US]
+//===== Current Version: =====================================
+//= 1.0
+//===== Description: =========================================
+//= [Official Conversion]
+//= Pre-Renewal duplicates.
+//===== Additional Comments: =================================
+//= 1.0 Split Peco Peco Manager NPC.
+//============================================================
+
+alde_gld,181,199,5	duplicate(MountManager_turbo)	Peco Peco Manager	4_F_RACING

@@ -1,0 +1,440 @@
+// Items Additional Database
+//
+// Structure of Database:
+// ID,Name,Name,Type,Price,Sell,Weight,ATK,DEF,Range,Slot,Job,Upper,Gender,Loc,wLV,eLV,Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
+//
+// THQ Quest Items
+//=============================================================
+//7950,THG_Membership,THG Membership,3,,10,10,,,,,,,,,,,,,{},{},{}
+//7951,Token_Bag,Token Bag,3,,10,10,,,,,,,,,,,,,{},{},{}
+//1998,Jeramiah's_Jur,Jeramiah's Jur,3,,10,10,,,,,,,,,,,,,{},{},{}
+//1999,Zed's_Staff,Zed's Staff,3,,10,10,,,,,,,,,,,,,{},{},{}
+
+// Official Event Items that had their Effects removed after the event was completed
+//585,Wurst,Brusti,11,2,,40,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(15,20),0; itemskill PR_MAGNIFICAT,3; },{},{}
+//679,Gold_Pill,Pilule,0,5000,,300,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 50,50; },{},{}
+
+//2681,Republic_Ring,Republic Anniversary Ring,5,20,,100,,0,,0,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus bAllStats,3; },{},{}
+
+//5134,Pumpkin_Hat,Pumpkin-Head,5,20,,200,,2,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus2 bSubRace,RC_Demon,5; },{},{}
+//5136,Santa's_Hat_,Louise's Santa Hat,5,20,,100,,3,,0,0xFFFFFFFF,7,2,256,,0,1,20,{ bonus bMdef,1; bonus bLuk,1; bonus3 bAutoSpellWhenHit,AL_HEAL,3,50; bonus3 bAutoSpellWhenHit,AL_BLESSING,10,50; },{},{}
+//5145,Carnival_Joker_Jester,Carnival Jester,5,10,,100,,0,,0,0xFFFFFFFF,7,2,256,,0,1,89,{ bonus bAllStats,3; },{},{}
+//5147,Baseball_Cap,Baseball Cap,5,0,,200,,3,,0,0xFFFFFFFF,7,2,256,,0,1,216,{ bonus2 bExpAddRace,RC_Boss,50; bonus2 bExpAddRace,RC_NonBoss,50; },{},{}
+//5201,Party_Hat_B,2nd Anniversary Party Hat,5,20,,300,,3,,0,0xFFFFFFFF,7,2,256,,0,1,144,{ bonus bAllStats,3; },{},{}
+//5202,Pumpkin_Hat_,Pumpkin Hat,5,20,,200,,2,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus bAllStats,2; bonus2 bSubRace,RC_Demon,5; bonus3 bAddMonsterDropItem,529,RC_DemiHuman,1500; },{},{}
+//5204,Event_Pierrot_Nose,Rudolf's Red Nose,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,49,{ bonus2 bResEff,Eff_Blind,3000; bonus2 bAddMonsterDropItem,12130,30; },{},{}
+//5264,Aussie_Flag_Hat,Australian Flag Hat,5,20,,500,,4,,0,0xFFFFFFFF,7,2,256,,0,1,304,{ bonus bAllStats,2; },{},{}
+//5356,Pumpkin_Hat_H,Pumpkin Hat,5,20,,200,,2,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus bAllStats,2; bonus2 bSubRace,RC_Demon,5; bonus2 bMagicAddRace,RC_Demon,5; },{},{}
+//5811,Santa_Beard,Santa Beard,5,20,,100,,5,,0,0xFFFFFFFF,7,2,1,,0,0,25,{ bonus2 bSubRace,RC_Brute,5; },{},{}
+
+//11702,Moon_Cookie,Moon Cookie,11,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_end SC_POISON; sc_end SC_SILENCE; sc_end SC_BLIND; sc_end SC_CONFUSION; sc_end SC_CURSE; sc_end SC_ILLUSION; itemskill AL_BLESSING,7; },{},{}
+//12131,Lucky_Potion,Lucky Potion,0,2,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_LUK,180000,15; },{},{}
+//12143,Red_Can,Red Can,2,50000,,300,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 25,25; },{},{}
+//Event effect: Summon monster? Probably Rice_Cake. x_x
+//12199,Rice_Scroll,Rice Scroll,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+//12200,Event_Cake,Event Cake,2,20,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill PR_MAGNIFICAT,3; },{},{}
+//12238,New_Year_Rice_Cake_1,New Year Rice Cake,0,20,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 20,15; sc_start SC_FOOD_STR,1200000,3; sc_start SC_FOOD_INT,1200000,3; sc_start SC_FOOD_LUK,1200000,3; sc_start SC_MOVHASTE_INFINITY,5000,0; },{},{}
+//12239,New_Year_Rice_Cake_2,New Year Rice Cake,0,20,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 20,15; sc_start SC_FOOD_DEX,1200000,3; sc_start SC_FOOD_AGI,1200000,3; sc_start SC_FOOD_VIT,1200000,3; sc_start SC_MOVHASTE_INFINITY,5000,0; },{},{}
+
+// iRO St. Patrick's Day Event 2008
+//=============================================================
+//12715,Black_Treasure_Chest,Black Treasure Chest,2,0,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_08stpattyseventbox"; },{},{}
+
+// iRO Valentine's Day Event 2009
+//=============================================================
+//12742,Valentine_Gift_Box_M,Valentine Gift Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 7946,1; },{},{}
+//12743,Valentine_Gift_Box_F,Valentine Gift Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 7947,1; },{},{}
+//12744,Chocolate_Box,Chocolate Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 558,1; },{},{}
+//14466,Valentine's_Emblem_Box,Valentine's Emblem Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5817,1; },{},{}
+//7946,Gold_Ring_Of_Valentine,Gold Ring Of Valentine,3,10,,0,,,,,,,,,,,,,{},{},{}
+//7947,Silver_Ring_Of_Valentine,Silver Ring Of Valentine,3,10,,0,,,,,,,,,,,,,{},{},{}
+//7948,Box,Box,3,10,,10,,,,,,,,,,,,,{},{},{}
+//5817,Valentine's_Emblem,Valentine's Emblem,5,10,,0,,3,,0,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus bAtkRate,3; bonus bMatkRate,3; bonus bAllStats,2; bonus bFlee,10; bonus bAspd,1; bonus bMdef,3; bonus2 bSkillAtk,"AL_HEAL",10; bonus2 bSkillHeal,AL_HEAL,10; bonus2 bSkillHeal,AM_POTIONPITCHER,10; bonus2 bAddItemHealRate,IG_Potion,10; },{},{}
+
+// iRO Halloween Event 2009
+//=============================================================
+//5668,Weird_Pumpkin_Hat,Weird Pumpkin Hat,5,20,,10,,5,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus bMdef,5; bonus2 bAddMonsterDropItem,12192,2500; },{},{}
+//6298,Crushed_Pumpkin,Crushed Pumpkin,3,0,,0,,,,,,,,,,,,,{},{},{}
+//6299,Worn_Fabric,Worn Fabric,3,0,,0,,,,,,,,,,,,,{},{},{}
+
+// Old Tuxedo and Wedding Dress, will display the outfit when worn.
+//==================================================================
+//2338,Wedding_Dress,Wedding Dress,5,43000,,500,,0,,0,0xFFFFFFFE,7,0,16,,0,1,0,{},{ sc_start SC_WEDDING,-1,0; },{ sc_end SC_WEDDING; }
+//7170,Tuxedo,Tuxedo,5,43000,,10,,0,,0,0xFFFFFFFE,7,1,16,,0,1,0,{},{ sc_start SC_WEDDING,-1,0; },{ sc_end SC_WEDDING; }
+
+
+//rosf.us自定义道具
+9600,Loki_Mirro,米洛玩家助手,11,100,,0,,,,,0xffffffff,63,2,,,,,,{ callfunc "idcard"; },{},{}
+9601,Wing_Of_Fly_Unlimited,高级苍蝇翅膀,11,60,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ warp "Random",0,0; },{},{}
+9602,Wing_Of_Butterfly_Unlimited,高级蝴蝶翅膀,11,300,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ warp "SavePoint",0,0; },{},{}
+9603,Loki_Mirro_VIP,米洛玩家助手[会员版],11,100,,0,,,,,0xffffffff,63,2,,,,,,{ callfunc "vipcard";},{},{}
+9604,RoSF_Beret,RoSF贝雷帽,5,20,,10,,0,,0,0xFFFFFFFF,63,2,256,,1,0,0,{ bonus bLuk,1; },{},{}
+9605,RoSF_refine_weapon,武器强化保护,3,2,,10,,,,,,,,,,,,,{},{},{}
+9606,RoSF_refine_armor,防具强化保护,3,2,,10,,,,,,,,,,,,,{},{},{}
+9608,RoSF_Game_Coin,RoSF游戏硬币,3,20,,1,,,,,,,,,,,,,{},{},{}
+9609,RoSF_Red_Bag,红色包裹,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+9610,RoSF_Green_Bag,绿色包裹,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+9611,RoSF_Green_Mirror,魔镜,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+9612,RoSF_GM_PC,GM的电脑,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ mercenary_create 2564,1800000; },{},{}
+9613,RedFlag,红色旗帜,5,20,,500,,4,,0,0xFFFFFFFF,63,2,256,,0,1,2057,{},{},{}
+9614,BlueFlag,蓝色旗帜,5,20,,500,,4,,0,0xFFFFFFFF,63,2,256,,0,1,2058,{},{},{}
+9615,RoSF_Red_Bag_,韩版红色包裹,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ setlook 0,28; },{},{}
+9616,RoSF_Green_Bag_,绿色危险的包裹,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ setlook 5,403; },{},{}
+9617,j_taini_Capsule,玩偶泰迪熊诱饵胶囊,3,0,,10,,,,,,,,,,,,,{ pet 2200; },{},{}
+9618,TIKBALANG_Capsule,玩偶邪魔马诱饵胶囊,3,0,,10,,,,,,,,,,,,,{ pet 2313; },{},{}
+9619,DOMOVOI_Capsule,玩偶多莫沃伊诱饵胶囊,3,0,,10,,,,,,,,,,,,,{ pet 2336; },{},{}
+9620,WOE_TE_TICKET,WOE TE 租用券,3,50000,,10,,,,,,,,,,,,,{},{},{}
+9621,RoSFus_Gift_Box_111,公会入驻礼包,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 6024,1; getitem 9622,1; getitem 9623,1; getitem 14533,3; getitem 12210,3;},{},{}
+9622,RoSFus_Gift_Box_88,冒险者背包7日礼包,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 2576,604800; },{},{}
+9623,RoSFus_Gift_Box_89,深红玫瑰7日礼包,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 5548,604800; },{},{}
+9624,RoSFus_Gift_Box_90,随机宠物蛋箱子,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9624,1; },{},{}
+9625,RoSFus_Gift_Box_91,暗●搞笑艺人卡册,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 4560,1; getitem 4567,1; },{},{}
+9626,RoSFus_Gift_Box_92,暗●智者卡册,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 4561,1; getitem 4568,1; },{},{}
+9627,RoSFus_Gift_Box_93,暗●武术宗师卡册,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 4562,1; getitem 4569,1; },{},{}
+9628,RoSFus_Gift_Box_94,暗●创造者卡册,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 4563,1; getitem 4570,1; },{},{}
+9629,RoSFus_Gift_Box_95,暗●神行太保卡册,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 4564,1; getitem 4571,1; },{},{}
+9630,RoSFus_Gift_Box_96,暗●圣殿十字军卡册,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 4565,1; getitem 4572,1; },{},{}
+9631,RoSFus_Gift_Box_97,暗●冷艳舞姬卡册,2,0,,20,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 4566,1; getitem 4573,1; },{},{}
+9632,HEADGEAR_TICKET,头饰制作卷轴,3,50000,,10,,,,,,,,,,,,,{},{},{}
+9633,COSTUME_TICKET,时装制作卷轴,3,50000,,10,,,,,,,,,,,,,{},{},{}
+9634,BOSS_Coin,Boss,代币,3,50000,,10,,,,,,,,,,,,,{},{},{}
+9635,RoSFus_Gift_Box_98,随机护贝药套装箱子,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9635,1; },{},{}
+9636,Pass_Reward2,普通道场奖励箱子,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9636,3; },{},{}
+9637,Pass_Reward1,情侣道场奖励箱子,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9637,2; },{},{}
+9638,Pass_Reward3,高级道场奖励箱子,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9638,1; },{},{}
+9639,RoSFus_Gift_Box_99,+7随机装备礼包,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+9640,RoSFus_Gift_Box_100,古城的回忆奖励箱子,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 616,1; getitem 617,1; getitem 6607,4; getitem 6608,4;},{},{}
+9641,Pass_Reward4,无限塔奖励箱子,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9641,1; },{},{}
+9642,RoSFus_Gift_Box_101,100点P点袋,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ atcommand "@points "+100; },{},{}
+9643,RoSFus_Gift_Box_102,世界Boss的钱袋,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ atcommand "@points "+1000; },{},{}
+9644,RoSFus_Gift_Box_103,世界Boss的包裹,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9644,1; },{},{}
+9645,RoSFus_Gift_Box_104,世界Boss的装备[近战],2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+9646,RoSFus_Gift_Box_105,世界Boss的装备[远程],2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+9647,RoSFus_Gift_Box_106,世界Boss的装备[法术],2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+9648,RoSFus_Gift_Box_107,世界Boss的魔物蛋,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9648,1; },{},{}
+9649,RoSFus_Gift_Box_108,世界Boss的装饰品,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9649,1; },{},{}
+9650,RoSFus_Gift_Box_109,世界Boss的头饰时装,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9650,1; },{},{}
+9651,RoSFus_Gift_Box_110,世界Boss的卡册,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 9651,1; },{},{}
+9652,BOSS_Anger,Stop,3,0,,10,,,,,,,,,,,,,{},{},{}
+9653,Energy_Crystal_1,粗糙能量水晶,3,0,,100,,,,,,,,,,,,,{},{},{}
+9654,Energy_Crystal_2,精炼能量水晶,3,0,,100,,,,,,,,,,,,,{},{},{}
+9655,Energy_Crystal_3,高纯度能量水晶,3,0,,100,,,,,,,,,,,,,{},{},{}
+9656,Magic_Gear_Fuel300,魔导机械燃料箱,2,90000,,900,,,,,,,,,,,,,{ getitem 6146,300; },{},{}
+9658,Kafra_Card_,移动仓库使用券7天,11,2,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_CashStore"; },{},{}
+9659,Kafra_Card_Box_DIY7D,移动仓库使用券箱子7天,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ rentitem 9658,604800; },{},{}
+9660,Spectacles_UP,无限放大镜,11,0,,50,,,,,0xFFFFFFFF,63,2,,,,,,{ atcommand "@identifyall"; specialeffect2 568;},{},{}
+9661,MOONLIGHT_BABY_EGG,月光宝贝魔物蛋,7,20,,0,,,,,,,,,,,,,{},{},{}
+9662,MINI_FOX_EGG,迷你狐狸魔物蛋,7,20,,0,,,,,,,,,,,,,{},{},{}
+9663,MOONLIGHT_BABY_CAPSULE,月光宝贝诱饵胶囊,3,0,,10,,,,,,,,,,,,,{ pet 3554; },{},{}
+9664,MINI_FOX_CAPSULE,迷你狐狸诱饵胶囊,3,0,,10,,,,,,,,,,,,,{ pet 3555; },{},{}
+9665,FishingBox,钓鱼冷藏箱子,0,50,,70,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 17513,1; callfunc "Fishing_Box_Menu";},{},{}
+9666,Fish_Hooks,鱼钩 Level-1,3,6,,10,,,,,,,,,,,,,{},{},{}
+9667,Fish_Line,鱼线 Level-1,3,6,,10,,,,,,,,,,,,,{},{},{}
+9668,Fish_Rotten_Fish,腐烂的臭鱼,3,6,,10,,,,,,,,,,,,,{},{},{}
+9669,Fish_Stick,捕鱼棍子,4,10,,10,10,,1,0,0xFFFFFFFF,63,0,34,0,0,0,0,{},{},{}
+9671,Poison_Bottle_,无限毒药瓶[使用凭证],11,0,,0,,,,,0x00001000,63,2,,,,,,{if(countitem(678)==0){getitem 678,1;}},{},{}
+9672,Coca_Cola_,可口可乐,0,800,,100,,,,,0xFFFFFFFF,63,2,,,,,,{ percentheal 10,10; },{},{}
+9673,ASC_EDP_User,致命涂毒[使用凭证],11,0,,0,,,,,0x00001000,63,2,,,,,,{ itemskill "ASC_EDP",5; if(countitem(9673)==0){getitem 9673,1;}},{},{}
+9688,Member_Mirro,米洛玩家小助手,11,100,,0,,,,,0xffffffff,63,2,,,,,,{ callfunc "member_helper"; },{},{}
+
+9800,IRO_Flag_Bandana,星条帽子,5,20,,10,,7,1,1,0xFFFFFFFF,56,2,256,,1,1,1062,{ bonus bAllStats,1; skill "SM_BASH",1; if(getrefine()>=7){ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10;}},{},{}
+//9801,Battle_of_Sarah_Grove,莎拉的战斗长袍,5,20,,800,,0,,0,0xFFFFFFFF,63,2,16,,1,1,0,{ autobonus "{ bonus bMatk,getrefine()*8; }",10,10000,BF_MAGIC,"{ specialeffect2 EF_BLOODDRAIN; }";},{},{}
+//9802,KID_DEVILING,小恶魔跟班,5,20,,100,,0,,0,0xFFFFFFFF,63,2,512,,1,0,1036,{},{},{}
+//9803,BEAR_BALLOON,小熊气球,5,20,,100,,0,,0,0xFFFFFFFF,63,2,512,,1,0,1038,{},{},{}
+//9804,TARE_MAID_DOLL_HAT,趴趴娃娃帽子,5,20,,100,,0,,0,0xFFFFFFFF,63,2,256,,1,0,1083,{},{},{}
+//9805,TARE_HSCHOOL_DOLL_HAT,趴趴学生帽子,5,20,,100,,0,,0,0xFFFFFFFF,63,2,256,,1,0,1084,{},{},{}
+//9806,DROOPING_PANDA,趴趴熊猫帽子,5,20,,100,,0,,0,0xFFFFFFFF,63,2,256,,1,0,1029,{},{},{}
+9807,DESERT_WOLF_HAT,沙漠幼狼帽子,5,20,,100,,0,,0,0xFFFFFFFF,63,2,256,,1,0,783,{},{},{}
+9808,BLUE_ANGEL_HAIRBAND,蓝色天使发圈,5,20,,100,,0,,0,0xFFFFFFFF,63,2,256,,1,0,915,{},{},{}
+9809,NIGHT_SPARROW_HAT,夜行鸟之帽,5,20,,200,,15,,0,0x00080000,63,0,256,,100,1,913,{},{},{}
+9810,MAGICIAN_NIGHT_CAP,魔术师夜视帽,5,20,,200,,25,,0,0x00818315,63,2,256,,100,1,911,{},{},{}
+//9811,SHRINE_MAIDEN_HAT,神社少女发带,5,20,,200,,30,,0,0x00000100,56,2,256,,100,1,908,{},{},{}
+9812,ORDINARY_BLACK_MAGE_HAT,普通的黑色法师帽,5,20,,200,,15,,0,0x00000200,56,2,256,,100,1,912,{},{},{}
+9813,DEVOTED_EYES,信仰的眼睛,5,20,,100,,0,,0,0xFFFFFFFF,63,2,512,,1,0,1021,{},{},{}
+//9814,Addict_eyes,魅惑的眼睛,5,20,,100,,0,,0,0xFFFFFFFF,63,2,512,,1,0,1020,{},{},{}
+//9816,GODOFWINDS_FAN,福津扇,5,20,,300,,0,,0,0xFFFFFFFF,63,2,1,,30,0,1051,{ bonus2 bSkillAtk,"MG_LIGHTNINGBOLT",3; bonus2 bSkillAtk,"WZ_VERMILION",3; bonus2 bUseSPrate,"WZ_STORMGUST",5; bonus2 bUseSPrate,"WZ_FROSTNOVA",5;},{},{}
+9817,rwc2012,RWC2012欧版帽子,5,20,,100,,0,,1,0xFFFFFFFF,63,2,256,,1,0,1491,{},{},{}
+
+10600,Drill_Boots,钻头靴子,5,255000,55000,500,0,0,0,0,0xFFFFFFFE,63,2,64,0,50,0,0,{if (callfunc("iReadC","MineWeight")) skill "MC_INCCARRY",1 + callfunc("iReadC","MineWeight") / 5;},{callfunc "equipBoots";},{}
+//10602,Green_Foxtail,狗尾草,5,20,,300,,0,,1,0xFFFFFFFF,63,2,1,,30,0,1490,{} },{},{}
+//10603,Blind_Eye,视若无睹,5,20,,200,,1,,0,0xFFFFFFFF,63,2,512,,10,0,1489,{},{},{}
+//10604,YGGDRASIL_HAT,世界树之冠,5,20,,500,,0,,1,0xFFFFFFFF,63,2,256,,70,1,997,{},{},{}
+//10605,Morpheus's_Armlet,强化摩菲斯臂环,5,30000,,100,,0,,1,0xFFFFFFFE,63,2,136,,33,0,0,{ bonus bInt,1; bonus bMaxSPrate,5; },{},{}
+//10606,Ragamuffin_Cape,强化抗魔斗篷,5,56000,,500,,4,,1,0xFFFFFFFE,63,2,4,,0,1,0,{ bonus bUnbreakableGarment,0; bonus bMdef,10; },{},{}
+//10607,Magni_Cap,强化魔术无边帽,5,30000,,1000,,9,,1,0xFFFFFFFE,63,2,256,,65,1,250,{ bonus bStr,2; },{},{}
+//10608,Fricco_Shoes,强化傅里哥长靴,5,30000,,500,,12,,1,0xFFFFFFFE,63,2,64,,65,1,0,{ bonus bAgi,2; bonus2 bAddItemHealRate,IG_Potion,20; if(isequipped(2353,2516)){ bonus bAgi,3; bonus bMaxHPrate,5; bonus bMaxSPrate,5; } },{},{}
+//10609,Exorcism_Bible,强化驱魔圣经,5,20,,600,,80,,1,0x00008100,63,2,32,,50,1,1,{ bonus bHPrecovRate,3; bonus bSPrecovRate,3; bonus bInt,1; if(isequipped(1631)) { bonus2 bSkillAtk,"PR_MAGNUS",20; bonus3 bAutoSpellWhenHit,"PR_TURNUNDEAD",1,20; } },{},{}
+//10610,Fire_Brand,强化火灵之剑,4,20,,500,100,,3,1,0x000654E2,63,2,2,4,40,1,2,{ bonus bAtkEle,Ele_Fire; skill "MG_FIREBOLT",3; bonus3 bAutoSpell,"MG_FIREBOLT",3,100; },{},{}
+//10611,Ice_Falchon,强化水灵之刀,4,20,,600,100,,1,3,0x000654E2,63,2,2,4,40,1,2,{ bonus bAtkEle,Ele_Water; bonus2 bAddEff,Eff_Freeze,500; bonus2 bAddEff2,Eff_Freeze,10; skill "MG_COLDBOLT",3; bonus3 bAutoSpell,"MG_COLDBOLT",3,100; },{},{}
+//10612,Nemesis,强化复仇女神,4,20,,900,120,,1,2,0x00008110,63,2,2,4,60,1,8,{ bonus bAtkEle,Ele_Holy; bonus2 bAddRace,RC_Undead,10; bonus2 bAddRace,RC_Demon,10; bonus3 bAutoSpell,"AL_CRUCIS",1+(getrefine()>10?10:getrefine()),100; autobonus "{ bonus bBaseAtk,50; }",10,20000,BF_WEAPON,"{ specialeffect2 EF_BLOODDRAIN; }"; },{},{}
+//10613,Counter_Dagger,强化反击短剑,4,120000,,550,140,,1,2,0x00810204,63,2,2,4,55,1,1,{ bonus bCritical,90; },{},{}
+//10614,Bradium_Stonehammer,强化魔力之石石锤,4,0,,2700,210,,1,2,0x00000400,18,2,34,4,75,1,7,{ bonus3 bAddEffOnSkill,"BS_HAMMERFALL",Eff_Stun,500+(200*getrefine()); },{},{}
+//10615,Staff_Of_Bordeaux,强化波尔多之杖,4,20,,500,30,,1,2,0x00010204,18,2,2,4,50,1,10,{ bonus bMatk,170; bonus bInt,2; bonus bDex,1; if(getskilllv("SA_DRAGONOLOGY") == 5) { bonus bUseSPrate,-15; bonus bInt,3; } },{},{}
+//10616,Blood_Tears,强化血之泪,4,20,,1700,120,,1,3,0x00001000,18,2,34,4,55,1,16,{ if(getrefine() >= 9){ bonus3 bAutoSpell,"NPC_WIDEBLEEDING",2,30; } else bonus3 bAutoSpell,"NPC_WIDEBLEEDING",1,30; },{},{}
+//10617,Divine_Cross,强化圣十字之杖,4,20,,1500,120,,1,1,0x00008100,63,2,34,4,70,1,10,{ bonus bMatk,210; bonus bAtkEle,Ele_Holy; bonus bDex,4; bonus2 bSubRace,RC_Demon,15; bonus2 bSubRace,RC_Undead,15; if (isequipped(2677) || isequipped(2711)) { bonus bMatkRate,10; bonus bDex,2; bonus2 bSubRace,RC_Demon,10; bonus2 bSubRace,RC_Undead,10; }; },{},{}
+//10618,Muramasa,强化名刀不知火,4,20,,1000,155,,1,2,0x00004082,63,2,34,4,48,1,3,{ bonus bCritical,30; bonus bAspdRate,8; bonus2 bAddEff2,Eff_Curse,10; },{},{}
+//10619,Alca_Bringer,强化海鹰召唤者,4,20,,3400,280,,1,2,0x00004080,56,2,34,3,100,1,3,{ bonus bAspd,getrefine()/2; },{},{}
+//10620,Thorn_Staff,强化诅咒魔杖,4,20,,700,60,,1,1,0x00018314,18,2,2,4,75,1,10,{ bonus bMatk,160; bonus bAtkEle,Ele_Dark; bonus bInt,3; bonus bDex,3; bonus bIgnoreMdefRate,getrefine(); bonus bDelayrate,-(getrefine()*3/2); },{},{}
+//10621,Orc_Archer_Bow,强化兽人射手之弓,4,20,,1600,120,,5,1,0x000A0808,63,2,34,4,65,1,11,{ bonus2 bAddMonsterDropItem,1753,200; if(isequipped(1753)) bonus bLongAtkRate,50; },{},{}
+//10622,Loon_Length_Boots,卢恩长皮靴,5,20,,100,,5,,0,0xFFFFFFFF,63,2,64,,1,1,0,{bonus bUnbreakableShoes,n; if(readparam(bStr)>=90){bonus bAtk,10;} if(readparam(bStr)>=120){bonus bAtk,10;} if(readparam(bInt)>=90){bonus bMatkRate,3;} if(readparam(bInt)>=120){bonus bMatkRate,2;} if (isequipped(2730)) {bonus bAtk,(getrefine());} if (isequipped(2731)) {bonus bMatkRate,(getrefine()/2); bonus bCastrate,(getrefine()/2);} if (isequipped(2732)) {bonus bCritical,(getrefine()/2);}},{},{}
+10623,ad_Shield_of_the_variation,变异之盾,5,20,,1000,,0,,0,0xFFFFFFFF,63,2,32,,120,1,3,{},{},{}
+//10624,Strong_desire_pouch,强欲小袋,5,20,,100,,0,,1,0xFFFFFFFF,63,2,136,,50,0,0,{bonus2 bHPRegenRate,-10,5000; bonus bSPGainValue,2; bonus bMagicSPGainValue,2;},{},{}
+//10625,Safety_gloves,安全手套,5,20,,100,,0,,1,0xFFFFFFFF,63,2,136,,50,0,0,{bonus2 bSubSize,10,-5;bonus2 bSubSize,11,-5; bonus2 bExpAddRace,10,5; bonus2 bExpAddRace,11,5;},{},{}
+//10626,Wind_Dragon_Cloak,风龙的披风,5,20,,300,,0,,1,0xFFFFFFFE,63,2,4,,30,1,0,{ bonus bUnbreakableGarment,0; bonus2 bEleMagicAddRate,4,((getrefine()>7)?5:3); bonus2 bSubEle,2,-10; },{},{}
+//10627,Loon_Length_Boots,塔拉利亚,5,20,,300,,30,,1,0xFFFFFFFF,63,2,64,,50,1,0,{ bonus bMdef,5; bonus bAgi,1; bonus bAspd,1;},{},{}
+//10628,Entomologist_armor,昆虫学者铠甲,5,20,,500,,30,,1,0xFFFFFFFF,63,2,64,,50,1,0,{ bonus2 bAddRace2,4,3; if(getrefine()>6) {bonus2 bAddRace2,4,getrefine()-6;}},{},{}
+//10629,Aqua_Blue_Crystal,水蓝结晶,5,20,,100,,0,,0,0xFFFFFFFF,63,2,136,,30,0,0,{ bonus3 bAutoSpell,"WZ_WATERBALL",1,10; },{},{}
+//10630,Wind_Dragon_Cloak,风龙的披风,5,20,,300,,0,,1,0xFFFFFFFE,63,2,4,,30,1,0,{ bonus bUnbreakableGarment,0; bonus2 bEleMagicAddRate,4,((getrefine()>7)?5:3); bonus2 bSubEle,2,-10; },{},{}
+//10631,Wind_Dragon_Cloak,风龙的披风,5,20,,300,,0,,1,0xFFFFFFFE,63,2,4,,30,1,0,{ bonus bUnbreakableGarment,0; bonus2 bEleMagicAddRate,4,((getrefine()>7)?5:3); bonus2 bSubEle,2,-10; },{},{}
+//10632,Entomologist_armor,昆虫学者铠甲,5,20,,500,,30,,1,0xFFFFFFFF,63,2,64,,50,1,0,{ bonus2 bAddRace2,4,3; if(getrefine()>6) {bonus2 bAddRace2,4,getrefine()-6;}},{},{}
+//10633,Entomologist_armor,昆虫学者铠甲,5,20,,500,,30,,1,0xFFFFFFFF,63,2,64,,50,1,0,{ bonus2 bAddRace2,4,3; if(getrefine()>6) {bonus2 bAddRace2,4,getrefine()-6;}},{},{}
+10634,Destiny_Set_Mask,魔灵口罩,5,20,,200,,50,,1,0xFFFFFFFF,63,2,1,,1,0,0,{ bonus bUnbreakableHelm,0; bonus bAllStats,8; bonus2 bResEff,Eff_Stun,10000; bonus bNoGemStone,0; },{},{}
+10635,Destiny_Set_Robe,魔灵长袍,5,20,,200,,100,,1,0xFFFFFFFF,63,2,16,,1,1,0,{ bonus bUnbreakableArmor,0; bonus bAllStats,10; bonus2 bResEff,Eff_Bleeding,10000; },{},{}
+10636,Destiny_Set_Wing,魔灵披肩,5,20,,200,,60,,1,0xFFFFFFFF,63,2,4,,1,1,0,{ bonus bUnbreakableGarment,0; bonus bAllStats,6; bonus bFlee,30; bonus2 bSubEle,Ele_Neutral,30; bonus2 bResEff,Eff_Blind,10000; },{},{}
+10637,Destiny_Set_Boots,魔灵战靴,5,20,,200,,50,,1,0xFFFFFFFF,63,2,64,,1,1,0,{ bonus bUnbreakableShoes,0; bonus bAllStats,5; bonus bMaxHP,500; bonus bMaxSP,300; bonus2 bResEff,Eff_Curse,10000; bonus bSpeedRate,25; bonus2 bHPRegenRate,100,10000; bonus2 bSPRegenRate,100,10000;},{},{}
+10638,Destiny_Set_Necklace,魔灵项链,5,20,,200,,0,,1,0xFFFFFFFF,63,2,136,,1,0,0,{ bonus bAllStats,5; bonus bCritical,15; bonus bFleeRate,10; bonus bSPrecovRate,30; bonus bLongAtkDef,20;},{},{}
+10639,Destiny_Set_Bracelet,魔灵戒指,5,20,,200,,0,,1,0xFFFFFFFF,63,2,136,,1,0,0,{ bonus bAllStats,5; bonus bAtkRate,10; bonus bMatkRate,10; bonus bLongAtkRate,10; bonus bHPrecovRate,30; bonus bAspdRate,10;},{},{}
+10640,Destiny_Set_Box,宠物胶囊箱子,2,20,,10,,0,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 6083,3; },{},{}
+10641,Angra_Sword,元素谐音,4,1,,10,10000:10000,,2,0,0xFFFFFFFF,63,2,2,4,0,1,2,{ bonus bAllStats,50; bonus bBaseAtk,3300; bonus bMatkRate,200; bonus2 bHPDrainRate,1000,100; bonus2 bSPDrainRate,1000,20; bonus bHealPower,200; bonus2 bAddRace,RC_NonBoss,100; bonus2 bAddRace,RC_Boss,100; skill "WZ_STORMGUST",10; skill "WZ_METEOR",10; skill "WZ_VERMILION",10; skill "GM_SANDMAN",1; bonus bVariableCastrate,-100; bonus bFixedCastrate,-100; bonus3 bAddMonsterDropItem,7864,RC_DemiHuman,500;},{},{}
+10642,Daimon_Set_Mask,进化时光眼罩,5,20,,200,,40,,1,0xFFFFFFFF,63,2,512,,1,0,0,{ bonus bUnbreakableHelm,0; bonus bAllStats,8; bonus2 bResEff,Eff_Stun,10000; },{},{}
+10643,Daimon_Set_Robe,进化时光铠甲,5,20,,200,,50,,1,0xFFFFFFFF,63,2,16,,1,0,0,{ bonus bAllStats,10; bonus2 bResEff,Eff_Bleeding,10000; },{},{}
+10644,Daimon_Set_Wing,进化时光胸牌,5,20,,200,,40,,1,0xFFFFFFFF,63,2,4,,1,0,0,{ bonus bUnbreakableGarment,0; bonus bAllStats,6; bonus bFlee,30; bonus2 bResEff,Eff_Blind,10000; },{},{}
+10645,Daimon_Set_Boots,进化时光铁靴,5,20,,200,,30,,1,0xFFFFFFFF,63,2,64,,1,0,0,{ bonus bUnbreakableShoes,0; bonus bAllStats,5; bonus bMaxHP,500; bonus bMaxSP,300; bonus2 bResEff,Eff_Curse,10000; bonus bSpeedRate,25; bonus2 bHPRegenRate,100,10000; bonus2 bSPRegenRate,100,10000;},{},{}
+10646,Daimon_Set_Necklace,进化时光手套,5,20,,200,,0,,1,0xFFFFFFFF,63,2,136,,1,0,0,{ bonus bAllStats,5; bonus bCritical,15; bonus bFleeRate,10; bonus bSPrecovRate,30; bonus bLongAtkDef,20;},{},{}
+10647,Daimon_Set_Bracelet,进化时光指环,5,20,,200,,0,,1,0xFFFFFFFF,63,2,136,,1,0,0,{ bonus bAllStats,5; bonus bAtkRate,10; bonus bMatkRate,10; bonus bLongAtkRate,10; bonus bHPrecovRate,30; bonus bAspdRate,10;},{},{}
+10648,Daimon_Set_Box,进化时光套装箱子,2,20,,200,,0,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 10642,1; getitem 10643,1; getitem 10644,1; getitem 10645,1; getitem 10646,1; getitem 10647,1;},{},{}
+10649,Time_Round_Cap,时光眼罩,5,20,,200,,20,,1,0xFFFFFFFF,63,2,512,,1,1,0,{ bonus bUnbreakableHelm,0; bonus bAllStats,8; bonus2 bResEff,Eff_Stun,10000; },{},{}
+10650,Time_Round_Robe,时光铠甲,5,20,,200,,25,,1,0xFFFFFFFF,63,2,16,,1,1,0,{ bonus bUnbreakableArmor,0; bonus bAllStats,10; bonus2 bResEff,Eff_Bleeding,10000; },{},{}
+10651,Time_Round_Badge,时光胸牌,5,20,,200,,20,,1,0xFFFFFFFF,63,2,4,,1,1,0,{ bonus bUnbreakableGarment,0; bonus bAllStats,6; bonus bFlee,30; bonus2 bResEff,Eff_Blind,10000; },{},{}
+10652,Time_Round_Boots,时光铁靴,5,20,,200,,15,,1,0xFFFFFFFF,63,2,64,,1,1,0,{ bonus bUnbreakableShoes,0; bonus bAllStats,5; bonus bMaxHP,500; bonus bMaxSP,300; bonus2 bResEff,Eff_Curse,10000; bonus bSpeedRate,25; bonus2 bHPRegenRate,100,10000; bonus2 bSPRegenRate,100,10000;},{},{}
+10653,Time_Round_Gloves,时光手套,5,20,,200,,0,,1,0xFFFFFFFF,63,2,136,,1,0,0,{ bonus bAllStats,5; bonus bCritical,15; bonus bFleeRate,10; bonus bSPrecovRate,30; bonus bLongAtkDef,20;},{},{}
+10654,Time_Round_Ring,时光指环,5,20,,200,,0,,1,0xFFFFFFFF,63,2,136,,1,0,0,{ bonus bAllStats,5; bonus bAtkRate,10; bonus bMatkRate,10; bonus bLongAtkRate,10; bonus bHPrecovRate,30; bonus bAspdRate,10;},{},{}
+10655,Time_Round_Box,时光套装箱子,2,20,,200,,0,,0,0xFFFFFFFF,63,2,,,,,,{ getitem 10649,1; getitem 10650,1; getitem 10651,1; getitem 10652,1; getitem 10653,1; getitem 10654,1;},{},{}
+
+10700,Cola_Box,可乐箱子,18,20,,600,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 11512,100; },{},{}
+10701,RoSFus_Gift_Box_1,P点袋,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ set .@point,1*rand(1,40); set #CASHPOINTS,#CASHPOINTS +.@point; dispbottom "获得 "+.@point+" 卡普拉点数.";},{},{}
+10702,RoSFus_Gift_Box_2,初学者礼盒,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7776,1; getitem 643,1; getitem 554,10; getitem 12162,5; getitem 14532,5;},{},{}
+10703,RoSFus_Gift_Box_3,道场通关奖励礼盒,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 10703,2; },{},{}
+10704,RoSFus_Gift_Box_4,奖励礼盒,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 664,2; getitem 607,5;},{},{}
+10706,RoSFus_Gift_Box_5,P点袋,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ set .@point,5*rand(10,20); set #CASHPOINTS,#CASHPOINTS +.@point; dispbottom "获得 "+.@point+" 卡普拉点数.";},{},{}
+10707,RoSFus_Gift_Box_6,P点袋,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ set .@point,5*rand(10,40); set #CASHPOINTS,#CASHPOINTS +.@point; dispbottom "获得 "+.@point+" 卡普拉点数.";},{},{}
+10708,RoSFus_Gift_Box_7,消费玩家赠品包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 10848,1; getitem 5864,1; },{},{}
+10709,RoSFus_Gift_Box_112,任务奖励P点,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ set .@point,5*rand(10,20); set #CASHPOINTS,#CASHPOINTS +.@point; dispbottom "获得 "+.@point+" 卡普拉点数."; },{},{}
+10710,RoSFus_Gift_Box_8,影子活力套装,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 24102,1; getitem 24103,1; },{},{}
+10711,RoSFus_Gift_Box_9,影子冰封套装,2,1000,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 24099,1; getitem 24100,1; getitem 24101,1; },{},{}
+10712,RoSFus_Gift_Box_10,68元充值礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 10719,3; getitem 6380,60; getitem 6423,12; getitem 6417,6; getitem 6607,6; specialeffect2 668;},{},{}
+10713,RoSFus_Gift_Box_11,138元充值礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 10719,8; getitem 6380,100; getitem 6423,20; getitem 6417,10; getitem 6607,10; getitem 6608,20; getitem 10721,2; specialeffect2 668;},{},{}
+10714,RoSFus_Gift_Box_12,388元充值礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 10719,8; getitem 6380,200; getitem 6423,50; getitem 6417,20; getitem 6607,30; getitem 6608,50; getitem 10717,2; getitem 10721,2; getitem 10792,1; specialeffect2 668;},{},{}
+10715,RoSFus_Gift_Box_13,688元充值礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 10719,8; getitem 6380,500; getitem 6423,100; getitem 6417,50; getitem 6607,60; getitem 6608,100; getitem 10717,4; getitem2 2589,1,1,15,0,0,0,0,0; getitem 10722,1; getitem 10792,1; specialeffect2 668;},{},{}
+10716,RoSFus_Gift_Box_14,1288元充值礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 6380,1000; getitem 6423,300; getitem 6417,150; getitem 6607,200; getitem 6608,300; getitem 10717,2; getitem 10718,2; getitem2 2576,1,1,20,0,0,0,0,0; getitem 10722,3; getitem 10723,1; getitem 10792,1; specialeffect2 668;},{},{}
+10717,RoSFus_Gift_Box_20,RoSF.us Boss卡册,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10718,RoSFus_Gift_Box_21,RoSF.us MvP Boss卡册,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 10718,1; },{},{}
+10719,RoSFus_Gift_Box_22,RoSF时装抽奖包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 10719,1; },{},{}
+10720,RoSFus_Gift_Box_23,RoSF.us +10装备兑换证明,3,0,,10,,,,,,,,,,,,,{},{},{}
+10721,RoSFus_Gift_Box_24,RoSF.us +15装备兑换证明,3,0,,10,,,,,,,,,,,,,{},{},{}
+10722,RoSFus_Gift_Box_25,RoSF.us +20装备兑换证明,3,0,,10,,,,,,,,,,,,,{},{},{}
+10723,RoSFus_Gift_Box_26,RoSF.us 1亿RoZ财宝箱,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ atcommand "@zeny +100000000"; specialeffect2 703;},{},{}
+10724,RoSFus_Gift_Box_27,RoSF头饰抽奖包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 10724,1; },{},{}
+10725,RoSFus_Gift_Box_113,新人礼盒,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 9600,1; getitem 9601,1; getitem 9602,1; getitem 12622,1; },{},{}
+10726,RoSFus_Gift_Box_28,RoSF.us +10骑士武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10727,RoSFus_Gift_Box_29,RoSF.us +10骑士装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10728,RoSFus_Gift_Box_30,RoSF.us +10十字军武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10729,RoSFus_Gift_Box_31,RoSF.us +10十字军装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10730,RoSFus_Gift_Box_32,RoSF.us +10巫师武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10731,RoSFus_Gift_Box_33,RoSF.us +10巫师装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10732,RoSFus_Gift_Box_34,RoSF.us +10贤者武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10733,RoSFus_Gift_Box_35,RoSF.us +10贤者装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10734,RoSFus_Gift_Box_36,RoSF.us +10猎人武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10735,RoSFus_Gift_Box_37,RoSF.us +10猎人装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10736,RoSFus_Gift_Box_38,RoSF.us +10武僧武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10737,RoSFus_Gift_Box_39,RoSF.us +10武僧装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10738,RoSFus_Gift_Box_40,RoSF.us +10铁匠武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10739,RoSFus_Gift_Box_41,RoSF.us +10铁匠装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10740,RoSFus_Gift_Box_42,RoSF.us +10炼金武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10741,RoSFus_Gift_Box_43,RoSF.us +10炼金装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10742,RoSFus_Gift_Box_44,RoSF.us +10刺客武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10743,RoSFus_Gift_Box_45,RoSF.us +10刺客装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10744,RoSFus_Gift_Box_46,RoSF.us +10流氓武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10745,RoSFus_Gift_Box_47,RoSF.us +10流氓装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10746,RoSFus_Gift_Box_48,RoSF.us +15骑士武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10747,RoSFus_Gift_Box_49,RoSF.us +15骑士装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10748,RoSFus_Gift_Box_50,RoSF.us +15十字军武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10749,RoSFus_Gift_Box_51,RoSF.us +15十字军装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10750,RoSFus_Gift_Box_52,RoSF.us +15巫师武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10751,RoSFus_Gift_Box_53,RoSF.us +15巫师装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10752,RoSFus_Gift_Box_54,RoSF.us +15贤者武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10753,RoSFus_Gift_Box_55,RoSF.us +15贤者装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10754,RoSFus_Gift_Box_56,RoSF.us +15猎人武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10755,RoSFus_Gift_Box_57,RoSF.us +15猎人装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10756,RoSFus_Gift_Box_58,RoSF.us +15武僧武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10757,RoSFus_Gift_Box_59,RoSF.us +15武僧装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10758,RoSFus_Gift_Box_60,RoSF.us +15铁匠武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10759,RoSFus_Gift_Box_61,RoSF.us +15铁匠装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10760,RoSFus_Gift_Box_62,RoSF.us +15炼金武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10761,RoSFus_Gift_Box_63,RoSF.us +15炼金装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10762,RoSFus_Gift_Box_64,RoSF.us +15刺客武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10763,RoSFus_Gift_Box_65,RoSF.us +15刺客装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10764,RoSFus_Gift_Box_66,RoSF.us +15流氓武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10765,RoSFus_Gift_Box_67,RoSF.us +15流氓装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10766,RoSFus_Gift_Box_68,RoSF.us +20骑士武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10767,RoSFus_Gift_Box_69,RoSF.us +20骑士装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10768,RoSFus_Gift_Box_70,RoSF.us +20十字军武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10769,RoSFus_Gift_Box_71,RoSF.us +20十字军装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10770,RoSFus_Gift_Box_72,RoSF.us +20巫师武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10771,RoSFus_Gift_Box_73,RoSF.us +20巫师装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10772,RoSFus_Gift_Box_74,RoSF.us +20贤者武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10773,RoSFus_Gift_Box_75,RoSF.us +20贤者装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10774,RoSFus_Gift_Box_76,RoSF.us +20猎人武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10775,RoSFus_Gift_Box_77,RoSF.us +20猎人装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10776,RoSFus_Gift_Box_78,RoSF.us +20武僧武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10777,RoSFus_Gift_Box_79,RoSF.us +20武僧装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10778,RoSFus_Gift_Box_80,RoSF.us +20铁匠武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10779,RoSFus_Gift_Box_81,RoSF.us +20铁匠装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10780,RoSFus_Gift_Box_82,RoSF.us +20炼金武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10781,RoSFus_Gift_Box_83,RoSF.us +20炼金装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10782,RoSFus_Gift_Box_84,RoSF.us +20刺客武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10783,RoSFus_Gift_Box_85,RoSF.us +20刺客装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10784,RoSFus_Gift_Box_86,RoSF.us +20流氓武器礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10785,RoSFus_Gift_Box_87,RoSF.us +20流氓装备礼包,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ packageitem(); },{},{}
+10786,Sealed_Cardbox,RoSF 封印卡册,2,10000,,50,,,,,0xFFFFFFFF,63,2,,,,,,{ getrandgroupitem 10786,1; },{},{}
+//10787,Chepet_Scroll,双角甲虫召唤书,2,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ mercenary_create 2378,1800000; },{},{}
+10788,Job_Rewards_SuperNovice,超级初心者职业礼包,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem2 1246,1,1,8,0,0,0,0,4798; getitem2 5112,1,1,8,0,0,0,0,4798; getitem2 2416,1,1,9,0,0,0,0,4798; getitem2 2113,1,1,8,0,0,0,0,4798; getitem2 2512,1,1,8,0,0,0,0,4798; getitem2 2340,1,1,8,0,0,0,0,4798; getitem 5055,1; getitem 2607,2; rentitem 4401,2600000; rentitem 4160,2600000; },{},{}
+10789,Job_Rewards_ExtNovice,扩展超级初心者职业礼包,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem2 1622,1,1,8,0,0,0,0,4798; getitem2 2355,1,1,8,0,0,0,0,4798; getitem2 2116,1,1,9,0,0,0,0,4798; getitem2 2521,1,1,8,0,0,0,0,4798; getitem2 2420,1,1,8,0,0,0,0,4798; getitem2 5125,1,1,8,0,0,0,0,4798; getitem 2628,2; rentitem 4401,2600000; rentitem 4160,2600000; },{},{}
+10790,Job_Rewards_Other,冷门职业礼包,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem2 2308,1,1,8,0,0,0,0,4798; getitem2 2503,1,1,8,0,0,0,0,4798; getitem2 2404,1,1,9,0,0,0,0,4798; getitem2 2146,1,1,8,0,0,0,0,4798; getitem 2605,1; getitem 2601,1; getitem 2602,1; getitem 2604,1; rentitem 4401,2600000; rentitem 4160,2600000; },{},{}
+10791,RoSF_Daily_Mercenary,辅助佣兵召唤书,2,10,,50,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "RoSF_Daily_Mercenary",2; },{},{}
+10792,RoSFus_Gift_Box_15,RWC奖励饰品套装,2,1000,,50,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 2967,1; getitem 2969,1; getitem 10718,1;},{},{}
+10793,RoSFus_Gift_Box_114,RoSF.us 128万财宝箱,2,1000,,200,,,,,0xFFFFFFFF,63,2,,,,,,{ atcommand "@zeny +1280000"; specialeffect2 703;},{},{}
+//10793,RoSFus_Gift_Box_9,RoSF.us 转生抵用券,3,0,,10,,,,,,,,,,,,,{},{},{}
+
+10800,RoSF_bag001,时装-波利竹篓,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2059,{},{},{}
+10801,C_Splash_Hat,时装-雨水波利帽子,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,649,{},{},{}
+//10802,Miraculous_Blue_Rose,时装-神奇蓝玫瑰,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,1488,{},{},{}
+//10803,Levitt_Headdress,时装-莱维特头饰,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,1487,{},{},{}
+10804,RoSF_bag005,时装-记者书包,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2007,{},{},{}
+//10805,RoSF_bag006,时装-花腰鼓,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10806,RoSF_bag007,时装-霸王弩,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+10807,RoSF_bag008,时装-暗纹奥义之葫,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2008,{},{},{}
+//10808,RoSF_bag009,时装-充气榔头,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+10809,RoSF_bag010,时装-炼制药水瓶,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2060,{},{},{}
+//10810,RoSF_bag011,时装-浮尘,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10811,RoSF_bag012,时装-羊皮卷轴,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+10812,RoSF_bag013,时装-骑士之剑,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2085,{},{},{}
+//10813,RoSF_bag014,时装-皇家盾牌,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{ },{},{}
+//10814,RoSF_bag015,时装-桃花伞,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{ },{},{}
+//10815,RoSF_bag016,时装-弥天轮,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{ },{},{}
+10816,RoSF_bag017,时装-蓝涡,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2061,{},{},{}
+//10817,RoSF_bag018,时装-黑色炸弹,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10818,RoSF_bag019,时装-BB奶瓶,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+10819,RoSF_bag020,时装-风车,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2006,{},{},{}
+//10820,RoSF_2t001a,时装-百合花冠,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10821,RoSF_2t001b,时装-百合花翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{ },{},{}
+//10822,RoSF_2t002a,时装-玫瑰花冠,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10823,RoSF_2t002b,时装-玫瑰花翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{ },{},{}
+//10824,RoSF_2t003a,时装-兰草花冠,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10825,RoSF_2t003b,时装-兰草花翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{ },{},{}
+//10826,RoSF_2t004a,时装-黑蝴蝶蕾丝冠,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10827,RoSF_2t004b,时装-黑蝴蝶蕾丝翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,0,{},{},{}
+//10828,RoSF_2t005a,时装-白珍珠蕾丝冠,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+//10829,RoSF_2t005b,时装-白珍珠蕾丝翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{ },{},{}
+10830,RoSF_ball01,时装-天使波利气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2003,{},{},{}
+//10831,RoSF_ball02,时装-幽灵波利气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+//10832,RoSF_ball03,时装-恶魔波利气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+//10833,RoSF_ball04,时装-疯兔气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+10834,RoSF_ball06,时装-小恶魔气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2086,{},{},{}
+10835,RoSF_ball07,时装-俄塞里斯气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2062,{},{},{}
+//10836,RoSF_2t006a,时装-月祭之盔,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,0,{},{},{}
+//10837,RoSF_2t006b,时装-月祭之翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+10838,RoSF_2t007a,时装-鬼侍之盔,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,2004,{},{},{}
+10839,RoSF_2t007b,时装-鬼侍之翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2005,{},{},{}
+//10840,RoSF_2t008a,时装-红刖之盔,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,0,{},{},{}
+//10841,RoSF_2t008b,时装-红刖之翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+//10842,RoSF_wing01,时装-圣洁之翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+//10843,RoSF_wing02,时装-蝶恋之翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,0,{},{},{}
+//10844,RoSF_hat001,时装-黑色鸭舌帽,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,0,{},{},{}
+10845,Flying_Sheep,时装-会飞的羊,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2095,{},{},{}
+10846,marceline_guitar,时装-马塞林吉他,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2094,{},{},{}
+10847,Caterpillar_Rucksack,时装-绿色波利背包,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2093,{},{},{}
+10848,Garden_Keeper_Rucksack,时装-恶魔背包,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2092,{},{},{}
+10849,cat_ear,时装-猫耳时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,0,1,2000,{},{},{}
+10850,chinese_knot,时装-丝绸裙带时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2010,{},{},{}
+10851,Cookie_Ring,时装-甜饼光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2011,{},{},{}
+10852,Day_Ring,时装-艳阳光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2012,{},{},{}
+10853,DOP_aura,时装-暗夜光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2014,{},{},{}
+10854,Frog_Hood,时装-青蛙头罩时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,0,0,2015,{},{},{}
+10855,Heart_Ring,时装-心型光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2016,{},{},{}
+10856,insect_wing,时装-飞舞之翼时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2017,{},{},{}
+10857,Marin_Ring,时装-波利光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2018,{},{},{}
+10858,mimi_aqua,时装-咪咪蓝色帽子时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,0,0,2019,{},{},{}
+10859,mimi_red,时装-咪咪红色帽子时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,0,0,2020,{},{},{}
+10860,mini_pink,时装-咪咪粉色帽子时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,0,0,2021,{},{},{}
+10861,mimi_flower,时装-咪咪鲜花光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2022,{},{},{}
+10862,Music_Ring,时装-音符光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2023,{},{},{}
+10863,Night_Ring,时装-星月光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2024,{},{},{}
+10864,Poring2_ring,时装-波利光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2025,{},{},{}
+10865,Rose_Ring,时装-玫瑰光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2026,{},{},{}
+10866,Snowflake_Ring,时装-飘雪光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2027,{},{},{}
+10867,Star_Ring,时装-星辰光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2028,{},{},{}
+10868,Sunflower_Ring,时装-向日葵光环时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2029,{},{},{}
+10869,Taurus,时装-金牛衬肩时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,0,0,2030,{},{},{}
+10870,chothflower_black,时装-黑色胸花时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,0,0,2031,{},{},{}
+10871,chothflower_red,时装-红色胸花时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,0,0,2032,{},{},{}
+10872,C_BUZZY_BOL_BOARD,时装-小淘气告示牌时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,641,{},{},{}
+10873,C_DEVI_HEADPHONE,时装-小恶魔耳机时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,805,{},{},{}
+10874,wolf_tail,时装-狐狸的尾巴时装,5,0,,0,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2009,{},{},{}
+10875,FRESH_ROSE_c,时装-新鲜的玫瑰时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,963,{},{},{}
+//10876,C_Light_Darkness_Crown,时装-光与暗之镇魂冠时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,988,{},{},{}
+//10877,C_Saint_Frill_Ribbon,时装-神圣丝带时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,987,{},{},{}
+//10878,C_Shelter_Wing_Ears,时装-守护者之翼时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,990,{},{},{}
+10879,White_hood,时装-白猫兜帽时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,3072,,1,0,2067,{},{},{}
+10880,Evil_Druids_Hat,时装-封印邪眼的绷带时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2065,{},{},{}
+10881,Sealed_bandages,时装-邪恶德鲁伊之帽时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,2066,{},{},{}
+10882,Wolf_Aura,时装-狼烟时装(男),5,20,,10,,0,,0,0xFFFFFFFF,63,1,2048,,1,0,2074,{},{},{}
+10883,Wolf_Aura_Black,时装-狼烟·墨时装(女),5,20,,10,,0,,0,0xFFFFFFFF,63,0,2048,,1,0,2075,{},{},{}
+10884,Wolf_Aura_Blue,时装-狼烟·紫时装(女),5,20,,10,,0,,0,0xFFFFFFFF,63,0,2048,,1,0,2076,{},{},{}
+10885,Wolf_Aura_Cyan,时装-狼烟·岚时装(女),5,20,,10,,0,,0,0xFFFFFFFF,63,0,2048,,1,0,2077,{},{},{}
+10886,Wolf_Aura_Gold,时装-狼烟·金时装(女),5,20,,10,,0,,0,0xFFFFFFFF,63,0,2048,,1,0,2078,{},{},{}
+10887,Wolf_Aura_Green,时装-狼烟·绿时装(女),5,20,,10,,0,,0,0xFFFFFFFF,63,0,2048,,1,0,2079,{},{},{}
+10888,Wolf_Aura_Purple,时装-狼烟·赤时装(女),5,20,,10,,0,,0,0xFFFFFFFF,63,0,2048,,1,0,2080,{},{},{}
+10889,Wolf_Aura_Red,时装-狼烟·红时装(女),5,20,,10,,0,,0,0xFFFFFFFF,63,0,2048,,1,0,2081,{},{},{}
+10890,SaoSword,时装-墨剑时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,2048,,1,0,2091,{},{},{}
+10891,rainbowring_hat,时装-炫彩帽子,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,2072,{},{},{}
+10892,rainbowring_rucksack,时装-炫彩背包,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2073,{},{},{}
+//10893,HAPPY_SUMMER_WIG,时装-快乐暑期时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,1059,{},{},{}
+10894,ACCESSORY_OwlHat,时装-猫头鹰时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,2084,{},{},{}
+10895,RoSF_ball08,时装-玩具熊气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2087,{},{},{}
+10896,RoSF_ball09,时装-巴基力气球,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4096,,1,0,2088,{},{},{}
+10897,HotTeapot,时装-滚烫的茶壶时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,2089,{},{},{}
+10898,RingingPhone,时装-电话来了时装,5,20,,10,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,2090,{},{},{}
+//10899,C_Carnival_Hat,时装-狂欢节帽子时装,5,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,0,1,505,{},{},{}
+//10900,C_Carnival_Circlet,时装-狂欢节头饰时装,5,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,0,1,506,{},{},{}
+//10901,C_Lolita_Ten_Gallon_Hat,时装-稚嫩的宽边帽子时装,5,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,0,1,1048,{},{},{}
+//10902,C_Ifrits_Breath,时装-呼吸之炎时装,5,0,,0,,0,,0,0xFFFFFFFF,63,2,4096,,0,1,1050,{},{},{}
+//19816,C_Pecopeco_Cap,时装-噼扣噼扣时装,5,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,0,1,1049,{},{},{}
+
+//30121,RoSF_GM_Head,GM头盔,5,20,,10,,0,,0,0xFFFFFFFE,63,2,256,,0,1,940,{ bonus bAllStats,100; },{},{}
+//30122,RoSF_GM_Ear,GM耳罩,5,20,,10,,0,,0,0xFFFFFFFF,63,2,512,,0,1,158,{ bonus bAllStats,100; },{},{}
+//30123,RoSF_GM_Mouth,GM咬草,5,20,,10,,0,,0,0xFFFFFFFE,63,2,768,,0,1,57,{ bonus bAllStats,100; },{},{}
+//30124,RoSF_GM_Cape,GM披风,5,20,,10,,0,,0,0xFFFFFFFE,63,2,4,,0,1,2,{ bonus bAllStats,100; },{},{}
+//30125,RoSF_GM_Shoes,GM战靴,5,20,,10,,0,,0,0xFFFFFFFE,63,2,64,,0,1,0,{ bonus bAllStats,100; },{},{}
+//30126,RoSF_GM_Amar,GM战袍,5,20,,10,,0,,0,0xFFFFFFFE,63,2,16,,0,1,0,{ bonus bAllStats,100; },{},{}
+//30127,RoSF_GM_Ring,GM戒指,5,20,,10,,0,,0,0xFFFFFFFE,63,2,136,,0,1,0,{ bonus bAllStats,100; },{},{}
+//30128,RoSF_GM_Pin,GM胸针,5,20,,10,,0,,0,0xFFFFFFFE,63,2,136,,0,1,0,{ bonus bAllStats,100; },{},{}
+//30129,RoSF_GM_Bow,GM弓,4,20,,0,,0,,0,0xFFFFFFFE,63,2,34,,0,1,11,{ bonus bAllStats,100; },{},{}
+//30130,RoSF_GM_Stuff,GM法杖,4,20,,0,,0,,0,0xFFFFFFFE,63,2,34,,0,1,10,{ bonus bAllStats,100; },{},{}
+//30131,RoSF_GM_Gun,GM火炮,4,20,,0,,0,,0,0xFFFFFFFE,63,2,32768,,0,1,0,{ bonus bAllStats,100; },{},{}
+//30132,RoSF_GM_Cane,GM手杖,4,20,,0,,0,,0,0xFFFFFFFE,63,2,2,,0,1,8,{ bonus bAllStats,100; },{},{}
+//30133,RoSF_GM_Shield,GM盾牌,5,20,,10,,0,,0,0xFFFFFFFF,63,2,32,,0,1,1,{ bonus bAllStats,100; },{},{}
+//30134,RoSF_GM_Sword,GM单手剑,4,20,,0,,0,,0,0xFFFFFFFE,63,2,2,,0,1,2,{ bonus bAllStats,100; },{},{}
+//30135,RoSF_GM_Giant,GM双手剑,4,20,,0,,0,,0,0xFFFFFFFE,63,2,34,,0,1,3,{ bonus bAllStats,100; },{},{}
+//30136,RoSF_GM_Aux,GM战戟,4,20,,0,,0,,0,0xFFFFFFFE,63,2,2,,0,1,5,{ bonus bAllStats,100; },{},{}
+//30137,RoSF_GM_Dart,GM手套,4,20,,0,,0,,0,0xFFFFFFFE,63,2,32768,,0,1,12,{ bonus bAllStats,100; },{},{}
+//30138,RoSF_GM_Knife,GM匕首,4,20,,0,,0,,0,0xFFFFFFFE,63,2,2,,0,1,1,{ bonus bAllStats,100; },{},{}
+//30139,RoSF_GM_Wings,GM羽翼,5,20,,10,,0,,0,0xFFFFFFFF,63,2,512,,1,0,2002,{ bonus bAllStats,100; },{},{}
+//30140,RoSF_GM_Crown,GM背包,5,20,,10,,0,,0,0xFFFFFFFF,63,2,4,,0,1,2,{ bonus bAllStats,100; },{},{}
+
+// Vending system
+32760,Zeny_C,Zeny,3,,10,10,,,,,,,,,,,,,{},{},{}
+32761,Cash,Cash,3,,10,10,,,,,,,,,,,,,{},{},{}
+
+// GM Addon
+32762,God's_Rings,神之,11,20,,10,,20,,1,0xFFFFFFFF,63,2,136,,1,1,0,{},{},{}

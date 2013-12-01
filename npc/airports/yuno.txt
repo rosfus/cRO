@@ -1,0 +1,157 @@
+//===== RoSF.us Script ======================================
+//= Yuno Airport Staff
+//===== By: =========Translation:============================= 
+//= L0ne_W0lf        安赫尔|20130701[ROSF.US], Muad_Dib
+//===== Description: =========================================
+//= Yuno Airport Staff
+//===== Additional Comments: =================================
+//= Official NPCs.
+//============================================================ 
+
+y_airport,143,43,5	script	机场 工作人员#y_air1a::y_airport1	4_F_01,{
+	mes "[机场 工作人员]";
+	mes "欢迎来到朱诺机场, 在这里我们提供飞往艾音布洛克, 里希塔乐镇以及毁葛的国内航班, ";
+	mes "以及前往伊斯鲁德与拉赫的国际航班.";
+	mes "有什么我能帮助您的吗?";
+	next;
+	if (select("登机:取消") == 1) {
+		mes "[机场 工作人员]";
+		mes "乘坐飞空艇的费用";
+		mes "是 1,200 zeny.如果您";
+		mes "使用一张飞空艇免费使用券, ";
+		mes "那就可以免登机费.您要乘坐吗?";
+		next;
+		if (select("是:否") == 1) {
+			if (countitem(7311) > 0) {
+				delitem 7311,1; //Free_Flying_Ship_Ticket
+				warp "y_airport",148,51;
+				end;
+			}
+			if (Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp "y_airport",148,51;
+				end;
+			}
+			mes "[机场 工作人员]";
+			mes "很抱歉, ";
+			mes "您的钱不足 1,200 zeny";
+			mes "来付登机费.";
+			close;
+		}
+	}
+	mes "[机场 工作人员]";
+	mes "谢谢!";
+	mes "祝您愉快.";
+	close;
+}
+
+y_airport,158,43,5	duplicate(y_airport1)	机场 工作人员#y_air1b	4_F_01
+y_airport,126,43,5	duplicate(y_airport1)	机场 工作人员#y_air1c	4_F_01
+
+y_airport,143,49,3	script	离港 工作人员#y_air2a::y_airport2	4_F_01,{
+	mes "[机场 工作人员]";
+	mes "欢迎来到朱诺机场.如果您刚刚抵达您的目的地, ";
+	mes "让我来引导您前往主航站楼.如果不是, 请前往";
+	mes "登上即将起航的飞空艇前往您的目的地.";
+	next;
+	if (select("前往主航站楼:取消") == 1) {
+		mes "[机场 工作人员]";
+		mes "如果您前往主航站楼, 那么您如果再要登机, ";
+		mes "就需要在付一次费用.请确保您的目的地是";
+		mes "朱诺再离港.您是否要前往";
+		mes "主航站楼?";
+		next;
+		if (select("是:否") == 1) {
+			warp "y_airport",142,40;
+			end;
+		}
+	}
+	mes "[机场 工作人员]";
+	mes "好的, 谢谢";
+	mes "您的光临.";
+	mes "衷心祝愿您";
+	mes "旅途愉快~";
+	close;
+}
+
+y_airport,126,51,3	duplicate(y_airport2)	离港 工作人员#y_air2b	4_F_01
+y_airport,158,50,3	duplicate(y_airport2)	离港 工作人员#y_air2c	4_F_01
+
+y_airport,145,63,5	script	国内航班 登机	91,{
+	mes "[登机 工作人员]";
+	mes "您想登上飞往艾音布洛克, ";
+	mes "里希塔乐镇以及毁葛的飞空艇吗?";
+	mes "如果是的话, ";
+	mes "请让我引导您前往";
+	mes "飞空艇登机区域.";
+	next;
+	if (select("是:否") == 1) {
+		warp "yuno",59,244;
+		end;
+	}
+	mes "[登机 工作人员]";
+	mes "很好.那么";
+	mes "感谢您的支持.";
+	mes "我衷心地希望您";
+	mes "旅途愉快~";
+	close;
+}
+
+y_airport,140,63,5	script	国际航班 登机	4_F_02,{
+	mes "[登机 工作人员]";
+	mes "您想登上飞往";
+	mes "朱诺, 伊斯鲁德以及拉赫";
+	mes "的飞空艇吗?";
+	mes "如果是的话, 请让我";
+	mes "引导您前往登机区域.";
+	next;
+	if (select("是:否") == 1) {
+		warp "yuno",47,244;
+		end;
+	}
+	mes "[登机 工作人员]";
+	mes "好了.那么";
+	mes "感谢您与我们度过空中之旅, ";
+	mes "我们希望您享受我们带来的";
+	mes "飞空艇的空中";
+	mes "艺术之旅.";
+	close;
+}
+
+yuno,14,262,5	script	飞空艇 工作人员#yuno01	4_F_02,{
+	mes "[飞空艇 工作人员]";
+	mes "欢迎来到朱诺机场, ";
+	mes "请通过这扇门前往";
+	mes "登上飞往卢恩米德加尔兹王国的";
+	mes "伊斯鲁德";
+	mes "以及阿鲁纳佩兹教国的拉赫";
+	mes "的飞空艇.";
+	mes "谢谢.";
+	next;
+	mes "[飞空艇 工作人员]";
+	mes "另外, 如果朱诺";
+	mes "是您的目的地.";
+	mes "那么请下楼梯, 并且";
+	mes "告知离港工作人员, 让他";
+	mes "引导您前往主航站楼.谢谢, ";
+	mes "祝您旅途愉快.";
+	close;
+}
+
+yuno,88,263,3	script	飞空艇 工作人员#yuno02	4_F_02,{
+	mes "[飞空艇 工作人员]";
+	mes "欢迎来到朱诺机场.";
+	mes "请使用这扇门前往";
+	mes "登上途径位于秀发兹发德共和国的";
+	mes "艾音布洛克, 里希塔乐镇以及毁葛";
+	mes "的飞空艇.";
+	next;
+	mes "[飞空艇 工作人员]";
+	mes "不过, 如果朱诺";
+	mes "是您的目的地.";
+	mes "那么请下楼梯, 并且";
+	mes "告知离港工作人员, 让他";
+	mes "引导您前往主航站楼.谢谢, ";
+	mes "祝您旅途愉快.";
+	close;
+}

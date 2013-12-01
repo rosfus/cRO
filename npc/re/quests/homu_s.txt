@@ -1,0 +1,144 @@
+//===== RoSF.us Script ======================================
+//= Homunculus S Quest
+//===== By: =========Translation:============================= 
+//= Masao            安赫尔|20130701[ROSF.US]
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= RoSF.us
+//===== Description: ========================================= 
+//= Evolves an Homunculus which is at least Level 99 to the
+//= new Homunculus S Class.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. The actual changing dialog is currently
+//=     customized. [Masao]
+//= 1.1 Cleaning. [Euphy]
+//============================================================ 
+
+job3_gen01,12,44,4	script	维奥雷尔#job3_gen01	542,{
+
+	if((Class != Job_Genetic) && (Class != Job_Genetic_T) && (Class != Job_Baby_Genetic)){
+		mes "[维奥雷尔]";
+		mes "^FF4800生命体^000000 进化需要大量的时间和金钱.";
+		mes "不过, 我相信热情是最重要的因素.";
+		next;
+		switch(select("结束对话.:你在说什么?:为什么你一直站在这里?")) {
+		case 1:
+			mes "[维奥雷尔]";
+			mes "长期如此~!";
+			close;
+		case 2:
+			mes "[维奥雷尔]";
+			mes "你看, ^006400炼金术士^000000 有好奇的天性.";
+			mes "像我这样的人, 更是如此, 我甚至想创造生命本身.";
+			next;
+			mes "[维奥雷尔]";
+			mes "你必须得研究过 ^FF4800生命体^000000 才能理解.";
+			mes "现在, 如果这样的话, 我失陪了~!";
+			close;
+		case 3:
+			emotion 4,0;
+			mes "[维奥雷尔]";
+			mes "什么, 看到一个炼金术士在自己的实验室你觉得很奇怪?";
+			mes "怎么会这样?";
+			close;
+		}
+	}
+	mes "[维奥雷尔]";
+	mes "您好 "+strcharinfo(0)+",";
+	mes "我能为您这样资深的炼金术士做些什么呢?";
+	next;
+	switch(select("- 我需要进化我的生命体:- 关于生命体S:- 取消")){
+	case 1:
+		mes "[维奥雷尔]";
+		if(!getskilllv("AM_BIOETHICS")){
+			mes "我很抱歉, 你必须学会[生命伦理]技能! 否则, 我无法让你的生命体进化成S生命体.";
+			close;
+		}
+		if(!gethominfo(1)){
+			mes "你还没有生命体!";
+			close;
+		}
+		if(gethominfo(1) < 6009){
+			mes "你必须有一个进化过的生命体, 不然你无法将它变成新的生命体S.";
+			close;
+		}
+		if(gethominfo(6) < 99){
+			mes "你的生命体必须达到99级, 才可以进行生命体S进化!";
+			mes "等你在培养下你的生命体后再来找我吧.";
+			close;
+		}
+		if(gethominfo(1) == 6048 || gethominfo(1) == 6049 || gethominfo(1) == 6050 || gethominfo(1) == 6051 || gethominfo(1) == 6052){
+			mes "您的生命体S看上去非常棒!";
+			mes "希望你能和它一起面对伟大的冒险旅程!";
+			close;
+		}
+		mes "很好, 好像你都准备好让您的生命体进化到下一个阶段了!";
+		next;
+		mes "[维奥雷尔]";
+		mes "现在, 您可以直接选择将你的生命体进化为随机生命体S, 或者您也可以捐一点费用 50,000z";
+		mes "给炼金术师公会. 出于这个, 您就可以选择性的进化您的生命体到生命体S!";
+		mes "您觉得如何?";
+		next;
+		switch(select("- 我要捐赠.:- 我不捐赠.:- 取消")){
+		case 1:
+			if(Zeny < 50000){
+				mes "[维奥雷尔]";
+				mes "哈哈, 这是个好的决定我的朋友! 不过你好像没有 50,000z 的捐赠款!";
+				mes "等你凑够 Zeny 再来找我吧.";
+				close;
+			}
+			mes "[维奥雷尔]";
+			mes "好的, 请告诉我您想让生命体进化成:";
+			next;
+			set .@i, select("- 艾拉:- 巴伊尔:- 塞拉:- 德尔特:- 埃拉诺:- 取消");
+			if (.@i == 6) {
+				mes "[维奥雷尔]";
+				mes "很久~!";
+				close;
+			}
+		case 2:
+			mes "[维奥雷尔]";
+			mes "好的, 准备工作都完成了! 现在只需要给我点时间!";
+			next;
+			mes "[维奥雷尔]";
+			mes "阿布拉...";
+			next;
+			mes "[维奥雷尔]";
+			mes "卡达布拉...";
+			next;
+			mes "[维奥雷尔]";
+			mes "希姆萨拉!";
+			mes "...";
+			mes "噢, 抱歉... 错误的游戏!";
+			next;
+			mes "[维奥雷尔]";
+			mes "完成了! 你的新生命体S!";
+			if (.@i) {
+				hommutate 6047+.@i;
+				set Zeny,Zeny - 50000;
+			}
+			else hommutate;
+			close;
+		case 3:
+			mes "[维奥雷尔]";
+			mes "很久~!";
+			close;
+		}
+	case 2:
+		mes "[维奥雷尔]";
+		mes "生命体S是你所知当前生命体的改进版本.";
+		mes "这些生命体被创造出来, 是因为在这个世界里的怪物变得越来越强.";
+		mes "以我们目前的生命体已经很难应付这些怪物了.";
+		next;
+		mes "[维奥雷尔]";
+		mes "但是, 由于我们是炼金术士. 所以我们不会放弃我们宝贵的生命体, 我们已经发现了一种方法.";
+		mes "提高他们的技能和力量, 使它们能够与我们在一起, 再一次加入我们的战斗!";
+		mes "这是不是很棒?";
+		close;
+	case 3:
+		mes "[维奥雷尔]";
+		mes "很久~!";
+		close;
+	}
+}
