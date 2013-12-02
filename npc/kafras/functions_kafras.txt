@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== Hercules Script ======================================
 //= Kafra Functions
 //===== By: ==================================================
 //= rAthena Dev Team
@@ -187,7 +187,7 @@ function	script	F_Kafra	{
 		} else if (@K_Menu0$[.@j] == "- 取消"){
 			callfunc "F_KafEnd",getarg(0),0;
 			end;
-		} else if (@K_Menu0$[.@j] == "- 打开公会仓库") {
+		} else if (@K_Menu0$[.@j] == "- 使用公会仓库") {
 			callfunc "F_KafStor",1,0;
 			next;
 		}
