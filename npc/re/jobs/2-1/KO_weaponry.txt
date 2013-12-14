@@ -1,0 +1,584 @@
+//===== RoSF.us Script ======================================
+//= Kagerou/Oboro Job Change Quest
+//===== By: ================================================== 
+//= M45T3R, Dastgir Pojee
+//===== Current Version: ===================================== 
+//= 1.4
+//===== Description: ========================================= 
+//= Test of Weaponary KO
+//===== Additional Comments: ================================= 
+//= 1.0 Extracted from iRO(Official?) [M45T3R]/[Dastgir Pojee]
+//= 1.1 Fixed Many Errors.	[Dastgir Pojee]
+//= 1.2 Fixed SpriteID ,(Still 1 needed),
+//=		And Dialogs, Added named item.	[Dastgir Pojee]
+//= 1.3 Most of official part implemented.	[Dastgir Pojee(Special Thanks to Yommy)]
+//= 1.4 Fixed effects and conditions.	[Dastgir Pojee]
+//============================================================
+job_ko,117,128,0	script	Drawer#ko	CLEAR_NPC,{
+mes "There is some kind of device on the drawer.";
+next;
+switch(select("Stop.:Try to operate it.")){
+	case 1:
+		close;
+	case 2:
+		mes "Clank clunk clink";
+		next;
+		warp "amatsu",147,136;
+		end;
+}
+
+OnEffect:
+	misceffect EF_GUIDEDATTACK;
+end;
+}
+
+job_ko,127,125,1	script	Red Leopard Joe#ko	4_M_JOB_ASSASSIN,{
+if (BaseJob!=Job_Ninja){
+	for (.i=5131; .i<5147; .i++ ){
+		if (checkquest(.i) != -1){erasequest .i;}
+	}
+	mes "[Red Leopard Joe]";
+	mes "Sorry, Your family is not same as ours, is there something wrong?";
+	close2;
+	warp "amatsu",147,136;
+	end;
+}
+/**/
+if (checkquest(5138)==1 && checkquest(5142)==-1 && checkquest(5143)==-1 && checkquest(5144)==-1 && checkquest(5145)==-1){
+	mes "[Red Leopard Joe]";
+	mes "Been a While";
+	next;
+	select("Long time indeed,Joe.");
+	mes "[Red Leopard Joe]";
+	mes "You aren't surprised I'm here. Did you meet ^0237FDCougar^000000 before coming here?";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "Don't like it that I'm not the first one you visited but that is not important.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "Alright! "+strcharinfo(0);
+	mes "Welcome to the workshop where weapons are created for the family.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "Our family has been creating and using unique weapons to serve our secret missions since ancient times.";
+	next;
+	select("Really? At Einbroch?");
+	mes "[Red Leopard Joe]";
+	mes "Hmm? You are not as slow as I thought you were!";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "Yes. Einbroch is known as an industrial city, the city of great blacksmiths create new technology.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "My mission is to analyze their technology and report back to the family.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "I spoke more than I intended to.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "Did you bring enough ^6848B7Iron Ore, Iron, Steel, Phracon, Emveretaron, Rough Oridecon, and Rough Elunium^000000?";
+	next;
+	mes "Let's now create a new prototype weapon.";
+	next;
+	donpcevent "Crafting Tools#ko_01::OnEffect";
+	mes "[Red Leopard Joe]";
+	mes "Feel free to use tools from here,";
+	next;
+	donpcevent "Crafting Tools#ko_02::OnEffect";
+	mes "[Red Leopard Joe]";
+	mes "there";
+	next;
+	donpcevent "Crafting Tools#ko_03::OnEffect";
+	setquest 5142;	//Prototype-(1)
+	mes "[Red Leopard Joe]";
+	mes "and everywhere else. Now let's begin!!";
+	close;
+}else if (checkquest(5138)==1 && checkquest(5142)==1 && checkquest(5143)==-1 && checkquest(5144)==-1 && checkquest(5145)==-1){
+	mes "Are you done making the prototype of the new weapons?";
+	switch(select("Crafting tools?:I don't have enough materials.:How do you expect me to make a weapon?")){
+		case 1:
+			next;
+			donpcevent "Crafting Tools#ko_01::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "Feel free to use tools from there and";
+			next;
+			donpcevent "Crafting Tools#ko_02::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "there";
+			next;
+			donpcevent "Crafting Tools#ko_03::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "and anything else you can use";
+			close;
+
+		case 2:
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Are you done making the prototype of the new weapons?";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "You haven't brought enough materials?";
+			next;
+			donpcevent "Drawer#ko::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "Then we'll have to pay a visit to the village. Try the drawer over there. It'll take you to the village.";
+			close;
+			
+		case 3:
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Hmm... Guess I expected too much? Let me explain.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "You first have to melt the ore to use for the weapon. And the best way to get high purity metal is to melt materials that are of the same kind.";
+			mes "For example, Iron Ore, Iron, and Steel are of similar property so you can get a high purity metal out of them.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Once you've melted a high purity metal, pour it in a mold to get the shape of the weapon and then make it firm through grinding and tempering.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "By the way, you will get the best results by thoroughly rotating, grinding and tempering.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "I think this is enough to get you started, don't you think? Now go and work on that prototype!!";
+			close;
+
+	}
+}else if (checkquest(5138)==1 && checkquest(5142)==-1 && (checkquest(5143)==1 || checkquest(5144)==1) && checkquest(5145)==-1){
+	mes "[Red Leopard Joe]";
+	mes "Are you done making the prototype of the new weapons?";
+	switch(select("Crafting Tools?:I don't have enough materials:How do you expect me to make a weapon?:Yes, I'm done.")){
+		case 1:
+			next;
+			donpcevent "Crafting Tools#ko_01::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "Feel free to use tools from there and";
+			next;
+			donpcevent "Crafting Tools#ko_02::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "there";
+			next;
+			donpcevent "Crafting Tools#ko_03::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "and anything else you can use";
+			close;
+
+		case 2:
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Are you done making the prototype of the new weapons?";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "You haven't brought enough materials?";
+			next;
+			donpcevent "Drawer#ko::OnEffect";
+			mes "[Red Leopard Joe]";
+			mes "Then we'll have to pay a visit to the village. Try the drawer over there. It'll take you to the village.";
+			close;
+			
+		case 3:
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Hmm... Guess I expected too much? Let me explain.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "You first have to melt the ore to use for the weapon. And the best way to get high purity metal is to melt materials that are of the same kind.";
+			mes "For example, Iron Ore, Iron, and Steel are of similar property so you can get a high purity metal out of them.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Once you've melted a high purity metal, pour it in a mold to get the shape of the weapon and then make it firm through grinding and tempering.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "By the way, you will get the best results by thoroughly rotating, grinding and tempering.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "I think this is enough to get you started, don't you think? Now go and work on that prototype!!";
+			close;
+			
+		case 4:
+			next;
+			if (countitem(13074)){
+				mes "[Red Leopard Joe]";
+				mes "Hmm... Interesting... Is it a dagger in a shape of a Kunai?";
+				next;
+				mes "[Red Leopard Joe]";
+				mes "Very creative. I do see room for improvement but the weapon itself may come out useful after smoothing it out a bit.";
+			}else if(countitem(13312)){
+				mes "[Red Leopard Joe]";
+				mes "Hmm... Is this an Ordinary Huuma?";
+				next;
+				mes "[Red Leopard Joe]";
+				mes "Ahh, Its not an Ordinary Huuma.";
+				mes "Very creative. I do see room for improvement but the weapon itself may come out useful after smoothing it out a bit.";
+			}else{
+				mes "[Red Leopard Joe]";
+				mes "Ahh, How is it possible? You don't have weapons? maybe you equipped it?";
+				close;
+			}
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Good. I think you are ready.";
+			mes "Now it's time to upgrade?";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "There are refinement tools on both sides of me. Use those to refine a weapon and come back.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "I created the refinement tools myself with great effort so you won't have any trouble using them.";
+			setquest 5145;	//Prototype-(3)
+			mes "Ah... But just in case,";
+			mes "^FF0000be careful not to cause trouble by showing these to blacksmiths outside of here.^000000";
+			close;
+	}
+}else if (checkquest(5138)==1 && checkquest(5142)==-1 && (checkquest(5143)==1 || checkquest(5144)==1) && checkquest(5145)==1){
+	mes "[Red Leopard Joe]";
+	mes "Did you get a successful result?";
+	switch(select("Not yet.:Here it is.:Actually")){
+		case 1:
+			next;
+			mes "[Red Leopard Joe]";
+			mes "It isn't easy to get a satisfactory result at first.";
+			close;
+			
+		case 3:
+			next;
+			mes "[Red Leopard Joe]";
+			mes "You've lost the weapon even with my warning.";
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Nothing else we can do. Wait!";
+			next;
+			mes "Red Leopard Joe mumbles something and suddenly all weapons are unequipped.";
+			nude;
+			next;
+			if(countitem(13074) || countitem(13312)) {
+				mes "[Red Leopard Joe]";
+				mes "What is this? You still have the prototype. Stop playing around.";
+			} else {
+				mes "[Red Leopard Joe]";
+				mes "Oh! You really lost it.";
+				next;
+				setquest 5142;
+				if(checkquest(5143)){erasequest 5143;}
+				else{erasequest 5144;}
+				erasequest 5145;
+				mes "[Red Leopard Joe]";
+				mes "Well! Lets try to make it again!";
+			}
+			close;
+			
+		case 2:
+			next;
+			mes "[Red Leopard Joe]";
+			mes "Looks like you've got some results.";
+			next;
+			if (!getequipid(4)){
+				mes "[Red Leopard Joe]";
+				mes "Ahh! You have not equipped any weapons!";
+				close;
+			} else if (isequipped(13074) || isequipped(13312)){
+				mes "[Red Leopard Joe]";
+				mes "Is that weapon yours? Let me have a look.";
+				next;
+			} else {
+				mes "[Red Leopard Joe]";
+				mes "Hmm? But you didn't equip the weapon you were going to show me.";
+				close;
+			}
+			mes "Joe took a thorough look at the seal.";
+			next;
+			if(getequiprefinerycnt(4) < 7){
+				mes "[Red Leopard Joe]";
+				mes "Are you that low?";
+				mes "I've must have misjudged you. You might have been satisfied yourself but I'm not. Do it again!!";
+				close;
+			} else if (getequiprefinerycnt(4) > 6 && getequiprefinerycnt(4) < 9){
+				mes "[Red Leopard Joe]";
+				mes "Hmm... Is this your limit?";
+				mes "You've just made it that close to passing. I will ask one more time, are you satisfied?";
+				next;
+				if(select("Yes:No")==2){
+					mes "[Red Leopard Joe]";
+					mes "You're still here. Why?";
+					close;
+				}
+				mes "[Red Leopard Joe]";
+				mes "Your competence is enough.";
+			} else if (getequiprefinerycnt(4) > 8 && getequiprefinerycnt(4) < 13){
+				mes "[Red Leopard Joe]";
+				mes "Ahh, Nice, as I expected,";
+				mes "I still believe that you will not stop here.";
+				next;
+				if(select("Yes:No")==2){
+					mes "[Red Leopard Joe]";
+					mes "I will look forward for your result.";
+					close;
+				}
+				mes "[Red Leopard Joe]";
+				mes "Your competence is enough.";
+			} else {
+				mes "[Red Leopard Joe]";
+				mes "Better than Expected.";
+				next;
+				mes "[Red Leopard Joe]";
+				mes "For beginners, quite good, This test may be little significant to you, Your competence is enough.";
+			}
+			next;
+				mes "[Red Leopard Joe]";
+				mes "I can feel it.";
+				mes "I will take this weapon to give it some finishing touches";
+				next;
+				unequip 4;
+				erasequest 5145;
+				completequest 5138;
+				if (checkquest(5143)==1){delitem 13074,1; completequest 5143;}
+				else if(checkquest(5144)==1){delitem 13312,1; completequest 5144;}
+				/*	// The Custom way,
+				if(!countitem2(13074,1,0,@refine,0,0,0,0)){mes "Remove any extra cards inserted on it"; close;}
+				delitem2 13074,1,0,@refine,0,0,0,0,0;
+				if (KO_OPT==1){
+					if(!countitem2(13074,1,0,@refine,0,0,0,0)){mes "Remove any extra cards inserted on it"; close;}
+					delitem2 13074,1,0,@refine,0,0,0,0,0;
+					getnameditem 13075,strcharinfo(0);
+				}else if (KO_OPT==2){
+					if(!countitem2(13312,1,0,@refine,0,0,0,0)){mes "Remove any extra cards inserted on it"; close;}
+					delitem2 13312,1,0,@refine,0,0,0,0,0;
+					getnameditem 13311,strcharinfo(0);
+				}*/
+				KO_QD = KO_QD+4;
+				KO_Q = 2;
+				mes "[Red Leopard Joe]";
+				mes "'"+strcharinfo(0)+"'";
+				mes "Passed the weapon test!!";
+				close;
+	}
+}else if (checkquest(5138)==2 && checkquest(5142)==-1 && (checkquest(5143)==2 || checkquest(5144)==2) && checkquest(5145)==-1){
+	mes "[Red Leopard Joe]";
+	mes "Oh, I almost forgot";
+	mes "Go report the test results to Gion";
+	close2;
+	warp "job_ko",26,104;
+	end;
+}else{
+	mes "[Red Leopard Joe]";
+	mes "You should not come here..";
+	mes "Put your feet away and get ready to go back.";
+	close2;
+	warp "amatsu",147,136;
+	end;
+}
+}
+
+job_ko,131,124,1	script	Crafting Tools#ko_01	CLEAR_NPC,{
+if (checkquest(5138)==1 && checkquest(5142)==1 && checkquest(5143)==-1 && checkquest(5144)==-1 && checkquest(5145)==-1 ){
+	function KO_WR; function KO_WC; function KO_PF;
+	@percent = 0; KO_OPT = 0; @wtype = 0; @temp = 0; @grind = 0;
+	mes "Tool to create weapons.";
+	mes "First need to melt metals like iron and iron ore to use to create a weapon.";
+	next;
+	if (countitem(998) || countitem(999) || countitem(1002) || countitem(1010) || countitem(1011) || countitem(756) || countitem(757)){
+		while(1){
+			if (countitem(998) || countitem(999) || countitem(1002) || countitem(1010) || countitem(1011) || countitem(756) || countitem(757)){
+				KO_OPT = select("Melt iron ore.:Melt iron.:Melt steel.:Melt phracon.:Melt emveretarcon.:Melt rough oriecon.:Melt rough elunium.:Stop.");
+				KO_WC(KO_OPT);
+				if (@percent>49){percent = @percent; break;}
+				else if(@percent2>49){percent = @percent2; break;}
+			}else{mes "But you do not have any more metal to melt. Let's try again after getting more metal."; close;}
+		}
+		next;
+		mes "Now the metal is melted to use for creating weapons.";
+		next;
+		mes "Next is to make the melted metal firm by pouring it into a mold. Which mold shape will you use?";
+		KO_OPT = select("Dagger Mold:Shuriken Mold");
+		next;
+		mes "Poured the melted metal into the "+((KO_OPT==1)?"dagger":"shuriken")+" mold.";
+		next;
+		progressbar "0xffff00",3;
+		next;
+		mes "Looks like the metal is taking shape. Now what next?";
+		@wtype = select("Grind the Weapon:Temper the weapon");
+		while(1){
+			KO_WR(@wtype-1);
+			@wtype = select("Grind the Weapon:Temper the weapon:Final Touches");
+		}
+		close;
+	}else{mes "But you do not have any more metal to melt. Let's try again after getting more metal."; close;}
+}else{
+	mes "A crafting tool.";
+	mes "Don't really need it now.";
+	close;
+}
+function	KO_WC	{	//Kagerou/Oboro	Weapon-Crafting
+	switch(getarg(0)){
+		case 1: .@item = 1002; break;
+		case 2: .@item = 998; break;
+		case 3: .@item = 999; break;
+		case 4: .@item = 1010; break;
+		case 5: .@item = 1011; break;
+		case 6: .@item = 756; break;
+		case 7: .@item = 757; break;
+		case 8: close;
+	}
+	if (!countitem(.@item)) {mes "Don't have "+getitemname(.@item); next; return;}
+	delitem .@item,1;
+	if (.@item==1002 || .@item==1010){set @temp,1;}
+	else if (.@item==998 || .@item==1011){set @temp,2;}
+	else if (.@item==999 || .@item==756){set @temp,3;}
+	else{set @temp,5;}
+	if (getarg(0)<=3){
+		@percent = @percent+@temp;
+		if(@percent2){@percent2 = @percent2-1;}
+	}else if(getarg(0)>=4 && getarg(0)<=6){
+		@percent2 = @percent2+@temp;
+		if(@percent){@percent = @percent-1;}
+	}else{
+		if(@percent){@percent = @percent-5;}
+		if(@percent2){@percent2 = @percent2-5;}
+	}
+	misceffect EF_DEMONSTRATION;
+	mes "Melted "+getitemname(.@item)+" in high temperature.";
+	next;
+	mes "Which metal will be melted next?";
+	next;
+	return;
+}
+function	KO_WR	{	//Kagerou/Oboro	Weapon-Refining
+	if (getarg(0)<=1){
+		if (getarg(0)==0) {
+			specialeffect2 EF_DETOXICATION;
+			if(@temp==2){@refine = @refine+1;}
+			else{@refine = @refine+2;}
+		}
+		else if (getarg(0)==1) {
+			specialeffect2 EF_REPAIRWEAPON;
+			if(@temp==1){@refine = @refine+1;}
+			else{@refine = @refine+2;}
+		}
+		next;
+		@temp = getarg(0)+1;
+		mes ((getarg(0)==0)?"Ground":"Tempered")+" the weapon";
+		next;
+		mes "Now what next?";
+		return;
+	}
+	else if (getarg(0)==2){
+		@temp = percent+@refine;
+	}
+	mes "Start to sharpen the tool using a whetstone for finishing touches.";
+	next;
+	progressbar "0xffff00",3;
+	if (@temp < 100){
+		if (rand(1,100) == 77){KO_PF(0);}
+		else{KO_PF(1);}
+	}else{
+		if (rand(1,100) == 44){KO_PF(1);}
+		else{KO_PF(0);}
+	}
+	return;
+}
+function	KO_PF	{	//Kagerou/Oboro	PASS-FAIL
+	if(getarg(0)==0){
+		specialeffect2 EF_PERFECTION;
+		if(KO_OPT==1){changequest 5142,5143; getitem 13074,1;}	//Ninja Cutter
+		else if (KO_OPT==2){changequest 5142,5144; getitem 13312,1;}	//Huuma Ninja Job
+		mes "The weapon was created successfully.";
+		next;
+		mes "Let's take it to Red Leopard Joe.";
+		close;
+	}else{
+		specialeffect2 EF_SUI_EXPLOSION;
+		mes "The weapon was destroyed while doing the finishing touches to it.";
+		next;
+		mes "There must have been something missed while creating the weapon. Very sad this happened but you'll have to start all over again.";
+		close;
+	}
+	return;
+	
+}
+
+OnEffect:
+misceffect EF_GUIDEDATTACK;
+end;
+}
+
+job_ko,121,121,1	script	Refinement Tools#ko_01	CLEAR_NPC,{
+	if (checkquest(5138)==1 && checkquest(5142)==-1 && (checkquest(5143)==1 || checkquest(5144)==1) && checkquest(5145)==1){
+	}
+	else{
+		mes "This tool helps you refine your weapons automatically. However you won't need this just now.";
+		close;
+	}
+	mes "You turn on the refinement tool.";
+	mes "The equipment starts up with a pleasant vibration.";
+	next;
+	mes "Looks like you can use the tool right away for refinement because it holds a good deal of Elunium and Oridecon within it.";
+	if (select("Start refining.:Do not start refining.")==2){
+		next;
+		mes "You turned off the tool.";
+		close;
+	}
+	next;
+	if (getequipisenableref(4)==0 || getequipisidentify(4)==0){
+		mes "Bzzzt";
+		mes "A warning beep comes from the tool.";
+		next;
+		mes "[Red Leopard Joe]";
+		mes "This equipment does not work without an equipped item to refine.";
+		close;
+	} else if ((KO_OPT==1 && isequipped(13074)==0) || (KO_OPT==2 && isequipped(13312)==0)){
+		mes "Wait... this weapon is not a customized one.";
+		next;
+		mes "[Red Leopard Joe]";
+		mes "Why don't you refine this with those hot-headed blacksmiths out there?";
+		close;
+	} else if (getequiprefinerycnt(4)>=20){
+		mes "Bzzzt";
+		mes "A warning beep comes from the tool.";
+		next;
+		mes "[Red Leopard Joe]";
+		mes "This equipment is quite perfectly refined,Keep it for yourself..";
+		close;
+	}else if (getequippercentrefinery(4)<100){
+		mes "Analyzing the weapon.";
+		next;
+		mes "This is very well refined equipment. Do you want to continue? Refine skill decreases by 1 if refinement fails.";
+		switch(select("Continue.:Stop.")){
+			case 2:
+				next;
+				mes "You turned off the tool.";
+				close;
+			case 1:
+				next;
+		}
+	}
+	progressbar "0xffff00",1;
+	@rand = rand(1,100);
+	@temp = 0;
+	if (getequiprefinerycnt(4) < 5){@temp = 1;}
+	else if (getequiprefinerycnt(4) == 5 && (@rand>=1 && @rand<41)){@temp = 1;}
+	else if (getequiprefinerycnt(4) == 6 && (@rand>=1 && @rand<31)){@temp = 1;}
+	else if (getequiprefinerycnt(4) == 7 && (@rand>=1 && @rand<21)){@temp = 1;}
+	else if (getequiprefinerycnt(4) == 8 && (@rand>=1 && @rand<11)){@temp = 1;}
+	else if (getequiprefinerycnt(4) == 9 && (@rand>=1 && @rand<6)){@temp = 1;}
+	else if (@rand>=1 && @rand < 3){@temp=1;}
+	if (@temp){
+		successrefitem 4;
+		mes "Succeeded in refining.";
+		close;
+	} else {
+		downrefitem 4;
+		mes "Failed in refining.";
+		mes "Your weapon refinement skill dropped by 1.";	//in dispbottom its, training point is adjusted downward? Any confirmation how to show this?
+		close;	//It closes the dialog box.
+	}
+	close;
+}
+
+
+//Duplicates.
+job_ko,129,129,1	duplicate(Crafting Tools#ko_01)	Crafting Tools#ko_02	CLEAR_NPC
+job_ko,116,124,1	duplicate(Crafting Tools#ko_01)	Crafting Tools#ko_03	CLEAR_NPC
+job_ko,127,121,1	duplicate(Refinement Tools#ko_01)	Refinement Tools#ko_02	CLEAR_NPC
+
+
+

@@ -1,0 +1,725 @@
+//===== RoSF.us Script ======================================
+//= Kagerou/Oboro Job Change Quest
+//===== By: ================================================== 
+//= M45T3R, Dastgir Pojee
+//===== Current Version: ===================================== 
+//= 1.5
+//===== Description: ========================================= 
+//= Kagerou/Oboro Job Change NPC
+//===== Additional Comments: ================================= 
+//= 1.0 Extracted from iRO(Official?) [M45T3R]/[Dastgir Pojee]
+//= 1.1 Added Ninja Check,Rearranged the Scripts. [Dastgir Pojee]
+//= 1.2 Fixed Many Errors.	[Dastgir Pojee]
+//= 1.3 Added Dialogs for Third Test Complete and
+//=     Battle Tests,Added Many Dialogs and fixed
+//=		to official behaviour, Added Cutins.	  [Dastgir Pojee]
+//= 1.4 Official Behaviour Added.				  [Dastgir Pojee(Special Thanks to Yommy)]
+//= 1.5 Fixed some conditions and color codes.	[Dastgir Pojee]
+//============================================================
+
+que_ng,28,156,1	script	Start#ko	HIDDEN_WARP_NPC,1,1,{
+OnTouch:
+if (BaseJob==Job_Ninja && BaseLevel > 98 && JobLevel > 69 && job_kagero==0){
+	mes "Secret Passage to ^25C18DNinja Guild^25C18D";
+	mes "You hear familiar voices talking to each other.";
+	next;
+	mes "[Unknown Voice A]";
+	mes "Long time, no see. How are you? How are the kids you've taken in?";
+	next;
+	mes "[Unknown Voice B]";
+	mes "I have to hand it to you. You've picked some competitive ones.";
+	next;
+	mes "[Unknown Voice A]";
+	mes "Sounds like music to my ears. Being sent to a foreign land with air pollution was bad enough, now haunted with memories of this place...";
+	next;
+	mes "[Unknown Voice A]";
+	mes "What do you think? Should we rotate now?";
+	next;
+	mes "[Unknown Voice B]";
+	mes "Haven't given up, have ya. Do you really think he'll approve?";
+	next;
+	mes "[Unknown Voice A]";
+	mes "No need to be bitter. Hey! Were any of the kids that come and go here the ones that found the ^BD0408place^BD0408?";
+	next;
+	mes "[Unknown Voice B]";
+	mes "Since finding the hidden place was also a part of the test.";
+	next;
+	mes "[Unknown Voice A]";
+	mes "You are as stubborn as the first time I met you. It's just a wall in some place...";
+	next;
+	mes "[Unknown Voice B]";
+	mes "Shssh! I think someone is eavesdropping. Hurry! Go back to the mission area.";
+	next;
+	mes "The conversation stopped abruptly. Hidden place? Wall? Part of a test? What is all this about?";
+	setquest 5131;	//Strange Conversation
+	job_kagero = 1;
+	KO_QD = 0;
+	close;
+}else if (BaseJob!=Job_Ninja){
+	for (.i=5131; .i<5147; .i++ ){
+		if (checkquest(.i) != -1){erasequest .i;}
+	}
+	job_kagero = 0;
+	warp "amatsu",147,136;
+	end;
+}
+end;
+}
+
+que_ng,10,183,1	warp	warp#ko	1,1,que_ng,33,64	//Warp in que_ng
+
+que_ng,21,76,1	script	Wall with a Drawing#ko	CLEAR_NPC,{
+if (Class == Job_Kagerou || Class == Job_Oboro){
+	mes "You should no longer use this secret passage";
+	close;
+}else if(job_kagero == 1 && Class == Job_Ninja){
+	mes "You found a location that resembles the hidden place.";
+	next;
+	mes "This wall was here ever since. How come I didn't notice it before?";
+	next;
+	mes "Now that I know it's a secret passage, what do I do to get in?";
+	next;
+	if(select("Tear the drawing down.:Touch the drawing with your hand.")==1){
+			mes "I can't rip it down because I don't own it.";
+			close;
+	}
+	mes "You touch the drawing with the tip of your hand and felt a sudden sensation of being pulled.";
+	close2;
+	warp "job_ko",26,111;
+	end;
+}else if (job_kagero > 0 && BaseJob == Job_Ninja){
+	mes "Entrance to the ^25C18DNinja Guild^000000 hideout.";
+	next;
+	if(select("Enter.:Do not enter.") == 1){
+		close2;
+		warp "job_ko",26,111;
+		end;
+	}
+	close;
+}else{
+	mes "There is a wall with a great drawing on it.";
+	close;
+}
+}
+
+job_ko,25,115,4	script	Old Man#ko	4_M_KAGE_OLD,{
+function KO_IB; function KO_QS;
+if (BaseJob != Job_Ninja && job_kagero>0){
+	for (.i=5131; .i<5147; .i++ ){
+		if (checkquest(.i) != -1){erasequest .i;}
+	}
+	job_kagero = 0;
+	mes "[Cougar]";
+	mes "You are not in Family of Ninja.";
+	close2;
+	warp "amatsu",147,136;
+	end;
+}
+
+if (job_kagero==1){
+	cutin "job_ko03",2;
+	mes "^1A95E6An old man looking hale and hearty is sitting and gazing vacantly.^1A95E6";
+	next;
+	switch(select("Ignore.:Talk to him.")){
+		case 1: close2; cutin "",255; end;
+		case 2:
+			mes "["+strcharinfo(0)+"]";
+			mes "Excuse me...";
+			next;
+			mes "^1A95E6You tried to talk to the old man but there is no response. Just when you are about to turn away...^1A95E6";
+			next;
+			mes "[Old Man]";
+			mes "At last, a customer! Hmm... and a live one, too!";
+			select("Excuse me... where am I?");
+			next;
+			mes "[Old Man]";
+			mes "^1A95E6He keeps talking and doesn't stop to answer your question.^1A95E6";
+			next;
+			mes "[Old Man]";
+			mes "There once was a quiet family living in ancient Amatsu times that is never mentioned in history books or stories.";
+			next;
+			mes "[Old Man]";
+			mes "They lived beneath shadows but always yearned for the bright sun, like a sunflower.";
+			next;
+			mes "[Old Man]";
+			mes "A family that was loyal to their lord who they served as their bright sun.";
+			next;
+			mes "[Old Man]";
+			mes "...a very trustworthy family...";
+			next;
+			mes "[Old Man]";
+			mes "....loyal to their core...";
+			next;
+			mes "[Old Man]";
+			mes "...a family of integrity...";
+			next;
+			select("What happened to them?");
+			mes "^1A95E6The old man looks at you with a melancholy face.^1A95E6";
+			next;
+			mes "[Old Man]";
+			mes "Why are you interested in a family that was abandoned by their lord and disappeared from history itself?";
+			next;
+			switch(select("I'm a Ninja.:I'm bored.")){
+				case 1:
+					cutin "job_ko02",2;
+					mes "[Old Man]";
+					mes "Ninja! There was a time when the family was called ninjas, too.";
+					next;
+					changequest 5131,5132;	//Family Business-(1)
+					mes "[Old Man]";
+					mes "You'll have to lend me your ear for I have so much to tell you about the family story.";
+					job_kagero = 2;
+					close2;
+					cutin "",255;
+					end;
+				case 2:
+					mes "[Old Man]";
+					mes "Was nice to meet you.";
+					close2;
+					cutin "",255;
+					warp "amatsu",147,136;
+					end;
+			}
+	}
+} else if (job_kagero == 2){
+	cutin "job_ko01",2;
+	mes "^1A95E6The Old Man starts the story with a very soothing tone as if he is telling his grandchild a story.^1A95E6";
+	next;
+	mes "[Old Man]";
+	mes "This goes way back to ancient times and nobody in Amatsu remembers about it.";
+	next;
+	mes "[Old Man]";
+	mes "The family worked behind the scenes and basically lived their lives for their lord.";
+	next;
+	mes "[Old Man]";
+	mes "They were very loyal doing whatever deed their lord asked for.";
+	next;
+	mes "[Old Man]";
+	mes "Ninja, the family was known as the dark family but that doesn't mean they wanted to be hidden in the darkness.";
+	next;
+	mes "[Old Man]";
+	mes "They were loyal enough to be satisfied as the lord's servants but their loyalty became the problem.";
+	next;
+	select("Problem?");
+	mes "[Old Man]";
+	mes "They are a secret organization that even the lord didn't know much about.";
+	next;
+	mes "[Old Man]";
+	mes "The few that knew about the family's existence, tried to investigate them but nobody was able to reveal their true identity.";
+	next;
+	mes "[Old Man]";
+	mes "That is why this family has grown from loyal servants to a group feared for its secrets.";
+	next;
+	mes "[Old Man]";
+	mes "The lord shunned the family and didn't call them for their service any more but they never betrayed him.";
+	next;
+	select("They were really loyal people.");
+	cutin "job_ko03",2;
+	mes "[Old Man]";
+	mes "Yes, they were. Very loyal.";
+	next;
+	job_kagero = 3;
+	changequest 5132,5133;	//Family Business-(2)
+	mes "^1A95E6The old man looks even more forlorn.^1A95E6";
+	close2;
+	cutin "",255;
+	end;
+} else if (job_kagero == 3){
+	cutin "job_ko03",2;
+	mes "[Old Man]";
+	mes "The family has been living in hiding for so long since the old days. The current lord didn't even know of their existence.";
+	next;
+	select(".........");
+	cutin "job_ko01",2;
+	mes "[Old Man]";
+	mes "I'm Guide Gion, the last of the dark ninja family.";
+	next;
+	switch(select("I think your time has ended.:I need your teaching.")){
+		case 1:
+			cutin "job_ko04",2;
+			mes "[Guide Gion]";
+			mes "Are you an assassin to end this old man's life?";
+			next;
+			mes "[Guide Gion]";
+			mes "So that is why you've shown interest in my family. I won't give up easily.";
+			next;
+			percentheal -99,0;
+			mes "Pow!!";
+			mes "^1A95E6You lose conscience with the great impact.^000000";
+			close2;
+			cutin "",255;
+			warp "amatsu",147,136;
+			end;
+		case 2:
+			cutin "job_ko02",2;
+			mes "[Guide Gion]";
+			mes "Teaching...";
+			mes "Been a long time since I last heard that word.";
+			next;
+			mes "[Guide Gion]";
+			mes "I guess this little visit was not by coincidence but a start of a connection.";
+			next;
+			mes "[Guide Gion]";
+			mes "Sorry I am not a teacher. But!";
+			next;
+			mes "[Guide Gion]";
+			mes "I can help you on the path you've chosen, the ^33CC71"+((Sex)?"Kagerou":"Oboro")+"^000000 path.";
+			next;
+			mes "^1A95E6You hear Guide Gion's voice faintly as you slip away.^1A95E6";
+			next;
+			job_kagero = 4;
+			changequest 5133,5134;	//New path
+			mes "[Guide Gion]";
+			mes "If you are prepared to follow me, Guide Gion, on the "+((Sex)?"Kagerou":"Oboro")+" path, we will meet again.";
+			close2;
+			cutin "",255;
+			warp "amatsu",147,136;
+			end;
+	}
+}else if (job_kagero == 4){
+	cutin "job_ko02",2;
+	mes "[Guide Gion]";
+	mes "I thought you were afraid of the ^33CC71path of the "+((Sex)?"Kagerou":"Oboro")+"^33CC71 and wouldn't come back.";
+	next;
+	mes "[Guide Gion]";
+	mes "But from the look of your eyes, I guess I misjudged you.";
+	next;
+	mes "[Guide Gion]";
+	mes "You will have to train your mind and body to walk steadily in the unknown world and never fall into temptation to stay on the path.";
+	next;
+	mes "[Guide Gion]";
+	mes "Our ancestors had 4 tests to train our people.";
+	next;
+	select("4 tests?");
+	cutin "job_ko01",2;
+	mes "[Guide Gion]";
+	mes "Yes, there are 4 tests.";
+	mes "My ancestors trained my people with 4 tests that involve ^087FF8knowledge^000000, ^087FF8survival^000000, ^087FF8weapons^000000, and ^087FF8battle^000000.";
+	next;
+	mes "[Guide Gion]";
+	mes "I know you are curious what these tests are. Let me explain one by one.";
+	while (1) {
+		if (KO_Q&1 && KO_Q&2 && KO_Q&4 && KO_Q&8){
+			cutin "job_ko02",2;
+			changequest 5134,5135;	//4 tests
+			job_kagero = 5;
+			next;
+			mes "[Guide Gion]";
+			mes "Let's start right away after you are done with preparations.";
+			close2;
+			cutin "",255;
+			end;
+		}
+		next;
+		switch(select("Test of Knowledge:Test of Survival:Test of Weaponry:Test of Battle")){
+			case 1:
+				mes "[Guide Gion]";
+				mes "We need to be knowledgeable in order to assist the lord. This test is for this purpose.";
+				next;
+				mes "[Guide Gion]";
+				mes "You can pass the test if you successfully solve more than 9 out of 10 questions.";
+				next;
+				mes "[Guide Gion]";
+				mes "The test will be easy to pass if you've been steady in your studies. Now what other test are you curious about?";
+				KO_Q = KO_Q|1;
+				break;
+
+			case 2:
+				mes "[Guide Gion]";
+				mes "Missions aren't always easy and safe. That is why survival instincts are vital to us.";
+				next;
+				mes "[Guide Gion]";
+				mes "My ancestors call this test the dice test. It is a test to advance forward depending on the dice results.";
+				next;
+				mes "[Guide Gion]";
+				mes "Think of it as the simple dice games people play.";
+				next;
+				mes "[Guide Gion]";
+				mes "But never let your guard down during the test because it isn't called the survival test for nothing.";
+				next;
+				mes "[Guide Gion]";
+				mes "There will be blocks that help you while there are blocks that will interrupt you.";
+				next;
+				mes "[Guide Gion]";
+				mes "If you deal with various situations wisely, you will be able to pass the test. Now what other test are you curious about?";
+				KO_Q = KO_Q|2;
+				break;
+
+			case 3:
+				mes "[Guide Gion]";
+				mes "My family was famous for using unique weapons that we created.";
+				next;
+				mes "[Guide Gion]";
+				mes "You would be considered blessed if you created your own unique weapon.";
+				next;
+				mes "[Guide Gion]";
+				mes "Creating a weapon for yourself and refining it is the purpose of this test.";
+				next;
+				mes "[Guide Gion]";
+				mes "I hope you will be blessed and find the best weapon for yourself. Now what other test are you curious about?";
+				KO_Q = KO_Q|4;
+				break;
+
+			case 4:
+				mes "[Guide Gion]";
+				mes "Missions are not always done alone. You will often work in teams of 2 or 3 for a common goal.";
+				next;
+				mes "[Guide Gion]";
+				mes "The battle test is only for those that pass that knowledge, survival and weapon tests. So! It is the very last test.";
+				next;
+				mes "[Guide Gion]";
+				mes "Unlike the other three tests that are done alone, you will have to compete with others in this final test.";
+				next;
+				mes "[Guide Gion]";
+				mes "There is only one target!!";
+				mes "And only the first to get to the target passes the test.";
+				next;
+				mes "[Guide Gion]";
+				mes "You'll be lucky if you have no competitors during your test.";
+				next;
+				mes "[Guide Gion]";
+				mes "A challenge is better than explaining it a hundred times. It's the actual experience that makes you better.";
+				KO_Q = KO_Q|8;
+				break;
+		}
+	}
+} else if (job_kagero == 5){
+	if (checkquest(5137) == 1){KO_IB(2);}
+	else if (checkquest(5136) == 1){KO_IB(1);}
+	else if (checkquest(5146) == 1){mes "[Guide Gion]"; mes "Weren't you taking the Test of Battle Now?"; if (select("I want to go back to test site.:Ah... no.")==1){KO_IB(4);}else{cutin "",255; close;}}
+	else{
+		if (KO_QD&1 && KO_QD&2 && KO_QD&4){	//All Test Completed
+			cutin "job_ko01",2;
+			mes "[Guide Gion]";
+			mes "You've gone through three tests leaving only one to pass.";
+			next;
+			mes "[Guide Gion]";
+			mes "As I've told you before, the last test is different because you have to compete against others.";
+			select("Will you continue the Story?");
+			cutin "job_ko02",2;
+			next;
+			mes "[Guide Gion]";
+			mes "Ha ha ha. I will finish the story.";
+			next;
+			mes "[Guide Gion]";
+			mes "Kagerou, warrior like the dancing flames of the sun";
+			next;
+			mes "[Guide Gion]";
+			mes "Oboro, warrior like the misty moonlight";
+			next;
+			mes "[Guide Gion]";
+			mes "It is told that the man that earned the loyalty of the two warriors was a humorous person.";
+			next;
+			mes "[Guide Gion]";
+			mes "He like the jokes and conversations better than quarrels and he liked women over men.";
+			next;
+			mes "[Guide Gion]";
+			mes "Hmm... I don't know why this part of the story was kept alive all these years but this man wanted to bring these two warriors together.";
+			next;
+			mes "[Guide Gion]";
+			mes "Both warriors did travel together after the war but kept an awkward distance from each other.";
+			next;
+			mes "[Guide Gion]";
+			mes "They must have had their reasons but their lord would send them out to a difficult mission together, put them in a secret room together and all sorts of situations together.";
+			select("Sounds like an odd person.");
+			next;
+			mes "[Guide Gion]";
+			mes "Yes, he was. And his efforts didn't go in vain since the two warriors eventually got acquainted and married.";
+			next;
+			mes "[Guide Gion]";
+			mes "This is how the family started.";
+			select("What happened after?");
+			next;
+			mes "[Guide Gion]";
+			mes "Sadly, the next part of story was purposely discontinued.";
+			next;
+			mes "[Guide Gion]";
+			mes "I think it's because someone wanted us to let go of the past and move forward.";
+			next;
+			mes "[Guide Gion]";
+			mes "That's that. Now shouldn't you be preparing for the last test?";
+			next;
+			mes "[Guide Gion]";
+			mes "But you must be tired from all the tests so far. Take a rest.";
+			KO_QD = KO_QD+8;
+			job_kagero = 6;
+			close2;
+			cutin "",255;
+			end;
+		} else if ( (KO_QD&1 && KO_QD&2)||(KO_QD&1 && KO_QD&4)||(KO_QD&2 && KO_QD&4) ){	//2 Test Completed
+			cutin "job_ko04",2;
+			if (KO_QD&1 && KO_QD&2){.KO_RE$ = "Weaponry";}else if(KO_QD&1 && KO_QD&4){.KO_RE$ = "Survival";}else{.KO_RE$ = "Knowledge";}
+			mes "[Guide Gion]";
+			mes "You've Passed the "+((KO_QD&1 && KO_QD&2)?"Test of Knowledge and Survival":((KO_QD&1 && KO_QD&4)?"Test of Knowledge and Weaponry":"Test of Survival and Weaponry"))+".";
+			next;
+			mes "[Guide Gion]";
+			mes "You are already done with two tests. Hope you've learned a lot from them.";
+			next;
+			cutin "job_ko01",2;
+			mes "[Guide Gion]";
+			mes "Shall we continue with the story?";
+			next;
+			mes "[Guide Gion]";
+			mes "Kagerou, warrior like the dancing flames of the sun";
+			next;
+			mes "[Guide Gion]";
+			mes "Oboro, warrior like the misty moonlight";
+			next;
+			mes "[Guide Gion]";
+			mes "I think I left off when the two warriors met at the battlefield as enemies.";
+			next;
+			mes "[Guide Gion]";
+			mes "The long war ended eventually but the wounds and pain of those that survived had just started.";
+			next;
+			mes "[Guide Gion]";
+			mes "So these two warriors started to embrace and heal the war wounds together and became one.";
+			next;
+			mes "[Guide Gion]";
+			mes "There is a backstory of a man appearing in front of them and winning the loyalty from both warriors.";
+			next;
+			select("Who is this man?");
+			mes "[Guide Gion]";
+			mes "There isn't much known about this man. Only a short mentioning of the two warriors pledging their allegiance.";
+			next;
+			mes "[Guide Gion]";
+			mes "Maybe current generations like me are the ancestors of the current Amatsu lord? But this is only an assumption.";
+			next;
+			mes "[Guide Gion]";
+			mes "I'm almost at the end of my family story. Come back after you've passed the third test and I will tell you the rest.";
+			next;
+			mes "[Guide Gion]";
+			mes "Your third test is the Test of "+.KO_RE$+".";
+			next;
+			if (KO_QD&1 && KO_QD&2){KO_QS(3,3);}else if(KO_QD&1 && KO_QD&4){KO_QS(2,3);}else{KO_QS(1,3);}
+			close;
+		} else if (KO_QD&1 || KO_QD&2 || KO_QD&4) {	//Only 1 Test Completed.
+			cutin "job_ko01",2;
+			mes "[Guide Gion]";
+			mes "You've Passed the "+((KO_QD&1)?"Test of Knowledge":((KO_QD&2?"Test of Survival":"Test of Weaponry")))+".";
+			next;
+			mes "[Guide Gion]";
+			if (KO_QD&4){mes "I wonder if Joe is satisfied with your performance";}
+			else if (KO_QD&2){mes "Looks like you went through hell with this test";}
+			else{mes "My friend doesn't approve of others that easily but I guess he liked you.";}
+			next;
+			select("Please continue with the family story.");
+			cutin "job_ko02",2;
+			mes "[Guide Gion]";
+			mes "Looks like you are pretty eager to hear more. Where did I leave off... Ah! I remember.";
+			next;
+			mes "[Guide Gion]";
+			mes "Kagerou, warrior like the dancing flames of the sun";
+			next;
+			mes "[Guide Gion]";
+			mes "Oboro, warrior like the misty moonlight";
+			next;
+			mes "[Guide Gion]";
+			mes "Both warriors weren't close at first, because personality and everything else was completely opposite of each other.";
+			next;
+			mes "[Guide Gion]";
+			mes "The first place they met was the battlefield. And you know how enemies greet each other on a battlefield.";
+			next;
+			mes "[Guide Gion]";
+			mes "They ended up injuring each other badly.";
+			next;
+			mes "[Guide Gion]";
+			mes "But what can you do? War is a war.";
+			next;
+			mes "[Guide Gion]";
+			mes "The friend you've laughed with yesterday is a foe that you have to fight with in a war today.";
+			next;
+			mes "[Guide Gion]";
+			mes "So nobody can get along with anyone during a war.";
+			next;
+			mes "[Guide Gion]";
+			mes "I'll continue the story after you pass another test.";
+			next;
+			mes "[Guide Gion]";
+			mes "Which test will you choose for the second test?";
+			if (KO_QD&1){ @menu = select("Test of Survival:Test of Weaponry"); @menu = @menu+1;}
+			if (KO_QD&2){ @menu = select("Test of Knowledge:Test of Weaponry"); if (@menu==2){@menu = 3;}}
+			if (KO_QD&4){ @menu = select("Test of Knowledge:Test of Survival");}
+			next;
+			KO_QS(@menu,2);
+			close;
+		}else{
+			cutin "job_ko03",2;
+			mes "[Guide Gion]";
+			mes "It's been a while.";
+			next;
+			mes "[Guide Gion]";
+			mes "Since I felt happy like this. I feel young and energetic seeing young people like you challenge themselves with a new path.";
+			next;
+			mes "[Guide Gion]";
+			mes "We're done with explaining about the tests, now should I tell you my family story?";
+			next;
+			cutin "job_ko01",2;
+			mes "[Guide Gion]";
+			mes "My family started from two warriors.";
+			next;
+			mes "[Guide Gion]";
+			mes "Kagerou a warrior like the dancing flames of the sun.";
+			next;
+			mes "[Guide Gion]";
+			mes "Oboro a warrior like the misty moonlight.";
+			next;
+			mes "[Guide Gion]";
+			mes "The Sun and the Moon.";
+			mes "The sunlight that lights up the world and the moonlight that lights up the night. Both were very similar but different warriors.";
+			next;
+			mes "[Guide Gion]";
+			mes "There was a time there was an enmity between both warriors.";
+			next;
+			mes "[Guide Gion]";
+			mes "But it didn't take long for them to become one as a family.";
+			next;
+			select("How did it go afterwards?");
+			cutin "job_ko02",2;
+			mes "[Guide Gion]";
+			mes "Ha ha ha. It is never fun to listen to the whole story all at once, no? Come back after passing a test and I'll continue my story.";
+			next;
+			mes "[Guide Gion]";
+			mes "Which test will you select as your first test?";
+			next;
+			switch(select("Test of Knowledge:Test of Survival:Test of Weaponry")){
+				case 1:
+					KO_QS(1,1);
+					close;
+				case 2:
+					KO_QS(2,1);
+					close;
+				case 3:
+					KO_QS(3,1);
+					close;
+			}
+		}
+	}
+}else if (job_kagero == 6){
+	cutin "job_ko01",2;
+	mes "[Guide Gion]";
+	mes "You've come back already? You could have rested more. Is there a reason to hurry?";
+	next;
+	input @reason$;
+	cutin "job_ko03",2;
+	mes "[Guide Gion]";
+	mes "Because of ^B24E59"+@reason$+"^000000?";
+	next;
+	mes "[Guide Gion]";
+	mes "I have to admit,I don't understand you now.";
+	next;
+	mes "[Guide Gion]";
+	mes "But since you've gone through much, I'm sure you will do good with the final test.";
+	next;
+	cutin "job_ko01",2;
+	mes "[Guide Gion]";
+	mes "Now! No more small talk. I'll let you know what the target is for the Test of Battle.";
+	next;
+	mes "[Guide Gion]";
+	mes "The target is a monster called the ^FF0000Family Secret^000000.";
+	next;
+	mes "[Guide Gion]";
+	mes "You will have to be careful because there are many similiar shaped and named monsters in test site.";
+	next;
+	mes "[Guide Gion]";
+	mes "And if you are lucky, there will be others targeting the monster.";
+	next;
+	mes "[Guide Gion]";
+	mes "May the blessings of '"+((Sex)?"Kagerou, dancing sun":"Oboro, misty moonlight")+"' be with you.";
+	next;
+	KO_QS(4,4);
+	end;
+} else if (job_kagero == 7 || job_kagero == 8){
+	cutin "job_ko03",2;
+	KO_IB(3);
+} else {
+	cutin "job_ko03",2;
+	mes "[Guide Gion]";
+	mes "You should not be here, Leave!";
+	close2;
+	warp "amatsu",147,136;
+	end;
+}
+
+
+function	KO_IB	{	//Kagerou/Oboro In-Between
+	//0=Test of Knowledge:1=Test of Survival:2=Test of Weaponry:3=Test of Battle
+	cutin "job_ko04",2;
+	mes "[Guide Gion]";
+	mes "I see you are in the middle of the ^339CCCTest of "+((getarg(0)==0)?"Knowledge":((getarg(0)==1)?"Survival":((getarg(0)==2)?"Weaponry":"Battle")))+"^000000. Will you go back to the test site?";
+	switch(select("Go back to the test site.:Visit the village.")){
+		case 1:
+		mes "Test of "+((getarg(0)==0)?"Knowledge":((getarg(0)==1)?"Survival":((getarg(0)==2)?"Weaponry":"Battle")))+" The test site is over here.";
+		sleep2 2000;
+		if (getarg(0)==0){warp "job_ko",72,128;}
+		if (getarg(0)==1){warp "job_ko",62,16;}
+		if (getarg(0)==2){warp "job_ko",121,129;}
+		if (getarg(0)==3){
+			if (rand(1,3)==1){warp "job_ko",142,80;}
+			if (rand(1,3)==2){warp "job_ko",141,80;}
+			else{warp "job_ko",107,60;}
+		}
+		end;
+	case 2:
+		mes "[Guide Gion]";
+		mes "The village is over here.";
+		warp "amatsu",147,136;
+		end;
+	}
+}
+function	KO_QS	{	//Kagerou/Oboro QuestSelect.
+	//1=Test of Knowledge:2=Test of Survival:3=Test of Weaponry:4=Test of Battle
+	if (getarg(1)<=2){
+		mes "[Guide Gion]";
+		mes "You are starting with the ^339CCCTest of "+((getarg(0)==1)?"Knowledge":((getarg(0)==2)?"Survival":"Weaponry"))+"^000000"+((getarg(1)==2)?" as Second test.":((getarg(1)==3)?" as Third test.":"."));
+		next;
+	}
+	switch(getarg(0)){
+		case 1:
+			mes "[Guide Gion]";
+			mes "Then I will get to see a familiar face after so long";
+			select("Familiar face?");
+			next;
+			setquest 5136;	//Knowledge Test
+			mes "[Guide Gion]";
+			mes "Ha ha ha. You'll know when we get there. The Test of Knowledge is taken over here.";
+			close2;
+			cutin "",255;
+			warp "job_ko",72,128;
+			end;
+		case 2:
+			mes "[Guide Gion]";
+			mes "It's a lonesome test that you have to face alone.";
+			mes "But I believe you can handle it. The Test of Survival is taken over here.";
+			setquest 5137;
+			close2;
+			cutin "",255;
+			warp "job_ko",62,16;
+			end;
+		case 3:
+			mes "[Guide Gion]";
+			mes "I have something to give you before you go.";
+			next;
+			setquest 5138;	//Weapons test
+			getitem 1002,5; getitem 1010,1;	//5 Iron ore and 1 Phracon
+			mes "You receive 5 Iron Ore and 1 Phracon.";
+			next;
+			mes "[Guide Gion]";
+			mes "You will find these useful. The Test of Weaponry is taken over here.";
+			close2;
+			cutin "",255;
+			warp "job_ko",121,129;
+			end;
+		case 4:
+			if(getarg(1)==4){job_kagero = 7;}
+			setquest 5146;	//Battle Test
+			mes "[Guide Gion]";
+			mes "Then let's go to the battle test field.";
+			close2;
+			cutin "",255;
+			if (rand(1,3)==1){warp "job_ko",142,80;}
+			if (rand(1,3)==2){warp "job_ko",141,80;}
+			else{warp "job_ko",107,60;}
+			end;
+	}
+}
+}

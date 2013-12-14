@@ -1,0 +1,1068 @@
+//===== RoSF.us Script =============================================
+//= Kagerou/Oboro Job Change Quest
+//===== By: =========================================================
+//= M45T3R, Dastgir Pojee
+//===== Current Version: ============================================
+//= 1.6
+//===== Description: ================================================
+//= Test of Survival KO
+//===== Additional Comments: ========================================
+//=1.0 Extracted from iRO(Official?) 				[M45T3R]/[Dastgir Pojee]
+//=1.1	Added All the Blocks.						[Dastgir Pojee]
+//=1.1a	Updated Functions							[Dastgir Pojee]
+//=1.2 Fixed Many Errors.							[Dastgir Pojee]
+//=1.3 Fixed More Bugs.								[Dastgir Pojee]
+//=1.4 Some Official Behaviour and Fixed Dialogs.	[Dastgir Pojee]					
+//=1.5 Long awaited Block 38 Released,Fixed Sprites
+//=    Survival Test Fully Coded.					[Dastgir Pojee]
+//=1.6 Final Touches.								[Dastgir Pojee]
+//===================================================================
+////Functions
+
+function	script	Check_LP	{
+	if (LPOINTS<1){
+		mes "Due to insufficient ^FD0260LP^000000, you will be returned to starting position.";
+		close2;
+		warp "job_ko",63,16;
+		end;
+	}
+	return;
+}
+
+function	script	KO_SD	{	//Kagerou/Oboro Survival-DiceTwice(LargerThan,Warpto,Smallthan,Warpto,Location,LPConsume,BlockBetween1,BlockBetween2)
+	mes "Location: "+getarg(4);
+	mes "Total LP: "+LPOINTS+"";
+	mes "To roll the dice, you need to consume "+getarg(5)+" ^FD0260LP^000000.";
+	next;
+	if (select("Roll the first dice.")==1){
+		callfunc("Check_LP");
+		mes "< Used "+getarg(5)+" LP >";
+		set LPOINTS,LPOINTS-getarg(5);
+		set @dice1,rand(1,6);
+		next;
+		emotion 57+@dice1,0;
+		mes "First dice result is "+@dice1+". Do you want to roll the second dice?";
+		next;
+		if (select("Roll the second dice.")==1){
+			set @dice2,rand(1,6);
+			emotion 57+@dice2,0;
+			mes "Second dice result is "+@dice2+".";
+		}
+		if (getarg(0)==-1){
+			if (@dice1!=@dice2){ mes "You didn't get the same results"; return;}
+			else if (@dice1==@dice2){ mes "You got the same number. Press Close to move block 30."; close2; callfunc("KO_SW",31);}
+		}
+		else{
+			next;
+			set .@dresult,@dice1+@dice2;
+			mes @dice1+" + "+@dice2+" = "+.@dresult;
+			if (.@dresult<getarg(2)){ 
+				mes "You total is lower than "+getarg(2)+". Press Close to move to block "+getarg(3)+"."; 
+				close2;
+				callfunc("KO_SW",getarg(3)+1);
+			}
+			else if (.@dresult>=getarg(2)){
+				if (getarg(1)==-2){
+					mes "You total is larger than "+getarg(0)+". Please choose a block to move to between blocks "+getarg(6)+" through "+getarg(7)+".";
+					next;
+					for (.@i = 1; .@i <= (getarg(7)-getarg(6)); .@i = .@i +1){
+						if (.@i==1) .@menu$ = "Move to block "+(getarg(7)-1+.@i)+".";
+						else {.@menu$ = .@menu$+":Move to block "+(getarg(7)-1+.@i)+".";}
+					}
+					set .@menu,select(.@menu$);
+					close2;
+					callfunc("KO_SW",1+.@menu+getarg(6));
+				}
+				else if(getarg(1)==-1){
+					mes "You total is larger than "+getarg(0)+".";
+					callfunc("KO_SL",getarg(4),1);
+					close2;
+					callfunc("KO_SW",@dice+getarg(4)+1);
+				}
+				else{
+					mes "You total is larger than "+getarg(0)+".";
+					callfunc("KO_SW",getarg(1)+1);
+				}
+				
+			}
+		}
+	}
+
+}
+
+function	script	KO_SL	{	//Kagerou/Oboro Survival-Location(Location,LPConsume)
+	mes "Roll the dice.";
+	next;
+	mes "Location: "+getarg(0);
+	mes "Total LP: "+LPOINTS;
+	mes "To roll the dice, you need to consume "+getarg(1)+" ^FD0260LP^000000.";
+	next;
+	if (select("Roll the dice.")==1){
+		callfunc("Check_LP");
+		set LPOINTS, LPOINTS-getarg(1);
+		set @dice, rand(1,6);
+		emotion 57+@dice,0;
+		mes "The dice came out as "+@dice+".";
+		mes "Press Close to move forward "+@dice+" blocks.";
+	}
+	return;
+}
+function	script	KO_SW	{	//Kagerou/Oboro Survival-Warpto(WarpLocation)
+	switch(getarg(0)){
+		case 1:		warp "job_ko",63,16; end;
+		case 2:		warp "job_ko",54,16; end;
+		case 3:		warp "job_ko",46,16; end;
+		case 4:		warp "job_ko",38,16; end;
+		case 5:		warp "job_ko",30,16; end;
+		case 6:		warp "job_ko",22,16; end;
+		case 7:		warp "job_ko",17,19; end;
+		case 8:		warp "job_ko",17,27; end;
+		case 9:		warp "job_ko",17,35; end;
+		case 10:	warp "job_ko",17,43; end;
+		case 11:	warp "job_ko",17,51; end;
+		case 12:	warp "job_ko",17,60; end;
+		case 13:	warp "job_ko",25,60; end;
+		case 14:	warp "job_ko",33,60; end;
+		case 15:	warp "job_ko",41,60; end;
+		case 16:	warp "job_ko",49,60; end;
+		case 17:	warp "job_ko",57,60; end;
+		case 18:	warp "job_ko",62,56; end;
+		case 19:	warp "job_ko",62,48; end;
+		case 20:	warp "job_ko",62,40; end;
+		case 21:	warp "job_ko",62,32; end;
+		case 22:	warp "job_ko",62,24; end;
+		case 23:	warp "job_ko",54,23; end;
+		case 24:	warp "job_ko",46,23; end;
+		case 25:	warp "job_ko",38,23; end;
+		case 26:	warp "job_ko",30,23; end;
+		case 27:	warp "job_ko",25,27; end;
+		case 28:	warp "job_ko",25,35; end;
+		case 29:	warp "job_ko",25,43; end;
+		case 30:	warp "job_ko",25,52; end;
+		case 31:	warp "job_ko",33,52; end;
+		case 32:	warp "job_ko",41,52; end;
+		case 33:	warp "job_ko",49,52; end;
+		case 34:	warp "job_ko",54,48; end;
+		case 35:	warp "job_ko",54,40; end;
+		case 36:	warp "job_ko",54,31; end;
+		case 37:	warp "job_ko",46,31; end;
+		case 38:	warp "job_ko",38,31; end;
+		case 39:	warp "job_ko",33,35; end;
+		case 40:	warp "job_ko",33,44; end;
+		case 41:	warp "job_ko",41,44; end;
+	}
+	return;
+}
+
+function	script	KO_DL	{
+	mes "[No. "+getarg(0)+"]";
+	mes "^1A95E6Other letters are too small to read. Let's look up close.^000000";
+	close;
+}
+
+function	script	KO_SR	{	//Kagerou/Oboro Survival-RPS(Win,Lose,Draw,Location,BlockBetween1,BlockBetween2)
+	mes "Rock! Paper! Scissors!";
+	next;
+	set .@player,select("Give scissors.:Give rock.:Give paper.");
+	emotion (9+.@player),1;
+	emotion (9+.@master),0;
+	set .@master, rand(1,3);
+	mes "=Game Results=";
+	mes "Machine: "+((.@master==1)?"Scissors":((.@master==2)?"Rock":"Paper"))+".";
+	mes "You: "+((.@player==1)?"Scissors":((.@player==2)?"Rock":"Paper"))+".";
+	if (.@master==.@player) {
+		mes "Draw";
+		if (getarg(2)==-1){callfunc("KO_SL",getarg(4),1); close2; callfunc("KO_SW",@dice+getarg(4)+1);}
+		close2;
+		callfunc("KO_SW",getarg(2)+1);
+	} else if ( (.@player==1 && .@master==2) || (.@player==2 && .@master==3) || (.@player==3 && .@master==1) ) {
+		mes "You Lose";
+		if (getarg(1)==-1){callfunc("KO_SL",getarg(4),1); close2; callfunc("KO_SW",@dice+getarg(4)+1);}
+		else{
+			mes "Press Close to move to block "+getarg(1)+".";
+			close2;
+			callfunc("KO_SW",getarg(1)+1);
+		}
+	} else{
+		mes "You Win";
+		if (getarg(0)==-1){callfunc("KO_SL",getarg(4),1); close2; callfunc("KO_SW",@dice+getarg(4)+1);}
+		else if (getarg(0)==-2){
+			for (.@i = 1; .@i <= (getarg(5)-getarg(4)); .@i = .@i +1){
+				if (.@i==1) .@menu$ = "Move to block "+(getarg(5)-1+.@i)+".";
+				else {.@menu$ = .@menu$+":Move to block "+(getarg(5)-1+.@i)+".";}
+			}
+			set .@menu,select(.@menu$);
+			close2;
+			callfunc("KO_SW",1+.@menu+getarg(4));
+			end;
+		}
+		else{
+			mes "Press Close to move to block "+getarg(0)+".";
+			close2;
+			callfunc("KO_SW",getarg(0)+1);
+		}
+	}
+}
+//=== FUNCTIONS END ===//
+
+job_ko,57,16,1	script	Sight#ko_00	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",0);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	if (checkquest(5137)==1 && checkquest(5140)==-1){
+		while (select("Read the description.:Start the test.")==1){
+			mes "The Test of Survival starts from here and you use ^FD0260100 Life Points (LP)^000000 and roll dice to advance forward through the test.";
+			next;
+			mes "The whole test starts from block 0 to block 40 and each block you get can either give or take your LP.";
+			next;
+			mes "You need to have some ^FD0260LP^000000 till you get to the arrival block at the end to pass the test.";
+			next;
+			mes "But! You still pass the test if your ^FD0260LP^000000 becomes 0 when you get to the arrival block.";
+			next;
+			mes "Game instructions end here. Good luck to you.";
+			next;
+		}
+		setquest 5140;
+		set LPOINTS, 100;
+		mes "You've gained 100 Life Points (LP).";
+		next;
+	} else {
+		set LPOINTS, 100;
+		mes "You've returned to the first block. Your LP is recovered.";
+		next;
+		while (select("Read the description.:Start the test.")==1){
+			mes "The Test of Survival starts from here and you use ^FD0260100 Life Points (LP)^000000 and roll dice to advance forward through the test.";
+			next;
+			mes "The whole test starts from block 0 to block 40 and each block you get can either give or take your LP.";
+			next;
+			mes "You need to have some ^FD0260LP^000000 till you get to the arrival block at the end to pass the test.";
+			next;
+			mes "But! You still pass the test if your ^FD0260LP^000000 becomes 0 when you get to the arrival block.";
+			next;
+			mes "Game instructions end here. Good luck to you.";
+			next;
+		}
+	}
+	callfunc("KO_SL",0,1);
+	close2;
+	callfunc("KO_SW",@dice+1);
+	end;
+}
+
+job_ko,49,16,1	script	Sight#ko_01	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",1);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "You are really bad at rolling dice. How can you get a 1 from the start? You can move to block 9 if you pay up 10 LP in this block.";
+	next;
+	switch(select("Use 10 LP:Roll the dice.")){
+		case 1:
+			set LPOINTS, LPOINTS-10;
+			mes "< Used 10 LP >";
+			mes "Press Close to move to block 9.";
+			close2;
+			
+			callfunc("KO_SW",10);
+		case 2:
+			callfunc("KO_SL",1,1);	
+			close2;
+			callfunc("KO_SW",@dice+2);
+	}
+}
+
+job_ko,41,16,1	script	Sight#ko_02	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",2);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block has a trap.";
+	mes "Press Close to go back to block 0.";
+	close2;
+	callfunc("KO_SW",1);
+}
+
+job_ko,33,16,1	script	Sight#ko_03	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",3);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Used 5 LP so you will have to resist the curse passed down through generations before moving forward.";
+	next;
+	switch(select("Use 5 LP")){
+		case 1:
+		mes "< Used 5 LP >";
+		set LPOINTS, LPOINTS-5;
+		callfunc("KO_SL",3,1);	
+		callfunc("KO_SW",@dice+4);
+	}
+}
+
+job_ko,25,16,1	script	Sight#ko_04	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",4);
+
+OnTouch:
+	mes "There are tiny letters scribbled on the sign.";
+	next;
+	if (.KO_WH$!="") {
+		mes .KO_WH$+" was here.";
+		next;
+	}
+	mes "Should I leave my name since taking the test is a special occasion?";
+	next;
+	switch(select("Use 5 LP and leave your name.:Continue to roll the dice.")){
+		case 1:
+			mes "< Used 5 LP >";
+			set LPOINTS,LPOINTS-5;
+			next;
+			set .KO_WH$,"strcharinfo(0)";
+			mes strcharinfo(0)+" was here.";
+			mes "You left your name.";
+			callfunc("KO_SL",4,1);	
+			close2;
+			callfunc("KO_SW",@dice+5);
+			
+		case 2:
+			mes "Roll the dice.";
+			next;
+			callfunc("KO_SL",4,1);	
+			close2;
+			callfunc("KO_SW",@dice+5);
+	}
+}
+
+job_ko,17,16,1	script	Sight#ko_05	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",5);
+
+OnTouch:
+	if (checkquest(5141,PLAYTIME) == 0){
+		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		close;
+	}
+	if (checkquest(5141,PLAYTIME) == 2){
+		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		erasequest 5141;
+		callfunc("KO_SL",5,1);
+		callfunc("KO_SW",@dice+6);
+	}
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "If you do not pay 5 LP, you will be cursed and immobilized for 2 minutes.";
+	next;
+	switch(select("Use 5 LP:Do not pay.")){
+		case 1:
+			mes "<Used 5 LP>";
+			set LPOINTS,LPOINTS-5;
+			callfunc("KO_SL",5,1);
+			callfunc("KO_SW",@dice+6);
+			
+		case 2:
+			setquest 5141;
+			mes "You are cursed and cannot move to any other block for 2 minutes.";
+			close;
+	}
+}
+
+job_ko,17,24,1	script	Sight#ko_06	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",6);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block is blessed.";
+	mes "Life Point recovers 7 LP.";
+	mes "Cannot exceed maximum 100 LP.";
+	next;
+	if (LPOINTS<93) set LPOINTS,LPOINTS+7;
+	else set LPOINTS,100;
+	mes "< Recovered "+((LPOINTS==100)?"":"7")+" LP >";
+	callfunc("KO_SL",6,1);
+	close2;
+	callfunc("KO_SW",@dice+7);
+}
+
+job_ko,17,32,1	script	Sight#ko_07	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",7);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block has a trap.";
+	mes "Press Close to go back to block 5.";
+	close2;
+	callfunc("KO_SW",6);
+}
+
+job_ko,17,40,1	script	Sight#ko_08	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",8);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Rock-paper-scissors Machine";
+	mes "If you win, move to block 15.";
+	mes "If it is a draw, roll the dice.";
+	mes "If you lose, move to block 0.";
+	next;
+	callfunc("KO_SR",15,0,-1,8,0,0);	
+}
+
+job_ko,17,48,1	script	Sight#ko_09	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",9);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Please proceed.";
+	next;
+	callfunc("KO_SL",9,1);
+	close2;
+	callfunc("KO_SW",@dice+10);
+}
+
+job_ko,17,56,1	script	Sight#ko_10	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",10);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "If you don't want to be caught, install a trap.";
+	next;
+	if (.trap){
+		mes "You are caught in the trap installed.";
+		mes "Press Close to go back to block 0.";
+		set .trap,0;
+		close2;
+		callfunc("KO_SW",1);
+	}
+	mes "There is currently no trap installed.";
+	mes "Do you want to use 10 LP to install a trap?";
+	switch(select("Install a trap.:Roll the Dice.")){
+		case 1:
+			mes "< Used 10 LP >";
+			mes "The trap is installed. Please roll the dice.";
+			set .trap,1;
+			set LPOINTS,LPOINTS-10;
+			next;
+			callfunc("KO_SL",10,1);
+			callfunc("KO_SW",@dice+11);
+			
+		case 2:
+			callfunc("KO_SL",10,1);
+			callfunc("KO_SW",@dice+11);
+	}
+}
+
+job_ko,22,60,1	script	Sight#ko_11	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",11);
+
+OnTouch:
+mes "There are tiny letters on the sign.";
+next;
+mes "This block has a trap.";
+mes "Press Close to go back to block 9.";
+close2;
+callfunc("KO_SW",10);
+}
+
+job_ko,30,60,1	script	Sight#ko_12	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",12);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Rock-paper-scissors Machine";
+	mes "If you win, move to block 20.";
+	mes "If it is a draw, roll the dice.";
+	mes "If you lose, move to block 9.";
+	next;
+	callfunc("KO_SR",20,9,-1,12,0,0);
+}
+
+job_ko,38,60,1	script	Sight#ko_13	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",13);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block is blessed.";
+	mes "Life Point recovers 7 LP.";
+	mes "Cannot exceed maximum 100 LP.";
+	next;
+	if (LPOINTS<93) set LPOINTS,LPOINTS+7;
+	else set LPOINTS,100;
+	mes "< Recovered "+((LPOINTS==100)?"":"7")+" LP >";
+	callfunc("KO_SL",13,1);
+	close2;
+	callfunc("KO_SW",@dice+14);
+}
+
+job_ko,46,60,1	script	Sight#ko_14	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",14);
+
+OnTouch:
+	if (checkquest(5141,PLAYTIME) == 0){
+		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		close;
+	}
+	if (checkquest(5141,PLAYTIME) == 2){
+		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		erasequest 5141;
+		callfunc("KO_SL",5,1);
+		callfunc("KO_SW",@dice+6);
+	}
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "If you do not pay 5 LP, you will be cursed and immobilized for 2 minutes.";
+	next;
+	switch(select("Use 5 LP:Do not pay.")){
+		case 1:
+			mes "<Used 5 LP>";
+			set LPOINTS,LPOINTS-5;
+			callfunc("KO_SL",14,1);
+			callfunc("KO_SW",@dice+15);
+		case 2:
+			setquest 5141;
+			mes "You are cursed and cannot move to any other block for 2 minutes.";
+			close;
+	}
+}
+
+job_ko,54,60,1	script	Sight#ko_15	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",15);
+
+OnTouch:
+	if (checkquest(5141,PLAYTIME) == 0){
+		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		close;
+	}
+	if (checkquest(5141,PLAYTIME) == 2){
+		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		erasequest 5141;
+		callfunc("KO_SL",5,1);
+		close2;
+		callfunc("KO_SW",@dice+6);
+	}
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "You will be cursed by a powerful gravity curse that immobilizes you for 2 minutes.";
+	setquest 5141;
+	close;
+}
+
+job_ko,62,60,1	script	Sight#ko_16	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",16);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Consume 2 LP and roll the dice twice.";
+	mes "If you get the same number then you can move to block 30, if the numbers are different, consume 2 LP to roll again... until you get the same numbers.";
+	next;
+	while(1){
+		callfunc("KO_SD",-1,30,-1,-3,16,2,0,0);
+	}
+}
+
+job_ko,62,51,1	script	Sight#ko_17	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",17);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Area cursed with 10 times the normal gravity. You will need 10LP to roll the dice.";
+	callfunc("KO_SL",17,10);
+	close2;
+	callfunc("KO_SW",@dice+18);
+}
+
+job_ko,62,43,1	script	Sight#ko_18	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",18);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Consume 2 LP and roll the dice twice.";
+	mes "If the sum of the numbers from both dice is lower than 5, move to block 30, if it higher than 5, move to block 19.";
+	callfunc("KO_SD",5,19,5,30,18,2,0,0);
+
+
+}
+
+job_ko,62,35,1	script	Sight#ko_19	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",19);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Move forward.";
+	callfunc("KO_SL",19,1);
+	close2;
+	callfunc("KO_SW",@dice+20);
+}
+
+job_ko,62,27,1	script	Sight#ko_20	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",20);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block is blessed.";
+	mes "Life Point recovers 7 LP.";
+	mes "Cannot exceed maximum 100 LP.";
+	next;
+	if (LPOINTS<93) set LPOINTS,LPOINTS+7;
+	else set LPOINTS,100;
+	mes "< Recovered "+((LPOINTS==100)?"":"7")+" LP >";
+	callfunc("KO_SL",20,1);
+	close2;
+	callfunc("KO_SW",@dice+21);
+}
+
+job_ko,57,23,1	script	Sight#ko_21	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",21);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Area cursed with 10 times the normal gravity. You will need 10LP to roll the dice.";
+	callfunc("KO_SL",21,10);
+	close2;
+	callfunc("KO_SW",@dice+22);
+}
+
+job_ko,49,23,1	script	Sight#ko_22	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",22);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	if ($KO_SO == 1){
+		mes "Someone Leaved LP for you.";
+		mes "You will directly Pass the test";	//Dialog Info
+		close2;
+		set $KO_SO,0;
+		callfunc("KO_SW",41);
+	}
+	mes "Leave all your remaining LP and go back to block 0, then the next person will be redeemed.";
+	next;
+	mes "Do you want to leave your LP?";
+	mes "If you leave your LP then the next person for test that arrives at the block will automatically pass the test.";
+	switch(select("Leave all your LP.:Continue to roll the dice.")){
+		case 1:
+			set $KO_SO,1;
+			mes "Leave all remaining LP here.";
+			mes "Press Close and go back to block 0.";
+			set LPOINTS,0;
+			close2;
+			callfunc("KO_SW",1);
+			end;
+		
+		case 2:
+			callfunc("KO_SL",22,1);
+			close2;
+			callfunc("KO_SW",@dice+23);
+			end;
+	}
+}
+
+job_ko,41,23,1	script	Sight#ko_23	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",23);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block has a trap.";
+	mes "Press Close to go back to block 18.";
+	close2;
+	callfunc("KO_SW",19);
+	end;
+	
+}
+
+
+job_ko,33,23,1	script	Sight#ko_24	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",24);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "consume 2 LP and roll the dice twice.";
+	next;
+	mes "If the sum of the numbers from both dice is larger than 8, then you can move to any block between 25 to 30. But! If the sum is below 8, you must move back to block 19.";
+	next;
+	callfunc("KO_SD",8,-2,8,19,24,2,25,30);
+}
+
+job_ko,25,23,1	script	Sight#ko_25	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",25);
+
+OnTouch:
+	if (checkquest(5141,PLAYTIME) == 0){
+		mes "Cannot move because you are cursed.";
+		close;
+	}
+	if (checkquest(5141,PLAYTIME) == 2){
+		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		erasequest 5141;
+		callfunc("KO_SL",25,1);
+		close2;
+		callfunc("KO_SW",@dice+26);
+	}
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This is lame.";
+	mes "Cannot read the writing. There should be a way to read it.";
+	switch(select("Try Something.:do Nothing.")){
+		case 1:
+			next;
+			misceffect EF_TALK_FROSTJOKE;
+			mes "Tried a recent Prontera joke to do something.";
+			next;
+			setquest 5141;
+			mes "Got cursed and became immobilized for 2 minutes.";
+			close;
+			
+			
+		case 2:
+			next;
+			if (rand(1,10)==4){mes "Its a wise decision to do nothing";}
+			else{mes "Nothing happened. Still need to do something.";}
+			close;
+	}
+}
+
+job_ko,25,32,1	script	Sight#ko_26	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",26);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block has a trap.";
+	mes "Press Close to go back to block 20.";
+	close2;
+	callfunc("KO_SW",21);
+	end;
+	
+}
+
+job_ko,25,40,1	script	Sight#ko_27	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",27);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block is blessed.";
+	mes "Life Point recovers 7 LP.";
+	mes "Cannot exceed maximum 100 LP.";
+	next;
+	if (LPOINTS<93) set LPOINTS,LPOINTS+7;
+	else set LPOINTS,100;
+	mes "< Recovered "+((LPOINTS==100)?"":"7")+" LP >";
+	callfunc("KO_SL",27,1);
+	close2;
+	callfunc("KO_SW",@dice+28);
+}
+
+job_ko,25,48,1	script	Sight#ko_28	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",28);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "If you don't want to be caught, install a trap.";
+	next;
+	if (.trap){
+		mes "You are caught in the trap installed.";
+		mes "Press Close to go back to block 0.";
+		set .trap,0;
+		close2;
+		callfunc("KO_SW",1);
+	}
+	mes "There is currently no trap installed.";
+	mes "Do you want to use 10 LP to install a trap?";
+	switch(select("Install a trap.:Roll the Dice.")){
+		case 1:
+			mes "< Used 10 LP >";
+			mes "The trap is installed. Please roll the dice.";
+			set .trap,1;
+			set LPOINTS,LPOINTS-10;
+			next;
+			callfunc("KO_SL",28,1);
+			close2;
+			callfunc("KO_SW",@dice+29);
+			
+		case 2:
+			callfunc("KO_SL",28,1);
+			close2;
+			callfunc("KO_SW",@dice+29);
+	}
+}
+job_ko,30,52,1	script	Sight#ko_29	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",29);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Go forth.";
+	callfunc("KO_SL",29,1);
+	close2;
+	callfunc("KO_SW",@dice+30);
+	end;
+}
+
+job_ko,38,52,1	script	Sight#ko_30	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",30);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block has a trap.";
+	mes "Press Close to go back to block 9.";
+	close2;
+	callfunc("KO_SW",10);
+	end;
+	
+}
+
+job_ko,46,52,1	script	Sight#ko_31	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",31);
+
+OnTouch:
+	if (checkquest(5141,PLAYTIME) == 0){
+		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		close;
+	}
+	if (checkquest(5141,PLAYTIME) == 2){
+		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		erasequest 5141;
+		callfunc("KO_SL",5,1);
+		callfunc("KO_SW",@dice+6);
+	}
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "If you do not pay 5 LP, you will be cursed and immobilized for 2 minutes.";
+	next;
+	switch(select("Use 5 LP:Do not pay.")){
+		case 1:
+			mes "<Used 5 LP>";
+			set LPOINTS,LPOINTS-5;
+			callfunc("KO_SL",31,1);
+			close2;
+			callfunc("KO_SW",@dice+32);
+			
+		case 2:
+			setquest 5141;
+			mes "You are cursed and cannot move to any other block for 2 minutes.";
+			close;
+	}
+
+}
+
+job_ko,46,52,1	script	Sight#ko_32	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",32);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Rock-paper-scissors Machine";
+	mes "If you win, you get to move to any block between 33 to 38; if you lose or is a draw, you have to move to block 0.";
+	callfunc("KO_SR",-2,0,0,32,33,38);
+}
+
+job_ko,54,43,1	script	Sight#ko_33	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",33);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "You can move to block 39 if you pay all points except for the last 1 LP to roll the dice one last time.";
+	switch(select("Pay LP.:Move forward little bit at a time.")){
+		case 1:
+			next;
+			set @temp,LPOINTS-1;
+			set LPOINTS,1;
+			mes "<"+@temp+" Used LP >";
+			mes "Press Close to move to block 39.";
+			close2;
+			callfunc("KO_SW",40);
+			end;
+			
+		case 2:
+			callfunc("KO_SL",33,1);
+			close2;
+			callfunc("KO_SW",@dice+34);
+			end;
+	}
+}
+
+job_ko,54,35,1	script	Sight#ko_34	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",34);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block is blessed.";
+	mes "Life Point recovers 7 LP.";
+	mes "Cannot exceed maximum 100 LP.";
+	next;
+	if (LPOINTS<93) set LPOINTS,LPOINTS+7;
+	else set LPOINTS,100;
+	mes "< Recovered "+((LPOINTS==100)?"":"7")+" LP >";
+	callfunc("KO_SL",34,1);
+	close2;
+	callfunc("KO_SW",@dice+35);
+}
+
+job_ko,49,31,1	script	Sight#ko_35	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",35);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "This block has a trap.";
+	mes "Press Close to go back to block 29.";
+	close2;
+	callfunc("KO_SW",30);
+	end;
+}
+
+job_ko,41,31,1	script	Sight#ko_36	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",36);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "There are only 4 blocks left till the last block.";
+	next;
+	mes "Rule 1 (Normal Dice Roll)";
+	mes "You get to pass if you get 4 or above but nobody knows what will come from a dice roll.";
+	next;
+	mes "Rule 2";
+	mes "If you get 1, 2, or 3 you move right to the arrival point; if you get 4, 5, or 6 you get to choose to move to block 29.";
+	mes "next;";
+	switch(select("Try it the other way.:Go by the rule.")){
+		case 1:
+			mes "The Other Way (2nd Rule)";
+			callfunc("KO_SD",3,29,3,40,36,1,0,0);
+			end;
+		case 2:
+			callfunc("KO_SL",36,1);
+			close2;
+			if (@dice >= 4){callfunc("KO_SW",41);}
+			else{callfunc("KO_SW",@dice+37);}
+			end;
+	}
+}
+
+job_ko,33,31,1	script	Sight#ko_37	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",37);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "There are only 3 blocks left to the finish line but you can't you go so easily.";
+	mes "If you get 1, 3, or 5, move to the arrival point; if you get 2, 4, or 6, go back to the starting point.";
+	callfunc("KO_SL",37,1);
+	next;
+	if (@dice%2 == 0){
+		mes "Press Close to move to starting point.";
+		close2;
+		callfunc("KO_SW",1);
+		end;
+	}
+	else if (@dice%2 == 1){
+		mes "Press Close to move to the last block.";
+		close2;
+		callfunc("KO_SW",41);
+		end;
+	}
+}
+
+job_ko,33,40,1	script	Sight#ko_38	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",37);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Leave 1 LP and invest the remaining LP to install the trap to bring down other players";
+	next;
+	if (.trap){
+		mes "You are caught in the trap installed.";
+		mes "Press Close to go back to block 0.";
+		set .trap,0;
+		close2;
+		callfunc("KO_SW",1);
+	}
+	mes "There is currently no trap installed. Do you want to install a trap?";
+	next;
+	switch(select("Install a trap.:Do not install.")){
+		case 1:
+			mes "< Used "+LPOINTS-1+" LP >";
+			next;
+			mes "The trap is installed. Please roll the dice.";
+			set .trap,1;
+			set LPOINTS,1;
+			next;
+		case 2:
+			callfunc("KO_SL",38,1);
+			if (@dice>1){callfunc("KO_SW",41);}
+			else{callfunc("KO_SW",40);}
+	}
+}
+
+job_ko,38,44,1	script	Sight#ko_39	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",39);
+
+OnTouch:
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "Now there is only 1 block left till the end. Congratulations on all you've been through to get here.";
+	next;
+	mes "But you cannot go so easily. If you get a 3, you will go back to block 3.";
+	callfunc("KO_SL",39,1);
+	if (@dice==3){
+		mes "Press Close to move to 3rd block.";
+		close2;
+		callfunc("KO_SW",4);
+	}
+	else{
+		mes "Press Close to move to the arrival point.";
+		close2;
+		callfunc("KO_SW",41);
+	}
+}
+
+job_ko,46,41,1	script	Sight#ko_40	4_BULLETIN_BOARD2,1,1,{
+callfunc("KO_DL",40);
+
+OnTouch:
+	if (checkquest(5137)!=1 || checkquest(5140) != 1){
+		mes "You should not be here";
+		close2;
+		warp "amatsu",147,136;
+		end;
+	}
+	mes "There are tiny letters on the sign.";
+	next;
+	mes "To those you are preparing for a new turn...";
+	mes "Well begun is half done. However always remember it is not the end.";
+	next;
+	mes "Let's read all the writing on the sign.";
+	mes "You feel like you are moved to another place.";
+	next;
+	completequest 5137;
+	erasequest 5140;
+	erasequest 5141;
+	set LPOINTS,0;
+	set KO_Q, 1;
+	set KO_QD,KO_QD+2;
+	warp "job_ko",35,113;
+	end;
+
+}

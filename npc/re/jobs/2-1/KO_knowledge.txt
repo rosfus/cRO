@@ -1,0 +1,325 @@
+//===== RoSF.us Script ======================================
+//= Kagerou/Oboro Job Change Quest
+//===== By: ================================================== 
+//= M45T3R, Dastgir Pojee
+//===== Current Version: ===================================== 
+//= 1.4
+//===== Description: ========================================= 
+//= Test of Knowledge KO
+//===== Additional Comments: ================================= 
+//= 1.0 Extracted from iRO(Official?) [M45T3R]/[Dastgir Pojee]
+//= 1.1 Fixed Many Errors.	[Dastgir Pojee]
+//= 1.2 Added a missing next.	[Dastgir Pojee]
+//= 1.3 Most of official part implemented.	[Dastgir Pojee(Special Thanks to Yommy)]
+//= 1.4 Fixed Question loop.	[Dastgir Pojee]
+//============================================================
+
+job_ko,81,124,1	script	Cougar#ko	4_M_JOB_ASSASSIN,{
+if (BaseJob!=Job_Ninja){
+	for (.i=5131; .i<5147; .i++ ){
+		if (checkquest(.i) != -1){erasequest .i;}
+	}
+	mes "[Cougar]";
+	mes "Sorry, Your family is not same as ours, is there something wrong?";
+	close2;
+	warp "amatsu",147,136;
+	end;
+}
+if (checkquest(5136)==1 && checkquest(5139) == -1){
+	mes "[Cougar]";
+	mes "It's been a while.";
+	next;
+	select("Aren't you...");
+	mes "[Cougar]";
+	mes "I remember you from before looking for the way of the ninja.";
+	next;
+	mes "[Cougar]";
+	mes "You've grown this strong already?";
+	next;
+	mes "[Cougar]";
+	mes "Ha ha ha-";
+	mes "A truly determined youth! I like that.";
+	next;
+	mes "[Cougar]";
+	mes "Good! The test you are about to take is the ^339CCCTest of Knowledge^000000.";
+	next;
+	mes "[Cougar]";
+	mes "I hope you haven't been lazy with your studies while focusing on getting stronger?";
+	next;
+	switch(select("Yes:No")){	//Sets the quest on both the cases.
+		case 1:
+			setquest 5139;	//The Guy looks familiar!!
+			mes "[Cougar]";
+			mes "That's a relief. Let me know when you are ready to start the test.";
+			close;
+		case 2:
+			setquest 5139;
+			mes "[Cougar]";
+			mes "So you were all talk? Well, let me know when you are ready then.";
+			close;
+	}
+} else if (checkquest(5136)==1 && checkquest(5139) == 1){
+	mes "[Cougar]";
+	mes "I'm ready at my end. Are you ready for the test?";
+	next;
+	if(select("Yes:No")==2){
+		mes "[Cougar]";
+		mes "Well, what can I do but wait for you.";
+		close;
+	}	
+	mes "This isn't your first test, is it?";
+	next;
+	mes "[Cougar]";
+	mes "You only need to choose the correct answer to my questions.";
+	next;
+	mes "[Cougar]";
+	mes "Let's start.";
+	next;
+	function Question;
+	set @cougar_correct,0;
+	.@k$ = "";
+	for(.@i = 1; .@i<=10; .@i = .@i+1) {
+		while(1) {
+			.@j = rand(1,50);
+			if (!compare(.@k$,"|"+.@j+"|")) {
+				.@k$ = .@k$+"|"+.@j+"|";
+				break;
+			}
+		}
+		mes "[Cougar]";
+		mes ((.@i <= 10)?"Question number "+.@i+":":"Last question:");
+		switch(.@j) {
+			case 1:
+				Question("What is the attack effect for Haze Slasher level 4?",1,"140%:150%:160%:170%");
+				break;
+			case 2:
+				Question("How many hits does a Throw Kunai give to a monster?",2,"2:3:4:5");
+				break;
+			case 3:
+				Question("Which of the following correctly matches material needed to make a Icicle Kunai?",2,"Nimbus Shuriken 4, Ice Stone 2:Nimbus Shuriken 8, Ice Stone 2:Nimbus Shuriken 2, Ice Stone 1:Nimbus Shuriken 1, Ice Stone 2");
+				break;
+			case 4:
+				Question("You are creating a weapon for huge monsters. What is the best card to use?",2,"Hydra Card:Minorous Card:Skel Woker Card:Desert Wolf Card");
+				break;
+			case 5:
+				Question("What is the basic attack range for Throw Shuriken?",2,"7 blocks:8 blocks:9 blocks:10 blocks");
+				break;
+			case 6:
+				Question("What is not the effect you get after reaching the STR status?",2,"Close range attack increase:Weight limit increase:Magic attack increase:Weapon attack increase");
+				break;
+			case 7:
+				Question("What is not the effect you get after reaching the AGI status?",2,"Accuracy increase:Flee increase:Attack speed increase:Delay after attack decrease");
+				break;
+			case 8:
+				Question("What is not the effect you get after reaching the VIT status?",2,"Weapon defense increase:MAXHP increase:Magic defense increase:Attack increase");
+				break;
+			case 9:
+				Question("What is not the effect you get after reaching the INT status?",2,"MAXSP increase:MATK increase:Magic damage increase:Staff attack increase");
+				break;
+			case 10:
+				Question("What is not the effect you get after reaching the DEX status?",2,"Casting time decrease:Evasion increase:Accuracy increase:Long range attack increase");
+				break;
+			case 11:
+				Question("What is not the effect you get after reaching the LUK status?",2,"Accuracy increase:Complete evasion increase:Magic damage decrease:Critical rate increase");
+				break;
+			case 12:
+				Question("How much money is used for Throw Coins level 6?",2,"2000-8000:1000-6000:3000-8000:3000-6000");
+				break;
+			case 13:
+				Question("Which of the following Kunai will give the most damage to the ground property monster, Porcellio?",2,"Heat Wave Kunai:Icicle Kunai:Fell Poison Kunai:High Wind Kunai");
+				break;
+			case 14:
+				Question("How long is the effect time for the Watery Evasion level 7 skill?",2,"40 seconds:45 seconds:50 seconds:55 seconds");
+				break;
+			case 15:
+				Question("What is the attack range when you master Flip Tatami?",2,"5:7:3:1");
+				break;
+			case 16:
+				Question("What is the maximum moving range of Shadow Leap?",2,"6 blocks:7 blocks:8 blocks:9 blocks");
+				break;
+			case 17:
+				Question("What weapon cannot be made by the blacksmith Khaibara?",2,"Khukri:Murasame:Hakujin:Humma Wing Shuriken");
+				break;
+			case 18:
+				Question("What level do you have to be in Dagger Throwing Practice in order to learn the Throw Coins skill?",2,"4:6:8:10");
+				break;
+			case 19:
+				Question("Which of the following is not an effect of the Watery Evasion skill?",2,"Movement speed decrease:Waterball availability:Holy Water craftability:VIT decrease");
+				break;
+			case 20:
+				Question("What is the highest job level for a ninja?",2,"70:50:99:100");
+				break;
+			case 21:
+				Question("What is the property of the Lightning Jolt?",4,"Fire:Water:Ground:Wind");
+				break;
+			case 22:
+				Question("How much does STR/INT go up when Ninja Aura level 5 is used?",2,"4:5:6:7");
+				break;
+			case 23:
+				Question("What is the maximum hit number for Blaze Shield level 10?",2,"7:8:9:10");
+				break;
+			case 24:
+				Question("You are creating a weapon for mid-sized monsters. What is the best card to use?",2,"Hydra Card:Minorous Card:Skel Woker Card:Desert Wolf Card");
+				break;
+			case 25:
+				Question("When your First Wind is at level4, what will go with the MATK and range?",2,"MATK400, 8 blocks:MATK500, 7 blocks:MATK500, 8 blocks:MATK400, 7 blocks");
+				break;
+			case 26:
+				Question("You need a catalyst to use ninja skills. Which of the following skills does not need a catalyst?",2,"Blaze Shield:Watery Evasion:Flaming Petals:Snow Flake Draft");
+				break;
+			case 27:
+				Question("Which of the following blacksmiths do not create ninja items?",2,"Khaibara:Aiku:Tetsu:Toshu");
+				break;
+			case 28:
+				Question("What is the attack range for the Exploding Dragon?",2,"3*3:4*4:5*5:6*6");
+				break;
+			case 29:
+				Question("How many skill points do you need to master the Throw Coins skill?",2,"25:30:35:37");
+				break;
+			case 30:
+				Question("Which of the following skills can't you learn at Dagger Throwing Practice level 7?",2,"Throw Kunai:Throw Huuma Shuriken:Killing Strike:Throw Coins");
+				break;
+			case 31:
+				Question("If Dagger Throwing Practice is at 7, how much ATK is added to Shuriken attacks?",2,"18:21:27:30");
+				break;
+			case 32:
+				Question("Which NPC promotes you?",2,"Valkyrie:Val Kiwi:Balp Hiri:Elephant");
+				break;
+			case 33:
+				Question("How much power is in the Huuma Blaze Shuriken weapon?",2,"Fireball 5 , DEX-2:Fireball 5 , DEX-3:Fireball 4 , DEX-2:Fireball 4 , DEX-3");
+				break;
+			case 34:
+				Question("How many skill points do you need to master the Cicada Skin Shed?",2,"5:3:1:4");
+				break;
+			case 35:
+				Question("You are hunting the Orc Warrior. Which Kunai would you use? ",2,"Heat Wave Kunai:Icicle Kunai:Fell Poison Kunai:High Wind Kunai");
+				break;
+			case 36:
+				Question("Which of the following is the best skill to use when attacking a ground property enemy?",2,"First Wind:Exploding Dragon:Snow Flake Draft:Wind Blade");
+				break;
+			case 37:
+				Question("How do Ninjas get promoted?",2,"By Val Kiwi:By Randgris:None:By Valkyrie");
+				break;
+			case 38:
+				Question("What is the name of the suspicious man you can meet during the Ninja job change quest?",2,"Red Leopard Jack:Black Leopard Jack:Red Leopard Joe:Black Leopard Joe");
+				break;
+			case 39:
+				Question("Which Ninja Mastery skill level do you need to learn the Exploding Dragon skill?",2,"10:9:8:1");
+				break;
+			case 40:
+				Question("What is the level of Dagger Throwing Practice you have to reach to learn the Killing Strike skill?",2,"7:5:6:8");
+				break;
+			case 41:
+				Question("Which catalyst do you need to use the Blaze Shield skill?",2,"Ice Stone:Flame Stone:Wind Stone:Earth Stone");
+				break;
+			case 42:
+				Question("Which of the following is the correct number of Evasion and effect duration for Mirror Image level 10?",2,"Up to 7 and 200 seconds:Up to 5 and 220 seconds:Up to 6 and 240 seconds:Up to 5 and 240 seconds");
+				break;
+			case 43:
+				Question("Which of the following matches are incorrect for skill and property?",2,"Flaming Petals-Fire:Snow Flake Draft-Water:Freezing Spear-Ground:Lightning Jolt-Wind");
+				break;
+			case 44:
+				Question("How much power is in the Murasame weapon?",2,"Human attack 10%:Human critical +10:Demon attack 10%:Demon critical +10");
+				break;
+			case 45:
+				Question("Which village is the Ninja Guild located in?",2,"Lutie:Amatsu:Dewata:Comodo");
+				break;
+			case 46:
+				Question("You are creating a weapon for small monsters. What is the best card to use?",2,"0 Hydra Card:Minorous Card:Skel Woker Card:Desert Wolf Card");
+				break;
+			case 47:
+				Question("What is the most important aspect of increasing ATK for the Killing Strike skill?",2,"VIT:MAXHP:INT:MAXSP");
+				break;
+			case 48:
+				Question("You need to equip a card to your shoes to enhance Killing Strike attack. Which of the following is the appropriate card to equip?",2,"Gold Acidus Card:Matyr Card:Odium of Thantos Card:Eddga Card");
+				break;
+			case 49:
+				Question("What was next to me when you first met me?",2,"A cushion:A folding screen:A flowerpot:A brazier");
+				break;
+			case 50:
+				Question("What is the DEX + LUK total for a Job Master?",2,"8:10:12:14");
+				break;
+			default:
+				mes "[Cougar]";
+				mes "An Unknown Error Occured";
+				mes "Please contact customer service.";
+				close;
+		}
+	}
+	mes "You're through all 10 questions. Wasn't so bad! The important part starts now.";
+	next;
+	mes "[Cougar]";
+	mes "... ... ...";
+	next;
+	if (@cougar_correct < 9){
+		mes "[Cougar]";
+		mes "You fool!!";
+		mes "You couldn't even solve these?";
+		next;
+		mes "[Cougar]";
+		mes "Can't believe someone who is taking a new path can be so pathetic.";
+		next;
+		mes "[Cougar]";
+		mes "I'll give you another chance.";
+		mes "You will take the test again with new questions. Better pass it this time.";
+	} else {
+		next;
+		mes "[Cougar]";
+		mes "You passed!";
+		next;
+		mes "[Cougar]";
+		mes "Hmm. "+(@cougar_correct*10)+"?";
+		next;
+		mes "[Cougar]";
+		mes "Well, looks like you weren't lazy with your studies.";
+		next;
+		mes "[Cougar]";
+		mes "What? Proud of yourself for solving these questions?";
+		next;
+		mes "[Cougar]";
+		mes "You still have a long way to go and this is only a small fraction of it.";
+		next;
+		mes "[Cougar]";
+		mes "Well... I'm curious how far your strong will can take you through other tests.";
+		next;
+		completequest 5136;
+		erasequest 5139;
+		set KO_QD,KO_QD+1;
+		mes "[Cougar]";
+		mes "I'll let you go now so go report back to Guide Gion with your results.";
+		warp "job_ko",16,113;
+		end;
+	}
+	set @cougar_correct,0;
+	close;
+
+} else if (checkquest(5136)==2 && checkquest(5139) == -1){
+	mes "[Cougar]";
+	mes "Returning you to Guide";
+	close2;
+	warp "job_ko",16,113;
+	end;
+} else {
+	mes "[Cougar]";
+	mes "How did you come here?";
+	next;
+	mes "[Cougar]";
+	mes "You should move off immediatly.";
+	mes "^000099(Old Man)^000000";
+	mes "I will warp you back";
+	close2;
+	warp "amatsu",147,136;
+	end;
+}
+close;
+
+function	Question	{
+	mes getarg(0);
+	next;
+	if(select(getarg(2)) == getarg(1)){
+		set @cougar_correct, @cougar_correct+1;
+	}
+	return;
+}
+
+}

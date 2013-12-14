@@ -1,0 +1,248 @@
+//===== RoSF.us Script ======================================
+//= Kagerou/Oboro Job Change Quest
+//===== By: ================================================== 
+//= Dastgir Pojee
+//===== Current Version: ===================================== 
+//= 1.2
+//===== Description: ========================================= 
+//= Kagerou/Oboro Job Change NPC
+//===== Additional Comments: ================================= 
+//= 1.0 Extracted from iRO.			[Dastgir Pojee]
+//= 1.1 Matching with official.		[Dastgir Pojee(Special Thanks to Yommy)]
+//= 1.2 Fixed callsub and co-ordinates of monster.	[Dastgir Pojee(Special Thanks to Yommy)]
+//============================================================
+job_ko,148,46,5	script	Guide Gion#ko2	4_M_KAGE_OLD,{
+if (job_kagero==7){
+	cutin "job_ko01",2;
+	mes "[Guide Gion]";
+	mes "Looks like you haven't taken care of the target yet.";
+	next;
+	mes "[Guide Gion]";
+	mes "I'll tell you once more. The taget is the Family Secret.";	//Red Colour
+	close2;
+	cutin "",255;
+	end;
+}else if (job_kagero==8){
+	cutin "job_ko02",2;
+	mes "Looks like you've taken care of the target. Hmm.";
+	next;
+	mes "[Guide Gion]";
+	if (ismounting()){
+		mes "Please get down from the frog";
+		cutin "",255;
+		close;
+	}
+	if ((BaseLevel < 99) && (JobLevel < 70)){
+		mes "How did you get weak, Restore previous levels and come back to me.";
+		cutin "",255;
+		close;
+	}
+	if (SkillPoint){
+		mes "Please come back after using all Skill Points.";
+		cutin "",255;
+		close;
+	}
+	mapannounce "job_ko","[Gion] Interrupting the Test of Battle.",bc_map;
+	cutin "job_ko04",2;
+	mes "The Test of Battle will be put off for a while. Don't worry because this does not have affect to other tests.";
+	next;
+	mapannounce "job_ko","[Gion] My Friend "+strcharinfo(0)+" made it to "+((Sex)?"Kagerou":"Oboro")+" Path. Congratulations!!",bc_map;
+	mes "[Guide Gion]";
+	mes "My friend "+strcharinfo(0)+" made it to "+((Sex)?"Kagerou":"Oboro")+" Path. Congratulations!!";
+	next;
+	cutin "job_ko02",2;
+	mes "[Guide Gion]";
+	mes "It is pleasant to meet a youth that is walking through a new path.";
+	next;
+	mes "[Someone's Voice]";
+	mes "Wait for a while, Gion.";
+	next;
+	cmdothernpc "Cougar#ko2","OnCommandEnable";
+	cmdothernpc "Red Leopard Joe#ko2","OnCommandEnable";
+	cutin "job_ko04",2;
+	mes "[Guide Gion]";
+	mes "I'm sorry I almost forgot about you two. Do you have anything to share with "+strcharinfo(0)+"?";
+	next;
+	cutin "",255;
+	mes "[Cougar]";
+	mes "Hmm... Embarrassing... to speak so suddenly...";
+	next;
+	mes "[Cougar]";
+	mes strcharinfo(0)+" you are now a proud member of our family. Always hold your head high and";
+	next;
+	mes "[Cougar]";
+	mes "^777777(Gai's voice fades out.)^000000.";
+	mes "I'm sorry I strangled you when we first met.";
+	next;
+	cmdothernpc "Cougar#ko2","OnCommandDisable";
+	mes "[Red Leopard Joe]";
+	mes "Puhahaha! Gai is all talk. I know I was know valuable to you than that Gai.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "I did some work on the prototype "+((KO_OPT==1)?"dagger":"shuriken")+"dagger you made.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes ((KO_OPT==1)?"Knife":"Kurenai")+"'s now shines beatifully with a scarlet glow after I did the finishing touches.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "I named your weapons on my own but I know you'll like the name.";
+	next;
+	mes "[Red Leopard Joe]";
+	mes "Guide Gion, Please Continue.";
+	next;
+	cutin "job_ko01",2;
+	cmdothernpc "Red Leopard Joe#ko2","OnCommandDisable";
+	mes "[Guide Gion]";
+	mes "I don't have much to add because Gai and Joe said it all.";
+	next;
+	mes "[Guide Gion]";
+	mes "I'm just sorry that the environment of all these tests could have been better for our later generation.";
+	next;
+	mes "[Guide Gion]";
+	mes "You only need to look forward and never turn back.";
+	for (.i=5131; .i<5147; .i++ ){
+		if (checkquest(.i) != -1){erasequest .i;}
+	}
+	job_kagero = 9;
+	if (KO_OPT==1){getnameditem 13075,strcharinfo(0);}
+	else{getnameditem 13311,strcharinfo(0);}
+	if(Sex){jobchange Job_Kagerou;}else{jobchange Job_Oboro;}
+	resetlvl(1);
+	cmdothernpc "Summon Target#ko","OnCommandEnable";
+	mes "[Guide Gion]";
+	mes "I hope the blessings of Kagerou, dancing sun and Oboro, misty moonlight will be with you on your journey ahead.";
+	close2;
+	warp "que_ng",21,71;
+	end;
+}else if (job_kagero==9){
+	cutin "job_ko01",2;
+	mes "[Guide Gion]";
+	mes "I hope the blessings of Kagerou, dancing sun and Oboro, misty moonlight will be with you on your journey ahead.";
+	close2;
+	warp "que_ng",21,71;
+	end;
+}else{
+	cutin "job_ko01",2;
+	mes "[Guide Gion]";
+	mes "You should not come here, Leave!!";
+	close2;
+	warp "amatsu",147,136;
+	end;
+}
+cutin "",255;
+close;
+}
+
+
+job_ko,145,47,6	script	Red Leopard Joe#ko2	4_M_JOB_ASSASSIN,{
+mes "[Red Leopard Joe]";
+mes "You have not found the target? Continue searching it.";
+close;
+
+OnInit:
+	disablenpc "Red Leopard Joe#ko2";
+	end;
+
+OnCommandEnable:
+	enablenpc "Red Leopard Joe#ko2";
+	end;
+	
+OnCommandDisable:
+	disablenpc "Red Leopard Joe#ko2";
+	end;
+}
+
+job_ko,151,47,4	script	Cougar#ko2	4_M_JOB_ASSASSIN,{
+mes "[Cougar]";
+mes "Congratulation for choosing the road of development!";
+close;
+	
+OnInit:
+	disablenpc "Cougar#ko2";
+	end;
+
+OnCommandEnable:
+	enablenpc "Cougar#ko2";
+	end;
+	
+OnCommandDisable:
+	disablenpc "Cougar#ko2";
+	end;
+}
+
+job_ko,1,1,4	script	Summon Target#ko	CLEAR_NPC,{
+OnInit:
+	callsub OnCommandEnable;
+	end;
+OnTimer180000:
+	callsub OnCommandEnable;
+	end;
+OnCommandEnable:
+	stopnpctimer;
+	switch (rand(1,7)){
+		case 1: set .mob_id,1002; break;
+		case 2: set .mob_id,1031; break;
+		case 3: set .mob_id,1113; break;
+		case 4: set .mob_id,1063; break;
+		case 5: set .mob_id,1010; break;
+		case 6: set .mob_id,1049; break;
+		case 7: set .mob_id,1050; break;
+		default: set .mob_id,1002; break;
+	}
+	areamonster "job_ko",100,10,180,90,"Family Secret",.mob_id,1,"Summon Target#ko::OnMyMobDead";
+	return;
+//------ 
+OnCommandDisable:
+	initnpctimer;
+	return;
+//------ 
+OnMyMobDead:
+	if (job_kagero == 7){
+		callsub OnCommandDisable;
+		job_kagero = 8;
+	}else{
+		callsub OnCommandEnable;
+	}
+	end;
+}
+
+job_ko,1,2,4	script	Summon Fake#ko	CLEAR_NPC,{
+OnInit:
+	callsub OnCommandEnable;
+	end;
+	
+OnCommandEnable:
+	areamonster "job_ko",100,10,180,90,"Family's Legacy",1002,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Kagerou's Memory",1002,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Oboro's Memory",1002,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Family's Mistake",1031,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Oboro's Mistake",1031,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Kagerou's Mistake",1031,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Family's Memory",1113,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Oboro's Past",1113,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Kagerou's Past",1113,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Family's Legacy",1063,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Oboro's Legacy",1063,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Kagerou's Legacy",1063,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Family's Mistake",1010,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Oboro's Memory",1010,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Kagerou's Memory",1010,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Family's Past",1049,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Oboro's Mistake",1049,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Kagerou's Mistake",1049,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Family's Memory",1050,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Oboro's Past",1050,5,"Summon Fake#ko::OnMyMobDead";
+	areamonster "job_ko",100,10,180,90,"Kagerou's Past",1050,5,"Summon Fake#ko::OnMyMobDead";
+	return;
+OnCommandDisable:
+	killmonster "job_ko","Summon Fake#ko::OnMyMobDead";
+	return;
+
+OnMyMobDead:
+	if (mobcount("job_ko","Summon Fake#ko::OnMyMobDead") < 100){
+		callsub OnCommandDisable;
+		callsub OnCommandEnable;
+		warp "job_ko",16,113;
+	}
+	end;
+}
