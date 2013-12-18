@@ -1047,9 +1047,19 @@ job_gun	//释放收容所
 1@glast	//飞空艇遇袭事件
 1@air1	//飞空艇遇袭事件
 1@air2	//飞空艇遇袭事件
+lhz_dun_n	//死者的坟墓
 
 // ep15.1 幻变之风 Fantasmagorica
 ver_eju	//凯恩斯尤佩 废墟
 ver_tunn	//贝赫鲁兹 隧道外
 verus03	//贝赫鲁兹 中央广场
 verus04	//贝赫鲁兹 挖掘工程
+
+// ep15.2 
+verus01	//大门
+verus02	//研究大楼
+un_bk_q	//地下掩体
+un_bunker	//地下掩体
+un_myst	//地下隧道
+1@uns	//最后一个房间
+1@lab	//中心实验室
