@@ -518,3 +518,23 @@
 //2189:20725,{ autobonus "{ /*montransform 1930,100,SC_MTF_MATK;*/ bonus2 bHPLossRate,30,1000; bonus bMatk,(5*(getrefine()/3));  callfunc item_20725_1; sleep2 10000; callfunc item_20725_2;}",(100+(getrefine()*3)),10000,BF_MAGIC,"{  }"; }
 //Boss的贝雷帽18969 11周年纪念卡片 4623
 18969:4623,{ bonus bHPrecovRate,25; bonus bSPrecovRate,25; if(getequiprefinerycnt(EQI_HEAD_TOP)>7){ bonus bHPrecovRate,25; bonus bSPrecovRate,25; } if(getequiprefinerycnt(EQI_HEAD_TOP)>9){ bonus bHPrecovRate,25; bonus bSPrecovRate,25; } if(getequiprefinerycnt(EQI_HEAD_TOP)>10){ bonus bHPrecovRate,25; bonus bSPrecovRate,25; } bonus bFlee2,5; if(getequiprefinerycnt(EQI_HEAD_TOP)>7){ bonus bFlee2,1; } if(getequiprefinerycnt(EQI_HEAD_TOP)>9){ bonus bFlee2,1; } if(getequiprefinerycnt(EQI_HEAD_TOP)>10){ bonus bFlee2,3; } }
+//魔力耳机 18720 南十字 5672
+18720:5672,{ bonus2 bMagicAddRace,10,2; if(getequiprefinerycnt(EQI_HEAD_TOP)>5){ bonus2 bMagicAddRace,10,3; } if(getequiprefinerycnt(EQI_HEAD_TOP)>7){ bonus2 bMagicAddRace,10,4; }}
+//魔力耳机 18720 洞察之杖 1665 1626
+18720:1626,{ bonus bMatk,(getequiprefinerycnt(EQI_HAND_R)*15); if(getequiprefinerycnt(EQI_HAND_R)>=10){ bonus bMatk,50; bonus bVariableCastrate,-10; } }
+18720:1665,{ bonus bMatk,(getequiprefinerycnt(EQI_HAND_R)*15); if(getequiprefinerycnt(EQI_HAND_R)>=10){ bonus bMatk,50; bonus bVariableCastrate,-10; } }
+//魔力耳机 18720 催眠师的魔杖 1621 1622
+18720:1621,{ bonus bMatk,(getequiprefinerycnt(EQI_HAND_R)*20); if(getequiprefinerycnt(EQI_HAND_R)>=10){ bonus bMatk,50; bonus bDelayrate,-10; } }
+18720:1622,{ bonus bMatk,(getequiprefinerycnt(EQI_HAND_R)*20); if(getequiprefinerycnt(EQI_HAND_R)>=10){ bonus bMatk,50; bonus bDelayrate,-10; } }
+//圣诞小树 18598 圣诞胡子 18658
+18598:18658,{ bonus bMedf,3; bonus2 bAddMonsterDropItem,12354,1; }
+//迪文的地球仪 28323 圣十字杖 2001 2017
+2001:28323,{ if(getequiprefinerycnt(EQI_HAND_R)>=5){ bonus3 bAutoSpell,PR_TURNUNDEAD,1,(((getequiprefinerycnt(EQI_HAND_R)-5)*3)+30); } }
+2017:28323,{ if(getequiprefinerycnt(EQI_HAND_R)>=5){ bonus3 bAutoSpell,PR_TURNUNDEAD,1,(((getequiprefinerycnt(EQI_HAND_R)-5)*3)+30); } }
+//圣子的牛皮盾 2164 圣子的披风 2595
+2164:2595,{ bonus2 bSubEle,9,getequiprefinerycnt(EQI_GARMENT); bonus2 bAddEle,7,getequiprefinerycnt(EQI_HAND_L); }
+//圣子的牛皮靴 22048 圣子的牛皮盾 2164 圣子的披风 2595
+22048:2164,{ bonus2 bSubEle,7,((getequiprefinerycnt(EQI_HAND_L)*2)+5); }
+22048:2595,{ bonus2 bAddEle,7,5; bonus bMaxHPrate,getequiprefinerycnt(EQI_GARMENT); bonus bMaxSPrate,getequiprefinerycnt(EQI_GARMENT); }
+//卢恩盾牌 2194 卢恩披风 20750
+2194:20750,{ bonus2 bSubRace,4,getequiprefinerycnt(EQI_GARMENT); bonus2 bAddEle,4,getequiprefinerycnt(EQI_HAND_L); }
