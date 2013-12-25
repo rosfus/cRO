@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Cro by rosfus</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Cro</h1>
+        <p class="header">仙境传说单机版V3</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/rosfus/cRO/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/rosfus/cRO/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/rosfus/cRO">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rosfus">rosfus</a></p>
+
+
+      </header>
+      <section>
+        <pre>
+RoSF.us Development Team Presents
+ ______           ______  ______ 
+|  __  |  ______ |  ____||  ____|     _    _   _ __ _ 
+| |__/ / |  __  || |____ | |___      | |  | | |  ____|
+|  __ _  | |  | ||____  ||  ___|     | |  | | |_|__ _ 
+| |  | | | |__| | ____| || |      _  | |__| |  ____| |
+|_|  |_| |______||______||_|     |_| |______| |______|
+
+安赫尔开发Athena内部版本.
+</pre>
+
+<h3>
+<a name="rosfus-rd-team-%E4%BB%99%E5%A2%83%E4%BC%A0%E8%AF%B4mysql%E4%B8%80%E9%94%AE%E5%8D%95%E6%9C%BA%E7%89%88%E6%9C%8D%E5%8A%A1%E7%AB%AF" class="anchor" href="#rosfus-rd-team-%E4%BB%99%E5%A2%83%E4%BC%A0%E8%AF%B4mysql%E4%B8%80%E9%94%AE%E5%8D%95%E6%9C%BA%E7%89%88%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="octicon octicon-link"></span></a>RoSF.us™ R&amp;D Team. 仙境传说MySQL一键单机版服务端.</h3>
+
+<p>简称: RO单机版</p>
+
+<h1></h1>
+
+<h4>
+<a name="%E7%9B%AE%E5%BD%95%E6%8C%87%E5%BC%95" class="anchor" href="#%E7%9B%AE%E5%BD%95%E6%8C%87%E5%BC%95"><span class="octicon octicon-link"></span></a>目录指引</h4>
+
+<ul>
+<li>1. 什么是RO单机版? [1]</li>
+<li>2. 系统必备组件 [2]</li>
+<li>3. 安装 [3]</li>
+<li>4. 故障排除 [4]</li>
+<li>5. 有用的链接 [5]</li>
+<li>6. 更多文档 [6]</li>
+</ul><h1></h1>
+
+<h4>
+<a name="1-%E4%BB%80%E4%B9%88%E6%98%AFro%E5%8D%95%E6%9C%BA%E7%89%88" class="anchor" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFro%E5%8D%95%E6%9C%BA%E7%89%88"><span class="octicon octicon-link"></span></a>1. 什么是RO单机版?</h4>
+
+<p>RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)的游戏模拟器, 基于Athena程序开发. 经过了一系列的整合与二次开发之后, 可以让中文游戏爱好者能够很快的上手使用. 整个系统包含编译后的应用程序, 免安装的MySQL程序, 数据库内容, 脚本Script等部分组成. 然而包含如此多的应用项目, 该程序的使用却非常简单, 仅仅需要启动一个文件.</p>
+
+<h1></h1>
+
+<h4>
+<a name="2-%E7%B3%BB%E7%BB%9F%E5%BF%85%E5%A4%87%E7%BB%84%E4%BB%B6" class="anchor" href="#2-%E7%B3%BB%E7%BB%9F%E5%BF%85%E5%A4%87%E7%BB%84%E4%BB%B6"><span class="octicon octicon-link"></span></a>2. 系统必备组件</h4>
+
+<p>安装RO单机版, 您需要具备一些必要的系统组件. 首先该系统需要运行于Windows操作系统, 兼容的系统包含Windows98/2000/XP/7, 或者Server2003/2008. 另外为了获取SVN资料, 您还需要准备好 Subversion (SVN) 工具.</p>
+
+<h5>
+<a name="windows-system" class="anchor" href="#windows-system"><span class="octicon octicon-link"></span></a>Windows System</h5>
+
+<ul>
+<li>TortoiseGIT ( <a href="http://code.google.com/p/tortoisegit/">http://code.google.com/p/tortoisegit/</a> )</li>
+<li>建议准备 :
+
+<ul>
+<li>WinRAR ( <a href="http://www.winrar.com.cn/">http://www.winrar.com.cn/</a> ) </li>
+<li>NotePad++ ( <a href="http://notepad-plus-plus.org/">http://notepad-plus-plus.org/</a> ) </li>
+<li>MySQL ( <a href="http://dev.mysql.com/downloads/">http://dev.mysql.com/downloads/</a> )</li>
+</ul>
+</li>
+</ul><h1></h1>
+
+<h4>
+<a name="3-%E5%AE%89%E8%A3%85" class="anchor" href="#3-%E5%AE%89%E8%A3%85"><span class="octicon octicon-link"></span></a>3. 安装</h4>
+
+<p>这里我们省略了上述几个系统必备组件的安装说明. 仅介绍通过 Subversion (SVN) 工具 Check Out 我们的最新版本RO单机版, 并且开始使用的步骤.</p>
+
+<h5>
+<a name="windows-system-1" class="anchor" href="#windows-system-1"><span class="octicon octicon-link"></span></a>Windows System</h5>
+
+<ul>
+<li>首先请先安装完成 Subversion (SVN) 工具.</li>
+<li>在系统硬盘下建立一个[RoSFus单机版]的目录 (e.g. D:\RoSFus单机版)</li>
+<li>右键点击该目录, 在弹出菜单中选择 “Git Clone”.</li>
+<li>然后粘贴 GIT URL 地址到输入框内, URL为: <a href="https://github.com/rosfus/cRO">https://github.com/rosfus/cRO</a>
+</li>
+<li>当SVN数据全部同步到本地之后, 会建立 branches tags trunk 三个目录. 其中trunk为主要目录.</li>
+<li>打开trunk目录, 双击批处理文件[一键启动RoSFus仙境单机服务端.bat], 此时会弹出4个窗口. 3个RO单机版程序, 1个MySQL管理器. 等待4个程序全部运行即可.</li>
+<li>请注意由于是服务端程序, 而且使用了特殊的端口 6900 5121 6121, 因此可能会被一些程序判定需要拦截. 此时请选择放行.</li>
+</ul><h5>
+<a name="mysql" class="anchor" href="#mysql"><span class="octicon octicon-link"></span></a>MySQL</h5>
+
+<ul>
+<li>自行导入MySQL数据的时候, 请至少导入主数据库目录中的3个文件表.
+
+<ul>
+<li>sql-files\main.sql</li>
+<li>sql-files\logs.sql</li>
+<li>sql-files\item_db2.sql</li>
+</ul>
+</li>
+<li>并且导入2个更新文件. 方可完成MySQL数据库创建.
+
+<ul>
+<li>sql-files\upgrades\2013-11-15--00-06.sql</li>
+<li>sql-files\upgrades\2013-11-18--08-23.sql </li>
+</ul>
+</li>
+</ul><h5>
+<a name="files" class="anchor" href="#files"><span class="octicon octicon-link"></span></a>Files</h5>
+
+<ul>
+<li>\branches\
+
+<ul>
+<li>\udrive\
+
+<ul>
+<li>\文件若干</li>
+</ul>
+</li>
+<li>\mysql_start.bat</li>
+<li>\mysql_stop.bat</li>
+</ul>
+</li>
+<li>\tags\
+
+<ul>
+<li>\空目录</li>
+</ul>
+</li>
+<li>\trunk
+
+<ul>
+<li>\conf\
+
+<ul>
+<li>\文件若干</li>
+</ul>
+</li>
+<li>\db\
+
+<ul>
+<li>\文件若干</li>
+</ul>
+</li>
+<li>\log\
+
+<ul>
+<li>\空目录</li>
+</ul>
+</li>
+<li>\npc\
+
+<ul>
+<li>\文件若干</li>
+</ul>
+</li>
+<li>\sql-files\
+
+<ul>
+<li>\文件若干</li>
+</ul>
+</li>
+<li>\文件若干</li>
+<li>\一键启动RoSFus仙境单机服务端.bat</li>
+<li>\一键关闭MySQL清理内存.bat</li>
+</ul>
+</li>
+</ul><p>请切记在关闭RO单机版后执行 [一键关闭MySQL清理内存.bat] 文件!</p>
+
+<h1></h1>
+
+<h4>
+<a name="4-%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4" class="anchor" href="#4-%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="octicon octicon-link"></span></a>4. 故障排除</h4>
+
+<p>RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF.us™ R&amp;D Team.的客户端补丁.</p>
+
+<h5>
+<a name="%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BB%8E%E4%B8%8B%E8%BF%B0%E9%93%BE%E6%8E%A5%E4%B8%AD%E4%B8%8B%E8%BD%BD%E5%88%B0kro%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A5%E5%8F%8A%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E4%B8%81" class="anchor" href="#%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BB%8E%E4%B8%8B%E8%BF%B0%E9%93%BE%E6%8E%A5%E4%B8%AD%E4%B8%8B%E8%BD%BD%E5%88%B0kro%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A5%E5%8F%8A%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A1%A5%E4%B8%81"><span class="octicon octicon-link"></span></a>您可以从下述链接中下载到kRO客户端以及客户端补丁</h5>
+
+<ul>
+<li>客户端[2.41Gb]: 
+
+<ul>
+<li>下载点一:   <a href="http://kuai.xunlei.com/d/ODDDDwKNHwDTw6JS5a9">http://kuai.xunlei.com/d/ODDDDwKNHwDTw6JS5a9</a>  [迅雷快传]</li>
+<li>下载点二:   <a href="http://pan.baidu.com/s/1pbsV5">http://pan.baidu.com/s/1pbsV5</a>   [百度云盘]</li>
+<li>下载点三:   <a href="http://115.com/lb/5lbba3ccnyh">http://115.com/lb/5lbba3ccnyh</a>  [115网盘]</li>
+<li>下载点四:   <a href="http://url.cn/WLqpNL">http://url.cn/WLqpNL</a>  [微云]</li>
+<li>下载点五:   <a href="https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar">https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar</a>  [DropBox]</li>
+<li>MD5: C41CC9AE3E280156121411BACC581123</li>
+</ul>
+</li>
+<li>补丁[175Mb]: 
+
+<ul>
+<li>下载点一:   <a href="http://kuai.xunlei.com/d/ODDDDwLmHgCRvKJS340">http://kuai.xunlei.com/d/ODDDDwLmHgCRvKJS340</a>  [迅雷快传]</li>
+<li>下载点二:   <a href="http://pan.baidu.com/s/1CbU3K">http://pan.baidu.com/s/1CbU3K</a>   [百度云盘]</li>
+<li>下载点三:   <a href="http://115.com/lb/5lbcvdrmv96">http://115.com/lb/5lbcvdrmv96</a>   [115网盘]</li>
+<li>下载点四:   <a href="http://url.cn/TUnZCA">http://url.cn/TUnZCA</a>  [微云]</li>
+<li>下载点五:   <a href="https://www.dropbox.com/s/so2xiyhhpf4wya7/Patch.rar">https://www.dropbox.com/s/so2xiyhhpf4wya7/Patch.rar</a>  [DropBox]</li>
+<li>MD5: 921461EF4C4ACE1B96E15B28A0404DFF</li>
+</ul>
+</li>
+<li>更新客户端:
+
+<ul>
+<li>由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. </li>
+<li>运行客户端目录中的[韩服DATA更新.exe]与[韩服RDATA更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[开启仙境之旅.exe], 在一番更新后即可成为完美的单机版客户端了. </li>
+</ul>
+</li>
+<li>如果您还有其他问题:
+
+<ul>
+<li>请将详细内容发送至: <a href="http://bbs.rosf.us/forum.php?mod=forumdisplay&amp;fid=46">http://bbs.rosf.us/forum.php?mod=forumdisplay&amp;fid=46</a>
+</li>
+</ul>
+</li>
+</ul><h1></h1>
+
+<h4>
+<a name="5-%E6%9C%89%E7%94%A8%E7%9A%84%E9%93%BE%E6%8E%A5" class="anchor" href="#5-%E6%9C%89%E7%94%A8%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="octicon octicon-link"></span></a>5. 有用的链接</h4>
+
+<p>下面的链接可能对您有所帮助:</p>
+
+<ul>
+<li>RoSF.us论坛: <a href="http://bbs.rosf.us">http://bbs.rosf.us</a>
+</li>
+<li>RoSF.usWiki: <a href="http://wiki.rosf.us">http://wiki.rosf.us</a>
+</li>
+<li>SVN: <a href="https://github.com/rosfus/cRO/wiki">https://github.com/rosfus/cRO/wiki</a>
+</li>
+</ul><h1></h1>
+
+<h4>
+<a name="6-%E6%9B%B4%E5%A4%9A%E6%96%87%E6%A1%A3" class="anchor" href="#6-%E6%9B%B4%E5%A4%9A%E6%96%87%E6%A1%A3"><span class="octicon octicon-link"></span></a>6. 更多文档</h4>
+
+<ul>
+<li>如果您还需要更多的文件资料, 请访问下述链接或者加入我们的QQ交流群:
+
+<ul>
+<li>我们的开发论坛: <a href="http://bbs.rosf.us/forum.php?mod=forumdisplay&amp;fid=47">http://bbs.rosf.us/forum.php?mod=forumdisplay&amp;fid=47</a>
+</li>
+<li>IRC Channel: irc.rizon.net:6665 #RoSF.us</li>
+<li>QQ交流群: 330155329</li>
+</ul>
+</li>
+</ul><h1></h1>
+
+<h4>
+<a name="%E6%84%9F%E8%B0%A2%E4%BD%BF%E7%94%A8%E6%88%91%E4%BB%AC%E7%9A%84%E7%A8%8B%E5%BA%8F" class="anchor" href="#%E6%84%9F%E8%B0%A2%E4%BD%BF%E7%94%A8%E6%88%91%E4%BB%AC%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="octicon octicon-link"></span></a>感谢使用我们的程序.</h4>
+
+<h1></h1>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
