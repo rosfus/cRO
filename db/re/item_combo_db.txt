@@ -115,7 +115,7 @@
 2472:2570:15030:16013,{ bonus2 bAddRace,RC_Undead,15; bonus2 bMagicAddRace,RC_Undead,15; bonus2 bSkillAtk,"AB_ADORAMUS",100; }
 2472:2570:15030:16018,{ bonus2 bAddRace,RC_Undead,30; bonus2 bMagicAddRace,RC_Undead,30; bonus2 bSkillAtk,"AB_ADORAMUS",200; bonus bVariableCastrate,-50; }
 2475:2574:2883:15036,{ bonus bMaxHPrate,14; bonus2 bSkillAtk,"RK_HUNDREDSPEAR",50; skill "CR_AUTOGUARD",1; }
-2476:2575:2884:15037,{ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus2 bSkillAtk,"RK_SONICWAVE",100; bonus2 bSkillAtk,"RK_WINDCUTTER",100; autobonus "{ sc_start SC_LKCONCENTRATION,10000,getskilllv(\"LK_CONCENTRATION\")?getskilllv(\"LK_CONCENTRATION\"):1; bonus bAspd,2; }",1,10000,BF_WEAPON,"{}"; }
+2476:2575:2884:15037,{ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus2 bSkillAtk,"RK_SONICWAVE",100; bonus2 bSkillAtk,"RK_WINDCUTTER",100; bonus bAspd,2; autobonus "{ sc_start SC_LKCONCENTRATION,10000,getskilllv(\"LK_CONCENTRATION\")?getskilllv(\"LK_CONCENTRATION\"):1; }",1,10000,BF_WEAPON,"{}"; }
 2477:2577:2886:15038,{ bonus bCritical,15; bonus bFlee,10; bonus bCritAtkRate,40; bonus2 bSkillAtk,"GC_CROSSIMPACT",20; }
 2478:2578:2887:15039,{ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus bMatk,10; if(readparam(bStr)>119) { bonus bBaseAtk,30; } bonus3 bAutoSpell,"ASC_BREAKER",getskilllv("ASC_BREAKER"),10; bonus bCritical,-20; }
 2479:2580:2890:15042,{ bonus bAspd,2; bonus bLongAtkRate,30; bonus3 bAutoSpell,"AC_DOUBLE",3,10; bonus2 bSkillAtk,"RA_ARROWSTORM",50; }
@@ -425,8 +425,8 @@
 18866:18874,{ bonus3 bAutoSpell,"HW_MAGICPOWER",2,100; }
 //纯白骑士团卡片 4608: 卡利斯格骑士团卡片 4609
 4608:4609,{ bonus2 bAddSize,1,15; bonus2 bAddSize,2,15; bonus2 bSubSize,1,5; bonus2 bSubSize,2,5; }
-//疯狂的兔子 2189: 皮亚米特的缎带 20725
-2189:20725,{ if(getequiprefinerycnt(EQI_HAND_L)>=7){ bonus2 bSubEle,0,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,1,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,2,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,3,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,4,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,5,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,6,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,7,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,8,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,9,((getequiprefinerycnt(EQI_HAND_L)-7)*2);} }
+//疯狂的兔子 2189: 碧亚玫特的缎带 20725
+2189:20725,{ bonus bMatk,((getequiprefinerycnt(EQI_GARMENT)/3)*5); if(getequiprefinerycnt(EQI_HAND_L)>=7){ bonus2 bSubEle,0,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,1,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,2,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,3,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,4,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,5,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,6,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,7,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,8,((getequiprefinerycnt(EQI_HAND_L)-7)*2); bonus2 bSubEle,9,((getequiprefinerycnt(EQI_HAND_L)-7)*2);} }
 //物理影子耳环 24018 物理影子坠饰 24020 物理影子武器 24019
 24018:24019:24020,{ bonus bBaseAtk,(getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON)); if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=23){ bonus bAtkRate,1; }}
 //魔法影子耳环 24021 魔法影子坠饰 24022 魔法影子武器 24023
@@ -538,3 +538,18 @@
 22048:2595,{ bonus2 bAddEle,7,5; bonus bMaxHPrate,getequiprefinerycnt(EQI_GARMENT); bonus bMaxSPrate,getequiprefinerycnt(EQI_GARMENT); }
 //卢恩盾牌 2194 卢恩披风 20750
 2194:20750,{ bonus2 bSubRace,4,getequiprefinerycnt(EQI_GARMENT); bonus2 bAddEle,4,getequiprefinerycnt(EQI_HAND_L); }
+//贪婪胸针 2983 恶魔侍者卡片 4269 恶魔女仆卡片 4218
+2983:4218,{ bonus bVit,-3; bonus bHPrecovRate,-20; bonus bMaxHP,1000; }
+2983:4269,{ bonus bInt,-3; bonus bSPrecovRate,-20; bonus bMaxSP,150; }
+2983:2983:4218,{ bonus bHPrecovRate,30; bonus bSPrecovRate,30; bonus bVit,4; bonus bInt,4; }
+//沙赫利姆尼尔手套 2984 铁蝎卡片 4239 狂暴小土人卡片 4245 爆炎蝙蝠卡片 4267 狂暴蜈蚣 4249 狂暴鬼火卡片 4151 狂暴野猪卡片 4164 XMAS甜饼人卡片 4235 邪骸战士长卡片 4221 腐尸战俘卡片 4275 狂暴小恶魔卡片 4204
+2984:4239,{ bonus2 bSubRace,RC_Formless,-10; bonus2 bExpAddRace,RC_Formless,5; }
+2984:4245,{ bonus2 bSubRace,RC_DemiHuman,-10; bonus2 bExpAddRace,RC_DemiHuman,5; }
+2984:4267,{ bonus2 bSubRace,RC_Dragon,-10; bonus2 bExpAddRace,RC_Dragon,5; }
+2984:4249,{ bonus2 bSubRace,RC_Demon,-10; bonus2 bExpAddRace,RC_Demon,5; }
+2984:4151,{ bonus2 bSubRace,RC_Plant,-10; bonus2 bExpAddRace,RC_Plant,5; }
+2984:4164,{ bonus2 bSubRace,RC_Fish,-10; bonus2 bExpAddRace,RC_Fish,5; }
+2984:4235,{ bonus2 bSubRace,RC_Angel,-10; bonus2 bExpAddRace,RC_Angel,5; }
+2984:4221,{ bonus2 bSubRace,RC_Insect,-10; bonus2 bExpAddRace,RC_Insect,5; }
+2984:4275,{ bonus2 bSubRace,RC_Undead,-10; bonus2 bExpAddRace,RC_Undead,5; }
+2984:4204,{ bonus2 bSubRace,RC_Brute,-10; bonus2 bExpAddRace,RC_Brute,5; }
