@@ -1037,6 +1037,7 @@ guild_vs09
 prt_in_pvp
 caspen
 event_01
+poring_c01
 
 //官方地图补充
 1@gl_kh	//古城副本
