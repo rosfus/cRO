@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us Script =======================================
 //= Mapflag: Player versus Player mode.
 //===== By: ==================================================
 //= RoSF.us Dev Team
@@ -97,3 +97,6 @@ pvp_2vs2	mapflag	pvp
 turbo_e_4	mapflag	pvp
 turbo_e_8	mapflag	pvp
 turbo_e_16	mapflag	pvp
+
+//Custom
+prt_pvp	mapflag	pvp
