@@ -52,7 +52,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 
 ##### Windows System #####
 * 首先请先安装完成 Subversion (SVN) 工具.
-* 在系统硬盘下建立一个[RoSFus单机版]的目录 (e.g. D:\RoSFus单机版)
+* 在系统硬盘下建立一个[RoSFusLocal]的目录 (e.g. D:\RoSFusLocal)
 * 右键点击该目录, 在弹出菜单中选择 “Git Clone”.
 * 然后粘贴 GIT URL 地址到输入框内, URL为: https://github.com/rosfus/cRO
 * 当SVN数据全部同步到本地之后, 会建立 branches tags trunk 三个目录. 其中trunk为主要目录.
@@ -64,9 +64,12 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
       * sql-files\main.sql
       * sql-files\logs.sql
       * sql-files\item_db2.sql
-* 并且导入2个更新文件. 方可完成MySQL数据库创建.
+* 并且导入5个更新文件. 方可完成MySQL数据库创建.
       * sql-files\upgrades\2013-11-15--00-06.sql
       * sql-files\upgrades\2013-11-18--08-23.sql 
+      * sql-files\upgrades\2013-12-24--00-15.sql
+      * sql-files\upgrades\2014-01-04--16-47.sql
+      * sql-files\upgrades\2014-01-06--17-22.sql
 
 ##### Files #####
 * \branches\
@@ -101,20 +104,26 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 ##### 您可以从下述链接中下载到kRO客户端以及客户端补丁 #####
 
-* 客户端[2.41Gb]: 
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKNHwDTw6JS5a9  [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1pbsV5   [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbba3ccnyh  [115网盘]
-       * 下载点四:   http://url.cn/WLqpNL  [微云]
+* 完整客户端 [2.54Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwLlBwAvlLpS39f  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1jGnzSma   [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbdar94i3in    [115网盘]
+       * 下载点四:   http://url.cn/PRXhZC  [微云]
        * 下载点五:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar  [DropBox]
-       * MD5: C41CC9AE3E280156121411BACC581123
-* 补丁[175Mb]: 
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwLmHgCRvKJS340  [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1CbU3K   [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbcvdrmv96   [115网盘]
-       * 下载点四:   http://url.cn/TUnZCA  [微云]
+       * MD5: 96E225A35DB7DFD818F01734902C7889
+* 韩服补丁 [185Mb] For韩国客户端。如果你有韩国客户端可以通过将补丁文件复制进原来RO的目录来运行“开启仙境之旅.exe“来登录游戏
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwLoBwBKlLpS029  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1o6uduOy   [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbecg69xlmx    [115网盘]
+       * 下载点四:   http://url.cn/Kr7PLv  [微云]
        * 下载点五:   https://www.dropbox.com/s/so2xiyhhpf4wya7/Patch.rar  [DropBox]
-       * MD5: 921461EF4C4ACE1B96E15B28A0404DFF
+       * MD5: 14FDDACD44B30683BBADA04400E8983D
+* 2014版本最新韩服补丁测试 [190Mb] For韩国客户端。“AutoUpdate.exe“登录游戏
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwK9IgAWE9NSe80  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1jGr4hKy   [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbcibcin1rr    [115网盘]
+       * 下载点四:   http://url.cn/MTPIcP   [微云]
+       * MD5: F1375EFA4ED35045950BF89EE2138FAE
 * 更新客户端:
       * 由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. 
       * 运行客户端目录中的[韩服DATA更新.exe]与[韩服RDATA更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[开启仙境之旅.exe], 在一番更新后即可成为完美的单机版客户端了. 
@@ -127,8 +136,9 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 下面的链接可能对您有所帮助:
 
-* RoSF.us论坛: http://bbs.rosf.us
-* RoSF.usWiki: http://wiki.rosf.us
+* RoSF.us™ Forum: http://bbs.rosf.us
+* RoSF.us™ Wiki: http://wiki.rosf.us
+* RoSF.us™ rDB: http://db.rosf.us
 * SVN: https://github.com/rosfus/cRO/wiki
 
 ======================
