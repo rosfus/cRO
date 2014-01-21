@@ -749,7 +749,7 @@
 2049,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		AB_EUCHARISTICA,感恩祈祷
 2050,11,6,16,6,0x1,0,1,1,yes,0,0,0,magic,0,	AB_RENOVATIO,净化
 2051,11,6,16,6,0x21,0,5,1,yes,0,0,0,magic,0,	AB_HIGHNESSHEAL,高级治愈
-2052,11,6,1,0,0x1,0,5,1,yes,0,0,0,magic,0,	AB_CLEARANCE,驱散
+2052,11,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,	AB_CLEARANCE,驱散
 2053,11,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	AB_EXPIATIO,赎罪
 2054,0,6,4,6,0x1,0,10,1,yes,0,0,0,none,0,	AB_DUPLELIGHT,双重圣光
 2055,-1,6,1,-1,0,0,10,1,no,0,0,0,weapon,0,	AB_DUPLELIGHT_MELEE,双重圣光
