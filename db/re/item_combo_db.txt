@@ -375,9 +375,9 @@
 //18900巴伐利亚香肠:18901节日帽子
 18900:18901,{ bonus bSPrecovRate,10; }
 //1935纽欧兹的四弦琴:2988纽欧兹之翼
-1935:2988,{ bonus2 bSPGainValueOnSKill,"CG_ARROWVULCAN",-50; bonus3 bSkillAtkRace,"CG_ARROWVULCAN",10,200; bonus3 bSkillAtkRace,"CG_ARROWVULCAN",11,200; }
+1935:2988,{ bonus2 bSkillUseSP,"CG_ARROWVULCAN",-50; bonus2 bSkillAtk,"CG_ARROWVULCAN",200; }
 //1990亚依的花饰麦克风:2989亚依的花饰手镯
-1990:2989,{ bonus2 bSPGainValueOnSKill,"CG_ARROWVULCAN",-50; bonus3 bSkillAtkRace,"CG_ARROWVULCAN",10,200; bonus3 bSkillAtkRace,"CG_ARROWVULCAN",11,200; }
+1990:2989,{ bonus2 bSkillUseSP,"CG_ARROWVULCAN",-50; bonus2 bSkillAtk,"CG_ARROWVULCAN",200; }
 //飞空艇 15116:22046:20743
 15116:22046:20743,{ bonus bMaxHPrate,25; bonus bMaxSPrate,25; bonus bSpeedRate,25; }
 //佩尔洛克 15117:22047:20744
@@ -577,4 +577,37 @@
 18992:4252,{ bonus bHPrecovRate,(4*(getequiprefinerycnt(EQI_HEAD_TOP))); bonus bSPrecovRate,(4*(getequiprefinerycnt(EQI_HEAD_TOP))); }
 18992:4230,{ bonus bAspdRate,(getequiprefinerycnt(EQI_HEAD_TOP)); }
 18992:4327,{ bonus bCastrate,-(2*(getequiprefinerycnt(EQI_HEAD_TOP))); bonus2 bSkillAtk,"MG_FIREWALL",(5*(getequiprefinerycnt(EQI_HEAD_TOP))); }
+//黄色围巾 5917 黄色头巾 5277 黄色发带 5278 秘银长锤 1525
+5917:5277,{ if(getequiprefinerycnt(EQI_HEAD_TOP)>5){ bonus bLongAtkDef,3; } if(getequiprefinerycnt(EQI_HEAD_TOP)>7){ bonus bLongAtkDef,4; } }
+5917:5278,{ if(getequiprefinerycnt(EQI_HEAD_TOP)>5){ bonus bLongAtkDef,3; } if(getequiprefinerycnt(EQI_HEAD_TOP)>7){ bonus bLongAtkDef,4; } }
+5917:1525,{ bonus bLongAtkDef,10; }
+//索尔鞋 22049 抗性斗篷 20701 地属性神盾 2165
+22049:20701,{ bonus2 bAddEle,2,5; bonus bMaxHPrate,getequiprefinerycnt(EQI_GARMENT); bonus bMaxSPrate,getequiprefinerycnt(EQI_GARMENT); }
+22049:2165,{ bonus2 bSubEle,2,(5+(getequiprefinerycnt(EQI_HAND_L)/2)); }
+//史蒂芬稳定影子盾牌 24090 哈罗兹影子铠甲 24091 哈罗兹影子战靴 24092
+24090:24091:24092,{ bonus bDef,5; if((getequiprefinerycnt(EQI_SHADOW_ARMOR)+getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_SHOES))>=20){ bonus2 bResEff,Eff_Stone,100; } }
+//史蒂芬稳定影子盾牌 24090 精灵的影子铠甲 24093 精灵的影子战靴 24094
+24090:24093:24094,{ bonus bDef,5; if((getequiprefinerycnt(EQI_SHADOW_ARMOR)+getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_SHOES))>=20){ bonus2 bResEff,Eff_Sleep,100; } }
+//史蒂芬稳定影子盾牌 24090 绝世的影子铠甲 24095 绝世的影子战靴 24096
+24090:24095:24096,{ bonus bDef,5; if((getequiprefinerycnt(EQI_SHADOW_ARMOR)+getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_SHOES))>=20){ bonus2 bResEff,Eff_Silence,100; } }
+//史蒂芬稳定影子盾牌 24090 速学的影子铠甲 24097 速学的影子战靴 24098
+24090:24097:24098,{ bonus bDef,5; if((getequiprefinerycnt(EQI_SHADOW_ARMOR)+getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_SHOES))>=20){ bonus2 bResEff,Eff_Blind,100; } }
+//史蒂芬稳定影子盾牌 24090 冰封的影子武器 24099 冰封的影子耳环 24100 冰封的影子坠饰 24101
+24090:24099:24100:24101,{ bonus bDef,4; if((getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_WEAPON)+getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L))>=30){ bonus2 bResEff,Eff_Freeze,100; } }
+//史蒂芬稳定影子盾牌 24090 中立的影子武器 24104 中立的影子耳环 24105 中立的影子坠饰 24106
+24090:24104:24105:24106,{ bonus bDef,4; if((getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_WEAPON)+getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L))>=30){ bonus2 bResEff,Eff_Stun,100; } }
+//史蒂芬稳定影子盾牌 24090 维克斯影子耳环 24107 维克斯影子坠饰 24108
+24090:24107:24108,{ bonus bDef,5; if((getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L))>=30){ bonus2 bResEff,Eff_Curse,100; } }
+//史蒂芬稳定影子盾牌 24090 活力的影子耳环 24102 活力的影子坠饰 24103
+24090:24102:24103,{ bonus bDef,5; if((getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L))>=30){ bonus2 bResEff,Eff_Bleeding,100; } }
+//施法者影子武器 24110 施法者影子耳环 24109 施法者影子坠饰 24048
+24110:24109:24048,{ bonus bNoCastCancel,0; bonus bCastrate,(40-(getequiprefinerycnt(EQI_SHADOW_WEAPON)+getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)));  }
+//魔力涌动影子盾牌 24113 魔力涌动影子铠甲 24112 魔力涌动影子战靴 24111
+24111:24112:24113,{ bonus bNoCastCancel,0; bonus bCastrate,(40-(getequiprefinerycnt(EQI_SHADOW_ARMOR)+getequiprefinerycnt(EQI_SHADOW_SHIELD)+getequiprefinerycnt(EQI_SHADOW_SHOES)));  }
+//重装步兵头盔 5782 长枪 1454 1455 1456 钢盾 2105 2106
+5782:1454,{ bonus bAtkRate,3; }
+5782:1455,{ bonus bAtkRate,3; }
+5782:1456,{ bonus bAtkRate,3; }
+5782:2105,{ bonus bDef,2; bonus bDefRate,3; }
+5782:2106,{ bonus bDef,2; bonus bDefRate,3; }
 
