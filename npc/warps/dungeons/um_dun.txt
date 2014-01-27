@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Umbala Dungeon (Yggdrasil Cave) Warp Script
 //===== By: ==================================================
 //= Darkchild (1.0vA); Athena (1.0vB)

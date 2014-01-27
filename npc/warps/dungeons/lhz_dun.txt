@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Lighthalzen Dungeon Warp Script
 //===== By: ==================================================
 //= Sara-chan (1.0)
@@ -50,25 +50,25 @@ lhz_dun03,139,137,0	warp	lhz_dun5-2	1,1,lhz_dun02,149,142
 
 //--------------------------Sewer Pipe--------------------------
 
-lighthalzen,313,301,0	script	Sewer Pipe#lt	HIDDEN_NPC,{
+lighthalzen,313,301,0	script	下水管道#lt	HIDDEN_NPC,{
 	if (MISC_QUEST&512) {
-		mes "^3355FFYou found some sort";
-		mes "of large sewage pipe.";
-		mes "Naturally, the stench";
-		mes "emanating from inside";
-		mes "the pipe is barely endurable.^000000";
+		mes "^3355FF你发现一些";
+		mes "大型污水管道.";
+		mes "当然, 里面充满着";
+		mes "腐臭的味道";
+		mes "不过勉强还能行走.^000000";
 		next;
-		if (select("Enter:Cancel") == 1) {
+		if (select("- 进入:- 取消") == 1) {
 			warp "lhz_cube",231,17;
 			end;
 		}
 		close;
 	}
-	mes "^3355FFYou found some sort";
-	mes "of large sewage pipe.";
-	mes "Naturally, the stench";
-	mes "emanating from inside";
-	mes "the pipe is barely endurable.^000000";
+	mes "^3355FF你发现一些";
+	mes "大型污水管道.";
+	mes "当然, 里面充满着";
+	mes "腐臭的味道";
+	mes "不过勉强还能行走.^000000";
 	close;
 }
 
@@ -210,3 +210,6 @@ function	script	randomw	{
  	default: warp "lhz_cube",67,193; end;
 	}
 }
+
+//----- lhz_dun_n ----------------------------
+lhz_dun04,155,151,0	warp	lhz_dun_n	1,1,lhz_dun_n,155,151
