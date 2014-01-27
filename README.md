@@ -7,7 +7,7 @@ RoSF.us Development Team Presents
 | |  | | | |__| | ____| || |      _  | |__| |  ____| |
 |_|  |_| |______||______||_|     |_| |______| |______|
 
-安赫尔开发Athena内部版本V4.
+安赫尔开发Athena内部版本v4.
 </pre>
 
 ### RoSF.us™ R&D Team. 仙境传说MySQL一键单机版服务端. ###
