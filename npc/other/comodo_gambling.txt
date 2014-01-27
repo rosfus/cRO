@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Comodo Gambling
 //===== By: ==================================================
 //= Reddozen, Cypress, Zefris
@@ -474,7 +474,7 @@ comodo,210,154,2	script	Suspicious Guy#cmd	2_M_THIEFMASTER,{
 			next;
 			mes "[Cain]";
 			mes "I guess it can't hurt to gather some Diamonds there and try to exchange them for whatever the old lady's got. Take care, pal~";
-			Zeny -= 500;
+			set Zeny,Zeny-500;
 			close;
 		}
 		mes "[Cain]";

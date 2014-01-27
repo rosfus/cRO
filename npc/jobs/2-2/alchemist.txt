@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Alchemist Job Quest
 //===== By: ==================================================
 //= nestor_zulueta (Fusion), converted by Darkchild
@@ -175,7 +175,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	4_F_ALCHE,{
 					mes "Come back to me when you have 50,000 Zeny, otherwise we can't process your application.";
 					close;
 				}
-				Zeny -= 50000;
+				set Zeny, Zeny - 50000;
 				mes "[Parmy Gianino]";
 				mes "Let's see.";
 				mes "" + strcharinfo(0);

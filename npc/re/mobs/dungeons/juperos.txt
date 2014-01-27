@@ -1,7 +1,7 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Juperos Dungeon Monster Spawn Script
 //===== By: ==================================================
-// The Prometheus Project, RoSF.us Dev Team
+// The Prometheus Project, RoSF.us R&D Team.
 //===== Current Version: =====================================
 //= 1.4
 //===== Additional Comments: =================================

@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Official Skill Resetter Event in Yuno (kRO & idRO)
 //===== By: ==================================================
 //= $ephiroth
@@ -96,7 +96,7 @@ L_Reset:
 		emotion e_hmm;
 		close;
 	}
-	Zeny -= @zeny;
+	set Zeny, Zeny-@zeny;
 	set MISC_QUEST,MISC_QUEST | 1024;
 	resetskill;
 	mes @npcname$;

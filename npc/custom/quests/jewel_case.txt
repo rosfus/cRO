@@ -1,15 +1,15 @@
-//===== Hercules Script ======================================
-//= Jewel Case Quest
+//===== RoSF.us R&D Team. ====================================
+//= Jewel case Quest
 //===== By: ==================================================
 //= Lupus
 //===== Current Version: =====================================
 //= 1.0
 //===== Description: =========================================
 //= A quest for players at base level 99,
-//= with Jewel Case as a reward.
+//= with Jewel case as a reward.
 //============================================================
 
-lighthalzen,108,229,2	script	La Fenn	4_M_JPNOJI,{
+lighthalzen,108,229,2	script	La Fenn	766,{
 	mes "[La Fenn]";
 	if(BaseLevel<99) {
 		if(Q_99LVL) {
@@ -20,7 +20,7 @@ lighthalzen,108,229,2	script	La Fenn	4_M_JPNOJI,{
 			mes "[La Fenn]";
 			mes "Here is your prize. It's yours for good.";
 			set Q_99LVL,0;
-			getitem 12106,1; //Jewel Case
+			getitem 12106,1; //Jewel case
 			emotion e_grat;
 		} else {
 			mes callfunc("F_Hi");
@@ -36,7 +36,7 @@ lighthalzen,108,229,2	script	La Fenn	4_M_JPNOJI,{
 	if(BaseLevel==99 && Upper==0) {
 		if(Q_99LVL) {
 			mes "Now go forth and get younger!";
-			mes "If you solve my riddle, then I'll give you a magical Jewel Case with a rare accessory.";
+			mes "If you solve my riddle, then I'll give you a magical Jewel case with a rare accessory.";
 		} else {
 			mes callfunc("F_Hi")+" The Hero!";
 			if(BaseExp<1000000) {

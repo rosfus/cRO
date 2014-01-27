@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= In Memory of Heroes
 //===== By: ==================================================
 //= Kisuka
@@ -14,7 +14,7 @@
 
 // Lauds
 //============================================================
-prontera,182,214,4	script	Lauds#Memorial	1_M_MERCHANT,{
+prontera,182,214,4	script	Lauds#Memorial	58,{
 	if (Memorial08 < 1) {
 		mes "[Mad Sago Lauds]";
 		mes "Hey, yo!";
@@ -194,7 +194,7 @@ prontera,182,214,4	script	Lauds#Memorial	1_M_MERCHANT,{
 		
 // Memorial Plaque
 //============================================================
-prontera,153,286,4	script	Memorial Plaque#Memorial	4_BOARD3,{
+prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 	if (Memorial08 < 8) {
 		mes "[" + strcharinfo(0) + "]";
 		mes "- It's a dusty old plaque.-";
@@ -251,7 +251,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	4_BOARD3,{
 
 // Grast
 //============================================================
-prontera,150,270,4	script	Grast#Memorial	4_M_HUMERCHANT,{
+prontera,150,270,4	script	Grast#Memorial	900,{
 	if (Memorial08 < 3) {
 		mes "[Grast]";
 		mes "Memorial Day is a sad and yet glorious day.";

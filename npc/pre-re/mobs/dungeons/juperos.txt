@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Juperos Dungeon Monster Spawn Script
 //===== By: ==================================================
 // The Prometheus Project, rAthena Dev Team

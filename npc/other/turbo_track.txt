@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Turbo Track
 //===== By: ==================================================
 //= Joseph
@@ -4777,7 +4777,7 @@ alde_gld,186,199,3	script	Turbo Track Guide#Entran	4_F_RACING,{
 						if (countitem(7310) > 0)
 							delitem 7310,1; //Free_Peco_Ticket
 						else
-							Zeny -= .@zeny;
+							set Zeny, Zeny-.@zeny;
 					}
 				}
 				switch(.@i) {

@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Valentine Event Script + EXP bonus
 //===== By: ==================================================
 //= Lupus (based on Muad_Dib's work)
@@ -14,11 +14,11 @@
 //============================================================
 
 // Tine - Valentine Event Chocolate Even Guide ------------------
-prontera,156,172,4	script	Tine	1_M_MERCHANT,{
+prontera,156,172,4	script	Tine	58,{
 //  Debug info for item effects and tricky conditions 8)
 //	mes "@dsv: "+@dsv;
 //	mes "ispartneron()=="+ispartneron();
-//	mes "sex == "+Sex;
+//	mes "Sex == "+Sex;
 //	if(@dsv == gettime(3)+1) mes "@dsv == gettime(3)+1";
 
 	mes "[Tine]";
@@ -72,7 +72,7 @@ OnInit:
 }
 
 // Stephen - Valentine Event Chocolate seller ------------------
-alberta,26,243,4	script	Stephen#val1	1_M_MERCHANT,{
+alberta,26,243,4	script	Stephen#val1	58,{
 	mes "[Stephen]";
 	mes "Guess what I've got?";
 	mes "A tasty treat not easily found in Rune-Midgard....";
@@ -80,7 +80,7 @@ alberta,26,243,4	script	Stephen#val1	1_M_MERCHANT,{
 	mes "[Stephen]";
 	mes "Chocolate!";
 	mes "That's right, don't you love chocolate.... I do.";
-	mes "And you are in luck, because I'm selling them for only 5,000 zeny a piece!";
+	mes "And you are in luck, because I'm selling them for only 5,000 Zeny a piece!";
 	next;
 	menu "I want some chocolate!",M_CHOCO,"No thanks.",-;
 
@@ -127,7 +127,7 @@ L_NOTENO:
 }
 
 // Jainie -- Gives information about Valentine Event ------------------------
-alberta,29,243,4	script	Jainie#val1	1_M_INNKEEPER,{
+alberta,29,243,4	script	Jainie#val1	53,{
 	mes "[Jainie]";
 	mes "You know what? The chocolate that my boyfriend sells are from me!";
 	mes "I made them by myself. Now I need some Milk for my special White Chocolate.";
@@ -195,7 +195,7 @@ L_NOMILK:
 }
 
 // Carl Orleans -- Valentine Event Chocolate maker ------------------
-prt_castle,54,34,4	script	Carl Orleans#val1	1_M_01,{
+prt_castle,54,34,4	script	Carl Orleans#val1	47,{
 	mes "[Carl Orleans]";
 	mes "Yes? What can I cook for you?";
 	next;

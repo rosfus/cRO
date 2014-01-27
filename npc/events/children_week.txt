@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Children Week Event
 //===== By: ==================================================
 //= Samuray22
@@ -11,7 +11,7 @@
 //= 1.1 First Beta. [Samuray22]
 //============================================================
 
-prontera,146,91,5	script	Pandit chacha#child07	1_M_PUBMASTER,{
+prontera,146,91,5	script	Pandit chacha#child07	61,{
 	if (BaseLevel > 50) {
 		mes "[Pandit chacha]";
 		mes "Hahaha~";
@@ -44,7 +44,7 @@ prontera,146,91,5	script	Pandit chacha#child07	1_M_PUBMASTER,{
 		getitem 11705,10; //Special_White_Potion
 		mes "[Pandit chacha]";
 		mes "Look. This is a child Potion.";
-		mes "The weight is just 1 but recover much HP.";
+		mes "The Weight is just 1 but recover much HP.";
 		mes "If you want to get more, bring the 1 Wedding Bouquet and 1 Witherless Rose.";
 		close;
 	} else if (oversea_event9 == 1) {

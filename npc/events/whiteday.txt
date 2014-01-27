@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= White Day Event Script
 //===== By: ==================================================
 //= 1.0a Muad_Dib (Prometheus Project)
@@ -11,7 +11,7 @@
 //= Converted to rAthena format by Dr.Evil
 //============================================================
 
-alberta,188,64,4	script	Sugar	4_F_02,{
+alberta,188,64,4	script	Sugar	91,{
 	set @maplenum,0;
 	set @mapleItemID,0;
 	set @maplePrice,0;
@@ -33,7 +33,7 @@ alberta,188,64,4	script	Sugar	4_F_02,{
 
 	mes "[Sugar]";
 	mes "Yes!";
-	mes "Select from menu here.";
+	mes "select from menu here.";
 	mes "Since there is a limitation in numbers";
 	mes "Not more than ^ff0000 5 pieces^000000.";
 	mes "are allowed to carry out?";
@@ -72,7 +72,7 @@ L_INPUT:
 	if (@maplenum == 0) goto M_End;
 	set @maplePriceT,@maplePrice*@maplenum;
 	if (Zeny < @maplePriceT) goto L_ERROR2;
-	Zeny -= @maplePriceT;
+	set Zeny,Zeny- @maplePriceT;
 	getitem @mapleItemID,@maplenum;
 	mes "[Sugar]";
 	mes "Thank you!!!";

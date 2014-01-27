@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= iRO Halloween (2008)
 //===== By: ==================================================
 //= Kisuka
@@ -15,7 +15,7 @@
 //= 1.1 Some small changes. [Kisuka]
 //============================================================
 
-payon,162,176,4	script	Halloween Magician#iRO08	4_M_BIBI,{
+payon,162,176,4	script	Halloween Magician#iRO08	704,{
 	if (Hallow08 < 1) {
 		mes "[Halloween Magician]";
 		mes "Kkkkkkkkk!";
@@ -76,7 +76,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	4_M_BIBI,{
 			next;
 			mes "[Halloween Magician]";
 			mes "All participants should be wearing nothing.";
-			mes "Put all belongings in your storage and come back here when your weight is '0'.";
+			mes "Put all belongings in your storage and come back here when your Weight is '0'.";
 			next;
 			mes "[Halloween Magician]";
 			mes "Oh and one more thing!";
@@ -99,7 +99,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	4_M_BIBI,{
 		Participate:
 			mes "[Halloween Magician]";
 			mes "Ok, you are ready.";
-			mes "Let me check your weight.";
+			mes "Let me check your Weight.";
 			next;
 			if (Weight > 0) {
 				mes "[Halloween Magician]";
@@ -107,12 +107,12 @@ payon,162,176,4	script	Halloween Magician#iRO08	4_M_BIBI,{
 				mes "There's always a black sheep anywhere.";
 				next;
 				mes "[Halloween Magician]";
-				mes "You think I wouldn't notice that your weight is above '0'?";
+				mes "You think I wouldn't notice that your Weight is above '0'?";
 				mes "You're overweight...";
 				close;
 			} else {
 				mes "[Halloween Magician]";
-				mes "You seem good to go, and your weight is just right.";
+				mes "You seem good to go, and your Weight is just right.";
 				next;
 				mes "[Halloween Magician]";
 				mes "I was quite swamped with my work, so I'm exhausted.";
@@ -232,7 +232,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	4_M_BIBI,{
 		}
 }
 
-evt_zombie,16,142,1	script	zombiewarp001	WARPNPC,2,2,{
+evt_zombie,16,142,1	script	zombiewarp001	45,2,2,{
 OnTouch:
 	if (@Hallow08Warp == 1) {
 		set Hallow08Kill,2;
@@ -242,7 +242,7 @@ OnTouch:
 	end;
 }
 
-evt_zombie,122,27,1	script	zombiewarp002	WARPNPC,2,2,{
+evt_zombie,122,27,1	script	zombiewarp002	45,2,2,{
 OnTouch:
 	if (@Hallow08Warp == 2) {
 		set Hallow08Kill,2;
@@ -252,7 +252,7 @@ OnTouch:
 	end;
 }
 
-evt_zombie,267,89,1	script	zombiewarp003	WARPNPC,2,2,{
+evt_zombie,267,89,1	script	zombiewarp003	45,2,2,{
 OnTouch:
 	if (@Hallow08Warp == 3) {
 		set Hallow08Kill,2;

@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Mapflag: Town.
 //===== By: ==================================================
 //= Epoque
@@ -38,3 +38,4 @@ dewata	mapflag	town
 malangdo	mapflag	town
 malaya	mapflag	town
 eclage	mapflag	town
+prontera	mapflag	snow

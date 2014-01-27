@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Rogue Job Quest
 //===== By: ==================================================
 //= kobra_k88
@@ -1711,7 +1711,7 @@ OnTouch:
 	end;
 
 OnDisable:
-	killmonster "in_rogue","mob_rogue#3::OnMyMObDead";
+	killmonster "in_rogue","mob_rogue#3::OnMyMobDead";
 	end;
 
 OnMyMobDead:

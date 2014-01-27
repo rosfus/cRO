@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Lighthalzen Fields Monster Spawn Script
 //===== By: ==================================================
 //= Muad_Dib, rAthena Dev Team

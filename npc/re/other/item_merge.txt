@@ -1,7 +1,7 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Mergician
-//===== By: =========Translation:============================= 
-//= Euphy            °²ºÕ¶û|20130701[ROSF.US]
+//===== By: ==================================================
+//= Euphy
 //===== Current Version: =====================================
 //= 1.0
 //===== Description: =========================================
@@ -12,11 +12,11 @@
 //= 1.0 First version, currently useless/disabled.
 //============================================================
 
-prontera,146,95,3	script	Mergician#pron	64,{
+prontera,146,95,3	script	Mergician#pron	1_M_WIZARD,{
 	if (checkweight(1301,1) == 0) {
 		mes "- Wait a second !! -";
 		mes "- You are carrying too many items -";
-		mes "- or too much Weight to proceed. -";
+		mes "- or too much weight to proceed. -";
 		mes "- Come back after -";
 		mes "- arranging your inventory. -";
 		close;

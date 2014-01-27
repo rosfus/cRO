@@ -1,7 +1,7 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Turbo Track
-//===== By: =========Translation:============================= 
-//= Euphy            °²ºÕ¶û|20130701[ROSF.US]
+//===== By: ==================================================
+//= Euphy
 //===== Current Version: =====================================
 //= 1.0
 //===== Description: =========================================
@@ -11,4 +11,4 @@
 //= 1.0 Split Mount Manager NPC.
 //============================================================
 
-alde_gld,181,199,5	duplicate(MountManager_turbo)	Mount Manager	845
+alde_gld,181,199,5	duplicate(MountManager_turbo)	Mount Manager	4_F_RACING

@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= God Item Quest - Brisingamen Seal
 //===== By: ==================================================
 //= SinSloth
@@ -19,22 +19,22 @@
 //= 1.7 Renewal script update. [Euphy]
 //============================================================
 
-prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
+prt_fild08,175,374,3	script	Bard#brising	1_M_BARD,{
 	cutin "god_nelluad01",2;
 	if ($God2 >= $@god_check1 && $God3 < $@god_check2) {
 		if (god_brising > 49) {
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "Oh, I guess all is going well for you. So how has everything else been?";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "I may be being overly sensitive, but it feels like something might happen soon. Aaah, don't mind me. It's no big deal. Maybe I'm just being weird.";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "Right, right, let me play a song for you. Would you care to listen?";
 			next;
 			switch(select("Sure, why not~:How about some news?:No thanks.")) {
 			case 1:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "So, which song";
 				mes "would you like to hear?";
 				mes "Go ahead, pick one~";
@@ -42,7 +42,7 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				switch(select("Bragi's Poem:Eternal Chaos:Assassin in the Sunset:Der Ring des Nibelungen")) {
 				case 1:
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Bragi's Poem!";
 					mes "What a good choice!";
 					mes "I must say this song";
@@ -53,7 +53,7 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 					break;
 				case 2:
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Eternal Chaos...";
 					mes "Sounds too chaotic.";
 					mes "By the way, I wonder";
@@ -65,7 +65,7 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 					break;
 				case 3:
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Assassin in the Sunset!";
 					mes "Yes, no one looks cooler than an Assassin, the bringer of death, standing alone in the sunset! Heh heh~";
 					soundeffect "assassin_of_sunset.wav",1;
@@ -73,7 +73,7 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 					break;
 				case 4:
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Der Ring des Nibelungen.....";
 					mes "Okay, are you ready to listen?";
 					mes "Hum hum hum....";
@@ -119,81 +119,81 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				}
 				break;
 			case 2:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Some news you say..";
 				mes "What kind of news do";
 				mes "you wish to hear about?";
 				next;
 				switch(select("About Prontera!:About coastal areas.:Is the desert still hot?:How about the borderlands?")) {
 				case 1:
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "What?! Prontera?!";
 					mes "Can you not see that the front";
 					mes "gate of Prontera is right before you? You should at least know where you are, adventurer.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Anyways, I have one interesting news about Prontera. But, it's a secret. Shh! Are you... Single?";
 					next;
 					cutin "god_nelluad04",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "If so, go visit the tavern. I met a guy there who took to me a nice place. Oh yes. He took me to 'the place' where singles are forbidden~!";
 					close2;
 					break;
 				case 2:
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Coastal areas?";
 					mes "That's a funny question. I mean, there's Alberta and a few other places where you can see the sea.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "To the southwest there's";
 					mes "Kokomo Beach. But, I suppose it's too dangerous just to go there to take a stroll.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					cutin "god_nelluad03",2;
 					mes "Kokomo Beach is a large";
 					mes "expanse of sand. The nearby water is filled with sea animals, so you can enjoy catching Shellfishes.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "However, there are always bullies in that kind of place. Once, I met a threatening looking hoodlum with red spiky hair.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					cutin "god_nelluad04",2;
 					mes "He was chewing on something and spat it on the ground. The big buffoon managed to intimidate me into giving him all of my Zeny!";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "^333333*Sigh...*^000000";
 					mes "This world is too";
 					mes "dangerous for a young";
 					mes "and fragile Bard.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "By the way, Alberta doesn't seem to have changed. The Sunken Ship looks the same as well, with all of its Skeleton Pirates and whatnot. You know how it is.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					cutin "god_nelluad01",2;
 					mes "The event agency in charge of expeditions into the Sunken Ship is still making tons of money. If you have nothing to do, why don't you hunt for monsters down there?";
 					close2;
 					break;
 				case 3:
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Oh, hell yes!";
 					mes "When is it not?";
 					mes "The desert is hot, has";
 					mes "been hot and probably";
 					mes "always will be...!";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Giant worms still jump out of nowhere, freaking out innocent travellers like myself, and the Sandmen still kick people in the, well... You know where.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Even if the desert is filled with hideous monsters, the view of the ocean there is so magnificent. Hah, it makes me want to play a song.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I must say there is";
 					mes "one place you may wish";
 					mes "to see in the desert.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					cutin "god_nelluad02",2;
 					mes "I'm talking about the Assassin Guild. Supposedly, it's hidden behind a sandstorm in the Morroc Desert!";
 					if (Class == Job_Assassin || Class == Job_Assassin_Cross) {
@@ -205,49 +205,49 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 					close2;
 					break;
 				case 4:
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Well, to the north is the Schwaltzwald Republic.";
 					mes "There, you'll find Juno,";
 					mes "the 'City of Sages.'";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					cutin "god_nelluad03",2;
 					mes "The people there say that there is one major nuisance, a man known as";
 					mes "the 'Mad Scientist.' He's antisocial and creates a lot of public disturbances with his experiments.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "It seems everyone in Juno";
 					mes "hates him with a passion. Even one of the Tool Shop owners begged a passing adventurer to stop this Mad Scientist's research!";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "But I have a different opinion about him. I believe it's not a good idea to interrupt the work of any scientist.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "After all, he might just discover something important, even if his experiments are a little hazardous.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Speaking of discoveries, you know how Juno floats in the air, right?";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					cutin "god_nelluad01",2;
 					mes "It's said that a piece of Ymir's Heart generates enough power";
 					mes "to keep the entire city aloft in the sky. Isn't that amazing?";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Even more recent is the news about the discovery of Ymir's Book. You can read it in Juno's Sage Castle. I hear that it contains the secret to meeting Valkyrie...";
 					close2;
 					break;
 				}
 				break;
 			case 3:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Huh? Okay then, talk to you later. May Bragi bless you on your journeys.";
 				close2;
 				break;
 			}
 		}
 		else if ((god_brising > 0) && (god_brising < 50)){
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "So, have you";
 			mes "met Mr. Kaili?";
 			mes "Please do your best.";
@@ -257,67 +257,67 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 			switch(select("Tell me a story.:Sing a song for me.")) {
 			case 1:
 				cutin "god_nelluad02",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Hmm. What would";
 				mes "be a good story for";
 				mes "you this time...? Ah yes, I've got it. Let me tell you about one of my own adventures. It was a pretty amazing experience.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I went to Morroc, the city of the desert. On my way there, I became exhausted from the heat. Luckily, I found a hole beneath the shadows and climbed in to rest.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Oh my God...";
 				mes "If I had known";
 				mes "better, I would have";
 				mes "never gone inside that place...";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I actually crawled into the infamous ^FF0000Ant Hell^000000! I don't sound like a coward to you, do I?";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Well, the ants aren't the only ones living there. I wasn't afraid of them at all. Except, of course, when they attacked in groups.";
 				next;
 				cutin "god_nelluad03",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "What I was really afraid of was this type of strawberry colored... tongue thing. Phreeoni!";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Fortunately, I survived the whole incident, although I still have nightmares of that man-sized tongue.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Once I got out of there, I craved human companionship to restore my sense of normalcy. The closest place that I knew was Paros Lighthouse.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Yet again, I decided to traverse the desert, despite the fact that the Kafra Ladies provide a very convenient teleport service there.";
 				next;
 				cutin "god_nelluad01",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Anyway, the fortress of Sandaruman is on the way to Paros Lighthouse. I remember Serutero, a guy I met in south Morroc, telling me about its scenic beauty.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I was so excited";
 				mes "about seeing it";
 				mes "for myself. After all, doesn't 'Sandaruman' sound like the";
 				mes "name of a beautiful place?";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "But I immediately regretted my decision once I arrived. Of course, the view was breathtaking: the sandy hills near the ocean, as";
 				mes "well as the ruins.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "And of course I forgot Serutero's warning about all the monsters. Argh! It was a nightmare! Instead of enjoying the scenary, I ended up running for my life.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I was still trying to escape those monsters when I stumbled upon";
 				mes "an old house, West of Sandaruman, that seemed to be in a state of decay.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I recalled that Serutero said that no one was living in that area, so I began to worry a bit. Still, I was desperate and needed refuge.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "In my panic, I violently knocked on the door and screamed for someone to let me inside. Then do you know what I heard?";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				cutin "god_nelluad03",2;
 				mes "^FF0000Who's there?!";
 				mes "Who would dare to intrude";
@@ -325,16 +325,16 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				mes "I was freaked out! Whoever owned that house must have been some";
 				mes "kind of lunatic!";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Th-then, with the specter of Death nipping at my heels, he told me to get lost! Luckily, I was saved by a mysterious, wandering SuperNovice, but that's another story.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "In any case, I finally arrived at Paros Lighthouse. There, I learned that the old house was a secret camp for the Rogue Guild. ";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "It's amazing, how they can live in such dangerous areas. Only Rogues would be able to survive there, you know?";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				cutin "god_nelluad01",2;
 				mes "Ah...";
 				mes "I'm so tired from talking so much. But if I happen to have another adventure, I shall share that tale with you.";
@@ -342,19 +342,19 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				break;
 			case 2:
 				cutin "god_nelluad02",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Ah, you wish";
 				mes "to hear a song?";
 				mes "Okay! I shall then";
 				mes "perform my favorite.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I chased after fame.";
 				mes "It eluded me.";
 				mes "I ran after happiness";
 				mes "But never caught it.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "But tomorrow will still";
 				mes "Be there, I'm sure.";
 				mes "Like the Water Mill";
@@ -363,7 +363,7 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				mes "Life goes on.";
 				next;
 				cutin "god_nelluad04",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Cheer up! Life goes on.";
 				mes "As surely as the Water";
 				mes "Mill turns, tomorrow";
@@ -373,24 +373,24 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 			}
 		}
 		else {
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "Say...";
 			mes "Have we met before?";
 			mes "Hmm? Never? Well...";
 			mes "That's rather odd.";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "I seem to recall that you've asked me to give you some information if I ever have any. Well, now I have and shall share it with you~";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "The usefulness of this information all depends on you. Now, have you heard of the ^3333CCMonster Research Organization^000000?";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "I happened to get this information from its headquarters in Juno. So how does that sound?";
 			next;
 			switch(select("Wee~ I want to hear!:Booooring~")) {
 			case 1:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Well...!";
 				mes "You seem to be";
 				mes "very excited about";
@@ -399,53 +399,53 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				next;
 				if (BaseLevel < 70) {
 					cutin "god_nelluad03",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Alas, this information doesn't seem to be very valuable to someone such as yourself.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I'm so very sorry to have excited you, but only people that are strong enough to handle grueling work can benefit from this.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Why don't you travel around and gain more experiences? I will let you know when you're ready, you know~";
 					close2;
 				}
 				else {
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Ooh...";
 					mes "And you look";
 					mes "like you can handle";
 					mes "this kind of information.";
 					mes "I'll share everything I know!";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "One day, an adventurer discovered a strange, mysterious object. Unable to figure out what it could do, he visited the Monster Organization.";
 					next;
 					cutin "god_nelluad01",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "There, it was entrusted to a scholar by the name of Mr. Kaili. He still hasn't uncovered the truth about that item and wishes for assistance in his investigation.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Mr. Kaili suspects that the item might be part of an undiscovered ancient relic. Fortunately, he is also researching ancient relics as a project assigned by the royal court.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "So what do you think? Isn't that interesting? Of course, you'd better speak to Mr. Kaili if you wish to learn more. If you'd like, I shall write you a letter or recommendation.";
 					next;
 					switch(select("Sure! Sounds good.:Sorry, I am not that interested.")) {
 					case 1:
-						mes "[内尔里奥德]";
+						mes "[Nelliorde]";
 						mes "Excellent...!";
 						mes "So your name is...";
 						mes "" + strcharinfo(0) + "?";
 						next;
-						mes "[内尔里奥德]";
+						mes "[Nelliorde]";
 						mes "Alright, I shall contact him right away! Oh, and you can find the Monster Organization west of Juno's central plaza. It shouldn't be hard to find. Good luck!";
 						set god_brising,1;
 						close2;
 						break;
 					case 2:
 						cutin "god_nelluad02",2;
-						mes "[内尔里奥德]";
+						mes "[Nelliorde]";
 						mes "Ah, it's disappointing to hear that. I thought that you'd be perfect to help out Mr. Kaili. Oh well, talk to you later~";
 						close2;
 						break;
@@ -453,7 +453,7 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				}
 				break;
 			case 2:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Boring, you say?";
 				mes "Perhaps, but not as";
 				mes "boring as an adventurer";
@@ -463,105 +463,105 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				switch(select("Tell me a story.:Sing a song for me.")) {
 				case 1:
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Hmm. What would";
 					mes "be a good story for";
 					mes "you this time...? Ah yes, I've got it. Let me tell you about one of my own adventures. It was a pretty amazing experience.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I went to Morroc, the city of the desert. On my way there, I became exhausted from the heat. Luckily, I found a hole beneath the shadows and climbed in to rest.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Oh my God...";
 					mes "If I had known";
 					mes "better, I never";
 					mes "would have gone";
 					mes "inside that place...";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I actually crawled into the infamous ^FF0000Ant Hell^000000! I don't sound like a coward to you, do I?";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Well, the ants aren't the only ones living there. I wasn't afraid of them at all. Except, of course, when they attacked in groups.";
 					next;
 					cutin "god_nelluad03",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "What I was really afraid of was this type of strawberry colored... tongue thing. Phreeoni!";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Fortunately, I survived the whole incident, although I still have nightmares of that man-sized tongue.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Once I got out of there, I craved human companionship to restore my sense of normalcy. The closest place that I knew was Paros Lighthouse.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Yet again, I decided to traverse the desert, despite the fact that the Kafra Ladies provide a very convenient teleport service there.";
 					next;
 					cutin "god_nelluad01",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Anyway, the fortress of Sandaruman is on the way to Paros Lighthouse. I remember Serutero, a guy I met in south Morroc, telling me about its scenic beauty.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I was so excited";
 					mes "about seeing it";
 					mes "for myself. After all, doesn't 'Sandaruman' sound like the";
 					mes "name of a beautiful place?";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "But I immediately regretted my decision once I arrived. Of course, the view was breathtaking: the sandy hills near the ocean, as";
 					mes "well as the ruins.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "And of course I forgot Serutero's warning about all the monsters. Argh! It was a nightmare! Instead of enjoying the scenary, I ended up running for my life.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I was still trying to escape those monsters when I stumbled upon";
 					mes "an old house, West of Sandaruman, that seemed to be in a state of decay.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I recalled that Serutero said that no one was living in that area, so I began to worry a bit. Still, I was desperate and needed refuge.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "In my panic, I violently knocked on the door and screamed for someone to let me inside. Then do you know what I heard?";
 					next;
 					cutin "god_nelluad04",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "^FF0000Who's there?!";
 					mes "Who would dare to intrude";
 					mes "upon my territory?^000000";
 					mes "I was freaked out! Whoever owned that house must have been some";
 					mes "kind of lunatic!";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Th-then, with the specter of Death nipping at my heels, he told me to get lost! Luckily, I was saved by a mysterious, wandering SuperNovice, but that's another story.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "In any case, I finally arrived at Paros Lighthouse. There, I learned that the old house was a secret camp for the Rogue Guild. ";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "It's amazing, how they can live in such dangerous areas. Only Rogues would be able to survive there, you know?";
 					next;
 					cutin "god_nelluad01",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Ah...";
 					mes "I'm so tired from talking so much. But if I happen to have another adventure, I shall share that tale with you.";
 					close2;
 					break;
 				case 2:
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Ah, you wish";
 					mes "to hear a song?";
 					mes "Okay! I shall then";
 					mes "perform my favorite.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "I chased after fame.";
 					mes "It eluded me.";
 					mes "I ran after happiness";
 					mes "But never caught it.";
 					next;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "But tomorrow will still";
 					mes "Be there, I'm sure.";
 					mes "Like the Water Mill";
@@ -570,7 +570,7 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 					mes "Life goes on.";
 					next;
 					cutin "god_nelluad04",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Cheer up! Life goes on.";
 					mes "As surely as the Water";
 					mes "Mill turns, tomorrow";
@@ -583,14 +583,14 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 		}
 	}
 	else {
-		mes "[内尔里奥德]";
+		mes "[Nelliorde]";
 		mes "Hello there!";
 		mes "Isn't it such";
 		mes "a glorious day?";
 		mes "You know of me,";
 		mes "do you not?";
 		next;
-		mes "[内尔里奥德]";
+		mes "[Nelliorde]";
 		if (Sex) {
 			mes "Hahahaha, forgive my rudeness,";
 			mes "but I fail to remember your name, although your face does seem rather familiar.";
@@ -603,31 +603,31 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 		}
 		next;
 		cutin "god_nelluad01",2;
-		mes "[内尔里奥德]";
+		mes "[Nelliorde]";
 		mes "So, aren't you curious about me? Feel free to ask me whatever you like! I'm the vagabond that will wander the earth till the end of his days, your friend who loves to sing under the moonlight~";
 		next;
 		switch(select("Who are you?:What's new?:Can you sing?")) {
 		case 1:
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "Why, I am Nelliorde, the Bard.";
 			mes "In truth, my real name is Elliorde.";
 			next;
 			cutin "god_nelluad03",2;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "However, while I was singing at a Tavern, as per usual, a man with long blonde hair angrily demanded that I change my name!";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "Never before have I seen such a flailing and a fuss over someone coincidentally sharing the same name!";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "And so, that little altercation";
 			mes "was settled with me being named Nelliorde.";
 			next;
 			cutin "god_nelluad04",2;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "I don't sound like a coward to you, do I? Do you believe I should have fought for the right to keep my original name?";
 			next;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "If so, you're wrong! I just don't believe that violence can solve anything, as the romantic Bard";
 			mes "that cherishes peace...";
 			next;
@@ -642,13 +642,13 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 			mes ".........^000000";
 			next;
 			cutin "god_nelluad03",2;
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "And that's how I convinced wise";
 			mes "and benevolent King Tristram III to build a paradise where married lovers could enjo--Hm? Are you even listening?!";
 			close2;
 			break;
 		case 2:
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "You wish to";
 			mes "hear of some news?";
 			mes "What kind of news do";
@@ -656,73 +656,73 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 			next;
 			switch(select("About Prontera!:About seaside areas.:Is the desert still hot?:How about the borderlands?")) {
 			case 1:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "What?! Prontera?!";
 				mes "Can you not see that the front";
 				mes "gate of Prontera is right before you? You should at least know where you are, adventurer.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Anyways, I know one interesting bit of news about Prontera. But it's a secret. Shh! Are you... Single?";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "If so, go visit the tavern. I met a guy there who took me a nice place. Oh yes. He took me the place where singles are forbidden~!";
 				close2;
 				break;
 			case 2:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Seaside areas?";
 				mes "That's a funny question. I mean, there's Alberta and a few other places where you can see the sea.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "To the southwest there's";
 				mes "Kokomo Beach. But, I suppose it's too dangerous just to go there to take a stroll.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Kokomo Beach is a large";
 				mes "expanse of sand. The nearby water is filled with sea animals, so you can enjoy catching Shellfishes.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "However, there are always bullies in that kind of place. Once, I met a threatening looking hoodlum with red spiky hair.";
 				next;
 				cutin "god_nelluad04",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "He was chewing on something and spat on the ground. The big buffoon managed to intimidate me into giving him all of my Zeny!";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "^333333*Sigh...*^000000";
 				mes "This world is too";
 				mes "dangerous for a young";
 				mes "and fragile Bard.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "By the way, Alberta doesn't seem to have changed. The Sunken Ship looks the same as well, with all of its Skeleton Pirates and whatnot. You know how it is.";
 				next;
 				cutin "god_nelluad01",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "The event agency in charge of expeditions into the Sunken Ship is still making tons of money. If you have nothing to do, why don't you hunt for monsters down there?";
 				close2;
 				break;
 			case 3:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Oh yes!";
 				mes "When is it not?";
 				mes "The desert is hot, has";
 				mes "been hot and probably";
 				mes "always will be...!";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Giant worms still jump out of nowhere, freaking out innocent travellers like myself, and the Sandmen still kick people in the, well... You know where.";
 				next;
 				cutin "god_nelluad02",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Even if the desert is filled with hideous monsters, the view of the ocean there is so magnificent. Hah, it makes me want to play a song.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I must say there is";
 				mes "one place you may wish";
 				mes "to see in the desert.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "I'm talking about the Assassin Guild. Supposedly, it's hidden behind a sandstorm in the Morroc";
 				if ((Class == Job_Assassin) || (Class == Job_Assassin_Cross)) {
 					mes "Desert! But you should know what I am talking about! So when are you gonna take me to the guild, eh?";
@@ -733,42 +733,42 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 				close2;
 				break;
 			case 4:
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Well, to the north is the Schwaltzwald Republic.";
 				mes "There, you'll find Juno,";
 				mes "the 'City of Sages.'";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "The people there say that there is one major nuisance, a man known";
 				mes "as the 'Mad Scientist.' He's antisocial and creates a lot of public disturbances with his experiments.";
 				next;
 				cutin "god_nelluad03",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "It seems everyone in Juno hates";
 				mes "him with a passion. Even one of the Tool Shop owners begged a passing adventurer to stop this Mad Scientist's research!";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "But I have a different opinion about him. I believe it's not a good idea to interrupt the work of any scientist.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "After all, he might just discover something important, even if his experiments are a little hazardous.";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Speaking of discoveries, you know how Juno floats in the air, right?";
 				next;
 				cutin "god_nelluad01",2;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "It's said that a piece of Ymir's Heart generates enough power";
 				mes "to keep the entire city aloft in the sky. Isn't that amazing?";
 				next;
-				mes "[内尔里奥德]";
+				mes "[Nelliorde]";
 				mes "Even more recent is the news about the discovery of Ymir's Book. You can read it in Juno's Sage Castle. I hear that it contains the secret to meeting Valkyrie...";
 				close2;
 				break;
 			}
 			break;
 		case 3:
-			mes "[内尔里奥德]";
+			mes "[Nelliorde]";
 			mes "Can I sing, you ask?";
 			mes "Certainly, and if I may say so, pleasureably. Which song would";
 			mes "you care to hear?";
@@ -777,18 +777,18 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 			case 1:
 				if (Zeny > 499) {
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Bragi's Poem!";
 					mes "What a good choice!";
 					mes "I must say this song";
 					mes "represents the";
 					mes "heart of a poet!";
 					soundeffect "bragis_poem.wav",1;
-					set Zeny,Zeny-500;
+					Zeny -= 500;
 					close2;
 				}
 				else {
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Please forgive me, but I cannot play a song for free. The world is harsh, and a frail Bard such as myself must have some means";
 					mes "to survive~";
 					close2;
@@ -797,16 +797,16 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 			case 2:
 				if (Zeny > 499) {
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "You must like robust";
 					mes "and energetic music, eh?";
 					mes "As you wish~";
 					soundeffect "chaos_of_eternity.wav",1;
-					set Zeny,Zeny-500;
+					Zeny -= 500;
 					close2;
 				}
 				else {
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Please forgive me, but I cannot play a song for free. The world is harsh, and a frail Bard such as myself must have some means";
 					mes "to survive~";
 					close2;
@@ -815,18 +815,18 @@ prt_fild08,175,374,3	script	诗人#brising	1_M_BARD,{
 			case 3:
 				if (Zeny > 499) {
 					cutin "god_nelluad02",2;
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Excellent choice!";
 					mes "Somehow, the image of";
 					mes "the setting sun fits";
 					mes "well with Assassins.";
 					mes "Don't you agree?";
 					soundeffect "assassin_of_sunset.wav",1;
-					set Zeny,Zeny-500;
+					Zeny -= 500;
 					close2;
 				}
 				else {
-					mes "[内尔里奥德]";
+					mes "[Nelliorde]";
 					mes "Please forgive me, but I cannot play a song for free. The world is harsh, and a frail Bard such as myself must have some means";
 					mes "to survive~";
 					close2;
@@ -1420,12 +1420,12 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		close;
 	}
 	else if (god_brising == 34) {
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "What did you just say?";
 		mes "Did she really become an";
 		mes "Einherjar? That's the greatest honor for any warrior...";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "She must";
 		mes "be so happy.";
 		mes "I guess in the end,";
@@ -1433,45 +1433,45 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		mes "any place in her heart.";
 		mes "Lowen...";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "But I know one thing";
 		mes "for sure. She should have blamed me for what happened. Why did she take everything upon herself?";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I guess she just saw me as a little brother. She obviously didn't take me very seriously.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "Haha... Hahaha...";
 		mes "Now I feel better!";
 		mes "So, what did you say?";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "Yes, right.";
 		mes "Please tell Enrico this.";
 		mes "The object he's interested in was given by His Majesty to a guild that possessed a castle.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "It can never be made through just human technology. But I guess that His Majesty will let scholars study it and let men possess it if they prove capable.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I wasn't powerful enough to";
 		mes "earn it. Frankly, I stole it. But soon I began to fear its presense and my heart would pound with trepidation when I saw it.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "One day, I think it actually possessed me and I ended up";
 		mes "going on a journey. I'm not really sure exactly where though...";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "All I remember was that I was in Lutie, the town of snow. I went over a bridge to a hill to the West...";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "But once I arrived there, I was seized with this feeling of terror I can't explain.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I ended up running away.";
 		mes "That's why I gave it to Mr. Enrico. You can laugh at me for being a coward if you want.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "You know everything now.";
 		mes "Please leave me alone.";
 		mes "^333333*Sigh...*^000000";
@@ -1479,18 +1479,18 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		close;
 	}
 	else if (god_brising > 19 && god_brising < 34) {
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I'll be waiting.";
 		mes "For some reason, I believe you'll be able to find some sort of clue about what happened these past";
 		mes "two years one of these days.";
 		close;
 	}
 	else if (god_brising == 12) {
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "Lohen Phelicia?";
 		mes "The person I asked you to find is Lowen, not Lohen. Lowen Ellenen.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I'm sorry";
 		mes "for the trouble,";
 		mes "but I think you";
@@ -1499,22 +1499,22 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		close;
 	}
 	else if (god_brising == 11) {
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "Yes...";
 		mes "Lowen is no";
 		mes "longer with us.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I've heard different rumors, but she definitely passed away. I was even at her funeral.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "The last time I saw her alive";
 		mes "was in Geffen. Two years after that, I saw her buried in her grave. Didn't I tell you this?";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I wanted you to find out what happened in those two years before she died. I wanted to know what led to her death.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "What the hell";
 		mes "killed her?!";
 		mes "Don't you understand";
@@ -1523,15 +1523,15 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		close;
 	}
 	else if (god_brising == 10) {
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "Lowen was a Crusader, a knight in the service of holiness preparing for the Holy War.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I always expected her to";
 		mes "become a Knight in the Prontera Chivalry, but suddenly she changed her mind and became a Crusader.";
 		mes "I saw her for the last time in Geffen.";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "I beg you...";
 		mes "Please learn";
 		mes "anything you can";
@@ -1541,7 +1541,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 	}
 	else if (god_brising == 5) {
 		if (rand(1,4) == 1) {
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "You're still here.";
 			mes "Does that mean you";
 			mes "want to hear my";
@@ -1549,65 +1549,65 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 			next;
 			switch(select("Yes, I would like to.:No, thanks.")) {
 			case 1:
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Thank you...";
 				mes "Perhaps you're doing this";
 				mes "merely out of consideration,";
 				mes "but I still appreciate your kindness. The story I will";
 				mes "tell you is very old.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Long ago, there was a little boy who never knew his parents. Just";
 				mes "to survive, he became a Thief and eventually joined the Rogue Guild.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Without any goals or dreams, his life was pretty aimless. He pretty much only lived so that he could see tomorrow.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "However, the little boy met someone who was full of hope and kindess. He admired her and she became his reason for living.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "She will never know that the little boy loved her more than anything else. Unlike the boy, her dream was devote her life to God.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Although he never understood that, he knew that he would be happy to just be near her, watching from a distance.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "But one day, because of one fatal mistake, he lost her and she never came back.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Ever since, that boy has been coming to the Sanctuary everyday";
 				mes "to pray for her safety, even into adulthood.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "...";
 				mes "^333333*Sob*^000000";
 				mes "Please find";
 				mes "her for me.";
 				mes "Find Lowen.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I know that Enrico has sent you. I'm guessing he needs something from me. Am I wrong?";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I'll do whatever you want if you do what I want you to do. It's simple: find out anything you can about Lowen.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "It's doesn't matter how insignificant the clues may be, anything will do. I want to know everything related to her!";
 				next;
 				switch(select("Uhhhhh...:Sorry, I can't.:When was the last time you saw her?")) {
 				case 1:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Please consider my";
 					mes "proposal. If you can";
 					mes "find Lowen for me, I'll";
 					mes "give you what you want.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Please, I beg you.";
 					mes "You are a strong and well-experienced adventurer. Isn't this a simple thing for you to do?";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "If you've ever dearly loved someone, then you'd know how desperate I am. Please find Lowen for me. Please...";
 					next;
 					switch(select("...Alright.:I'm sorry, I don't think I can do it.")) {
@@ -1616,15 +1616,15 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						mes "Alright.";
 						mes "I'll try my best to find her. Would you tell me more about Lowen?";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "She is a Crusader.";
 						mes "The last time I saw her was";
 						mes "deep inside Geffen Dungeon.";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "Long ago, some Crusaders entered the Geffen Dungeon on a monster subjugation expedition.";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "Please find";
 						mes "anything that";
 						mes "you can. I beg";
@@ -1632,7 +1632,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						set god_brising,10;
 						close;
 					case 2:
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "^333333*Sigh*^000000";
 						mes "I understand.";
 						mes "But if you don't help me, then Kaili won't get the help he needs...";
@@ -1640,37 +1640,37 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						close;
 					}
 				case 2:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "You don't understand!";
 					mes "If I weren't this much of a coward, I would already have gone out to find out what I could for myself.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "I'm not afraid of monsters or dying. It's the fact that she might hate me now. That's what I fear: Lowen's reproach.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "All I can do for her is just earnestly pray. I had no idea it'd be so horrible not to be able to see her anymore...";
 					set god_brising,9;
 					close;
 				case 3:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "The last time";
 					mes "I saw her was deep";
 					mes "inside the Geffen Dungeon.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Although it was created by humans, that dungeon is now cursed and inhabited with horrific monsters.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "I'm guessing the Crusaders saw that it was necessary to exterminate the monsters there to keep it from getting even worse.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Lowen accompanied";
 					mes "a group of other Crusaders";
 					mes "for the good of the people,";
 					mes "but I haven't heard anything";
 					mes "about her since...";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "That was the last time...";
 					mes "Please find out anything";
 					mes "you can. I beg you...";
@@ -1678,11 +1678,11 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 					close;
 				}
 			case 2:
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I misunderstood you.";
 				mes "I should have realized that people never really listen unless it's of some benefit to them.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I won't waste any more of";
 				mes "your time. I'll accept Kaili's letter and wait until I find someone who'll listen to";
 				mes "my story and help me.";
@@ -1691,7 +1691,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 			}
 		}
 		else {
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "...";
 			mes "^333333*Sob...*^000000";
 			mes "I'm sorry.";
@@ -1701,13 +1701,13 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		}
 	}
 	else if (god_brising == 4) {
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "What do you";
 		mes "want from me?";
 		mes "Were you sent by";
 		mes "the Rogue Guild?";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "Tell them";
 		mes "I quit already.";
 		mes "Leave me alone!";
@@ -1718,7 +1718,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 			set god_brising,4;
 			close;
 		case 2:
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "Huh...";
 			mes "Enrico Kaili.";
 			mes "Yeah, I remember";
@@ -1727,76 +1727,76 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 			mes "^3355FFHermite nonchalantly";
 			mes "tosses the letter back to you.^000000";
 			next;
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "...";
 			mes "^333333*Sigh...*^000000";
 			next;
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "You...";
 			mes "Would you like to";
 			mes "listen to my story?";
 			next;
 			switch(select("Sure!:I'm busy, actually.")) {
 			case 1:
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Thank you...";
 				mes "Perhaps you're doing this";
 				mes "merely out of consideration,";
 				mes "but I still appreciate your kindness. The story I will";
 				mes "tell you is very old.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Long ago, there was a little boy who never knew his parents. Just";
 				mes "to survive, he became a Thief and eventually joined the Rogue Guild.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Without any goals or dreams, his life was pretty aimless. He pretty much only lived so that he could see tomorrow.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "However, the little boy met someone who was full of hope and kindess. He admired her and she became his reason for living.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "She will never know that the little boy loved her more than anything else. Unlike the boy, her dream was devote her life to God.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Although he never understood that, he knew that he would be happy to just be near her, watching from a distance.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "But one day, because of one fatal mistake, he lost her and she never came back.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Ever since, that boy has been coming to the Sanctuary everyday";
 				mes "to pray for her safety, even into adulthood.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "...";
 				mes "^333333*Sob*^000000";
 				mes "Please find";
 				mes "her for me.";
 				mes "Find Lowen.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I know that Enrico has sent you. I'm guessing he needs something from me. Am I wrong?";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I'll do whatever you want if you do what I want you to do. It's simple: find out anything you can about Lowen.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "It's doesn't matter how insignificant the clues may be, anything will do. I want to know everything related to her!";
 				next;
 				switch(select("Uhhhhh...:Sorry, I can't.:When was the last time you saw her?")) {
 				case 1:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Please consider my";
 					mes "proposal. If you can";
 					mes "find Lowen for me, I'll";
 					mes "give you what you want.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Please, I beg you.";
 					mes "You are a strong and well-experienced adventurer. Isn't this a simple thing for you to do?";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "If you've ever dearly loved someone, then you'd know how desperate I am. Please find Lowen for me. Please...";
 					next;
 					switch(select("...Alright.:I'm sorry, I don't think I can do it.")) {
@@ -1805,15 +1805,15 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						mes "Alright.";
 						mes "I'll try my best to find her. Would you tell me more about Lowen?";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "She is a Crusader.";
 						mes "The last time I saw her was";
 						mes "deep inside Geffen Dungeon.";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "Long ago, some Crusaders entered the Geffen Dungeon on a monster subjugation expedition.";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "Please find";
 						mes "anything that";
 						mes "you can. I beg";
@@ -1821,7 +1821,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						set god_brising,10;
 						close;
 					case 2:
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "^333333*Sigh*^000000";
 						mes "I understand.";
 						mes "But if you don't help me, then Kaili won't get the help he needs...";
@@ -1829,37 +1829,37 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						close;
 					}
 				case 2:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "You don't understand!";
 					mes "If I weren't this much of a coward, I would already have gone out to find out what I could for myself.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "I'm not afraid of monsters or dying. It's the fact that she might hate me now. That's what I fear: Lowen's reproach.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "All I can do for her is just earnestly pray. I had no idea it'd be so horrible not to be able to see her anymore...";
 					set god_brising,9;
 					close;
 				case 3:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "The last time";
 					mes "I saw her was deep";
 					mes "inside the Geffen Dungeon.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Although it was created by humans, that dungeon is now cursed and inhabited with horrific monsters.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "I'm guessing the Crusaders saw that it was necessary to exterminate the monsters there to keep it from getting even worse.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Lowen accompanied";
 					mes "a group of other Crusaders";
 					mes "for the good of the people,";
 					mes "but I haven't heard anything";
 					mes "about her since...";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "That was the last time...";
 					mes "Please find out anything";
 					mes "you can. I beg you...";
@@ -1867,11 +1867,11 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 					close;
 				}
 			case 2:
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I misunderstood you.";
 				mes "I should have realized that people never really listen unless it's of some benefit to them.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I won't waste any more of";
 				mes "your time. I'll accept Kaili's letter and wait until I find someone who'll listen to";
 				mes "my story and help me.";
@@ -1894,7 +1894,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		mes "for someone named...";
 		mes "Hermite?";
 		next;
-		mes "[埃尔米特 查尔斯]";
+		mes "[Hermite Charles]";
 		mes "Hm...?";
 		mes "Hermite? That's me.";
 		mes "But if you don't mind,";
@@ -1906,7 +1906,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 			set god_brising,4;
 			close;
 		case 2:
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "Huh...";
 			mes "Enrico Kaili.";
 			mes "Yeah, I remember";
@@ -1915,76 +1915,76 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 			mes "^3355FFHermite nonchalantly";
 			mes "tosses the letter back to you.^000000";
 			next;
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "...";
 			mes "^333333*Sigh...*^000000";
 			next;
-			mes "[埃尔米特 查尔斯]";
+			mes "[Hermite Charles]";
 			mes "You...";
 			mes "Would you like to";
 			mes "listen to my story?";
 			next;
 			switch(select("Sure!:I'm busy, actually.")) {
 			case 1:
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Thank you...";
 				mes "Perhaps you're doing this";
 				mes "merely out of consideration,";
 				mes "but I still appreciate your kindness. The story I will";
 				mes "tell you is very old.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Long ago, there was a little boy who never knew his parents. Just";
 				mes "to survive, he became a Thief and eventually joined the Rogue Guild.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Without any goals or dreams, his life was pretty aimless. He pretty much only lived so that he could see tomorrow.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "However, the little boy met someone who was full of hope and kindess. He admired her and she became his reason for living.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "She will never know that the little boy loved her more than anything else. Unlike the boy, her dream was devote her life to God.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Although he never understood that, he knew that he would be happy to just be near her, watching from a distance.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "But one day, because of one fatal mistake, he lost her and she never came back.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "Ever since, that boy has been coming to the Sanctuary everyday";
 				mes "to pray for her safety, even into adulthood.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "...";
 				mes "^333333*Sob*^000000";
 				mes "Please find";
 				mes "her for me.";
 				mes "Find Lowen.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I know that Enrico has sent you. I'm guessing he needs something from me. Am I wrong?";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I'll do whatever you want if you do what I want you to do. It's simple: find out anything you can about Lowen.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "It's doesn't matter how insignificant the clues may be, anything will do. I want to know everything related to her!";
 				next;
 				switch(select("Uhhhhh...:Sorry, I can't.:When was the last time you saw her?")) {
 				case 1:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Please consider my";
 					mes "proposal. If you can";
 					mes "find Lowen for me, I'll";
 					mes "give you what you want.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Please, I beg you.";
 					mes "You are a strong and well-experienced adventurer. Isn't this a simple thing for you to do?";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "If you've ever dearly loved someone, then you'd know how desperate I am. Please find Lowen for me. Please...";
 					next;
 					switch(select("...Alright.:I'm sorry, I don't think I can do it.")) {
@@ -1993,15 +1993,15 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						mes "Alright.";
 						mes "I'll try my best to find her. Would you tell me more about Lowen?";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "She is a Crusader.";
 						mes "The last time I saw her was";
 						mes "deep inside Geffen Dungeon.";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "Long ago, some Crusaders entered the Geffen Dungeon on a monster subjugation expedition.";
 						next;
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "Please find";
 						mes "anything that";
 						mes "you can. I beg";
@@ -2009,7 +2009,7 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						set god_brising,10;
 						close;
 					case 2:
-						mes "[埃尔米特 查尔斯]";
+						mes "[Hermite Charles]";
 						mes "^333333*Sigh*^000000";
 						mes "I understand.";
 						mes "But if you don't help me, then Kaili won't get the help he needs...";
@@ -2017,37 +2017,37 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 						close;
 					}
 				case 2:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "You don't understand!";
 					mes "If I weren't this much of a coward, I would already have gone out to find out what I could for myself.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "I'm not afraid of monsters or dying. It's the fact that she might hate me now. That's what I fear: Lowen's reproach.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "All I can do for her is just earnestly pray. I had no idea it'd be so horrible not to be able to see her anymore...";
 					set god_brising,9;
 					close;
 				case 3:
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "The last time";
 					mes "I saw her was deep";
 					mes "inside the Geffen Dungeon.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Although it was created by humans, that dungeon is now cursed and inhabited with horrific monsters.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "I'm guessing the Crusaders saw that it was necessary to exterminate the monsters there to keep it from getting even worse.";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "Lowen accompanied";
 					mes "a group of other Crusaders";
 					mes "for the good of the people,";
 					mes "but I haven't heard anything";
 					mes "about her since...";
 					next;
-					mes "[埃尔米特 查尔斯]";
+					mes "[Hermite Charles]";
 					mes "That was the last time...";
 					mes "Please find out anything";
 					mes "you can. I beg you...";
@@ -2055,11 +2055,11 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 					close;
 				}
 			case 2:
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I misunderstood you.";
 				mes "I should have realized that people never really listen unless it's of some benefit to them.";
 				next;
-				mes "[埃尔米特 查尔斯]";
+				mes "[Hermite Charles]";
 				mes "I won't waste any more of";
 				mes "your time. I'll accept Kaili's letter and wait until I find someone who'll listen to";
 				mes "my story and help me.";
@@ -2437,15 +2437,15 @@ prt_castle,84,51,5	script	Librarian#2	8W_SOLDIER,{
 
 }
 
-prontera,260,354,4	script	女人#Rosa Ellenen	4W_F_01,{
+prontera,260,354,4	script	Woman#Rosa Ellenen	4W_F_01,{
 	if ($God2 < $@god_check1){ 
-		mes "[女人]";
-		mes "唔?";
-		mes "你为什么会来到";
-		mes "这个地方? 如果";
-		mes "你到这里";
-		mes "仅仅是散步的话";
-		mes "就太奇怪了.";
+		mes "[Woman]";
+		mes "Hm?";
+		mes "What brings";
+		mes "you here? It's";
+		mes "kind of strange";
+		mes "to come just to";
+		mes "take a walk.";
 		close;
 	}
 	if ($God3 >= $@god_check2) {
@@ -3249,12 +3249,12 @@ OnTouch:
 	mes "What's Hermite";
 	mes "doing here?!";
 	next;
-	mes "[埃尔米特 查尔斯]";
+	mes "[Hermite Charles]";
 	mes "No, no, no!";
 	mes "Lowen don't...!";
 	mes "He's gonna kill you!";
 	next;
-	mes "[埃尔米特 查尔斯]";
+	mes "[Hermite Charles]";
 	mes "Grand Cross?!";
 	mes "Using that's";
 	mes "committing suicide!";
@@ -3262,7 +3262,7 @@ OnTouch:
 	mes "Don't do that, Lowen!";
 	next;
 	mapannounce "que_god02","Mwahaha! Mortals are such fools...",0,0xA8A8A8;
-	mes "[埃尔米特 查尔斯]";
+	mes "[Hermite Charles]";
 	mes "Lowen!";
 	mes "Noooooooooo!!!";
 	next;

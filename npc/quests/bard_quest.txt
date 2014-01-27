@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Wandering Minstrel Quest
 //===== By: ==================================================
 //= Riotblade and L0ne_W0lf
@@ -1127,7 +1127,7 @@ S_StorySong:
 		case 1:
 			mes "[Errende]";
 			if (Zeny > 499) {
-				set Zeny, Zeny-500;
+				Zeny -= 500;
 				cutin "bard_eland03",2;
 				mes "Alright.";
 				mes "Here we go~";
@@ -1927,7 +1927,7 @@ morocc,134,111,3	script	Bard#3	2_M_BARD_ORIENT,{
 				mes "There's no reason to be afraid of this riffraff, your Uncle Kino is here, okay?";
 			} else if (BaseClass == Job_Assassin) {
 				mes "There's no reason to be afraid. I know that person looks scary, but you're a good girl, so you'll be okay.";
-			} else if (BaeClass == Job_Blacksmith) {
+			} else if (BaseClass == Job_Blacksmith) {
 				mes "There's no reason to be scared, honey. It's just a Blacksmith.";
 			} else {
 				mes "There's no reason to be scared. See...? That person won't hurt you.";

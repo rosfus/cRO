@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= 2005 ChristMas Event
 //===== By: ==================================================
 //= Brainstorm
@@ -24,7 +24,7 @@
 //============================================================
 
 // Louise's Santa Hat (Event 1)
-xmas_in,89,92,5	script	Louise Kim#designer	4_F_06,{
+xmas_in,89,92,5	script	Louise Kim#designer	714,{
 	mes "[Designer Louise Kim]";
 	mes "Cone shaped red Santa hat is too ordinary.";
 	mes "It's old fashioned.";
@@ -189,7 +189,7 @@ xmas_in,89,92,5	script	Louise Kim#designer	4_F_06,{
 }
 
 // Enjoy Happymerry Chistmas Event (Event 2)
-prontera,155,285,3	script	Enjoy#enjoy	4_M_MONK,{
+prontera,155,285,3	script	Enjoy#enjoy	753,{
 	if (!christ_solo05){
 		mes "[Enjoy]";
 		mes "Oh~~~";
@@ -506,7 +506,7 @@ OnTimer180000:
 	end;
 }
 
-prontera,150,286,5	script	Happymerry#happymerry02	4_M_LGTMAN,{
+prontera,150,286,5	script	Happymerry#happymerry02	869,{
 	end;
 
 OnInit:
@@ -535,7 +535,7 @@ OnTimer60000:
 	end;
 }
 
-prontera,161,286,4	script	Christ#christ02	4_M_PECOKNIGHT,{
+prontera,161,286,4	script	Christ#christ02	875,{
 	end;
 OnInit:
 	disablenpc "Christ#christ02";
@@ -552,7 +552,7 @@ OnCommandOff:
 	end;
 }
 
-prontera,161,281,1	script	Mas#mas02	4_M_ALCHE_A,{
+prontera,161,281,1	script	Mas#mas02	748,{
 	end;
 OnInit:
 	disablenpc "Mas#mas02";
@@ -569,7 +569,7 @@ OnCommandOff:
 	end;
 }
 
-prontera,150,281,7	script	Event#event02	4_M_SITDOWN,{
+prontera,150,281,7	script	Event#event02	881,{
 	end;
 OnInit:
 	disablenpc "Event#event02";
@@ -586,7 +586,7 @@ OnCommandOff:
 	end;
 }
 
-prontera,188,177,4	script	Happymerry#happymerry	4_M_LGTMAN,{
+prontera,188,177,4	script	Happymerry#happymerry	869,{
 	if (christ_solo05==1) {
 		mes "[Happymerry]";
 		mes "Holgren~~!!";
@@ -666,7 +666,7 @@ prontera,188,177,4	script	Happymerry#happymerry	4_M_LGTMAN,{
 	}
 }
 
-prontera,62,339,3	script	Christ#christ	4_M_PECOKNIGHT,{
+prontera,62,339,3	script	Christ#christ	875,{
 	if (christ_solo05 == 2) {
 		mes "[Christ]";
 		mes "Now~finally!!!";
@@ -754,7 +754,7 @@ prontera,62,339,3	script	Christ#christ	4_M_PECOKNIGHT,{
 	}
 }
 
-prontera,163,66,7	script	Mas#mas	4_M_ALCHE_A,{
+prontera,163,66,7	script	Mas#mas	748,{
 	if (christ_solo05 == 3) {
 		mes "[Mas]";
 		mes "Herds!!!!!How long does it take!";
@@ -836,7 +836,7 @@ prontera,163,66,7	script	Mas#mas	4_M_ALCHE_A,{
 	}
 }
 
-prontera,35,209,5	script	Event#event	4_M_SITDOWN,{
+prontera,35,209,5	script	Event#event	881,{
 	if (christ_solo05 == 4) {
 		mes "[Event]";
 		mes "........................";
@@ -859,7 +859,7 @@ prontera,35,209,5	script	Event#event	4_M_SITDOWN,{
 		next;
 		mes "-He laughed talking to his right hand.-";
 		mes "";
-		//Emotion "Event#event" ET_KIK
+		//emotion "Event#event" ET_KIK
 		emotion e_kis;
 		next;
 		mes "["+ strcharinfo(0) +"]";
@@ -933,7 +933,7 @@ prontera,35,209,5	script	Event#event	4_M_SITDOWN,{
 }
 
 // Oholy (Event 3)
-prontera,156,242,0	script	Oholy#pron::OholyDup	1_F_PRIEST,{
+prontera,156,242,0	script	Oholy#pron::OholyDup	79,{
 	if (!christ_carol05) {
 		mes "[Oholy]";
 		mes "Joy to the world!";
@@ -1538,7 +1538,7 @@ function	script	F_carol_devi2	{
 	end;
 }
 
-prontera,94,297,3	script	Deviruchi#pron_01	4_DEVIRUCHI,3,3,{
+prontera,94,297,3	script	Deviruchi#pron_01	738,3,3,{
 	callfunc("F_carol_devi2","prontera",155,230);
 	end;
 
@@ -1547,7 +1547,7 @@ OnTouch:
 	end;
 }
 
-prontera,205,242,3	script	Deviruchi#pron_02	4_DEVIRUCHI,3,3,{
+prontera,205,242,3	script	Deviruchi#pron_02	738,3,3,{
 	callfunc("F_carol_devi2","prontera",155,230);
 	end;
 
@@ -1556,7 +1556,7 @@ OnTouch:
 	end;
 }
 
-prontera,126,118,3	script	Deviruchi#pron_03	4_DEVIRUCHI,3,3,{
+prontera,126,118,3	script	Deviruchi#pron_03	738,3,3,{
 	callfunc("F_carol_devi2","prontera",155,230);
 	end;
 
@@ -1566,8 +1566,8 @@ OnTouch:
 }
 
 // Payon
-payon,165,153,3	duplicate(OholyDup)	Oholy#payon	1_F_PRIEST
-payon,142,203,3	script	Deviruchi#payon_01	4_DEVIRUCHI,3,3,{
+payon,165,153,3	duplicate(OholyDup)	Oholy#payon	79
+payon,142,203,3	script	Deviruchi#payon_01	738,3,3,{
 	callfunc("F_carol_devi2","payon",166,60);
 	end;
 
@@ -1576,7 +1576,7 @@ OnTouch:
 	end;
 }
 
-payon,248,239,3	script	Deviruchi#payon_02	4_DEVIRUCHI,3,3,{
+payon,248,239,3	script	Deviruchi#payon_02	738,3,3,{
 	callfunc("F_carol_devi2","payon",166,60);
 	end;
 
@@ -1585,7 +1585,7 @@ OnTouch:
 	end;
 }
 
-payon,140,56,3	script	Deviruchi#payon_03	4_DEVIRUCHI,3,3,{
+payon,140,56,3	script	Deviruchi#payon_03	738,3,3,{
 	callfunc("F_carol_devi2","payon",166,60);
 	end;
 
@@ -1594,8 +1594,8 @@ OnTouch:
 	end;
 }
 
-morocc,161,85,0	duplicate(OholyDup)	Oholy#morocc	1_F_PRIEST
-morocc,52,134,3	script	Deviruchi#morocc_01	4_DEVIRUCHI,3,3,{
+morocc,161,85,0	duplicate(OholyDup)	Oholy#morocc	79
+morocc,52,134,3	script	Deviruchi#morocc_01	738,3,3,{
 	callfunc("F_carol_devi2","morocc",160,51);
 	end;
 
@@ -1604,7 +1604,7 @@ OnTouch:
 	end;
 }
 
-morocc,210,264,3	script	Deviruchi#morocc_02	4_DEVIRUCHI,3,3,{
+morocc,210,264,3	script	Deviruchi#morocc_02	738,3,3,{
 	callfunc("F_carol_devi2","morocc",160,51);
 	end;
 
@@ -1613,7 +1613,7 @@ OnTouch:
 	end;
 }
 
-morocc,223,74,3	script	Deviruchi#morocc_03	4_DEVIRUCHI,3,3,{
+morocc,223,74,3	script	Deviruchi#morocc_03	738,3,3,{
 	callfunc("F_carol_devi2","morocc",160,51);
 	end;
 
@@ -1623,8 +1623,8 @@ OnTouch:
 }
 
 // Geffen
-geffen,120,188,0	duplicate(OholyDup)	Oholy#geffen	1_F_PRIEST
-geffen,173,163,3	script	Deviruchi#geffen_01	4_DEVIRUCHI,3,3,{
+geffen,120,188,0	duplicate(OholyDup)	Oholy#geffen	79
+geffen,173,163,3	script	Deviruchi#geffen_01	738,3,3,{
 	callfunc("F_carol_devi2","geffen",120,34);
 	end;
 
@@ -1633,7 +1633,7 @@ OnTouch:
 	end;
 }
 
-geffen,49,95,3	script	Deviruchi#geffen_02	4_DEVIRUCHI,3,3,{
+geffen,49,95,3	script	Deviruchi#geffen_02	738,3,3,{
 	callfunc("F_carol_devi2","geffen",120,34);
 	end;
 
@@ -1642,7 +1642,7 @@ OnTouch:
 	end;
 }
 
-geffen,111,101,3	script	Deviruchi#geffen_03	4_DEVIRUCHI,3,3,{
+geffen,111,101,3	script	Deviruchi#geffen_03	738,3,3,{
 	callfunc("F_carol_devi2","geffen",120,34);
 	end;
 
@@ -1652,8 +1652,8 @@ OnTouch:
 }
 
 // Alberta
-alberta,54,237,0	duplicate(OholyDup)	Oholy#alberta	1_F_PRIEST
-alberta,97,86,3	script	Deviruchi#alberta_01	4_DEVIRUCHI,3,3,{
+alberta,54,237,0	duplicate(OholyDup)	Oholy#alberta	79
+alberta,97,86,3	script	Deviruchi#alberta_01	738,3,3,{
 	callfunc("F_carol_devi2","alberta",28,235);
 	end;
 
@@ -1662,7 +1662,7 @@ OnTouch:
 	end;
 }
 
-alberta,180,48,3	script	Deviruchi#alberta_02	4_DEVIRUCHI,3,3,{
+alberta,180,48,3	script	Deviruchi#alberta_02	738,3,3,{
 	callfunc("F_carol_devi2","alberta",28,235);
 	end;
 
@@ -1671,7 +1671,7 @@ OnTouch:
 	end;
 }
 
-alberta,54,132,3	script	Deviruchi#alberta_03	4_DEVIRUCHI,3,3,{
+alberta,54,132,3	script	Deviruchi#alberta_03	738,3,3,{
 	callfunc("F_carol_devi2","alberta",28,235);
 	end;
 

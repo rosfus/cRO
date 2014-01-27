@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Hugel Quest NPCs
 //===== By: ==================================================
 //= MasterOfMuppets & SinSloth
@@ -9525,7 +9525,7 @@ hugel,209,109,2	script	Boatman#hugel	4_M_SEAMAN,{
 			mes "We'll arrive near";
 			mes "the Odin Shrine soon~";
 			close2;
-			set Zeny,Zeny -800;
+			Zeny -=800;
 			if (hg_odin == 2) set hg_odin,3;
 			else if (hg_odin == 4) set hg_odin,5;
 			else if (hg_odin == 12) set hg_odin,13;

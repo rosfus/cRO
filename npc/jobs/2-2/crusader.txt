@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Crusader Job Quest
 //===== By: ==================================================
 //= Made by: Black Dragon
@@ -8,7 +8,7 @@
 //===== Description: =========================================
 //= [Official Conversion]
 //= Job quest for Crusader classes
-//===== Additional Comments: =================================
+//===== Additional Comments: ================================= 
 //= 2.2 Updated All NPCs to the officials one [Samuray22]
 //=     -Based on the ASB 4.0 Package.
 //=-Maybe need be checked the monsters in the test 2 and 4.
@@ -1465,9 +1465,9 @@ OnStop:
 	end;
 }
 
-//============================================================
+//============================================================ 
 // Old changelog
-//============================================================
+//============================================================ 
 //= Need optimalization and fixing
 //= thanks to Komurka, KiLLaLeN, Lupus (fixing error)
 //= just a temp Job Quest
@@ -1486,4 +1486,4 @@ OnStop:
 //= 2.0 Changed numbers to constants. [Vicious]
 //= 2.1 Fixed endless loop, wrong condition check [Lupus]
 //=     also changed all job numbers to constants, fixed logic
-//============================================================
+//============================================================ 

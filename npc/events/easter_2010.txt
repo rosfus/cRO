@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Easter Event (2010)
 //===== By: ==================================================
 //= Euphy
@@ -10,7 +10,7 @@
 //= 1.0 First version. [Euphy]
 //============================================================
 
-prontera,202,297,3	script	Rina#Easter	4_F_JOB_HUNTER,{
+prontera,202,297,3	script	Rina#Easter	727,{
 	disable_items;
 	if (BaseLevel < 40) {
 		mes "[Rina]";
@@ -293,7 +293,7 @@ prontera,202,297,3	script	Rina#Easter	4_F_JOB_HUNTER,{
 	}
 }
 
-geffen,207,114,4	script	#Hiddne01Easter	CLEAR_NPC,{
+geffen,207,114,4	script	#Hiddne01Easter	844,{
 	if (oversea_event2 > 519) {
 	OnRelease:
 		specialeffect EF_PATTACK;
@@ -313,25 +313,25 @@ geffen,207,114,4	script	#Hiddne01Easter	CLEAR_NPC,{
 	end;
 }
 
-xmas,144,52,4	script	#Hiddne02Easter	CLEAR_NPC,{
+xmas,144,52,4	script	#Hiddne02Easter	844,{
 	if (oversea_event3 > 269)
 		doevent "#Hiddne01Easter::OnRelease";
 	end;
 }
 
-yuno,164,46,4	script	#Hiddne03Easter	CLEAR_NPC,{
+yuno,164,46,4	script	#Hiddne03Easter	844,{
 	if (oversea_event6 > 244)
 		doevent "#Hiddne01Easter::OnRelease";
 	end;
 }
 
-rachel,36,132,4	script	#Hiddne04Easter	CLEAR_NPC,{
+rachel,36,132,4	script	#Hiddne04Easter	844,{
 	if (oversea_event9 > 196)
 		doevent "#Hiddne01Easter::OnRelease";
 	end;
 }
 
-prontera,204,297,3	script	Rina's Little Friend	4_DRAGON_EGG,{
+prontera,204,297,3	script	Rina's Little Friend	463,{
 	disable_items;
 	if (checkquest(9117) == -1) {
 		emotion e_swt2;
@@ -384,7 +384,7 @@ prontera,204,297,3	script	Rina's Little Friend	4_DRAGON_EGG,{
 			specialeffect EF_ASPERSIO;
 			delitem 574,1; //Egg
 			delitem 1001,20; //Sparkling_Dust
-			Zeny -= .@nCharge;
+			set Zeny, Zeny - .@nCharge;
 			set .@nPercentage, rand(1,100);
 			if (.@nPercentage <= 41) {
 				mes "[Rina's Little Friend]";
@@ -497,7 +497,7 @@ prontera,204,297,3	script	Rina's Little Friend	4_DRAGON_EGG,{
 			next;
 			mes "[Rina's Little Friend]";
 			mes "If you are interested";
-			mes "make that zeny and come again.";
+			mes "make that Zeny and come again.";
 			mes "Haha...";
 			mes "I'll be waiting for you.";
 			close2;
@@ -527,7 +527,7 @@ prontera,204,297,3	script	Rina's Little Friend	4_DRAGON_EGG,{
 	close;
 }
 
-prontera,116,82,5	script	Traveler#01Easter	4_M_03,{
+prontera,116,82,5	script	Traveler#01Easter	85,{
 	mes "[Traveler]";
 	mes "I'm a traveler";
 	mes "and I often visit ^8B4513Prontera^000000.";
@@ -588,7 +588,7 @@ OnTimer5000:
 	end;
 }
 
-prontera,163,194,5	script	Traveler#02Easter	4_F_03,{
+prontera,163,194,5	script	Traveler#02Easter	92,{
 	mes "[Traveler]";
 	mes "A while ago,";
 	mes "I met a lady";

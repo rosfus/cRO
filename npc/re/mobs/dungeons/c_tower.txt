@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Clock Tower Monster Spawn Script
 //===== By: ==================================================
 //= Athena (1.0)
@@ -45,3 +45,28 @@ c_tower4,0,0,0,0	monster	Mimic	1191,12,5000,0,0
 c_tower4,0,0,0,0	monster	Whisper	1179,5,5000,0,0
 c_tower4,0,0,0,0	monster	Clock Tower Manager	1270,3,5000,0,0
 c_tower4,0,0,0,0	monster	Elder	1377,2,5000,0,0
+
+
+//==================================================
+// c_tower2_ - Clock Tower 2f_
+//==================================================
+c_tower2_,0,0,0,0	monster	NG_RIDEWORD	2478,2,300000,0,0
+c_tower2_,0,0,0,0	monster	NG_RIDEWORD	2478,2,120000,0,0
+c_tower2_,0,0,0,0	monster	NG_RIDEWORD	2478,1,60000,0,0
+c_tower2_,0,0,0,0	monster	NG_MIMIC	2479,3,5000,0,0
+c_tower2_,0,0,0,0	monster	BIG_BEN	2916,40,5000,0,0
+c_tower2_,0,0,0,0	monster	NEO_PUNK	2919,40,5000,0,0
+c_tower2_,0,0,0,0	monster	TIME_KEEPER	2918,1,5000,0,0
+c_tower2_,0,0,0,0	monster	ARC_ELDER	2920,2,3600000 0 0
+
+//==================================================
+// c_tower3_ - Clock Tower 3f_
+//==================================================
+c_tower3_,0,0,0,0	monster	NG_MIMIC	2479,7,5000,0,0
+c_tower3_,0,0,0,0	monster	NG_RIDEWORD	2478,5,5000,0,0
+c_tower3_,0,0,0,0	monster	NG_RIDEWORD	2478,1,120000,0,0
+c_tower3_,0,0,0,0	monster	BIG_BELL	2916,80,5000,0,0
+c_tower3_,0,0,0,0	monster	TIME_KEEPER	2918,3,5000,0,0
+c_tower3_,0,0,0,0	monster	OWL_VISCOUNT	2921,1,5000,0,0
+c_tower3_,0,0,0,0	monster	TIMEHOLDER	3074,1,5000,0,0
+c_tower3_,0,0,0,0	monster	OWL_MARQUEES	2923,1,5000,0,0

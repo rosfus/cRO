@@ -1,7 +1,7 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Lighthalzen Fields Monster Spawn Script
 //===== By: ==================================================
-//= Muad_Dib, RoSF.us Dev Team
+//= Muad_Dib, RoSF.us R&D Team.
 //===== Current Version: =====================================
 //= 1.6
 //===== Additional Comments: =================================

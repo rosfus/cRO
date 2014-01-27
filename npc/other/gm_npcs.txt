@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= GM Management NPCs
 //===== By: ==================================================
 //= Euphy
@@ -20,14 +20,14 @@ function	script	F_GM_NPC	{
 	if (getgmlevel() < 99) {/* TODO: perhaps better to just add a group permission? [Ind] */
 		// Log the event.
 		getmapxy(.@map$,.@x,.@y,1);
-		logmes strcharinfo(0)+" attempted to access GM NPC "+strnpcinfo(0)+" ("+.@map$+","+.@x+","+.@y+").";
+		logmes strcharinfo(0)+" ³¢ÊÔ·ÃÎÊGM NPC"+strnpcinfo(0)+" ("+.@map$+","+.@x+","+.@y+").";
 		end;
 	}
 
 	if (!getargcount()) return;
 
 	// To disable password inputs, uncomment the line below.
-	//return 1;
+	return 1;
 
 	// Password return values:
 	//  1: correct input

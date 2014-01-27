@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= iRO Valentine's Day Event (2009)
 //===== By: ==================================================
 //= Kisuka
@@ -23,7 +23,7 @@
 
 // Marco Bassinio (Chocolate/Chocolate Box maker)
 //============================================================
-prontera,164,174,4	script	Trader#Val09	1_M_MERCHANT,{
+prontera,164,174,4	script	Trader#Val09	58,{
 	mes "[Marco Bassinio]";
 	mes "Hey, folks! Here's something you don't see everyday!";
 	mes "Something you can never find in Rune-Midgarts!";
@@ -78,8 +78,8 @@ prontera,164,174,4	script	Trader#Val09	1_M_MERCHANT,{
 			set .@price, .@input * 5000;
 			if (Zeny < .@price) {
 				mes "[Marco Bassinio]";
-				mes "Looks like you don't have enough zeny with ya.";
-				mes "Maybe you should borrow some zeny from a friend.";
+				mes "Looks like you don't have enough Zeny with ya.";
+				mes "Maybe you should borrow some Zeny from a friend.";
 				mes "Cuz, I'm not gonna be here everyday.";
 				close;
 			} else {
@@ -100,7 +100,7 @@ prontera,164,174,4	script	Trader#Val09	1_M_MERCHANT,{
 			mes "If you want to gift-wrap the chocolate, of course, you need chocolate, plus, wrapping paper, wrapping strap and a box.";
 			next;
 			mes "[Marco Bassinio]";
-			mes "You also need to pay 500 zeny to carve your name on the box.";
+			mes "You also need to pay 500 Zeny to carve your name on the box.";
 			mes "Are you all prepared...?";
 			next;
 			if (countitem(7175) < 1 || countitem(7174) < 1 || countitem(7948) < 1 || Zeny < 500) {
@@ -111,7 +111,7 @@ prontera,164,174,4	script	Trader#Val09	1_M_MERCHANT,{
 				next;
 				mes "[Marco Bassinio]";
 				mes "You need to bring some wrapping paper, wrapping strap, and a box.";
-				mes "Oh, also bring 500 zeny, and don't forget to bring your true loving heart with you!!";
+				mes "Oh, also bring 500 Zeny, and don't forget to bring your true loving heart with you!!";
 				close;
 			}
 			if (countitem(558) < 1) {
@@ -140,7 +140,7 @@ prontera,164,174,4	script	Trader#Val09	1_M_MERCHANT,{
 			delitem 7175,1;
 			delitem 7174,1;
 			delitem 7948,1;
-			Zeny -= 500;
+			set Zeny,Zeny-500;
 			getnameditem 12744,strcharinfo(0);
 			mes "[Marco Bassinio]";
 			mes "Happy Valentine's Day!";
@@ -160,7 +160,7 @@ prontera,164,174,4	script	Trader#Val09	1_M_MERCHANT,{
 
 // Packs Trader (Sells Wrapping Paper, Lace, and Box)
 //============================================================
-prontera,147,171,5	script	Packs Trader#Val09	1_M_MERCHANT,{
+prontera,147,171,5	script	Packs Trader#Val09	58,{
 	mes "[Packs Trader]";
 	mes "Hello.";
 	mes "I am a Packs Trader, I sell paper boxes and supplies for packing presents.";
@@ -172,7 +172,7 @@ prontera,147,171,5	script	Packs Trader#Val09	1_M_MERCHANT,{
 		switch(select("Packing Paper:Packing Ribbon:Box:Cancel.")) {
 			case 1:
 				mes "[Packs Trader]";
-				mes "It's 200 zeny for 1 Packing Paper.";
+				mes "It's 200 Zeny for 1 Packing Paper.";
 				mes "How many do you want?";
 				mes "You can't buy more than 10 items at once.";
 				next;
@@ -206,14 +206,14 @@ prontera,147,171,5	script	Packs Trader#Val09	1_M_MERCHANT,{
 					mes "[Packs Trader]";
 					mes "Here they are.";
 					mes "Hope it makes your Valentine's Day more pleasing!";
-					Zeny -= .@price;
+					set Zeny,Zeny-.@price;
 					getitem 7175,.@input;
 					next;
 					break;
 				}
 			case 2:
 				mes "[Packs Trader]";
-				mes "It's 200 zeny for 1 Packing Ribbon.";
+				mes "It's 200 Zeny for 1 Packing Ribbon.";
 				mes "How many do you want?";
 				mes "You can't buy more than 10 items at once.";
 				next;
@@ -247,14 +247,14 @@ prontera,147,171,5	script	Packs Trader#Val09	1_M_MERCHANT,{
 					mes "[Packs Trader]";
 					mes "Here they are.";
 					mes "Hope it makes your Valentine's Day more pleasing!";
-					Zeny -= .@price;
+					set Zeny,Zeny-.@price;
 					getitem 7174,.@input;
 					next;
 					break;
 				}
 			case 3:
 				mes "[Packs Trader]";
-				mes "It's 600 zeny for 1 Box.";
+				mes "It's 600 Zeny for 1 Box.";
 				mes "How many do you want?";
 				mes "You can't buy more than 10 items at once.";
 				next;
@@ -288,7 +288,7 @@ prontera,147,171,5	script	Packs Trader#Val09	1_M_MERCHANT,{
 					mes "[Packs Trader]";
 					mes "Here they are.";
 					mes "Hope it makes your Valentine's Day more pleasing!";
-					Zeny -= .@price;
+					set Zeny,Zeny-.@price;
 					getitem 7948,.@input;
 					next;
 					break;
@@ -304,7 +304,7 @@ prontera,147,171,5	script	Packs Trader#Val09	1_M_MERCHANT,{
 
 // Event Ring Maker (Makes ring for players)
 //============================================================
-prontera,154,185,5	script	Event Ring Maker#Val09	4_F_KAFRA7,{
+prontera,154,185,5	script	Event Ring Maker#Val09	721,{
 	if (BaseLevel < 75) {
 		mes "[Event Ring Maker]";
 		mes "Hello, I only make the Valentine rings to those experienced adventurer Level 75 or above.";
@@ -352,7 +352,7 @@ prontera,154,185,5	script	Event Ring Maker#Val09	4_F_KAFRA7,{
 	next;
 	mes "[Event Ring Maker]";
 	mes "So you better be sure of who you give this to.";
-	mes "By the way, It costs 1,000 zeny.";
+	mes "By the way, It costs 1,000 Zeny.";
 	mes "Would you like to make one?";
 	next;
 	if(select("Hmm.. I gotta give it a second thought...:Sure.") == 1) {
@@ -376,7 +376,7 @@ prontera,154,185,5	script	Event Ring Maker#Val09	4_F_KAFRA7,{
 	delitem 7175,1;
 	delitem 7174,1;
 	delitem 7948,1;
-	Zeny -= 1000;
+	set Zeny,Zeny-1000;
 	set iROval09ring,1;
 	if (Sex) {
 		getnameditem 12742,strcharinfo(0);
@@ -398,7 +398,7 @@ prontera,154,185,5	script	Event Ring Maker#Val09	4_F_KAFRA7,{
 
 // Valentine Vote Manager (Registers votes)
 //============================================================
-prontera,157,185,4	script	Valentine Vote Manager#v	4_F_KAFRA5,{
+prontera,157,185,4	script	Valentine Vote Manager#v	113,{
 	mes "[Valentine Vote Manager]";
 	mes "Hello, I'm the Valentine's Vote Manager.";
 	mes "I'm in charge of collecting rings for this event!";
@@ -519,7 +519,7 @@ prontera,157,185,4	script	Valentine Vote Manager#v	4_F_KAFRA5,{
 
 // Charles Orleans (Makes Home-Made Chocolates)
 //============================================================
-prt_castle,42,35,3	script	Dessert Manager#Val09	1_M_01,{
+prt_castle,42,35,3	script	Dessert Manager#Val09	47,{
 	if (Sex) {
 		mes "[Charles Orleans]";
 		mes "Monsieur~! What brings you to my beautiful atelier?";

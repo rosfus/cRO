@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Valentine Event Script
 //===== By: ==================================================
 //= Muad_Dib (Prometheus Project)
@@ -15,7 +15,7 @@
 
 // Stephen - Valentine Event Chocolate seller
 //============================================================
-alberta,26,243,4	script	Stephen	1_M_MERCHANT,{
+alberta,26,243,4	script	Stephen	58,{
 	mes "[Stephen]";
 	mes "Guess what I've got?";
 	mes "A tasty treat not easily found in Rune-Midgard....";
@@ -23,7 +23,7 @@ alberta,26,243,4	script	Stephen	1_M_MERCHANT,{
 	mes "[Stephen]";
 	mes "Chocolate!";
 	mes "That's right, don't you love chocolate.... I do.";
-	mes "And you are in luck, because I'm selling them for only 5,000 zeny a piece!";
+	mes "And you are in luck, because I'm selling them for only 5,000 Zeny a piece!";
 	next;
 	if(select("I want some chocolate!:No thanks.")==2) {
 		mes "[Stephen]";
@@ -48,7 +48,7 @@ alberta,26,243,4	script	Stephen	1_M_MERCHANT,{
 	if (Zeny < .@i*5000) {
 		mes "I'm sorry, but it seems you can't afford to buy these off me.";
 		close; }
-	Zeny -= .@i*5000;
+	set Zeny, Zeny - .@i*5000;
 	getitem 558,.@i;
 	mes "There you go!";
 	mes "You can give that to someone as a gift, or enjoy it yourself!";
@@ -59,7 +59,7 @@ alberta,26,243,4	script	Stephen	1_M_MERCHANT,{
 
 // Jainie -- Gives information about Valentine Event
 //============================================================
-alberta,29,243,4	script	Jainie	1_M_INNKEEPER,{
+alberta,29,243,4	script	Jainie	53,{
 	mes "[Jainie]";
 	mes "You know what? The chocolate that my boyfriend sells are from me!";
 	mes "I made them by myself.";
@@ -83,7 +83,7 @@ alberta,29,243,4	script	Jainie	1_M_INNKEEPER,{
 
 // Carl Orleans -- Valentine Event Chocolate maker
 //============================================================
-prt_castle,54,34,4	script	Carl Orleans	1_M_01,{
+prt_castle,54,34,4	script	Carl Orleans	47,{
 	mes "[Carl Orleans]";
 	mes "Yes?";
 	next;

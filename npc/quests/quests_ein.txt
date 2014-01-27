@@ -1,4 +1,4 @@
-//===== RoSF.us Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Quest NPCs related to Einbroch and Einbech
 //===== By: ==================================================
 //= Evera and The rAthena Dev Team

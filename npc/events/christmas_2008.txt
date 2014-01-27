@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= iRO 2008 Christmas Event
 //===== By: ==================================================
 //= Kisuka
@@ -18,7 +18,7 @@
 
 // Caroller - Music Box
 //============================================================
-prontera,226,306,4	script	Caroller#iROxmas08	1_F_PRIEST,{
+prontera,226,306,4	script	Caroller#iROxmas08	79,{
 	if (iROxmas08carol < 1 || iROxmas08carol == 3) {
 		if (iROxmas08carol == 3) {
 			mes "[Caroller]";
@@ -434,7 +434,7 @@ prontera,226,306,4	script	Caroller#iROxmas08	1_F_PRIEST,{
 
 // Santa Claus - Card Game
 //============================================================
--	script	Santa Claus#iROxmas08::08santa	4_M_SANTA,{
+-	script	Santa Claus#iROxmas08::08santa	718,{
 	mes "[Santa Claus]";
 	mes "Wow! Were you naughty or nice this year?";
 	mes "All right, what comes to your mind when you think about Christmas?";
@@ -672,7 +672,7 @@ prontera,226,306,4	script	Caroller#iROxmas08	1_F_PRIEST,{
 	case 4:
 		mes "[Santa Claus]";
 		mes "Do you mean that ever so fashionable costume for Santa's and youngsters!?!";
-		mes "Light-weight, fashionable, and keeps you warm!";
+		mes "Light-Weight, fashionable, and keeps you warm!";
 		next;
 		mes "[Santa Claus]";
 		mes "There used to be designer who visited my house to make my Santa costumes.";
@@ -707,15 +707,15 @@ prontera,226,306,4	script	Caroller#iROxmas08	1_F_PRIEST,{
 	}
 }
 
-payon,171,109,4	duplicate(08santa)	Santa Claus#0801	4_M_SANTA
-prontera,156,285,4	duplicate(08santa)	Santa Claus#0802	4_M_SANTA
-alberta,117,66,4	duplicate(08santa)	Santa Claus#0803	4_M_SANTA
-geffen,119,70,4	duplicate(08santa)	Santa Claus#0804	4_M_SANTA
-morocc,158,104,4	duplicate(08santa)	Santa Claus#0805	4_M_SANTA
+payon,171,109,4	duplicate(08santa)	Santa Claus#0801	718
+prontera,156,285,4	duplicate(08santa)	Santa Claus#0802	718
+alberta,117,66,4	duplicate(08santa)	Santa Claus#0803	718
+geffen,119,70,4	duplicate(08santa)	Santa Claus#0804	718
+morocc,158,104,4	duplicate(08santa)	Santa Claus#0805	718
 
 // Louise Kim - Santa Suit
 //============================================================
-xmas_in,89,92,4	script	Louise Kim#iROxmas08	4_F_06,{
+xmas_in,89,92,4	script	Louise Kim#iROxmas08	714,{
 	mes "[Louise Kim]";
 	mes "I always thought about how boring Santa Claus is wearing a too boring costume.";
 	mes "Too boring!";

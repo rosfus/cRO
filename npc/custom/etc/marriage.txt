@@ -1,4 +1,4 @@
-//===== Hercules Script ======================================
+//===== RoSF.us R&D Team. ====================================
 //= Wedding Script
 //===== By: ==================================================
 //= AppleGirl, Evera
@@ -15,7 +15,7 @@
 // Configuration Variables: 
 -	script	marriage_init	-1,{
 OnInit:
-	set $@wed_allow, 0;	//If 1, allows same sex marriages.
+	set $@wed_allow, 0;	//If 1, allows same Sex marriages.
 	set $@wed_veil, 0;	//Set to 0 to disable veil check on the bride
 
 //Id of the item that is traded for the wedding ring (use 0 to disable):
@@ -52,7 +52,7 @@ OnInit:
 // $@divorcee id of the partner, who has to accept the divorce and pay.
 
 //The Priest - official iRO sprite & in-dialog name (on-map name not confirmed)
-prt_church,100,123,4	script	Vomars	1_M_PASTOR,{
+prt_church,100,123,4	script	Vomars	60,{
 	set @name$,"Vomars";
 
 	function SF_wed_end;
@@ -433,7 +433,7 @@ OnInit:
 }
 
 //Registration & Status
-prt_church,106,99,3	script	Happy Marry	1_F_02,{
+prt_church,106,99,3	script	Happy Marry	67,{
 	set @name$,"Marry";
 	if (getpartnerid() > 0) {
 		mes "["+@name$+"]";
@@ -716,7 +716,7 @@ function SF_TryRegister {
 		mes "Come back once you have collected "+@cost+"z."; 
 		close;
 	}
-	Zeny -= @cost;
+	set Zeny,Zeny-@cost;
 	sc_start SC_WEDDING,3600000,1; //Start Wedding Effect (SC_WEDDING)
 	if (@bride) {
 		set $wed_bride_progress,1;
@@ -809,7 +809,7 @@ function SF_Procedure {
 }
 }
 
-prt_church,94,99,4	script	Sister Lisa	1_F_PRIEST,{
+prt_church,94,99,4	script	Sister Lisa	79,{
 	set @name$,"Lisa";
 
 	function SF_DivorceEnd;
@@ -911,7 +911,7 @@ function SF_InProgress {
 		emotion e_swt2;
 		close;
 	}
-	Zeny -= $@wed_divorce_fee;
+	set Zeny,Zeny-$@wed_divorce_fee;
 	announce $@divorcer$+" has just divorced "+strcharinfo(0)+"...", 8;
 	mes "["+@name$+"]";
 	mes "Your divorce has been filed. You are no longer wed.";
