@@ -1,0 +1,34 @@
+prontera.gat,164,82,4	script	福利发放员	850,{
+    mes "南海RO服务员";
+    mes "你好！我是[南海仙境]福利发放员";
+    mes "你12级的时候可以领取一次福利100000z";
+    mes "你50级的时候可以来我这领取福利200000z";
+    mes "你95级的时候还可以来这领取福利400000z";
+    next;
+    mes "都只能领一次哦！";
+    mes "请选择你的操作!";
+    next;
+    menu "我要申请12、50、95级福利",FULIPD,"退出",LEND;
+FULIPD:
+        if ((BaseLevel>=12)&&(LE1==0)) {set LE1,1;set Zeny,Zeny+100000;mes"12级福利已经发给你了";close;}
+	 if ((BaseLevel>=50)&&(LE1==1)) {set LE1,2;set Zeny,Zeny+200000;mes"50级福利已经发给你了";close;}
+	 if ((BaseLevel>=95)&&(LE1==2)) {set LE1,3;set Zeny,Zeny+400000;mes"95级福利已经发给你了";close;} 
+	 else {	mes "小子！你不符合领取要求喔"; close;    }       
+
+LEND:
+mes "有需要的话再找我！"; 
+close;
+end;
+}
+
+
+
+
+
+
+
+
+
+
+
+

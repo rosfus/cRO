@@ -1,0 +1,46 @@
+//新人装备发送员
+//by 呜呜
+
+prontera.gat,164,85,4	script	肥崽先生	711,{
+mes "[肥崽先生]";
+mes "你好，我是肥崽先生!";
+mes "我为每位初学都发放一些装备和药品!";
+mes "每个人只能领一次哦！";
+next;
+menu "我要领取！",LGET,"退出",LCLOSE;
+
+//开始
+LGET:
+		if (g==2) goto OREADY;
+
+		set g,2;
+		getitem	1208,1;	
+		getitem	2102,1;	
+		getitem	2278,1;	
+		getitem	2221,1;	
+		getitem	2306,1;	
+		getitem	2402,1;	
+		getitem	2502,1;	
+		getitem	2607,1;	
+		getitem	2607,1;	
+		getitem	645,10;	
+		getitem	501,20;
+                getitem	9601,1;
+                getitem	9602,1;                
+		goto LOK;
+OREADY:
+		mes "[肥崽先生]";
+		mes "领过了不能再领哦！";
+		goto LCLOSE;
+LOK:
+		mes "[肥崽先生]";
+		mes "希望你玩得愉快!";
+		goto LCLOSE;	
+LCLOSE:
+		close;
+OnInit:
+	waitingroom "新人装备发送员！",0;
+	end;
+	
+	
+}

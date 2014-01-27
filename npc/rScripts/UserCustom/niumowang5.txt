@@ -1,0 +1,281 @@
+//作者为无名
+prontera.gat,164,107,4	script	轮盘	80,{
+	if ( Zeny >= 1000000000 ) goto NPLB;
+	mes "[轮盘]  ／＼＿____＿／＼";
+	mes ".     ／  ／＼_２_／＼　＼";
+	mes ".   ／  ／１ ▲　▲ ３＼  ＼";
+	mes ". 　───── ○ ─────";
+	mes ".   ＼  ＼３＼ ▲ ／１／  ／";
+	mes ".   　＼  ＼／_２_＼／  ／";
+	mes ".     　＼／＿____＿＼／";
+	mes "每玩一次为1000000z!!";
+	mes "估中颜色2倍奖金!!";
+	mes "估中数字3倍奖金!!";
+	mes "同时估中数字和颜色6倍奖金!!";
+	next;
+	menu 
+	"买黑白",bw1,
+	"买数目",bw2,
+	"买黑白和数目",bw3,
+	"我不玩",NPLB;
+	close;
+	end;
+bw1:
+	mes "[轮盘]";
+	mes "只要波子停在你买的颜色上你就赢!!";
+	mes "请选择颜色";
+	next;
+	menu 
+	"买黑色",bw4,
+	"买白色",bw5,
+	"我不玩",NPLB;
+	close;
+	end;
+bw2:
+	mes "[轮盘]";
+	mes "只要波子停在你买的数字上你就赢!!";
+	mes "请选择数字";
+	next;
+	menu 
+	"买1号",bw6,
+	"买2号",bw7,
+	"买3号",bw8,
+	"我不玩",NPLB;
+	close;
+	end;
+bw3:
+	mes "[轮盘]";
+	mes "只要波子停在,";
+	mes "你买的数字和颜色上你就赢!!";
+	mes "请选择颜色";
+	next;
+	menu 
+	"买1号黑色",bw9,
+	"买1号白色",bw10,
+	"买2号黑色",bw11,
+	"买2号白色",bw12,
+	"买3号黑色",bw13,
+	"买3号白色",bw14,
+	"我不玩",sxnotplay;
+	close;
+	end;
+
+bw4:
+	set @gsblb,10;
+	goto bw15;
+	close;
+	end;
+bw5:
+	set @gsblb,11;
+	goto bw15;
+	close;
+	end;
+bw6:
+	set @gsblb,21;
+	goto bw15;
+	close;
+	end;
+bw7:
+	set @gsblb,22;
+	goto bw15;
+	close;
+	end;
+bw8:
+	set @gsblb,23;
+	goto bw15;
+	close;
+	end;
+bw9:
+	set @gsblb,1;
+	goto bw15;
+	close;
+	end;
+bw10:
+	set @gsblb,2;
+	goto bw15;
+	close;
+	end;
+bw11:
+	set @gsblb,3;
+	goto bw15;
+	close;
+	end;
+bw12:
+	set @gsblb,4;
+	goto bw15;
+	close;
+	end;
+bw13:
+	set @gsblb,5;
+	goto bw15;
+	close;
+	end;
+bw14:
+	set @gsblb,6;
+	goto bw15;
+	close;
+	end;
+bw15:
+	if ( Zeny < 1000000 ) goto NPLB;
+	set Zeny,Zeny-1000000;
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) goto GLBR1;
+	if ( @BRR == 1 ) goto GLBR2;
+	if ( @BRR == 2 ) goto GLBR3;
+	if ( @BRR == 3 ) goto GLBR4;
+	if ( @BRR == 4 ) goto GLBR5;
+	if ( @BRR == 5 ) goto GLBR6;
+	close;
+	end;
+
+GLBR1:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000停了= =^000000]／＼＿____＿／＼";
+	if ( @BRR >= 1 ) mes "[转.....]／＼＿____＿／＼";
+	mes ".      ／●／＼_２_／＼　＼";
+	mes ".    ／  ／１ ▲　▲ ３＼  ＼";
+	mes ".  　───── ○ ─────";
+	mes ".    ＼  ＼３＼ ▲ ／１／  ／";
+	mes ".    　＼  ＼／_２_＼／  ／";
+	mes ".      　＼／＿____＿＼／";
+	next;
+	if ( @BRR == 0 ) set @PPW1,10;
+	if ( @BRR == 0 ) set @PPW2,21;
+	if ( @BRR == 0 ) set @PPW3,1;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR2;
+	close;
+	end;
+GLBR2:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000停了= =^000000]／＼＿__●＿／＼";
+	if ( @BRR >= 1 ) mes "[.转....]／＼＿__●＿／＼";
+	mes ".      ／  ／＼_２_／＼　＼";
+	mes ".    ／  ／１ ▲　▲ ３＼  ＼";
+	mes ".  　───── ○ ─────";
+	mes ".    ＼  ＼３＼ ▲ ／１／  ／";
+	mes ".    　＼  ＼／_２_＼／  ／";
+	mes ".      　＼／＿____＿＼／";
+	next;
+	if ( @BRR == 0 ) set @PPW1,11;
+	if ( @BRR == 0 ) set @PPW2,22;
+	if ( @BRR == 0 ) set @PPW3,4;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR3;
+	close;
+	end;
+GLBR3:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000停了= =^000000]／＼＿____＿／＼";
+	if ( @BRR >= 1 ) mes "[..转...]／＼＿____＿／＼";
+	mes ".      ／  ／＼_２_／＼　＼";
+	mes ".    ／  ／１ ▲　▲ ３＼●＼";
+	mes ".  　───── ○ ─────";
+	mes ".    ＼  ＼３＼ ▲ ／１／  ／";
+	mes ".    　＼  ＼／_２_＼／  ／";
+	mes ".      　＼／＿____＿＼／";
+	next;
+	if ( @BRR == 0 ) set @PPW1,10;
+	if ( @BRR == 0 ) set @PPW2,23;
+	if ( @BRR == 0 ) set @PPW3,5;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR4;
+	close;
+	end;
+GLBR4:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000停了= =^000000]／＼＿____＿／＼";
+	if ( @BRR >= 1 ) mes "[...转..]／＼＿____＿／＼";
+	mes ".      ／  ／＼_２_／＼　＼";
+	mes ".    ／  ／１ ▲　▲ ３＼  ＼";
+	mes ".  　───── ○ ─────";
+	mes ".    ＼  ＼３＼ ▲ ／１／  ／";
+	mes ".    　＼  ＼／_２_＼／●／";
+	mes ".      　＼／＿____＿＼／";
+	next;
+	if ( @BRR == 0 ) set @PPW1,11;
+	if ( @BRR == 0 ) set @PPW2,21;
+	if ( @BRR == 0 ) set @PPW3,2;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR5;
+	close;
+	end;
+GLBR5:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000停了= =^000000]／＼＿____＿／＼";
+	if ( @BRR >= 1 ) mes "[....转.]／＼＿____＿／＼";
+	mes ".      ／  ／＼_２_／＼　＼";
+	mes ".    ／  ／１ ▲　▲ ３＼  ＼";
+	mes ".  　───── ○ ─────";
+	mes ".    ＼  ＼３＼ ▲ ／１／  ／";
+	mes ".    　＼  ＼／_２_＼／  ／";
+	mes ".      　＼／＿●__＿＼／";
+	next;
+	if ( @BRR == 0 ) set @PPW1,10;
+	if ( @BRR == 0 ) set @PPW2,22;
+	if ( @BRR == 0 ) set @PPW3,3;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR6;
+	close;
+	end;
+GLBR6:
+	set @BRR,rand(5);
+	if ( @BRR == 0 ) mes "[^FF0000停了= =^000000]／＼＿____＿／＼";
+	if ( @BRR >= 1 ) mes "[.....转]／＼＿____＿／＼";
+	mes ".      ／  ／＼_２_／＼　＼";
+	mes ".    ／  ／１ ▲　▲ ３＼  ＼";
+	mes ".  　───── ○ ─────";
+	mes ".    ＼●＼３＼ ▲ ／１／  ／";
+	mes ".    　＼  ＼／_２_＼／  ／";
+	mes ".      　＼／＿____＿＼／";
+	next;
+	if ( @BRR == 0 ) set @PPW1,11;
+	if ( @BRR == 0 ) set @PPW2,23;
+	if ( @BRR == 0 ) set @PPW3,6;
+	if ( @BRR == 0 ) goto VBLP;
+	if ( @BRR >= 1 ) goto GLBR1;
+	close;
+	end;
+VBLP:
+	if (@gsblb == @PPW1) goto VBLP2;
+	if (@gsblb == @PPW2) goto VBLP3;
+	if (@gsblb == @PPW3) goto VBLP4;
+	mes "[轮盘]";
+	mes "太可惜了你没中奖";
+	mes "下次再见";
+	close;
+	end;
+VBLP2:
+	mes "[轮盘]";
+	mes "中奖";
+	mes "下次再见";
+	set Zeny,Zeny+2000000;
+	close;
+	end;
+VBLP3:
+	mes "[轮盘]";
+	mes "中奖";
+	mes "下次再见";
+	set Zeny,Zeny+3000000;
+	close;
+	end;
+VBLP4:
+	mes "[轮盘]";
+	mes "中奖";
+	mes "下次再见";
+	set Zeny,Zeny+10000000;
+	close;
+	end;
+
+NPLB:	
+	mes "[轮盘]";
+	if ( Zeny >= 1000000000 ) mes "你金钱太多!!";
+	if ( Zeny < 1000000 )mes "你金钱不足!!";
+	mes "那么下次再见!!";
+	close;
+	end;
+
+OnInit:
+	waitingroom "轮盘",0;
+	end;
+}
