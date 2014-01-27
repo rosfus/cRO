@@ -246,7 +246,7 @@
 200,9,6,1,7,0,0,1,1,no,0,0x2,0,magic,0,		NPC_ENERGYDRAIN,SP吸收
 201,0,0,4,0,0x1,0,1,1,no,0,0x2,0,weapon,0,	NPC_KEEPING,防御坚硬化
 202,9,6,1,7,0,0,5,1,no,0,0x2,0,misc,0,		NPC_DARKBREATH,闇黑息吹
-203,9,6,1,7,0x1,0,10,1,no,0,0x2,0,magic,0,	NPC_DARKBLESSING,Dark 天使之赐福
+203,9,6,1,7,0x1,0,10,1,no,0,0x2,0,magic,0,	NPC_DARKBLESSING,黑暗天使之赐福
 204,0,0,4,0,0x1,0,1,1,no,0,0x2,0,magic,0,	NPC_BARRIER,绝对防御
 205,0,0,4,0,0x1,0,1,1,no,0,0x2,0,weapon,0,	NPC_DEFENDER,光之盾
 206,1,6,1,-1,0x1,0,5,1,no,0,0x2,0,weapon,0,	NPC_LICK,SP减少攻击
@@ -626,8 +626,8 @@
 682,0,0,4,0,0x1,0,1,1,no,0,0x2,0,none,0,	NPC_TALK,Talk
 683,-9,6,1,-1,0,0,1,1,no,0,0x2,0,none,0,	NPC_HELLPOWER,地狱之力
 684,0,6,4,0,0x3,-1,1,1,no,0,0x2,0,none,0,	NPC_WIDEHELLDIGNITY,Hell Dignity
-685,0,0,4,0,0x1,0,1,1,no,0,0x2,0,none,0,	NPC_INVINCIBLE,Invincible
-686,0,0,4,0,0x1,0,1,1,no,0,0x2,0,none,0,	NPC_INVINCIBLEOFF,Invincible off
+685,0,0,4,0,0x1,0,1,1,no,0,0x2,0,none,0,	NPC_INVINCIBLE,无敌
+686,0,0,4,0,0x1,0,1,1,no,0,0x2,0,none,0,	NPC_INVINCIBLEOFF,无敌结束
 687,0,6,4,0,0x1,0,1,1,yes,0,0x2,0,none,0,	NPC_ALLHEAL,生命之弦
 
 // Additional Skill (??)
