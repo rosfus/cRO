@@ -3,7 +3,7 @@ What is the import folder for?
 
 The folder provides a way for you to change your config settings without having
 to update the files every time you update your server. You store your changes,
-and the rest is updated with RoSF.us (usually though GIT).
+and the rest is updated with us (usually though GIT).
 
 How does this work?
 -------------------------------------------------------------------------------
