@@ -1,24 +1,24 @@
 @ECHO OFF
 
-REM Copyright (c) RoSF.us Dev Team, licensed under GNU GPL.
+REM Copyright (c) RoSF.us R&D Team, licensed under GNU GPL.
 REM See the LICENSE file
-REM Base Author: Mumbles @ http://bbs.rosf.us
+REM Base Author: Yuri @ http://rosf.us
 
 COLOR 0F
 
 ECHO.
-ECHO                   RoSF.us Development Team Presents
-ECHO                  ______           ______  ______
-ECHO                 ^|  __  ^|  ______ ^|  ____^|^|  ____^|     _    _   _ __ _
-ECHO                 ^| ^|__/ / ^|  __  ^|^| ^|____ ^| ^|___      ^| ^|  ^| ^| ^|  ____^|
-ECHO                 ^|  __ _  ^| ^|  ^| ^|^|____  ^|^|  ___^|     ^| ^|  ^| ^| ^|_^|__ _
-ECHO                 ^| ^|  ^| ^| ^| ^|__^| ^| ____^| ^|^| ^|      _  ^| ^|__^| ^|  ____^| ^|
-ECHO                 ^|_^|  ^|_^| ^|______^|^|______^|^|_^|     ^|_^| ^|______^| ^|______^|
+ECHO               cRO Development Team presents
+ECHO              ______           ______  ______
+ECHO             ^|  __  ^|  ______ ^|  ____^|^|  ____^|     _    _   _ __ _   
+ECHO             ^| ^|__/ / ^|  __  ^|^| ^|____ ^| ^|___      ^| ^|  ^| ^| ^|  ____^|  
+ECHO             ^|  __ _  ^| ^|  ^| ^|^|____  ^|^|  ___^|     ^| ^|  ^| ^| ^|_^|__ _   
+ECHO             ^| ^|  ^| ^| ^| ^|__^| ^| ____^| ^|^| ^|      _  ^| ^|__^| ^|  ____^| ^|  
+ECHO             ^|_^|  ^|_^| ^|______^|^|______^|^|_^|     ^|_^| ^|______^| ^|______^|  
+ECHO                                                                     
+ECHO               rTools Checker (Script Syntax)
+ECHO               http://bbs.rosf.us/
 ECHO.
-ECHO                       Script Syntax Checker
-ECHO                       http://bbs.rosf.us
-ECHO.
-ECHO                  Drag and drop or input manually
+ECHO               Drag and drop or input manually
 ECHO.
 ECHO.
 
