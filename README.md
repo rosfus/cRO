@@ -21,15 +21,15 @@ RoSF.us Development Team Presents
 * 2. 系统必备组件 [2]
 * 3. 安装 [3]
 * 4. 故障排除 [4]
-* 5. 有用的链接 [5]
-* 6. 更多文档 [6]
+* 5. 我们需要帮助 [5]
+* 6. 可能有用的内容 [6]
 
 ======================
 
 #### 1. 什么是RO单机版? ####
 
 RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)的游戏模拟器, 基于Athena程序开发. 经过了一系列的整合与二次开发之后, 可以让中文游戏爱好者能够很快的上手使用. 整个系统包含编译后的应用程序, 免安装的MySQL程序, 数据库内容, 脚本Script等部分组成. 然而包含如此多的应用项目, 该程序的使用却非常简单, 仅仅需要启动一个文件.
-在目前的V4版本中, 增加了大量的汉化脚本. 使玩家的游戏体验再次上升, 同时支持了2014年的客户端版本, 扩容了很多指令集和功能, 堪称目前最完美的华语单机版本.
+在目前的v4版本中, 增加了大量的汉化脚本. 使玩家的游戏体验再次上升, 同时支持了2014年的客户端版本, 扩容了很多指令集和功能, 堪称目前最完美的华语单机版本.
 
 ======================
 
@@ -41,9 +41,10 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 
 * TortoiseGIT ( http://code.google.com/p/tortoisegit/ )
 * 建议准备 :
-      * WinRAR ( http://www.winrar.com.cn/ ) 
+      * 7-zip ( http://www.7-zip.org/ ) 
       * NotePad++ ( http://notepad-plus-plus.org/ ) 
       * MySQL ( http://dev.mysql.com/downloads/ )
+	  * Navicat ( http://www.navicat.com/ ) MySQL 的强大管理程序, 你可以在官网下载正式版本, 当然在安赫尔的网盘里有更适用的版本.
 
 ======================
 
@@ -53,10 +54,10 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 
 ##### Windows System #####
 * 首先请先安装完成 Subversion (SVN) 工具.
-* 在系统硬盘下建立一个[Athena]的目录 (e.g. D:\Athena)
+* 在系统硬盘下建立一个[rosfus]的目录 (e.g. D:\rosfus)
 * 右键点击该目录, 在弹出菜单中选择 'SVN Checkout'.
 * 然后粘贴 SVN URL 地址到输入框内, URL为: https://github.com/rosfus/cRO
-* 当SVN数据全部同步到本地之后, 会建立 branches tags trunk 三个目录. 其中trunk为主要目录.
+* 当SVN数据全部同步到本地之后, 会至少建立 branches trunk 三个目录. 其中trunk为主要更新目录. branches目录中为优化版本的HeidiSQL.
 * 打开trunk目录, 双击批处理文件[一键启动单机服务端MySQL.bat], 此时会弹出4个窗口. 3个RO单机版程序, 1个MySQL管理器. 等待4个程序全部运行即可.
 * 请注意由于是服务端程序, 而且使用了特殊的端口 6900 5121 6121, 因此可能会被一些程序判定需要拦截. 此时请选择放行.
 
@@ -65,10 +66,10 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
       * sql-files\main.sql
       * sql-files\logs.sql
       * sql-files\item_db2.sql
-* 并且导入5个更新文件. 方可完成MySQL数据库创建.
+* 并且导入5个更新文件. 方可完成MySQL数据库创建. 
       * sql-files\upgrades\2013-11-15--00-06.sql
       * sql-files\upgrades\2013-11-18--08-23.sql 
-      * sql-files\upgrades\2013-12-24--00-15.sql
+      * sql-files\upgrades\2013-12-24--00-15.sql (v3升级到v4 同样适用)
       * sql-files\upgrades\2014-01-04--16-47.sql
       * sql-files\upgrades\2014-01-06--17-22.sql
 * 更新至最新版本后, 如果global_reg_value表依然存在, 请选择Drop该表.
@@ -132,39 +133,59 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
        * 下载点四:   http://url.cn/QwcPy8 [微云]
        * 下载点五:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar [DropBox]
        * MD5: F1CB83363CDD85FBA618F274F03E642A
-* 韩服补丁 [207Mb] For韩国客户端。如果你有韩国客户端可以通过将补丁文件复制进原来RO的目录来运行“开启仙境之旅.exe“来登录游戏
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKOUgCvLt1Sd3f [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1o6uduOy [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbdau99spdl [115网盘]
-       * 下载点四:   http://url.cn/TUe30o [微云]
-       * 下载点五:   https://www.dropbox.com/s/so2xiyhhpf4wya7/Patch.rar [DropBox]
-       * MD5: 12F7D398CAD871D21AFFCC9689F223FB
-* 2014版本最新韩服补丁测试 [190Mb] For韩国客户端。“AutoUpdate.exe“登录游戏
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwK9IgAWE9NSe80 [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1jGr4hKy  [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbcibcin1rr [115网盘]
-       * 下载点四:   http://url.cn/MTPIcP [微云]
-       * MD5: F1375EFA4ED35045950BF89EE2138FAE
+* 2014版本最新韩服补丁测试 [247Mb] For韩国客户端. <AutoUpdate.exe> 登录游戏
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwK0IAAtA.dSe10   [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1sj75mah   [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbb1i17iik2   [115网盘]
+       * 下载点四:   http://url.cn/OCO5N7   [微云]
+       * MD5: D4DDCEE542ECBDFBE3576CE0F31904CF
 * 更新客户端:
       * 由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. 
-      * 运行客户端目录中的[韩服DATA更新.exe]与[韩服RDATA更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[开启仙境之旅.exe], 在一番更新后即可成为完美的单机版客户端了. 
-* 如果您还有其他问题:
+      * 运行客户端目录中的[韩服DATA更新.exe]与[韩服RDATA更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[AutoUpdate.exe], 在一番更新后即可成为完美的单机版客户端了. 
+
+本版本使用了 Microsoft Visual Studio 2010 开发, 部分功能会调用VS10的一些DLL组件. 
+
+##### 这些组件通常会跟随 Microsoft 的部分产品被安装到您的电脑 ##### 
+
+如果您还是不幸被程序提醒缺少DLL文件, 也请不用担心. 请按下面的提示操作. 
+* 压缩包中的dll目录里存放这3个最常见的DLL文件. 我们将它们复制到 Windows系统的工作目录下即可. 无须注册.
+       * 复制我们压缩包内trunk\dll\msvcr100.dll( msvcr100d.dll msvcr1000.dll )
+       * Windows 的工作目录一般是 C:\Windows\System32\
+       * 您无需重启计算机, 无需使用regsrv的注册指令, 仅需重启我们的单机服务端即可.
+
+脚本故障排错时可以使用rTools程序, 打开<script-checker.bat>文件, 在cmd运行窗口内拖入你需要检测的脚本.
+* 我们经过加密处理的.enx文件无法被rTools检测.
+* 源码类错误由另一个rTools在程序启动时进行自检.
+       * 我们没有做任何的自动发送操作, 避免被认为是恶意程序. 
+       * 因此希望玩家们能够及时反馈有事件ID类的Bug截图. 这将关系到该项目的开发速度.
+	   
+	  * 如果您还有其他问题:
       * 请将详细内容发送至: http://bbs.rosf.us/forum.php?mod=forumdisplay&fid=46
 
 ======================
 
-#### 5. 有用的链接 ####
+#### 5. 我们需要帮助 ####
 
-下面的链接可能对您有所帮助:
+如果您也是一位仙境爱好者的话:
+
+* 您可以立即参与到 RoSF.us™ Forum: http://bbs.rosf.us , 让爱好者群体更大, 让我们更有动力.
+* 您也许可以参与到 RoSF.us™ Wiki: http://wiki.rosf.us , 协助我们收集转载一些仙境相关的资讯信息, 您可以方便的编辑或者汉化我们的Wiki内容.
+* 您或许能够找出 RoSF.us™ rDB: http://db.rosf.us 数据库中存在的错误.
+* 您同样也可以加入Github, 并观察我们的项目 SVN: https://github.com/rosfus/cRO/
+
+上述这些都是我们需要的.
+
+======================
+
+#### 6. 可能有用的内容 ####
+
+有用的链接
+#### 下面的链接可能对您有所帮助 ####
 
 * RoSF.us™ Forum: http://bbs.rosf.us
 * RoSF.us™ Wiki: http://wiki.rosf.us
 * RoSF.us™ rDB: http://db.rosf.us
 * SVN: https://github.com/rosfus/cRO/
-
-======================
-
-#### 6. 更多文档 ####
 
 * 如果您还需要更多的文件资料, 请访问下述链接或者加入我们的QQ交流群:
       * 我们的开发论坛: http://bbs.rosf.us/forum.php?mod=forumdisplay&fid=47
