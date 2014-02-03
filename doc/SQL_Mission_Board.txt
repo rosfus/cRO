@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `player_mission` (
 
 // check npc if it's a valid npc with number 1 ~ 500
 if( !.@mission_npc_num || .@mission_npc_num > 500 ){
-	message strcharinfo(0),"This NPC isnt working, invalid <'"+strnpcinfo(2)+"'>";
+	message strcharinfo(0),"<冒险家工会> 发现NPC发生错误, 错误的NPC名为: <'"+strnpcinfo(2)+"'>";
 	disablenpc strnpcinfo(0);
 	end;
 }
@@ -67,31 +67,33 @@ query_sql( "SELECT COUNT(`id`) FROM `mission_board` WHERE `npc_id` LIKE '%|"+.@m
 query_sql( "SELECT `id`,`mission_id`,`mob_hunt`,`expire` FROM `player_mission` WHERE `mission_id` IN ( SELECT `id` FROM `mission_board` WHERE `npc_id` LIKE '%|"+.@mission_npc_num+"|%' ) AND `cid` = "+getcharid(0)+" AND `completion` = '0000-00-00 00:00:00' ",.@id,.@mission_id,.@mob_hunt$,.@expire );
 .@current_mission_size = getarraysize( .@id );
 
-mes "^0055FF[ "+.@npc_name$+" ]^000000";
-mes "A mission board may provide various missions for adventures. Each players may pick ";
-mes "   ^FF0000"+.max_mission_per_char+" missions^000000";
-mes "from each mission npc.";
+mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+mes "-------------------------------";
+mes "冒险家工会面板提供各种委托任务, 在米德加兹的所有冒险者都可以来接受委托.";
+mes "  您最多同时可接受 ^FF0000"+.max_mission_per_char+"^000000 条委托任务.";
+mes " ";
+mes "                     - 冒险家工会- ";
 next;
-switch( select( ( .@current_mission_size )?"Submit Mission":"",
-				( .@current_mission_size < .max_mission_per_char )?"Pick Mission":"",
-				( .@current_mission_size )?"Drop Mission":"",
-				( .@gm_level < .gm_level || !.@mission_count )?"":"^FF0000[GM] Update Mission^000000",
-				( .@gm_level < .gm_level )?"":"^FF0000[GM] Setup Mission^000000",
-				( .@gm_level < .gm_level || !.@mission_count  )?"":"^FF0000[GM] Delete Mission^000000" ) ){
-	Case 1:
+switch( select( ( .@current_mission_size )?"- 提交已完成的委托任务报告":"",
+				( .@current_mission_size < .max_mission_per_char )?"- 接受一个新的委托任务":"",
+				( .@current_mission_size )?"- 放弃已接的委托任务":"",
+				( .@gm_level < .gm_level || !.@mission_count )?"":"^FF0000- [任务设置] 更新已发布的任务^000000",
+				( .@gm_level < .gm_level )?"":"^FF0000- [任务设置] 新建一个委托任务^000000",
+				( .@gm_level < .gm_level || !.@mission_count  )?"":"^FF0000- [任务设置] 删除现有的委托任务^000000" ) ){
+	case 1:
 		.@current_time = gettimetick(2);
 		query_sql( "SELECT `id`,`title`,`min_lv`,`max_lv` FROM `mission_board` WHERE `npc_id` LIKE '%|"+.@mission_npc_num+"|%' AND `id` IN ( SELECT `mission_id` FROM `player_mission` WHERE `cid` = "+getcharid(0)+" AND `completion` = '0000-00-00 00:00:00' )",.@mission_id,.@title$,.@min_lv,.@max_lv );
 		.@size = getarraysize( .@mission_id );
 		for( .@i = 0; .@i < .@size; .@i++ ){
 			if( .@expire[.@i] < .@current_time )
-				.@submit_menu$ = .@submit_menu$ + "^FF0000[Expired]^000000";
+				.@submit_menu$ = .@submit_menu$ + "^FF0000[已过期]^000000";
 			.@submit_menu$ = .@submit_menu$ + "["+.@min_lv[.@i]+"~"+.@max_lv[.@i]+"] "+.@title$[.@i] +":";
 		}
 		.@i = select( .@submit_menu$ ) - 1;
 		
 		if( .@expire[.@i] < .@current_time ){
-			dispbottom " ~ Mission expired "+callsub( OnTime2Str,( gettimetick(2) + ( .@current_time - .@expire[.@i] ) ) )+" ago.";
-			dispbottom " ~ You may drop this mission.";
+			dispbottom "- 该委托任务已经超过时限 "+callsub( OnTime2Str,( gettimetick(2) + ( .@current_time - .@expire[.@i] ) ) )+" 了.";
+			dispbottom "- 您只能放弃该委托任务了.";
 			close;
 		}
 
@@ -168,15 +170,15 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 				
 		// submit mission or not
 		if( .@result ){
-			message strcharinfo(0),"Failed to submit this mission.";
+			message strcharinfo(0),"<冒险家工会> 无法提交该委托任务的完成报告.";
 		}else{
 			next;
-			if( select( "Submit Completed Mission","Cancel" ) == 1 ){
+			if( select( "- 提交已完成的委托任务报告","- 取消" ) == 1 ){
 				for( .@ms = ( @ms_size - 1 ); .@ms >= 0; .@ms-- )
 					if( @ms_list$[.@ms] == ""+.@mission_id ){
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
 						query_sql( "UPDATE `player_mission` SET `completion` = NOW() WHERE `cid` = "+getcharid(0)+" AND `mission_id` = "+.@mission_id );
-						mes "Mission accomplished.";
+						mes "恭喜您! 任务完成.";
 						@ms_size--;
 						
 						// clear requirement.
@@ -190,7 +192,7 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 								delitem .@item_list[.@i],.@item_qty[.@i];
 							}
 						
-						mes "Gained some mission's rewards.";
+						mes "获得了完成委托任务的奖励.";
 						// rewards
 						getexp .@baseexp,.@jobexp;
 						if( .@reward_size )
@@ -200,30 +202,31 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 						Zeny += .@zeny;
 						break;
 					}
-				mes "Something went wrong ..";
+				mes "可能有一些程序错误,请联系[GM]安赫尔..";
 			}
 		}
 		break;
-	Case 2:
+	case 2:
 		// get info from SQL.
 		do{
-			mes "^0055FF[ "+.@npc_name$+" ]^000000";
+			mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+			mes "-------------------------------";
 			deletearray .@id;
 			query_sql( "SELECT `id`,`title`,`min_lv`,`max_lv` FROM `mission_board` WHERE `npc_id` LIKE '%|"+.@mission_npc_num+"|%' AND `id` NOT IN ( SELECT `mission_id` FROM `player_mission` WHERE `cid` = "+getcharid(0)+" AND `completion` = '0000-00-00 00:00:00' ) LIMIT "+.max_page_size+" OFFSET "+.@offset,.@id,.@title$,.@min_lv,.@max_lv );
 			.@offset += .max_page_size;
 			.@size = getarraysize( .@id );
 			if( !.@size ){
-				mes "There are no other available missions to pick.";
+				mes "冒险家工会委托任务列表中暂时没有可选择的任务.";
 				close;
 				
 			}else{
-				mes "Pick a mission.";
+				mes "请在列表中选择一个想接受的委托任务.";
 				.@mission_menu$ = "";
 				for( .@i = 0; .@i < .@size; .@i++ )
-					.@mission_menu$ = .@mission_menu$ + "["+.@min_lv[.@i]+"~"+.@max_lv[.@i]+"] "+.@title$[.@i] +":";
+					.@mission_menu$ = .@mission_menu$ + "["+.@min_lv[.@i]+"-"+.@max_lv[.@i]+"] "+.@title$[.@i] +":";
 			}
 			next;
-			.@i = select( .@mission_menu$+ ( ( .@size < .max_page_size )?"":"- next page" ) ) - 1;
+			.@i = select( .@mission_menu$+ ( ( .@size < .max_page_size )?"":"- 下一页" ) ) - 1;
 		}while( .@i == .@size );
 		
 		query_sql( "SELECT * FROM `mission_board` WHERE `id` = "+.@id[.@i]+" LIMIT 1",
@@ -298,26 +301,27 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 			query_sql( "SELECT COUNT(`id`),TIMESTAMPDIFF( HOUR,`completion`,NOW() ),DATE_ADD( `completion`, INTERVAL "+.@redo_delay+" HOUR) FROM `player_mission` WHERE `mission_id` = "+.@id[.@i]+" AND `completion` <> '0000-00-00 00:00:00'",.@mission_completed,.@diff_delay,.@day$ );
 			if( .@repeatable[.@i] && ( ( .@mission_completed >= .@repeatable[.@i] ) || ( .@diff_delay && .@diff_delay <= .@redo_delay ) ) ){
 				next;
-				mes "^0055FF[ "+.@npc_name$+" ]^000000";
+				mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+				mes "-------------------------------";
 				mes " ";
 				if( .@mission_completed >= .@repeatable[.@i] ){
-					mes "You cant pick this mission, you have mission completion reach the max repeatable attempt of "+.@mission_completed+" times.";
+					mes "您无法领取该任务,您在冒险家工会的经验不足. 至少需要完成 "+.@mission_completed+" 次冒险家工会的委托任务才可以领取该任务.";
 					close;
 				}
 				if( .@diff_delay && .@diff_delay <= .@redo_delay ){
-					mes "You cant pick this mission, you have mission redo delay isnt finish yet.";
-					mes "Approximate : ^FF0000"+.@day$+"^000000";
+					mes "您无法领取该任务, 您的上一个任务委托冷却时间还未到.";
+					mes "还剩大约 : ^FF0000"+.@day$+"^000000";
 					close;
 				}
 			}
 		}
 		
 		if( .@result ){
-			message strcharinfo(0),"Failed to pick this mission.";
+			message strcharinfo(0),"<冒险家工会> 无法接受该委托任务.";
 		}else{
-			if( select( "Pick Mission","Cancel" ) == 1 ){
+			if( select( "- 接受该委托任务","- 取消" ) == 1 ){
 				query_sql( "INSERT INTO `player_mission` VALUES ( "+gettimetick(2)+","+.@mission_id+","+getcharid(3)+","+getcharid(0)+",'"+escape_sql( strcharinfo(0) )+"','',"+( .@timelimit + gettimetick(2) )+",NOW(),'0000-00-00 00:00:00' );" );
-				message strcharinfo(0),"Picked Mission # "+.@mission_id;
+				message strcharinfo(0),"<冒险家工会> 接受了1条委托任务 ID# "+.@mission_id;
 
 				@ms_list$[ @ms_size ] = ""+.@mission_id;
 				@ms_size++;
@@ -330,21 +334,23 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 			}
 		}
 		break;
-	Case 3:
+	case 3:
 		query_sql( "SELECT `id`,`title`,`min_lv`,`max_lv` FROM `mission_board` WHERE `npc_id` LIKE '%|"+.@mission_npc_num+"|%' AND `id` IN ( SELECT `mission_id` FROM `player_mission` WHERE `cid` = "+getcharid(0)+" AND `completion` = '0000-00-00 00:00:00' )",.@id,.@title$,.@min_lv,.@max_lv );
 		.@id_size = getarraysize( .@id );
 		for( .@i = 0; .@i < .@id_size; .@i++ )
 			.@mission_menu$ = .@mission_menu$ + "["+.@min_lv[.@i]+"~"+.@max_lv[.@i]+"] "+.@title$[.@i] +":";
-		mes "^0055FF[ "+.@npc_name$+" ]^000000";
-		mes "Pick a Mission to remove.";
+		mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+		mes "-------------------------------";
+		mes "请选择需要放弃的委托任务.";
 		next;
 		.@i = select( .@mission_menu$ ) - 1;
-		mes "^0055FF[ "+.@npc_name$+" ]^000000";
-		mes "Confirm remove ^0055FFMission # "+.@id[.@i]+"^000000?";
-		mes "Title : ^0055FF"+.@title$[.@i]+"^000000";
-		mes "^777777( this cant be un-done )^000000";
-		if( select( "nope","Confirm" ) == 2 ){
-			message strcharinfo(0),"Dropped Mission # "+.@id[.@i];
+		mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+		mes "-------------------------------";
+		mes "确定放弃 ^0055FFID # "+.@id[.@i]+"^000000 的任务?";
+		mes "标题 : ^0055FF"+.@title$[.@i]+"^000000";
+		mes "^777777( 此操作无法恢复 )^000000";
+		if( select( "- 取消","- 确定" ) == 2 ){
+			message strcharinfo(0),"<冒险家工会> 任务已删除. 您放弃了1个委托任务,任务ID# "+.@id[.@i];
 			query_sql( "DELETE FROM `player_mission` WHERE `mission_id` = "+.@id[.@i]+" AND `cid` = "+getcharid(0)+" AND `completion` = '0000-00-00 00:00:00'" );
 			setd( "@ms_"+.@id[.@i]+"_expire" ),0;
 			deletearray getd( "@ms_"+.@id[.@i]+"_list" );
@@ -358,26 +364,27 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 				}
 		}
 		break;
-	Case 4:
+	case 4:
 		// get info from SQL.
 		do{
-			mes "^0055FF[ "+.@npc_name$+" ]^000000";
+			mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+			mes "-------------------------------";
 			deletearray .@id;
 			query_sql( "SELECT `id`,`title`,`min_lv`,`max_lv` FROM `mission_board` WHERE `npc_id` LIKE '%|"+.@mission_npc_num+"|%' LIMIT "+.max_page_size+" OFFSET "+.@offset,.@id,.@title$,.@min_lv,.@max_lv );
 			.@offset += .max_page_size;
 			.@size = getarraysize( .@id );
 			if( !.@size ){
-				mes "There are no available mission to update.";
+				mes "冒险家工会委托任务列表中没有需要更新发布的任务.";
 				close;
 				
 			}else{
-				mes "Pick a mission.";
+				mes "请在列表中选择一个需要发布的委托任务.";
 				.@mission_menu$ = "";
 				for( .@i = 0; .@i < .@size; .@i++ )
 					.@mission_menu$ = .@mission_menu$ + "["+.@min_lv[.@i]+"~"+.@max_lv[.@i]+"] "+.@title$[.@i] +":";
 			}
 			next;
-			.@i = select( .@mission_menu$+ ( ( .@size < .max_page_size )?"":"- next page" ) ) - 1;
+			.@i = select( .@mission_menu$+ ( ( .@size < .max_page_size )?"":"- 下一页" ) ) - 1;
 		}while( .@i == .@size );
 		query_sql( "SELECT * FROM `mission_board` WHERE `id` = "+.@id[.@i],
 			.@new_mission_id,
@@ -419,9 +426,10 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 	
 		setarray .@level_range,.@min_lv,.@max_lv;
 
-	Case 5:
+	case 5:
 		do{
-			mes "^0055FF[ "+.@npc_name$+" ]^000000";
+			mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+			mes "-------------------------------";
 			// display the information of mission
 			callsub( OnDisplayMissionInfo,
 				.@new_mission_id,
@@ -457,83 +465,86 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 			if( !.@reward_size && !.@baseexp && !.@jobexp && !.@cash && !.@zeny ) .@incomplete |= 16;
 			if( !.@selected_npc_size ) .@incomplete |= 32;
 					
-			.@main_option = select( "Edit Title "+(( .@incomplete & 1 )?"^FF0000-incomplete-^000000":"" ),
-							"Edit Description "+(( .@incomplete & 2 )?"^FF0000-incomplete-^000000":"" ),
-							"Edit Monster List "+(( .@incomplete & 4 )?"^FF0000-incomplete-^000000":( ( !.@monster_size )?"^777777-none-^000000":"" )),
-							"Edit Item List "+(( .@incomplete & 4 )?"^FF0000-incomplete-^000000":( ( !.@item_size )?"^777777-none-^000000":"" )),
-							"Edit Class/Level Limitation "+(( .@incomplete & 8 )?"^FF0000-incomplete-^000000":"" ),
-							"Edit Time/Repeat/Mission Limitation ",
-							"Edit Reward List "+(( .@incomplete & 16 )?"^FF0000-incomplete-^000000":"" ),
-							"Edit NPC Limitation "+(( .@incomplete & 32 )?"^FF0000-incomplete-^000000":"" ),
-							( .@incomplete )?"":"^0055FF - Complete Setup Mission^000000" );
+			.@main_option = select( "- 设置委托任务标题 "+(( .@incomplete & 1 )?"^FF0000-未设置-^000000":"" ),
+							"- 设置委托任务描述 "+(( .@incomplete & 2 )?"^FF0000-未设置-^000000":"" ),
+							"- 设置怪物列表 "+(( .@incomplete & 4 )?"^FF0000-未设置-^000000":( ( !.@monster_size )?"^777777<none>^000000":"" )),
+							"- 设置物品列表 "+(( .@incomplete & 4 )?"^FF0000-未设置-^000000":( ( !.@item_size )?"^777777<none>^000000":"" )),
+							"- 设置职业/等级限制 "+(( .@incomplete & 8 )?"^FF0000-未设置-^000000":"" ),
+							"- 设置时限/单次/日常/等限制 ",
+							"- 设置奖励内容 "+(( .@incomplete & 16 )?"^FF0000-未设置-^000000":"" ),
+							"- 设置发布任务的NPC "+(( .@incomplete & 32 )?"^FF0000-未设置-^000000":"" ),
+							( .@incomplete )?"":"^0055FF- 完成委托任务设置^000000" );
 			next;				
 			switch( .@main_option ){
-				Case 1:
-					mes "^0055FF[ "+.@npc_name$+" ]^000000";
-					mes "Enter Title";
-					mes "^777777( Length: 4 ~ 30 )^000000";
+				case 1:
+					mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+					mes "-------------------------------";
+					mes "请输入委托任务的标题.";
+					mes "^777777<字数: 2~15个汉字>^000000";
 					while( input( .@title$,4,30 ) );
 					.@input_result = replacestr( .@title$,":"," " );
 					break;
-				Case 2:
+				case 2:
 					.@description$ = "";
 					do{
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
-						mes "Enter Description";
-						mes "^777777( Length: 4 ~ 255 )^000000";
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
+						mes "请输入委托任务的描述,可多次输入. 为了排版格式请合理使用空格.";
+						mes "^777777<字数: 2~127个汉字>^000000";
 						mes " ";
 						mes "^0055FF"+.@description$+"^000000";
 						.@length = getstrlen( .@description$ );
 						do{
 							.@input_result = input( .@temp_input$,4,255 );
 							if( .@input_result )
-								message strcharinfo(0),"Input length must between 4 ~ 255";
+								message strcharinfo(0),"<冒险家工会> 任务描述的字数范围是: 2~127个汉字.";
 						}while( .@input_result );
 						.@description$ = .@description$ + " "+ .@temp_input$;
 						mes "^0055FF"+.@temp_input$+"^000000";
 						.@length = getstrlen( .@description$ );
 						next;
-					}while( select( ( .@length >= 255 )?"":"add more ^777777( left "+( 255 - .@length )+" words )^000000","-back" ) == 1 );
+					}while( select( ( .@length >= 255 )?"":"- 添加多行文字描述 ^777777<还可以输入 "+( 255 - .@length )+"个字>^000000","- 返回" ) == 1 );
 					.@description$  = replacestr( .@description$,":"," " );
 					break;
-				Case 3:
+				case 3:
 					if( .@new_mission_id ){
-						dispbottom "Editing monster list might caused unwanted behaviours of scripts.  Which may included :";
-						dispbottom " > Script/Missions isnt working properly.";
-						dispbottom " > Deletion of player mission's progress.";
-						dispbottom " > etc.";
-						dispbottom "Overall it's not suggested to edit monster list that you have set early.";
-						dispbottom "( Recommend for Re-Adding mission, if needed )";
+						dispbottom "编辑怪物列表可能造成不可预见的脚本错误,包含如下可能:";
+						dispbottom " > 脚本或委托任务无法正常运行.";
+						dispbottom " > 影响现有已接受委托的冒险者的进度.";
+						dispbottom " > 其它未知可能.";
+						dispbottom "请尽可能不要修改该列表,或者联系GM安赫尔来进行特殊设定.";
+						dispbottom "<若必须则请重新添加委托任务>";
 					}
 					do{
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
-						mes "Monster List:";
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
+						mes "怪物列表:";
 						if( .@monster_size ){
-							.@mob_menu$ = "";
+							.@mob_menu$ = "- ";
 							.@current_mob_list$ = "|";
 							deletearray .@current_mob$;
 							for( .@i = 0; .@i < .@monster_size; .@i++ ){
 								.@mob_name$ = getmonsterinfo( .@monster_list[.@i],MOB_NAME );
 								.@mob_menu$ = .@mob_menu$ + .@monster_qty[.@i] +" x "+.@mob_name$ +":";
-								mes " ^777777 ~ "+.@monster_qty[.@i]+" x "+.@mob_name$+"^000000";
+								mes " ^777777 - "+.@monster_qty[.@i]+" x "+.@mob_name$+"^000000";
 								.@current_mob_list$ = .@current_mob_list$ + .@monster_list[.@i] +"|";
 							}
 							
 						}else{
-							mes " ^777777 ~ none ^000000";
+							mes " ^777777 <none> ^000000";
 						}
 						mes " ";
-						.@option = select( ( .@monster_size >= .max_required_monster )?"":"Add Monster",( .@monster_size )?"Delete Monster":"","- Back" );
+						.@option = select( ( .@monster_size >= .max_required_monster )?"":"- 添加怪物",( .@monster_size )?"- 删除怪物":"","- 返回" );
 						switch( .@option ){
-							Case 1:
-								mes "Enter Monster ID";
+							case 1:
+								mes "请输入需要击杀怪物的ID";
 								do{
 									input .@mob_id;
 									if( !.@mob_id ) break;
 									.@mob_name$ = getmonsterinfo( .@mob_id,MOB_NAME );
 								}while( .@mob_name$ == "null" );
 								if( .@mob_name$ != "null" && .@mob_id ){
-									mes "How many "+.@mob_name$+" need to hunt ?";
+									mes "请设置需要击杀 "+.@mob_name$+" 的数量?";
 									input .@amount,0,30000;
 									if( .@amount ){
 										if( compare( "|"+.@current_mob_list$+"|","|"+.@mob_id+"|" ) ){
@@ -551,10 +562,11 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 									}
 								}
 								break;
-							Case 2:
-								mes "^0055FF[ "+.@npc_name$+" ]^000000";
-								mes "Pick a Monster to Remove.";
-								.@i = select( .@mob_menu$+"- Back" ) - 1;
+							case 2:
+								mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+								mes "-------------------------------";
+								mes "请选择需要删除的怪物.";
+								.@i = select( .@mob_menu$+"- 返回" ) - 1;
 								if( .@i < .@monster_size ){
 									deletearray .@monster_list[.@i],1;
 									deletearray .@monster_qty[.@i],1;
@@ -565,35 +577,36 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 						if( .@option < 3 ) next;
 					}while( .@option < 3 );
 					break;
-				Case 4:
+				case 4:
 					do{
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
-						mes "Required Item List: ";
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
+						mes "委托任务的收集物品需求: ";
 						if( .@item_size ){
-							.@item_menu$ = "";
+							.@item_menu$ = "- ";
 							.@current_item_list$ = "|";
 							deletearray .@current_item$;
 							for( .@i = 0; .@i < .@item_size; .@i++ ){
 								.@item_name$ = getitemname( .@item_list[.@i] );
-								.@item_menu$ = .@item_menu$ + .@item_qty[.@i] +"x "+.@item_name$ +":";
-								mes " ^777777 ~ "+.@item_qty[.@i]+" x "+.@item_name$+"^000000";
+								.@item_menu$ = .@item_menu$ + .@item_qty[.@i] +" x "+.@item_name$ +":";
+								mes " ^777777 - "+.@item_qty[.@i]+" x "+.@item_name$+"^000000";
 								.@current_item_list$ = .@current_item_list$ + .@item_list[.@i] + "|";
 							}
 							
 						}else{
-							mes " ^777777 ~ none ^000000";
+							mes " ^777777 <none> ^000000";
 						}
 						mes " ";
-						.@option = select( ( .@item_size >= .max_required_item )?"":"Add Item",( .@item_size )?"Delete Item":"","- Back" );
+						.@option = select( ( .@item_size >= .max_required_item )?"":"- 添加物品",( .@item_size )?"- 删除物品":"","- 返回" );
 						switch( .@option ){
-							Case 1:
+							case 1:
 								do{
 									input .@item_id;
 									if( !.@item_id ) break;
 									.@item_name$ = getitemname( .@item_id );
 								}while( .@item_name$ == "null" || .@item_name$ == "" );
 								if( .@item_id && .@item_name$ != "null" && .@item_name$ != "" ){
-									mes "How many "+.@item_name$+" need to collect ?";
+									mes "请设置需要收集的 "+.@item_name$+" 数量?";
 									input .@amount,0,30000;
 									if( .@amount ){
 										if( compare( "|"+.@current_item_list$+"|","|"+.@item_id+"|" ) ){
@@ -610,12 +623,13 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 									}
 								}
 								break;
-							Case 2:
-								mes "^0055FF[ "+.@npc_name$+" ]^000000";
-								mes "Pick an Item to Remove.";
-								.@i = select( .@item_menu$+" - Back" ) - 1;
+							case 2:
+								mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+								mes "-------------------------------";
+								mes "请选择需要删除的物品.";
+								.@i = select( .@item_menu$+" - 返回" ) - 1;
 								if( .@i < .@item_size ){
-									mes "Removed "+.@item_qty[.@i]+" x "+getitemname( .@item_list[.@i] );
+									mes "删除 "+.@item_qty[.@i]+" x "+getitemname( .@item_list[.@i] );
 									deletearray .@item_list[.@i],1;
 									deletearray .@item_qty[.@i],1;
 									.@item_size--;
@@ -625,7 +639,7 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 						if( .@option < 3 ) next;
 					}while( .@option < 3 );
 					break;
-				Case 5: // class limitation
+				case 5: // class limitation
 					if( !.@base_job_bitmask ){
 						// enable all job by default.
 						for( .@i = 0; .@i < .base_job_size; .@i++ ){
@@ -640,42 +654,44 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 					}
 					
 					do{
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
-						mes "Level Range : "+( ( .@level_range[1] )? "^777777"+.@level_range[0]+" ~ "+.@level_range[1]:"^FF0000-incomplete-" )+"^000000";
-						mes "Available Job Setting";
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
+						mes "等级范围 : "+( ( .@level_range[1] )? "^777777"+.@level_range[0]+"~"+.@level_range[1]:"^FF0000-未设置-" )+"^000000";
+						mes "可领取委托的职业限制";
 						if( .@base_job_bitmask ){
 							for( .@i = 0; .@i < .base_job_size; .@i++ )
 								if( .@base_job_bitmask & ( 1 << .@i ) )
-									mes " ^777777 ~ "+jobname( roclass( .base_job[.@i] ) )+" ^000000";
+									mes " ^777777 - "+jobname( roclass( .base_job[.@i] ) )+" ^000000";
 						}else{
-							mes " ^FF0000 -incomplete-^000000";
+							mes " ^FF0000 -未设置-^000000";
 						}
 						mes " ";
-						mes "Inherited Branch Setting";
+						mes "继承上一级的设置";
 						if( .@job_branch_bitmask ){
 							for( .@i = 0; .@i < .job_branch_size; .@i++ )
 								if( .@job_branch_bitmask & ( 1 << .@i ) )
-									mes " ^777777 ~ "+.job_branch_name$[.@i]+" ^000000";	
+									mes " ^777777 - "+.job_branch_name$[.@i]+" ^000000";	
 						}else{
-							mes " ^FF0000 -incomplete-^000000";
+							mes " ^FF0000 -未设置-^000000";
 						}	
 						next;
-						.@option = select( "Edit Base Job","Edit Job Branch","Edit Level Range","- Back" );
+						.@option = select( "- 设置基础职业","- 设置职业限制","- 设置等级范围","- 返回" );
 						switch( .@option ){
-							Case 1:
-								dispbottom "[ Base Job Class ] RED = Disable , GREEN = Enable";
+							case 1:
+								dispbottom "[ 基本职业 ] 红色 = 禁用 , 绿色 = 启用";
 								do{
-									mes "^0055FF[ "+.@npc_name$+" ]^000000";
-									mes "Available Job List:";
+									mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+									mes "-------------------------------";
+									mes "激活职业列表:";
 									.@base_job_menu$ = "";
 									for( .@i = 0; .@i < .base_job_size; .@i++ ){
 										.@job_name$ = jobname( roclass( .base_job[.@i] ) );
 										if( .@base_job_bitmask & ( 1 << .@i ) )
-											mes " ^777777 ~ "+.@job_name$+" ^000000";						
+											mes " ^777777 - "+.@job_name$+" ^000000";
 										.@base_job_menu$ = .@base_job_menu$ + (( .@base_job_bitmask & ( 1 << .@i ) )?"^4EEE94":"^FF0000" ) + .@job_name$ +"^000000:";
 									}
 									next;
-									.@i = select( .@base_job_menu$+"- Back" ) - 1;
+									.@i = select( .@base_job_menu$+"- 返回" ) - 1;
 									if( .@i < .base_job_size ){
 										.@bitmask_value = ( 1 << .@i );
 										if( .@base_job_bitmask & .@bitmask_value )
@@ -685,19 +701,20 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 									}
 								}while( .@i < .base_job_size );
 								break;
-							Case 2:
-								dispbottom "[ Inherited Job Branch ] RED = Disable , GREEN = Enable";
+							case 2:
+								dispbottom "[ 职业限制 ] 红色 = 禁用 , 绿色 = 启用";
 								do{
-									mes "^0055FF[ "+.@npc_name$+" ]^000000";
-									mes "Inherited Job Branch List:";
+									mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+									mes "-------------------------------";
+									mes "继承上一级职业限定设置:";
 									.@job_branch_menu$ = "";
 									for( .@i = 0; .@i < .job_branch_size; .@i++ ){
 										if( .@job_branch_bitmask & ( 1 << .@i ) )
-											mes " ^777777 ~ "+.job_branch_name$[.@i]+" ^000000";						
+											mes " ^777777 - "+.job_branch_name$[.@i]+" ^000000";
 										.@job_branch_menu$ = .@job_branch_menu$ + (( .@job_branch_bitmask & ( 1 << .@i ) )?"^4EEE94":"^FF0000" ) + .job_branch_name$[.@i] +"^000000:";
 									}
 									next;
-									.@i = select( .@job_branch_menu$+"- Back" ) - 1;
+									.@i = select( .@job_branch_menu$+"- 返回" ) - 1;
 									if( .@i < .job_branch_size ){
 										.@bitmask_value = ( 1 << .@i );
 										if( .@job_branch_bitmask & .@bitmask_value )
@@ -707,68 +724,70 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 									}
 								}while( .@i < .job_branch_size );
 								break;
-							Case 3:
-								mes "^0055FF[ "+.@npc_name$+" ]^000000";
-								mes "Minimum Level";
+							case 3:
+								mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+								mes "-------------------------------";
+								mes "最低可领取该委托任务的级别";
 								input .@level_range[0],1,.server_max_level ;
-								mes "Maximum Level";
+								mes "最高可领取该委托任务的级别";
 								input .@level_range[1],.@level_range[0],.server_max_level;
 							default: break;
 						}
 						if( .@option < 4 ) next;
 					}while( .@option < 4 );
 					break;
-				Case 6: // mission limitation
+				case 6: // mission limitation
 					do{
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
-						mes "Repeatable: ^777777"+( ( !.@repeatable )?"unlimit":""+.@repeatable )+" time^000000";
-						mes "Redo Delay: ^777777"+( ( !.@redo_delay )?"none":callsub( OnTime2Str,( ( .@redo_delay * 3600 ) + gettimetick(2) ) ))+"^000000";
-						mes "Time Limit: ^777777"+( ( !.@timelimit )?"none":callsub( OnTime2Str,( .@timelimit + gettimetick(2) ) ) )+"^000000";
-						.@option = select( "Edit Repeatable Status","Edit Time Limit","Edit Re-do Delay","Edit Required Mission","- Back" );
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
+						mes "可重复的 : ^777777"+( ( !.@repeatable )?"无限制":""+.@repeatable )+" 次^000000";
+						mes "冷却时间 : ^777777"+( ( !.@redo_delay )?"无":callsub( OnTime2Str,( ( .@redo_delay * 3600 ) + gettimetick(2) ) ))+"^000000";
+						mes "时间限制 : ^777777"+( ( !.@timelimit )?"无":callsub( OnTime2Str,( .@timelimit + gettimetick(2) ) ) )+"^000000";
+						.@option = select( "- 设置单次日常","- 设置时间限制","- 设置冷却时间","- 设置前置任务","- 取消" );
 						switch( .@option ){
-							Case 1:
-								mes "How many time can this mission repeat ??";
-								mes "^777777( 0 = unlimited )^000000";
+							case 1:
+								mes "请设置该委托任务可重复完成的次数:";
+								mes "^777777( 0 = 无限制 )^000000";
 								input .@repeatable,0,100;
 								break;
-							Case 2:
-								mes "Time Limit of mission";
-								mes "      1 = 1 minute";
-								mes "    60 = 1 hour";
-								mes "1440 = 1 day";
+							case 2:
+								mes "请设置该委托任务完成时间限定:";
+								mes "       1 = 1分钟";
+								mes "    60 = 1小时";
+								mes "1440 = 1天";
 								input .@timelimit,0,50000;
 								.@timelimit *= 60;
 								break;
-							Case 3:
-								mes "Time Delay to re-take the mission";
-								mes "     1 =  1 hour";
-								mes "   24 =  1 day";
-								mes " 720 = 30 day";
+							case 3:
+								mes "请设置该委托任务的冷却时间:";
+								mes "     1 =  1小时";
+								mes "   24 =  1天";
+								mes " 720 = 30天";
 								input .@redo_delay,0,50000;
 								break;
-							Case 4:
-								mes "This is not fully implemented yet.. still in beta test";
+							case 4:
+								mes "前置任务设置功能尚在开发中,因此在定义内容设置时会有较多限制!";
 								break;
 								
 								do{
-									mes "Required Mission:";
+									mes "前置任务要求:";
 									if( .@required_mission_size ){
 										for( .@i = 0; .@i < .@required_mission_size; .@i++ ){
-											mes " ^777777 ~ "+.@required_mission$[.@i]+"^000000";
+											mes " ^777777 - "+.@required_mission$[.@i]+"^000000";
 											.@required_mission_menu$ = .@required_mission_menu$ + .@required_mission$[.@i] +":";
 										}
 										
 									}else{
-										mes "^777777 none ^000000";
+										mes "^777777 <none> ^000000";
 									}
 									next;
-									.@sub_option = select( ( .@required_mission_size < .max_required_mission )?"Add required mission":"",
-														( .@required_mission_size )?"Remove required mission":"",
-														"- Back");
+									.@sub_option = select( ( .@required_mission_size < .max_required_mission )?"- 添加前置需求任务":"",
+														( .@required_mission_size )?"- 删除前置需求任务":"",
+														"- 返回");
 									switch( .@sub_option ){
-										Case 1:
-											mes "Enter mission ID";
-											mes "^777777( enter 0 to cancel )^000000";
+										case 1:
+											mes "请设置作为前置任务的任务ID";
+											mes "^777777<输入'0'取消>^000000";
 											do{
 												input .@mission_id$;
 												if( .@mission_id$ == "0" ) break;
@@ -779,8 +798,8 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 												.@required_mission_size++;
 											}
 											break;
-										Case 2:
-											mes "Select a mission to remove.";
+										case 2:
+											mes "请选择需要删除的前置任务.";
 											.@i = select( .@required_mission_menu$ ) - 1;
 											deletearray .@required_mission$[.@i],1;
 										default: break;
@@ -791,49 +810,51 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 						if( .@option < 5 ) next;
 					}while( .@option < 5 );
 					break;
-				Case 7: // reward list
+				case 7: // reward list
 					do{
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
 						mes " ";
-						mes "Cash : ^777777"+( ( .@cash )? .@cash:"none" )+"^000000";
-						mes "Zeny : ^777777"+( ( .@zeny )? .@zeny:"none" )+"^000000";
-						mes "Reward Item List: ";
+						mes "现金点数 : ^777777"+( ( .@cash )? .@cash:"<none>" )+"^000000";
+						mes "Zeny : ^777777"+( ( .@zeny )? .@zeny:"<none>" )+"^000000";
+						mes "物品奖励列表 : ";
 						if( .@reward_size ){
 							.@reward_menu$ = "";
 							deletearray .@current_reward$;
 							for( .@i = 0; .@i < .@reward_size; .@i++ ){
 								.@reward_name$ = getitemname( .@reward_list[.@i] );
-								.@reward_menu$ = .@item_menu$ + .@reward_qty[.@i] +"x "+.@reward_name$ +":";
+								.@reward_menu$ = .@item_menu$ + .@reward_qty[.@i] +" x "+.@reward_name$ +":";
 								.@current_reward$[.@i] = .@reward_name$;
-								mes " ^777777 ~ "+.@reward_qty[.@i]+" x "+.@reward_name$+"^000000";
+								mes " ^777777 - "+.@reward_qty[.@i]+" x "+.@reward_name$+"^000000";
 							}
 							.@current_reward_list$ = implode( .@current_reward$,"|" );
 							
 						}else{
-							mes " ^777777 ~ none ^000000";
+							mes " ^777777 <none> ^000000";
 						}
-						mes "Base EXP : ^777777"+( ( .@baseexp )? .@baseexp:"none" )+"^000000";
-						mes "Job EXP : ^777777"+( ( .@jobexp )? .@jobexp:"none" )+"^000000";
+						mes "基本经验 : ^777777"+( ( .@baseexp )? .@baseexp:"<none>" )+"^000000";
+						mes "职业经验 : ^777777"+( ( .@jobexp )? .@jobexp:"<none>" )+"^000000";
 						mes " ";
 						next;
-						.@option = select( ( .@reward_size >= .max_required_item )?"":"Add Item Reward",
-										( .@reward_size )?"Delete Item Reward":"",
-										"Edit Cash Reward",
-										"Edit Zeny Reward",
-										"Edit Base EXP Reward",
-										"Edit Job EXP Reward",
-										"- Back" );
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
+						.@option = select( ( .@reward_size >= .max_required_item )?"":"- 添加奖励物品",
+										( .@reward_size )?"- 删除奖励物品":"",
+										"- 设置现金点数奖励",
+										"- 设置Zeny奖励",
+										"- 设置基本经验奖励",
+										"- 设置职业经验奖励",
+										"- 返回" );
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
 						switch( .@option ){
-							Case 1:
-								mes "Enter Reward Item ID";
+							case 1:
+								mes "请输入奖励物品ID";
 								do{
 									input .@reward_id;
 									if( !.@reward_id ) break;
 									.@reward_name$ = getitemname( .@reward_id );
-								}while( .@reward_name$ == "null" || .@reward_name$ == "" );
+								}while( .@reward_name$ == "<null>" || .@reward_name$ == "" );
 								if( .@reward_id && .@reward_name$ != "null" && .@reward_name$ != "" ){
-									mes "How many "+.@reward_name$+" will be rewarded ?";
+									mes "请问需要奖励多少个 "+.@reward_name$+" ?";
 									input .@amount,0,30000;
 									if( .@amount ){
 										if( compare( "|"+.@current_reward_list$+"|","|"+.@reward_name$+"|" ) ){
@@ -850,54 +871,55 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 									}
 								}
 								break;
-							Case 2:
-								mes "Pick an Reward to Remove.";
+							case 2:
+								mes "请选择需要删除的奖励内容.";
 								.@i = select( .@reward_menu$ ) - 1;
-								mes "Removed "+.@reward_qty[.@i]+"x "+getitemname( .@reward_list[.@i] );
+								mes "删除 "+.@reward_qty[.@i]+" x "+getitemname( .@reward_list[.@i] );
 								deletearray .@reward_list[.@i],1;
 								deletearray .@reward_qty[.@i],1;
 								.@reward_size--;
 								break;
-							Case 3:
-								mes "How many Cash will be given ?";
-								mes "^777777( value: 0 ~ "+.max_integer_value+" )^000000";
+							case 3:
+								mes "请问需要奖励多少现金点数(P点)?";
+								mes "^777777<数值范围: 0~"+.max_integer_value+">^000000";
 								input .@cash,0,.max_integer_value;
 								break;
-							Case 4:
-								mes "How many Zeny will be given ?";
-								mes "^777777( value: 0 ~ "+.max_integer_value+" )^000000";
+							case 4:
+								mes "请问需要奖励多少Zeny?";
+								mes "^777777<数值范围: 0~"+.max_integer_value+">^000000";
 								input .@zeny,0,.max_integer_value;
 								break;
-							Case 5:
-								mes "How many Base EXP reward ?";
-								mes "^777777( value: 0 ~ "+.max_integer_value+" )^000000";
+							case 5:
+								mes "请问需要奖励多少基本经验?";
+								mes "^777777<数值范围: 0~"+.max_integer_value+">^000000";
 								input .@baseexp,0,.max_integer_value;
 								break;
-							Case 6:
-								mes "How many Job EXP reward ?";
-								mes "^777777( value: 0 ~ "+.max_integer_value+" )^000000";
+							case 6:
+								mes "请问需要奖励多少职业经验?";
+								mes "^777777<数值范围: 0~"+.max_integer_value+">^000000";
 								input .@jobexp,0,.max_integer_value;
 							default: break;
 						}
 						next;
 					}while( .@option < 7 );
 					break;
-				Case 8: // npc limitation
-					mes "^0055FF[ "+.@npc_name$+" ]^000000";
-					mes "By default, the mission will be available from each mission board npc ^FF0000unless you have specified which NPC may offer this mission.^000000";
-					mes " ";
-					mes "Just pick all the NPC that may offer this mission if you wish.";
+				case 8: // npc limitation
+					mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+					mes "-------------------------------";
+					mes "默认设置情况下,委托的任务将会出现在所有的冒险家工会委托任务面板或NPC的委托列表中 ^FF0000除非您对冒险家工会委托任务面板或NPC进行过特殊设定.^000000";
+					mes "如果没有特别的情况,只需要选择全部NPC即可.";
 					next;
 					if( !getarraysize( .@selected_npc_array$ ) )
 						for( .@i = 0; .@i < .mission_npc_count; .@i++ ){
 							.@selected_npc_array$[.@i] = ""+.@i;
 							.@selected_npc_size++;
 						}
-					dispbottom "[ NPC Limitation ] RED = Disable , GREEN = Enable";
+					dispbottom "[ 冒险家工会委托任务面板与NPC限制 ] 红色 = 禁用 , 绿色 = 启用";
 			
 					do{
-						mes "^0055FF[ "+.@npc_name$+" ]^000000";
-						mes "Mission offered by: ";
+						mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+						mes "-------------------------------";
+						mes "选择任务出现的面板或NPC: ";
 						.@selected_npc_menu$ = "";
 						if( .@selected_npc_size >= 2 ){
 							.@selected_npc$ = "|"+implode( .@selected_npc_array$,"|" )+"|";
@@ -912,7 +934,7 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 							.@selected_npc_menu$ = .@selected_npc_menu$ + .@sub_npc_name$ +":";
 						}
 						next;
-						.@option = select( .@selected_npc_menu$+"^000000- Back" ) - 1;
+						.@option = select( .@selected_npc_menu$+"^000000- 返回" ) - 1;
 						if( .@option < .mission_npc_count ){
 							if( compare( "|"+.@selected_npc$+"|","|"+.@option+"|" ) )
 								.@selected_npc_array$[.@option] = "";
@@ -964,11 +986,11 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 		
 		if( !.@new_mission_id ){
 			.@new_mission_id = gettimetick(2);
-			message strcharinfo(0),"Mission # "+.@new_mission_id+" has been added.";
+			message strcharinfo(0),"<冒险家工会> 委托任务 ID# "+.@new_mission_id+" 已经成功添加.";
 		}else{
-			message strcharinfo(0),"Mission # "+.@new_mission_id+" has been updated.";
+			message strcharinfo(0),"<冒险家工会> 委托任务 ID# "+.@new_mission_id+" 已经发布.";
 			// attach and inform other online players.
-			callsub( OnRemoveMission,.@new_mission_id,"A GM updated Mission # "+.@new_mission_id );
+			callsub( OnRemoveMission,.@new_mission_id,"冒险家工会发布了新任务 ID# "+.@new_mission_id );
 		}
 		
 		// add new mission into SQL
@@ -1001,36 +1023,38 @@ switch( select( ( .@current_mission_size )?"Submit Mission":"",
 			" ); " 
 		);
 		break;
-	Case 6: // delete mission
+	case 6: // delete mission
 		do{
-			mes "^0055FF[ "+.@npc_name$+" ]^000000";
+			mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+			mes "-------------------------------";
 			deletearray .@id;
 			query_sql( "SELECT `id`,`title`,`min_lv`,`max_lv` FROM `mission_board` WHERE `npc_id` LIKE '%|"+.@mission_npc_num+"|%' LIMIT "+.max_page_size+" OFFSET "+.@offset,.@id,.@title$,.@min_lv,.@max_lv );
 			.@offset += .max_page_size;
 			.@size = getarraysize( .@id );
 			if( !.@size ){
-				mes "There are no available mission to update.";
+				mes "没有可发布的委托任务.";
 				close;
 				
 			}else{
-				mes "Pick a mission.";
+				mes "选择一个委托任务.";
 				for( .@i = 0; .@i < .@size; .@i++ )
 					.@mission_menu$ = .@mission_menu$ + "["+.@min_lv[.@i]+"~"+.@max_lv[.@i]+"] "+.@title$[.@i] +":";
 			}
 			next;
-			.@i = select( .@mission_menu$+ ( ( .@size < .max_page_size )?"":"- next page" ) ) - 1;
+			.@i = select( .@mission_menu$+ ( ( .@size < .max_page_size )?"":"- 下一页" ) ) - 1;
 		}while( .@i == .@size );
 		.@mission_id = .@id[.@i];
-		mes "^0055FF[ "+.@npc_name$+" ]^000000";
-		mes "Are you sure to remove this mission ?";
-		if( select( "nope","Delete Mission" ) == 2 ){
+		mes "- ^cc6600冒险家工会^000000 - ^cccccc"+.@npc_name$+"^000000";
+		mes "-------------------------------";
+		mes "您确定要删除这个已发布委托任务吗?";
+		if( select( "- 取消","- 删除任务" ) == 2 ){
 			query_sql( "DELETE FROM `mission_board` WHERE `id` = "+.@mission_id+" LIMIT 1" );
-			mes "Removed mission from mission list.";
+			mes "委托任务已经从发布任务列表中删除.";
 
 			// attach other online players and remove the missions.
-			callsub( OnRemoveMission,.@mission_id,"A GM removed Mission # "+.@mission_id );
+			callsub( OnRemoveMission,.@mission_id,"冒险家工会取消了任务 # "+.@mission_id );
 			query_sql( "DELETE FROM `player_mission` WHERE `completion` = '0000-00-00 00:00:00' AND `mission_id` = "+.@mission_id );
-			mes "Removed mission from all players.";
+			mes "已经将任务从所有玩家身上删除.";
 		}
 	default: break;
 }
@@ -1042,21 +1066,21 @@ initnpctimer "mission_board";
 if( strnpcinfo(0) == "mission_board" ){
 	
 	// gm level to access panel
-	.gm_level = 90;
+	.gm_level = 0;
 	// max no. of required monster
-	.max_required_monster = 10;
+	.max_required_monster = 6000;
 	// max no. of required item
-	.max_required_item = 10;
+	.max_required_item = 35000;
 	// max no. of required mission ( un-implement yet )
 	.max_required_mission = 10;
 	// max no. of available mission
 	.max_mission_available = 50;
 	// max value of integer input
-	.max_integer_value = 2000000000;
+	.max_integer_value = 10000000;
 	// max amount of mission per page
-	.max_page_size = 30;
+	.max_page_size = 6;
 	// max mission per npc take by character
-	.max_mission_per_char = 4;
+	.max_mission_per_char = 10;
 	
 	// predefined values.
 	.npc_name$ = strnpcinfo(0);
@@ -1073,11 +1097,11 @@ if( strnpcinfo(0) == "mission_board" ){
 		EAJ_NINJA;
 	.base_job_size = getarraysize( .base_job );
 	setarray .job_branch_name$,
-		"2-1 Classes",
-		"2-2 Classes",
-		"Rebirth Classes",
-		"Baby Classes",
-		"Third Classes";
+		"2-1 职业",
+		"2-2 职业",
+		"转生职业",
+		"宝宝职业",
+		"三转职业";
 	setarray .job_branch,
 		EAJL_2_1,
 		EAJL_2_2,
@@ -1098,9 +1122,9 @@ if( strnpcinfo(0) == "mission_board" ){
 		end;
 		
 	}else if( !.@num ){
-		debugmes "[Removed] "+strnpcinfo(0)+", invalid <num:'"+strnpcinfo(2)+"'>";
+		debugmes "[删除] "+strnpcinfo(0)+", 错误 <代码:'"+strnpcinfo(2)+"'>";
 	}else if( .mission_npc_count >= 100 ){
-		debugmes "[Skipped] "+strnpcinfo(0)+", max: 100 Total NPC.";
+		debugmes "[忽略] "+strnpcinfo(0)+", 最大: NPC数量为100个.";
 	}
 	disablenpc strnpcinfo(0);
 }
@@ -1109,7 +1133,7 @@ end;
 // just used to display how many total Mission Board NPC.
 OnTimer1000:
 	stopnpctimer;
-	debugmes "[ Mission Board ] Total NPC Loaded : "+.mission_npc_count+" ...";
+	debugmes "[ 冒险家工会 委托任务面板NPC ] 数量 : "+.mission_npc_count+" 个NPC已读取...";
 	end;
 
 // OnWhisperGlobal:
@@ -1123,7 +1147,7 @@ if( strnpcinfo(0) == .npc_name$ ){
 			if( .@timetick < .@expire[.@i] ){
 				.@timeleft = ( .@expire[.@i] - .@timetick );
 				addtimer ( .@timeleft * 1000 ),.npc_name$+"::OnTimeCheck";
-				dispbottom "[ Mission Progress : "+@ms_list$[.@i]+" , expire in "+callsub( OnTime2Str,( .@timeleft + .@timetick ) )+" ]";
+				dispbottom "[ 冒险家工会 委托任务进度 : "+@ms_list$[.@i]+" , 将于 "+callsub( OnTime2Str,( .@timeleft + .@timetick ) )+" 后过期 ]";
 				query_sql( "SELECT `mob_list`,`mob_qty` FROM `mission_board` WHERE `id` = "+@ms_list$[.@i],.@mob_list$,.@mob_qty$ );
 				
 				setd( "@ms_"+@ms_list$[.@i]+"_expire" ),.@expire[.@i];
@@ -1131,7 +1155,7 @@ if( strnpcinfo(0) == .npc_name$ ){
 					callsub( OnExplodeArray,.@mob_hunt$[.@i],getd( "@ms_"+@ms_list$[.@i]+"_qty" ),0 );
 					.@monster_size = callsub( OnExplodeArray,.@mob_hunt$[.@i],getd( "@ms_"+@ms_list$[.@i]+"_hunt" ),0 );
 					// for( .@mob = 0; .@mob < .@monster_size; .@mob++ )
-						// dispbottom  " ~ killed "+getd( "@ms_"+@ms_list$[.@i]+"_hunt["+.@mob+"]" )+"/"+getd( "@ms_"+@ms_list$[.@i]+"_qty["+.@mob+"]" )+" x "+getmonsterinfo( getd( "@ms_"+@ms_list$[.@i]+"_list["+.@mob+"]" ),MOB_NAME );
+						// dispbottom  " - 击杀: "+getd( "@ms_"+@ms_list$[.@i]+"_hunt["+.@mob+"]" )+"/"+getd( "@ms_"+@ms_list$[.@i]+"_qty["+.@mob+"]" )+" x "+getmonsterinfo( getd( "@ms_"+@ms_list$[.@i]+"_list["+.@mob+"]" ),MOB_NAME );
 				}
 			}
 		}
@@ -1142,7 +1166,7 @@ OnPCLogoutEvent:
 if( strnpcinfo(0) == .npc_name$ ){
 	if( @ms_size )
 		for( .@ms = 0; .@ms < @ms_size; .@ms++ ){
-			debugmes "Saving "+@ms_list$[.@ms];
+			debugmes "保存 "+@ms_list$[.@ms];
 			.@mob_size = getarraysize( getd( "@ms_"+@ms_list$[.@ms]+"_list" ) );
 			if( .@mob_size ){
 				copyarray .@temp_array[0],getd( "@ms_"+@ms_list$[.@ms]+"_list[0]" ),.@mob_size;
@@ -1162,7 +1186,7 @@ if( strnpcinfo(0) == .npc_name$ ){
 		
 		// by default mission wont work in PVP,GVG,Instance,Event maps
 		if( compare( .@map$,"@" ) || getmapflag( .@map$,mf_gvg ) || getmapflag( .@map$,mf_pvp )){
-			// dispbottom "[Mission Board] PvP/GvG Map , Instance Map , Event Map , include monsters will not affect Mission Progress.";
+			dispbottom "<冒险家工会> 在PvP/GvG地图, 副本地图, 活动事件地图, 将不会记录委托任务中要求的怪物击杀数量.";
 			end;
 		}
 		
@@ -1173,7 +1197,7 @@ if( strnpcinfo(0) == .npc_name$ ){
 				deletearray getd( "@ms_"+@ms_list$[.@ms]+"_list" );
 				deletearray getd( "@ms_"+@ms_list$[.@ms]+"_qty" );
 				deletearray getd( "@ms_"+@ms_list$[.@ms]+"_hunt" );
-				dispbottom "[Mission # "+@ms_list$[.@ms]+"] Mission removed due to expired. ";
+				dispbottom "<冒险家工会> ID# "+@ms_list$[.@ms]+" 的委托任务由于被删除,现已无效. ";
 				deletearray @ms_list$[.@ms],1;
 				@ms_size--;
 				
@@ -1185,7 +1209,7 @@ if( strnpcinfo(0) == .npc_name$ ){
 						if( .@temp_array[.@mob] == killedrid ){
 							.@value = getd( "@ms_"+@ms_list$[.@ms]+"_hunt["+.@mob+"]" ) + 1;
 							setd( "@ms_"+@ms_list$[.@ms]+"_hunt["+.@mob+"]" ),.@value;
-							// dispbottom "[Mission # "+@ms_list$[.@ms]+" Progress] Hunted "+.@value+" x "+getmonsterinfo( .@temp_array[.@mob],MOB_NAME );
+							dispbottom "<冒险家工会> ID# "+@ms_list$[.@ms]+" 委托任务进度: 猎杀 "+.@value+" x "+getmonsterinfo( .@temp_array[.@mob],MOB_NAME );
 							break;
 						}
 					deletearray .@temp_array;
@@ -1205,7 +1229,7 @@ OnTimeCheck:
 				deletearray getd( "@ms_"+@ms_list$[.@i]+"_list" );
 				deletearray getd( "@ms_"+@ms_list$[.@i]+"_qty" );
 				deletearray getd( "@ms_"+@ms_list$[.@i]+"_hunt" );
-				dispbottom "[Mission # "+@ms_list$[.@i]+"] Mission removed due to expired. ";
+				dispbottom "<冒险家工会> ID# "+@ms_list$[.@i]+"] 的委托任务由于被删除,现已无效. ";
 				deletearray @ms_list$[.@i],1;
 				@ms_size--;
 			}
@@ -1227,7 +1251,7 @@ OnRemoveMission:
 			for( .@ms = @ms_size; .@ms >= 0; .@ms-- )
 				if( @ms_list$[.@ms] == ""+.@mission_id ){
 					message strcharinfo(0),.@message$;
-					dispbottom "Please visit Mission NPC to gain latest information.";
+					dispbottom "<冒险家工会> 请访问冒险家工会委托任务NPC以获得最新委托信息.";
 					setd( "@ms_"+@ms_list$[.@ms]+"_expire" ),0;
 					deletearray getd( "@ms_"+@ms_list$[.@ms]+"_list" );
 					deletearray getd( "@ms_"+@ms_list$[.@ms]+"_qty" );
@@ -1242,7 +1266,7 @@ OnRemoveMission:
 		.@i++;
 	}
 	attachrid( .@origin_aid );
-	dispbottom "Total "+.@count+" online players affected.";
+	dispbottom "<冒险家工会> 该操作共计会影响 "+.@count+" 名在线玩家.";
 	return;
 
 // usage :
@@ -1254,9 +1278,9 @@ OnTime2Str:
 	.@min = ( .@left % 3600 / 60 );
 	.@sec = ( .@left % 60 );
 	if( !.@left ) 
-		return "none";
+		return "<none>";
 	else
-		return "^777777"+( ( .@hour )? .@hour+" hr ":"" ) + ( ( .@hour || .@min )? .@min+" min ":"" ) +.@sec+" sec^000000";
+		return "^777777"+( ( .@hour )? .@hour+" h ":"" ) + ( ( .@hour || .@min )? .@min+" m ":"" ) +.@sec+" s^000000";
   
   
 // usage : 
@@ -1307,21 +1331,22 @@ OnDisplayMissionInfo:
 			.@eac = eaclass();
 	
 		// display mission info
-		mes ""+(( .@mission_id )? "^FF0000Mission ID # "+.@mission_id:" " )+"^000000";
-		mes "Title : "+( ( .@title$ != "" )?"^777777"+.@title$:"^FF0000-incomplete-" )+"^000000";
-		mes "Description : "+( ( .@description$ != "" )?"^777777"+.@description$:"^FF0000-incomplete-" )+"^000000";
-		mes "Level Range : "+( ( getelementofarray( getarg(3),0 ) )? "^777777"+getelementofarray( getarg(3),0 )+" ~ "+getelementofarray( getarg(3),1 ):"^FF0000-incomplete-" )+"^000000";
+		mes ""+(( .@mission_id )? "^FF0000任务ID # "+.@mission_id:" " )+"^000000";
+		mes "标题 : "+( ( .@title$ != "" )?"^777777"+.@title$:"^FF0000-未设置-" )+"^000000";
+		mes "描述 : "+( ( .@description$ != "" )?"^777777"+.@description$:"^FF0000-未设置-" )+"^000000";
+		mes " ";
+		mes "等级限制 : "+( ( getelementofarray( getarg(3),0 ) )? "^777777"+getelementofarray( getarg(3),0 )+" ~ "+getelementofarray( getarg(3),1 ):"^FF0000-未设置-" )+"^000000";
 		if( .@check_progress & 1 )
 			if( BaseLevel >= getelementofarray( getarg(3),0 ) && BaseLevel <= getelementofarray( getarg(3),1 ) )
 				.@lv_progress = 1;
 		
-		mes "Repeatable: ^777777"+( ( !.@repeatable )?"unlimit":.@repeatable+" time" )+"^000000";
-		mes "Redo Delay: ^777777"+( ( !.@redo_delay )?"none":callsub( OnTime2Str,( ( .@redo_delay * 3600 ) + gettimetick(2) ) ) )+"^000000";
-		mes "Expire in: ^777777"+( ( !.@timelimit )?"none":callsub( OnTime2Str,.@timelimit ) )+"^000000";
+		mes "重复完成 : ^777777"+( ( !.@repeatable )?"<默认|无限制>":.@repeatable+" 次" )+"^000000";
+		mes "冷却时间 : ^777777"+( ( !.@redo_delay )?"<none>":callsub( OnTime2Str,( ( .@redo_delay * 3600 ) + gettimetick(2) ) ) )+"^000000";
+		mes "时间限定 : ^777777"+( ( !.@timelimit )?"<none>":callsub( OnTime2Str,.@timelimit ) )+"^000000";
 		mes " ";
 		
-		.@word$ = (( !.@monster_size && !.@item_size )?"^FF0000incomplete":"^777777none" );
-		mes "Monster List : "+( ( .@monster_size )?"":.@word$ )+"^000000";
+		.@word$ = (( !.@monster_size && !.@item_size )?"^FF0000-未设置-":"^777777<none>" );
+		mes "怪物列表 : "+( ( .@monster_size )?"":.@word$ )+"^000000";
 		if( .@monster_size )
 			for( .@i = 0; .@i < .@monster_size; .@i++ ){
 				.@mob_id = getelementofarray( getarg(6),.@i );
@@ -1335,9 +1360,9 @@ OnDisplayMissionInfo:
 						.@temp_color$ = "FF0000";
 					}
 				}
-				mes " ^777777"+.@quantity+" x "+getmonsterinfo( .@mob_id,MOB_NAME )+"  "+( ( .@check_progress & 2 )?"^"+.@temp_color$+"(killed "+.@killed_count+")":"" )+"^000000";
+				mes " ^777777"+.@quantity+" x "+getmonsterinfo( .@mob_id,MOB_NAME )+"  "+( ( .@check_progress & 2 )?"^"+.@temp_color$+"(已经击杀 "+.@killed_count+" )":"" )+"^000000";
 			}
-		mes "Item List : "+( ( .@item_size )?"":.@word$ )+"^000000";
+		mes "物品列表 : "+( ( .@item_size )?"":.@word$ )+"^000000";
 		if( .@item_size )
 			for( .@i = 0; .@i < .@item_size; .@i++ ){
 				.@item_id = getelementofarray( getarg(8),.@i );
@@ -1352,10 +1377,10 @@ OnDisplayMissionInfo:
 						.@temp_color$ = "FF0000";
 					}
 				}
-				mes " ^777777"+.@quantity+" x "+getitemname( .@item_id )+" "+( ( .@item_type == 4 || .@item_type == 5 )?"["+getitemslots( .@item_id )+"]":"" )+"  "+( ( .@check_progress & 4 )?"^"+.@temp_color$+"(have "+.@item_count+")":"" )+"^000000";
+				mes " ^777777"+.@quantity+" x "+getitemname( .@item_id )+" "+( ( .@item_type == 4 || .@item_type == 5 )?"["+getitemslots( .@item_id )+"]":"" )+"  "+( ( .@check_progress & 4 )?"^"+.@temp_color$+"(现有 "+.@item_count+" )":"" )+"^000000";
 			}
 		mes " ";
-		mes "Available Job Classes :";
+		mes "职业列表 :";
 		if( .@base_job_bitmask ){
 			deletearray .@available_job$;
 			deletearray .@available_branch$;
@@ -1375,31 +1400,31 @@ OnDisplayMissionInfo:
 					if( .@job_branch_bitmask & ( 1 << .@i ) ){
 						if( .@check_progress & 8 && ( .@eac & .job_branch[.@i] ) )
 							.@branch_progress++;
-						.@available_branch$[.@available_branch_size] = .job_branch_name$[.@i];	
+						.@available_branch$[.@available_branch_size] = .job_branch_name$[.@i];
 						.@available_branch_size++;
 					}
-				mes "Inherited: ^777777"+implode( .@available_branch$,", " )+" ^000000";			
+				mes "限制 : ^777777"+implode( .@available_branch$,", " )+" ^000000";
 			}
 		}else{
-			mes " ^FF0000-incomplete^000000";
+			mes " ^FF0000-未设置-^000000";
 		}
 		
 		mes " ";
-		mes "Reward List : ";
-		mes "^777777 ~ Base EXP: "+( ( .@baseexp )? .@baseexp:"none" )+"^000000";
-		mes "^777777 ~ Job EXP: "+( ( .@jobexp )? .@jobexp:"none" )+"^000000";
-		mes "^777777 ~ Cash: "+( ( .@cash )? .@cash:"none" )+"^000000";
-		mes "^777777 ~ Zeny: "+( ( .@zeny )? .@zeny:"none" )+"^000000";
-		mes "Reward Item List: "+( ( .@reward_size )?"":"^777777none" )+"^000000";
+		mes "奖励列表 : ";
+		mes "^777777 - 基本经验 : "+( ( .@baseexp )? .@baseexp:"<none>" )+"^000000";
+		mes "^777777 - 职业经验 : "+( ( .@jobexp )? .@jobexp:"<none>" )+"^000000";
+		mes "^777777 - 现金点数 : "+( ( .@cash )? .@cash:"<none>" )+"^000000";
+		mes "^777777 - Zeny : "+( ( .@zeny )? .@zeny:"<none>" )+"^000000";
+		mes "奖励物品列表 : "+( ( .@reward_size )?"":"^777777<none>" )+"^000000";
 		if( .@reward_size )
 			for( .@i = 0; .@i < .@reward_size; .@i++ ){
 				.@item_id = getelementofarray( getarg(16),.@i );
 				.@item_type = getiteminfo( .@item_id,2 );
-				mes " ^777777 ~ "+getelementofarray( getarg(17),.@i )+" x "+getitemname( .@item_id )+" "+( ( .@item_type == 4 || .@item_type == 5 )?"["+getitemslots( .@item_id )+"]":"" )+"^000000";
+				mes " ^777777 - "+getelementofarray( getarg(17),.@i )+" x "+getitemname( .@item_id )+" "+( ( .@item_type == 4 || .@item_type == 5 )?"["+getitemslots( .@item_id )+"]":"" )+"^000000";
 			}
 		mes " ";
 		
-		mes "Mission Offered by: "+( ( .@selected_npc_size )?"":"^FF0000-incomplete" )+"^000000";
+		mes "发布任务的NPC : "+( ( .@selected_npc_size )?"":"^FF0000-未设置-" )+"^000000";
 		if( .@selected_npc_size ){
 			if( .@selected_npc_size >= 2 )
 				.@selected_npc$ = "|"+implode( getarg(18),"|" )+"|";
@@ -1408,32 +1433,32 @@ OnDisplayMissionInfo:
 			for( .@i = 0; .@i < .mission_npc_count; .@i++ )
 				if( ( compare( "|"+.@selected_npc$+"|","|"+.@i+"|" ) ) ){
 					getmapxy( .@map$,.@x,.@y,1,.npc_unique_list$[.@i] );
-					.@sub_npc_name$ = "^777777("+.@map$+") ";
+					.@sub_npc_name$ = "^777777(" +.@map$+ ") ";
 					.@sub_npc_name$ = .@sub_npc_name$ + .npc_name_list$[.@i] + "^000000";
-					mes " ~ "+.@sub_npc_name$;
+					mes " - "+.@sub_npc_name$;
 				}
 			mes " ";
 		}
 		if( .@time_update$ != "0000-00-00 00:00:00" && .@time_update$ != "" ){
-			mes "Last Mission Update:";
+			mes "最后发布日期:";
 			mes "^777777"+.@time_update$+"^000000";
 		}
 		
 		if( .@check_progress ){
 			if( .@check_progress & 1 && !.@lv_progress ){
-				dispbottom "[Failed] Your level didnt meet the requirements.";
+				dispbottom "[错误] 您的等级未达到该委托任务的需求.";
 				.@check_result |= 1;
 			}
 			if( .@check_progress & 2 && .@monster_size != .@monster_progress ){
-				dispbottom "[Failed] Your Monsters Hunt didnt meet the requirements.";
+				dispbottom "[错误] 您的怪物击杀数量未达到该委托任务的需求.";
 				.@check_result |= 2;
 			}
 			if( .@check_progress & 4 && .@item_size != .@item_progress ){
-				dispbottom "[Failed] Your Items collecting didnt meet the requirements.";
+				dispbottom "[错误] 您收集的物品数量未达到该委托任务的需求.";
 				.@check_result |= 4;
 			}
 			if( .@check_progress & 8 && ( !.@branch_progress && !.@class_progress ) ){
-				dispbottom "[Failed] Your Class didnt meet the requirements.";
+				dispbottom "[错误] 您的职业不符合该委托任务的需求.";
 				.@check_result |= 8;
 			}
 		}
@@ -1445,15 +1470,15 @@ OnDisplayMissionInfo:
 // the number should stay the same for eternity, if you change it frequently, it might affect your missions for each NPC.
 // ( to conclude, once you assigned the number, dont change it for the sake of your mission board ... )
 
-prontera,151,171,4	duplicate(mission_board)	Mission A#1	837
-prontera,154,174,4	duplicate(mission_board)	Mission B#2	837
-prontera,156,176,4	duplicate(mission_board)	Mission C#3	837
-prontera,159,179,4	duplicate(mission_board)	Mission D#4	837
+prontera,151,171,4	duplicate(mission_board)	任务委托 A#1	2_BULLETIN_BOARD 
+prontera,154,174,4	duplicate(mission_board)	任务委托 B#2	2_BULLETIN_BOARD 
+prontera,156,176,4	duplicate(mission_board)	任务委托 C#3	2_BULLETIN_BOARD 
+prontera,159,179,4	duplicate(mission_board)	任务委托 D#4	2_BULLETIN_BOARD 
 
-prontera,151,161,4	duplicate(mission_board)	Mission E#5	837
-prontera,154,164,4	duplicate(mission_board)	Mission F#6	837
-prontera,156,166,4	duplicate(mission_board)	Mission G#7	837
-prontera,159,169,4	duplicate(mission_board)	Mission H#8	837
+prontera,151,161,4	duplicate(mission_board)	任务委托 E#5	2_BULLETIN_BOARD 
+prontera,154,164,4	duplicate(mission_board)	任务委托 F#6	2_BULLETIN_BOARD 
+prontera,156,166,4	duplicate(mission_board)	任务委托 G#7	2_BULLETIN_BOARD 
+prontera,159,169,4	duplicate(mission_board)	任务委托 H#8	2_BULLETIN_BOARD 
 
 
 
