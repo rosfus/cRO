@@ -1,4 +1,4 @@
-//===== RoSF.us R&D Team. ====================================
+//===== Hercules Script ======================================
 //= Lighthalzen Dungeon Warp Script
 //===== By: ==================================================
 //= Sara-chan (1.0)
@@ -210,6 +210,3 @@ function	script	randomw	{
  	default: warp "lhz_cube",67,193; end;
 	}
 }
-
-//----- lhz_dun_n ----------------------------
-lhz_dun04,155,151,0	warp	lhz_dun_n	1,1,lhz_dun_n,155,151
