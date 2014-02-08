@@ -42,6 +42,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 * TortoiseGIT ( http://code.google.com/p/tortoisegit/ )
 * 建议准备 :
       * 7-zip ( http://www.7-zip.org/ ) 
+      * .NET Framework 4.5.1 ( http://support.microsoft.com/kb/2858725/zh-cn ) 
       * NotePad++ ( http://notepad-plus-plus.org/ ) 
       * MySQL ( http://dev.mysql.com/downloads/ )
 	  * Navicat ( http://www.navicat.com/ ) MySQL 的强大管理程序, 你可以在官网下载正式版本, 当然在安赫尔的网盘里有更适用的版本.
@@ -56,7 +57,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 * 首先请先安装完成 Subversion (SVN) 工具.
 * 在系统硬盘下建立一个[rosfus]的目录 (e.g. D:\rosfus)
 * 右键点击该目录, 在弹出菜单中选择 'SVN Checkout'.
-* 然后粘贴 SVN URL 地址到输入框内, URL为: https://github.com/rosfus/cRO
+* 然后粘贴 SVN URL 地址到输入框内, URL为: https://github.com/rosfus/cRO.git
 * 当SVN数据全部同步到本地之后, 会至少建立 branches trunk 二个目录. 其中trunk为主要更新目录. branches目录中为优化版本的HeidiSQL.
 * 打开trunk目录, 双击批处理文件[一键启动单机服务端MySQL.bat], 此时会弹出4个窗口. 1个MySQL管理器, 3个RO单机版服务端程序(略延迟于MySQL启动). 等待4个程序全部运行即可.
 * 请注意由于是服务端程序, 而且使用了特殊的端口 6900 5121 6121, 因此可能会被一些程序判定是否拦截. 此时请选择放行.
@@ -126,19 +127,22 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 ##### 您可以从下述链接中下载到kRO客户端以及客户端补丁 #####
 
-* 完整客户端 [2.58Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKRUgC7Lt1S203 [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/13pRx8 [百度云盘]
-       * 下载点三:   http://115.com/lb/5lba3r77cndq [115网盘]
-       * 下载点四:   http://url.cn/QwcPy8 [微云]
+* 完整客户端 [2.59Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.02.05
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwIXIAA2gfVS924  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1c0osYdi   [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbbzzov7axd    [115网盘]
+       * 下载点四:   http://url.cn/PAruDu  [微云]
        * 下载点五:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar [DropBox]
        * MD5: F1CB83363CDD85FBA618F274F03E642A
-* 2014版本最新韩服补丁测试 [247Mb] For韩国客户端. <AutoUpdate.exe> 登录游戏
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwK0IAAtA.dSe10   [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1sj75mah   [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbb1i17iik2   [115网盘]
-       * 下载点四:   http://url.cn/OCO5N7   [微云]
-       * MD5: D4DDCEE542ECBDFBE3576CE0F31904CF
+* 2014 版本最新韩服补丁 [279.2Mb] for韩国客户端.
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKcHwAhd-VSd62    [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1hqkNcCO  [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbe008um30p   [115网盘]
+       * 下载点四:   http://url.cn/TTb0x3   [微云]
+       * MD5: AFA67A60661384C32646893522254B73
+* 2014版本自动更新器[副节点|包含测试服Sakray与单机版登陆器]
+       * http://pan.baidu.com/s/1BxCIi
+       * MD5: 5980FE4484D0AB4F9750F2D0E9C2CC10
 * 更新客户端:
       * 由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. 
       * 运行客户端目录中的[韩服Data更新.exe]与[韩服rData更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[AutoUpdate.exe], 在一番更新后即可成为完美的单机版客户端了. 
