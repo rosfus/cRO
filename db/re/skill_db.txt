@@ -886,7 +886,7 @@
 2314,1,6,1,-1,0,0,1,1,no,0,0,0,weapon,0,	LG_RAGEBURST,怒气爆发
 2315,0,6,4,0,0x2,3,3,1,yes,0,0,0,none,2,	LG_SHIELDSPELL,盾牌咏唱
 2316,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,	LG_EXEEDBREAK,蓄势待发
-2317,1,6,2,-1,0x2,5,5,1,yes,0,0,0,none,3:4:5:6:7,	LG_OVERBRAND,枪阵-血十字
+2317,2,6,2,-1,0x2,0,5,1,yes,0,0,0,weapon,0, LG_OVERBRAND,枪阵-血十字
 2318,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,	LG_PRESTIGE,威望
 2319,0,6,4,0,0x1,3,5,1,no,0,0,0,weapon,0,	LG_BANDING,联合
 2320,0,6,4,-1,0x2,3,5,1,yes,0,0,0,weapon,0,	LG_MOONSLASHER,枪阵-圆月
@@ -895,6 +895,7 @@
 2323,0,8,4,2,0x2,1:1:2:2:3,5,-5,yes,0,0,0,weapon,0,	LG_EARTHDRIVE,大地猛击
 2324,3,8,1,-1,0,0,5,3,yes,0,0,0,weapon,0,	LG_HESPERUSLIT,黄昏之光
 2325,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,	LG_INSPIRATION,圣灵感应
+2519,1,6,1,-1,0x2,0,5,1,yes,0,0,0,weapon,3:4:5:6:7, LG_OVERBRAND_BRANDISH,枪阵-血十字
 
 //****
 // SR Sura
