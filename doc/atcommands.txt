@@ -279,6 +279,12 @@ prontera (x= 165, y= 198) 01 00 00 00 00
 
 ---------------------------------------
 
+@bst <message>
+
+Cries the whole server using the trade channel, every 60 seconds delay.
+
+---------------------------------------
+
 ========================
 | 2. Database Commands |
 ========================
