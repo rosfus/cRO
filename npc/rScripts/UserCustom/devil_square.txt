@@ -1,0 +1,252 @@
+//   Made:By Kirlein (Tyirial Script Concept)  //
+// Devil Square based off the mmorpg Muonline  //
+// Have Fun and feel free to leave suggestions //
+//          Leave This intacted                //
+// +   Translated by Stillhard aka Dewa        //
+// +  Add times for 24 hours of play :P        //
+// +  Add a little bit infos for newbie users  //
+//      Completely rewrite by ~AnnieRuru~      //
+// +  Tested with rAthena 17101                //
+// http://rathena.org/board/topic/77632-devil-square/
+/////////////////////////////////////////////////
+
+prontera,156,185,5	script	Devil Square	100,{
+	mes "[Devil Square Guardian]";
+	mes "Welcome to the entrance door to ^FF0000Devil Square^000000";
+	mes "If you failed or die, the door will be closed and you have to wait until it start to open again";
+	next;
+	if ( select ( "Enter", "Info", "Cancel " ) == 3 ) {
+		mes "[Devil Square Guardian]";
+		mes "See ya";
+		close;
+	}
+	else if ( @menu == 2 ) { // Info
+		mes "[Devil Square Guardian]";
+		mes "There are 3 level monster you'll encounter";
+		mes "Each level the enemies will grow stronger";
+		mes "If you succeded to win all 3 level monster, you'll get the opportunity to open 10 Treasure Box with items, equips, and rare cards inside!!";
+		close;
+	}
+	else if ( .start != 1 ) { // time
+		mes "[Devil Square Guardian]";
+		mes "Devil Square is now closed";
+		mes "It'll be open again at:";
+		mes "00:00 , 02:00 , 04:00 , 06:00"; // display your time here
+		mes "08:00 , 10:00 , 12:00 , 14:00";
+		mes "16:00 , 18:00 , 20:00 , 22:00";
+		close;
+	}
+	else if ( baselevel < 70 || zeny < 20000 ) { // requirement
+		mes "[Devil Square Guardian]";
+		mes "Minimum base level to enter is 70";
+		mes "The registration fee is 20,000z";
+		close;
+	}
+	else if ( .register_num >= .register_limit ) { // room FULL
+		mes "[Devil Square Guardian]";
+		mes "I'm sorry but the Devil Square is FULL";
+		mes "Maximum users to enter is "+ .register_limit +" players";
+		close;
+	}
+	zeny = zeny - 20000;
+	announce strcharinfo(0)+" has entered the Devil Square", bc_npc;
+	percentheal 100,100;
+	warp "ordeal_1-1",183,182;
+	.register_aid[ .register_num ] = getcharid(3);
+	.register_num++;
+	end;
+
+OnInit:
+	.register_limit = 10; // maximum amount of players can play in this event
+	.ann_survive = 30000; // the rate at which announce the players that still survive in devil square, in mili-seconds
+	bindatcmd "devilsquare", strnpcinfo(0)+"::Onatcmd", 99,100;
+	end;
+
+Onatcmd:
+	if ( compare( .@atcmd_parameters$, "on" ) || compare( .@atcmd_parameters$, "start" ) ) {
+		if ( .start )
+			dispbottom "Devil Square Event already started.";
+		else
+			goto L_Start;
+	}
+	else if ( compare( .@atcmd_parameters$, "off" ) || compare( .@atcmd_parameters$, "end" ) ) {
+		if ( !.start )
+			dispbottom "Devil Square Event not yet start.";
+		else
+			goto L_End;
+	}
+	else if ( !.start ) {
+		dispbottom "Devil Square Event is currently not running.";
+		dispbottom "Use "+ .@atcmd_command$ +" on | start to start the event.";
+		dispbottom "Use "+ .@atcmd_command$ +" off | end to end this event";
+	}
+	else if ( .start == 1 )
+		dispbottom "Devil Square Event is currently accepting participations.";
+	else
+		dispbottom "Devil Square Event is currently running. Currently on Round "+ .round +" with "+ .mob +" mobs left.";
+	end;
+
+L_Start:
+OnClock0000: // yeah I know about OnMinute ... it just that more people knows better using OnClock
+OnClock0200:
+OnClock0400:
+OnClock0600:
+OnClock0800:
+OnClock1000:
+OnClock1200:
+OnClock1400:
+OnClock1600:
+OnClock1800:
+OnClock2000:
+OnClock2200:
+	if ( .start ) end;
+	.start = 1;
+	disablenpc "Exit#DS";
+	mapannounce "ordeal_1-1","Devil Square is now closed", bc_map;
+	getmapxy .@map$, .@x, .@y, 1;
+	mapwarp "ordeal_1-1", .@map$, .@x, .@y;
+	killmonsterall "ordeal_1-1";
+	announce "Devil Square is OPENED NOW!! 5 Minutes until it starts..!!", bc_all;
+	sleep 60000;
+	announce "Devil Square will begin in 4 minutes..!!", bc_all;
+	sleep 60000;
+	announce "Devil Square will begin in 3 minutes..!!", bc_all;
+	sleep 60000;
+	announce "Devil Square will begin in 2 minutes..!!", bc_all;
+	sleep 60000;
+	announce "Devil Square will begin in 1 minutes..!!", bc_all;
+	sleep 60000;
+	announce "Devil Square is STARTED NOW !!", bc_all;
+	if ( !.register_num )
+		goto L_End;
+	.start = 2;
+	donpcevent strnpcinfo(0)+"::OnSurvive";
+	.round = 1;
+	.mob = 75;
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] SOLDIER SKELETON",1028,10,strnpcinfo(0)+"::Ondevildead";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] ORC ARCHER",1189,15,strnpcinfo(0)+"::Ondevildead";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] SANDMAN",1165,10,strnpcinfo(0)+"::Ondevildead";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] ARCHER SKELETON",1016,15,strnpcinfo(0)+"::Ondevildead";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] MINOROUS",1149,15,strnpcinfo(0)+"::Ondevildead";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] REQUIEM",1164,10,strnpcinfo(0)+"::Ondevildead";
+	end;
+
+Ondevildead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Devil Square : "+ .mob +" mobs to enter the 2nd round", bc_map;
+	else if ( !.mob ) {
+		announce "Devil Square will enter to 2nd round", bc_map;
+		goto Ondevil2;
+	}
+	end;
+
+Ondevil2:
+	.round = 2;
+	.mob = 70;
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] GARGOYLE",1253,15,strnpcinfo(0)+"::Ondevildead2";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] ALARM",1193,10,strnpcinfo(0)+"::Ondevildead2";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] HIGH ORC",1213,10,strnpcinfo(0)+"::Ondevildead2";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] INJUSTICE",1257,10,strnpcinfo(0)+"::Ondevildead2";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] MIMIC",1191,15,strnpcinfo(0)+"::Ondevildead2";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] WRAITH",1192,10,strnpcinfo(0)+"::Ondevildead2";
+	end;
+
+Ondevildead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Devil Square : "+ .mob +" mobs left to enter the 3rd round", bc_map;
+	else if ( !.mob ) {
+		announce "Devil Square will enter to 3rd round", bc_map;
+		goto Ondevil3;
+	}
+	end;
+
+Ondevil3:
+	.round = 3;
+	.mob = 58;
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] ANOLIAN",1206,15,strnpcinfo(0)+"::Ondevildead3";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] WANDERER",1208,15,strnpcinfo(0)+"::Ondevildead3";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] DEVIRUCHI",1109,10,strnpcinfo(0)+"::Ondevildead3";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] JOKER",1131,15,strnpcinfo(0)+"::Ondevildead3";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] MOONLIGHT",1150,2,strnpcinfo(0)+"::Ondevildead3";
+	areamonster "ordeal_1-1",183,182,246,244,"[DS] DARK ILLUSION",1302,1,strnpcinfo(0)+"::Ondevildead3";
+	end;
+
+Ondevildead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Devil Square : "+ .mob +" mobs left to VICTORY", bc_map;
+	else if ( !.mob ) {
+		announce "Devil Square : CONGRATULATION - 10 Treasure Boxs will be yours now", bc_map;
+		goto Ondevil4;
+	}
+	end;
+
+Ondevil4:
+	.round = 4;
+	.mob = 10;
+	monster "ordeal_1-1",231,250,"Treasure Box",1324,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",234,247,"Treasure Box",1328,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",237,244,"Treasure Box",1332,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",240,241,"Treasure Box",1336,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",243,238,"Treasure Box",1340,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",246,235,"Treasure Box",1344,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",249,232,"Treasure Box",1348,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",252,229,"Treasure Box",1352,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",249,241,"Treasure Box",1356,1,strnpcinfo(0)+"::Onboxdead";
+	monster "ordeal_1-1",240,249,"Treasure Box",1360,1,strnpcinfo(0)+"::Onboxdead";
+	end;
+
+Onboxdead:
+	.mob--;
+	announce "Devil Square : "+ strcharinfo(0) +" has opened the treasure box at Devil Square", bc_all;
+	if ( !.mob )
+		goto L_End;
+	end;
+
+L_End:
+	killmonsterall "ordeal_1-1";
+	enablenpc "Exit#DS";
+	deletearray .register_aid;
+	.start = .round = .mob = .register_num = 0;
+	end;
+
+OnPCDieEvent:
+OnPCLogoutEvent:
+	if ( .start && strcharinfo(3) == "ordeal_1-1" ) {
+		while ( .register_aid[.@i] != getcharid(3) && .@i < .register_num ) .@i++;
+		deletearray .register_aid[.@i], 1;
+		.register_num--;
+		if ( !.register_num ) {
+			announce "All players failed to survive at Devil Square", bc_all;
+			killmonsterall "ordeal_1-1";
+			goto L_End;
+		}
+	}
+	end;
+
+OnSurvive:
+	while ( .start == 2 ) {
+		mapannounce "ordeal_1-1", .register_num +" players is still survive at Devil Square", bc_map;
+		sleep .ann_survive;
+	}
+	end;
+}
+
+ordeal_1-1,246,245,7	script	Exit#DS	51,{
+	mes "[Exit]";
+	mes "See ya";
+	next;
+	warp "SavePoint", 0,0 ;
+	close;
+}
+
+ordeal_1-1	mapflag	nowarp
+ordeal_1-1	mapflag	nowarpto
+ordeal_1-1	mapflag	noteleport
+ordeal_1-1	mapflag	nosave	SavePoint
+ordeal_1-1	mapflag	nomemo
+ordeal_1-1	mapflag	nobranch
+ordeal_1-1	mapflag	nopenalty
+ordeal_1-1	mapflag	noicewall
