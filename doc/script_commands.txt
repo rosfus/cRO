@@ -637,8 +637,8 @@ even a value from an another array) to get at an array value:
     
 This will make @arrayofnumbers[100] equal to 10.
 
-Notice that index numbering always starts with 0. Arrays cannot hold more 
-than 128 variables (so the last one can't have a number higher than 127).
+Notice that index numbering always starts with 0. Arrays can hold over
+2 billion variables.
 
 And array indexes probably can't be negative. Nobody tested what happens 
 when you try to get a negatively numbered variable from an array, but it's 
@@ -3864,6 +3864,33 @@ by the type parameter.
  6 - RENEWAL_ASPD (renewal ASPD)
 
 ---------------------------------------
+
+*getserverdef(<type>);
+
+Returns a server definition. Valid types are listed in 'db/const.txt':
+	VAR_PACKETVER	0
+	VAR_MAX_LEVEL	1
+	VAR_MAX_STORAGE	2
+	VAR_MAX_INVENTORY	3
+	VAR_MAX_ZENY	4
+	VAR_MAX_PARTY	5
+	VAR_MAX_GUILD	6
+	VAR_MAX_GUILDLEVEL	7
+	VAR_MAX_GUILD_STORAGE	8
+	VAR_MAX_BG_MEMBERS	9
+	VAR_MAX_CHATROOM_SIZE	12
+
+---------------------------------------
+
+*getservermember(<type>);
+
+Returns the server online players information 
+
+ 0 - Return online player's character name.
+ 1 - Return online player's character ID(CID).
+ 2 - Return online player's account ID(AID).
+
+---------------------------------------
 \\
 3,1.- Item-related commands
 \\
@@ -4966,20 +4993,16 @@ the command will end silently.
 
 ---------------------------------------
 
-*successrefitem <equipment slot>;
+*successrefitem <equipment slot>{,<upgrade_count>};
 
 This command will refine an item in the specified equipment slot of the 
-invoking character by +1. For a list of equipment slots see 'getequipid'. 
-This command will not only add the +1, but also display a 'refine success' 
+invoking character by +1 (unless <upgrade_count> is specified).
+For a list of equipment slots see 'getequipid'. 
+This command will also display a 'refine success' 
 effect on the character and put appropriate messages into their chat 
 window. It will also give the character fame points if a weapon reached 
 +10 this way, even though these will only take effect for blacksmith who 
 will later forge a weapon.
-
-The official scripts seems to use the 'successrefitem' command as a 
-function instead: 'successrefitem(<number>)' but it returns nothing on the 
-stack. This is since jAthena, so probably nobody knows for sure why is it 
-so.
 
 ---------------------------------------
 
@@ -5188,6 +5211,12 @@ hard enough that all the guild needs to help or something. Doing this for
 the Glory of the Guild skill, which allows your guild to use an emblem, is 
 a good idea for a fun quest. (Wasting a level point on that is really 
 annoying :D)
+
+---------------------------------------
+
+*guildjoin <gid>,<charid>;
+
+Offline players may be invited to join the guild.
 
 ---------------------------------------
 //
@@ -6391,19 +6420,6 @@ and source flags are ignored.
 
 ---------------------------------------
 
-*balarm
-
-@balarm <color> <type> <file name> <message>
-Type
-0 - Global message
-1 - Local message
-
-File name
-It's a file that is inside your grf\wav\file.wav
-WARNING! If nonexistent file is put all hexeds that receive this broadcast will crash!
-
----------------------------------------
-
 *callshop "<name>",<option>;
 
 These are a series of commands used to create dynamic shops. 
@@ -7401,18 +7417,29 @@ setitemscript 2637,"";
 
 *atoi ("<string>")
 *axtoi ("<string>")
+*strtol("string", base)
 
 These commands are used to convert strings to numbers. 'atoi' will 
 interpret given string as a decimal number (base 10), while 'axtoi' 
-interprets strings as hexadecimal numbers (base 16).
+interprets strings as hexadecimal numbers (base 16). 'strtol' lets
+the user specify a base (valid range is between 2 and 36 inclusive,
+or the special value0, which means auto-detection).
 
-Hexadecimal number set: {0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
+The atoi and strtol functions conform to the C functions with the same
+names, and axtoi is the same as strtol, with a base of 16. Results are
+clamped to signed 32 bit int range (INT_MIN ~ INT_MAX)
 
 Example:
 
-set @var, atoi("11"); 	// Sets @var to 11
-set @var, axtoi("FF");	// Sets @var to 255
-mes axtoi("11");      	// Displays 17 (1 = 1, 10 = 16)
+.@var = atoi("11");        // Sets .@var to 11
+.@var = axtoi("FF");       // Sets .@var to 255
+mes axtoi("11");           // Displays 17 (1 = 1, 10 = 16)
+.@var = strtol("11", 10);  // Sets .@var to 11 (11 base 10)
+.@var = strtol("11", 16);  // Sets .@var to 17 (11 base 16)
+.@var = strtol("11", 0);   // Sets .@var to 11 (11 base 10, auto-detected)
+.@var = strtol("0x11", 0); // Sets .@var to 17 (11 base 16, auto-detected because of the "0x" prefix)
+.@var = strtol("011", 0);  // Sets .@var to 9 (11 base 8, auto-detected because of the "0" prefix)
+.@var = strtol("11", 2);   // Sets .@var to 3 (binary 11)
 
 ---------------------------------------
 
@@ -8000,6 +8027,14 @@ Returns name of the instanced map on success, otherwise an empty string.
 
 ---------------------------------------
 
+*has_instance2("<map name>");
+
+Same as has_instance, with exception it returns the instance id of the map,
+as long as the user is assigned to a instance containing that map.
+It will return -1 upon failure, valid instance ids are >= 0.
+
+---------------------------------------
+
 *instance_id();
 
 Retrieves the instance id of the script it is being run on.
@@ -8548,7 +8583,11 @@ attempts to remove <Item_ID> from the current shop list.
 
 *setcurrency <Val1>{,<Val2>};
 
-updates the currently attached player shop funds.
+updates the currently attached player shop funds,
+to be used within a "OnCountFunds" event of a NST_CUSTOM trader type.
+
+<Val1> is the value used in the *Cash* Points field
+<Val2> is the value used in the Kafra Points field
 
 ---------------------------------------
 
@@ -8566,7 +8605,8 @@ By default, all npcs staart with tradertype(NST_ZENY);
 
 *purchaseok();
 
-Signs that the transaction (on a NST_CUSTOM trader) has been successful.
+Signs that the transaction (on a NST_CUSTOM trader) has been successful,
+to be used within a "OnPayFunds" event of a NST_CUSTOM trader.
 
 ---------------------------------------
 
