@@ -1,7 +1,7 @@
-//===== RoSF.us R&D Team. ====================================
+//===== Hercules Script ======================================
 //= Mapflag: Adjust Skill Damage.
 //===== By: ==================================================
-//= RoSF.us R&D Team.
+//= Hercules Dev Team
 //===== Current Version: =====================================
 //= 1.0
 //===== Description: =========================================
@@ -651,7 +651,7 @@ ve_fild05	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 ve_fild06	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 ve_fild07	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 poring_c01	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
-poring_c02	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
+poring_c02	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
 que_ng	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 nameless_i	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 nameless_n	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
@@ -965,10 +965,6 @@ guild_vs22	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 guild_vs23	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 guild_vs24	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 guild_vs25	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
-guild_vs06	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
-guild_vs07	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
-guild_vs08	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
-guild_vs09	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 prt_in_pvp	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 caspen	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
 event_01	mapflag	adjust_skill_damage	RA_ARROWSTORM	200
@@ -1943,10 +1939,6 @@ guild_vs22	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
 guild_vs23	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
 guild_vs24	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
 guild_vs25	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
-guild_vs06	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
-guild_vs07	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
-guild_vs08	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
-guild_vs09	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
 prt_in_pvp	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
 caspen	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
 event_01	mapflag	adjust_skill_damage	CR_ACIDDEMONSTRATION	150
