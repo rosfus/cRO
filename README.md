@@ -67,12 +67,13 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
       * sql-files\main.sql
       * sql-files\logs.sql
       * sql-files\item_db2.sql
-* 并且导入5个更新文件. 方可完成MySQL数据库创建. 
+* 并且导入6个更新文件. 方可完成MySQL数据库创建. 
       * sql-files\upgrades\2013-11-15--00-06.sql
       * sql-files\upgrades\2013-11-18--08-23.sql 
       * sql-files\upgrades\2013-12-24--00-15.sql (v3升级到v4 同样适用)
       * sql-files\upgrades\2014-01-04--16-47.sql
       * sql-files\upgrades\2014-01-06--17-22.sql
+      * sql-files\upgrades\2014-02-19--17-57.sql
 * 更新至最新版本后, 如果global_reg_value表依然存在, 请选择Drop该表.
 
 ##### Files #####
@@ -127,22 +128,22 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 ##### 您可以从下述链接中下载到kRO客户端以及客户端补丁 #####
 
-* 完整客户端 [2.59Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.02.05
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwIXIAA2gfVS924  [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1c0osYdi   [百度云盘]
+* 完整客户端 [2.61Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.02.19
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKpPgC3ugRTd93  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1sjHERz3   [百度云盘]
        * 下载点三:   http://115.com/lb/5lbbzzov7axd    [115网盘]
        * 下载点四:   http://url.cn/PAruDu  [微云]
-       * 下载点五:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar [DropBox]
-       * MD5: F1CB83363CDD85FBA618F274F03E642A
-* 2014 版本最新韩服补丁 [279.2Mb] for韩国客户端.
+       * 下载点五:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar  [DropBox]
+       * MD5: 8BD4D535B1A546D8F591A38542EF003B
+* 2014 版本最新韩服补丁 [280.3Mb] for韩国客户端.
        * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKcHwAhd-VSd62    [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1hqkNcCO  [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbe008um30p   [115网盘]
-       * 下载点四:   http://url.cn/TTb0x3   [微云]
-       * MD5: AFA67A60661384C32646893522254B73
+       * 下载点二:   http://pan.baidu.com/s/1bn4Aqnl   [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbcqz7q9yr7    [115网盘]
+       * 下载点四:   http://url.cn/LT0C8Y  [微云]
+       * MD5: 89CDC6B4330FD58AB19425C5F38B1D2B
 * 2014版本自动更新器[副节点|包含测试服Sakray与单机版登陆器]
-       * http://pan.baidu.com/s/1BxCIi
-       * MD5: 5980FE4484D0AB4F9750F2D0E9C2CC10
+       * http://pan.baidu.com/s/1c0in7Ni
+       * MD5: 77762FCE8607C08B913A58E9A2470A7C
 * 更新客户端:
       * 由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. 
       * 运行客户端目录中的[韩服Data更新.exe]与[韩服rData更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[AutoUpdate.exe], 在一番更新后即可成为完美的单机版客户端了. 
@@ -176,7 +177,7 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 * 您可以立即参与到 RoSF.us™ Forum: http://bbs.rosf.us , 让爱好者群体更大, 让我们更有动力.
 * 您也许可以参与到 RoSF.us™ Wiki: http://wiki.rosf.us , 协助我们收集转载一些仙境相关的资讯信息, 您可以方便的编辑或者汉化我们的Wiki内容.
 * 您或许能够找出 RoSF.us™ rDB: http://db.rosf.us 数据库中存在的错误.
-* 您同样也可以加入Github, 并观察我们的项目 SVN: https://github.com/rosfus/cRO/
+* 您同样也可以加入Github, 并观察我们的项目 SVN: https://github.com/rosfus/cRO.git/
 
 上述这些都是我们需要的.
 
@@ -190,7 +191,7 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 * RoSF.us™ Forum: http://bbs.rosf.us
 * RoSF.us™ Wiki: http://wiki.rosf.us
 * RoSF.us™ rDB: http://db.rosf.us
-* SVN: https://github.com/rosfus/cRO/
+* SVN: https://github.com/rosfus/cRO.git/
 
 * 如果您还需要更多的文件资料, 请访问下述链接或者加入我们的QQ交流群:
       * 我们的开发论坛: http://bbs.rosf.us/forum.php?mod=forumdisplay&fid=47

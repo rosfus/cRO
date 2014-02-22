@@ -189,20 +189,6 @@ CREATE TABLE IF NOT EXISTS `hotkey` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `global_reg_value`
---
-
-CREATE TABLE IF NOT EXISTS `global_reg_value` (
-  `char_id` int(11) unsigned NOT NULL default '0',
-  `str` varchar(255) NOT NULL default '',
-  `value` varchar(255) NOT NULL default '0',
-  `type` tinyint(1) NOT NULL default '3',
-  `account_id` int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`char_id`,`str`,`account_id`),
-  KEY `account_id` (`account_id`)
-) ENGINE=MyISAM;
-
---
 -- Table structure for table `guild`
 --
 
@@ -455,18 +441,17 @@ CREATE TABLE IF NOT EXISTS `login` (
 -- added standard accounts for servers, VERY INSECURE!!!
 -- inserted into the table called login which is above
 
-INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('1', 'rosfus', 'password', 'S','athena@athena.com');
+INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('1', 's1', 'p1', 'S','athena@athena.com');
 
 --
 -- Table structure for table `mapreg`
 --
 
 CREATE TABLE IF NOT EXISTS `mapreg` (
-  `varname` varchar(32) NOT NULL,
+  `varname` varchar(32) BINARY NOT NULL,
   `index` int(11) unsigned NOT NULL default '0',
   `value` varchar(255) NOT NULL,
-  KEY `varname` (`varname`),
-  KEY `index` (`index`)
+  PRIMARY KEY  (`varname`,`index`)
 ) ENGINE=MyISAM;
 
 --
@@ -483,7 +468,8 @@ CREATE TABLE IF NOT EXISTS `sc_data` (
   `val3` int(11) NOT NULL default '0',
   `val4` int(11) NOT NULL default '0',
   KEY (`account_id`),
-  KEY (`char_id`)
+  KEY (`char_id`),
+  PRIMARY KEY  (`account_id`,`char_id`,`type`)
 ) ENGINE=MyISAM;
 
 --
@@ -654,23 +640,29 @@ CREATE TABLE IF NOT EXISTS `sql_updates` (
 ) ENGINE=MyISAM;
 
 -- Existent updates to enter
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1360858500);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1360951560);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1362445531);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1362528000);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1362794218);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1364409316);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1366075474);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1366078541);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1381354728);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1381423003);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1382892428);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1383162785);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1383167577);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1383205740);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1383955424);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1384545461);
-INSERT INTO `sql_updates` (`timestamp`) VALUES (1384588175);
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1360858500); -- 2013-02-14--16-15.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1360951560); -- 2013-02-15--18-06.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1362445531); -- 2013-03-05--01-05.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1362528000); -- 2013-03-06--00-00.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1362794218); -- 2013-03-09--01-56.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1364409316); -- 2013-03-27--18-35.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1366075474); -- 2013-04-16--01-24.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1366078541); -- 2013-04-16--02-15.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1381354728); -- 2013-10-09--21-38.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1381423003); -- 2013-10-10--16-36.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1382892428); -- 2013-10-27--16-47.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1383162785); -- 2013-10-30--19-53.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1383167577); -- 2013-10-30--21-12.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1383205740); -- 2013-10-31--07-49.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1383955424); -- 2013-11-09--00-03.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1384473995); -- 2013-11-15--00-06.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1384545461); -- 2013-11-15--19-57.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1384588175); -- 2013-11-16--07-49.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1384763034); -- 2013-11-18--08-23.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1387844126); -- 2013-12-24--00-15.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1388854043); -- 2014-01-04--16-47.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1389028967); -- 2014-01-06--17-22.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1392832626); -- 2014-02-19--17-57.sql
 
 --
 -- Table structure for table `sstatus`
@@ -729,5 +721,119 @@ CREATE TABLE IF NOT EXISTS `account_data` (
   `base_drop` TINYINT( 4 ) UNSIGNED NOT NULL default '100',
   `base_death` TINYINT( 4 ) UNSIGNED NOT NULL default '100',
   PRIMARY KEY  (`account_id`)
+) ENGINE=MyISAM; 
+
+--
+-- Table structure for table `npc_market_data`
+--
+
+CREATE TABLE IF NOT EXISTS `npc_market_data` (
+  `name` varchar(24) NOT NULL default '',
+  `itemid` int(11) unsigned NOT NULL default '0',
+  `amount` int(11) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`name`,`itemid`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `acc_reg_num_db`
+--
+
+CREATE TABLE IF NOT EXISTS `acc_reg_num_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `acc_reg_str_db`
+--
+
+CREATE TABLE IF NOT EXISTS `acc_reg_str_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` varchar(254) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `char_reg_num_db`
+--
+
+CREATE TABLE IF NOT EXISTS `char_reg_num_db` (
+  `char_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`char_id`,`key`,`index`),
+  KEY `char_id` (`char_id`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `char_reg_str_db`
+--
+
+CREATE TABLE IF NOT EXISTS `char_reg_str_db` (
+  `char_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` varchar(254) NOT NULL default '0',
+  PRIMARY KEY  (`char_id`,`key`,`index`),
+  KEY `char_id` (`char_id`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `global_acc_reg_num_db`
+--
+
+CREATE TABLE IF NOT EXISTS `global_acc_reg_num_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `global_acc_reg_str_db`
+--
+
+
+CREATE TABLE IF NOT EXISTS `global_acc_reg_str_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` varchar(254) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Table structure for table `autotrade_merchants`
+--
+
+CREATE TABLE IF NOT EXISTS `autotrade_merchants` (
+  `account_id` int(11) NOT NULL default '0',
+  `char_id` int(11) NOT NULL default '0',
+  `sex` tinyint(2) NOT NULL default '0',
+  `title` varchar(80) NOT NULL default 'Buy From Me!',
+  PRIMARY KEY  (`account_id`,`char_id`)
+) ENGINE=MyISAM; 
+
+--
+-- Table structure for table `autotrade_data`
+--
+
+CREATE TABLE IF NOT EXISTS `autotrade_data` (
+  `char_id` int(11) NOT NULL default '0',
+  `itemkey` int(11) NOT NULL default '0',
+  `amount` int(11) NOT NULL default '0',
+  `price` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`char_id`,`itemkey`)
 ) ENGINE=MyISAM; 
 

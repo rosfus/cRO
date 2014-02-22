@@ -587,7 +587,7 @@
 541,9,6,2,4,0x2,2:2:3:3:4,5,1,yes,0,0,0,magic,0,	NJ_RAIGEKISAI,À×»÷Ëé
 542,9,8,1,4,0,3,5,1,yes,0,0,5:6:7:8:9,magic,0,	NJ_KAMAITACHI,Ë··ç
 543,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		NJ_NEN,Äî
-544,-5,8,1,0,0x40,0,10,1,no,0,0,0,weapon,0,	NJ_ISSEN,Ò»ÉÁ»÷
+544,-5,8,1,0,0x40,0,10,1,no,0,0,0,weapon,0,	NJ_ISSEN,Ò»ÉÁ
 
 // Additional NPC Skills (Episode 11.3)
 653,0,8,4,0,0x6,5:7:9:11:13:5:7:9:11:13,10,1,no,0,0x2,0,magic,0,	NPC_EARTHQUAKE,µØÁÑÊõ
@@ -631,14 +631,14 @@
 687,0,6,4,0,0x1,0,1,1,yes,0,0x2,0,none,0,	NPC_ALLHEAL,ÉúÃüÖ®ÏÒ
 
 // Additional Skill (??)
-688,9,6,16,0,0x1,0,10,0,no,0,0x200,0,none,0,	GM_SANDMAN,GM Ë¯Ä§ÏÝÚå
+688,9,6,16,0,0x1,0,10,0,no,0,0x200,0,none,0,	GM_SANDMAN,GMË¯Ä§ÏÝÚå
 689,0,6,4,0,0x3,-1,10,1,yes,0,0x2,0,magic,0,	CASH_BLESSING,Party Blessing
 690,0,6,4,0,0x3,-1,10,1,yes,0,0x2,0,magic,0,	CASH_INCAGI,Party Increase AGI
 691,0,6,4,0,0x3,-1,5,1,yes,0,0x2,0,magic,0,	CASH_ASSUMPTIO,Party Assumptio
 692,0,6,4,0,0x01,0,1,1,no,0,0x2,0,none,0,	ALL_CATCRY,¹ÖÊÞµÄÅ­ºð
 693,0,6,4,0,0x3,-1,1,1,yes,0,0x2,0,magic,0,	ALL_PARTYFLEE,Party Flee
-694,6,6,16,0,0x1,0,1,0,no,0,0x202,0,magic,0,	ALL_ANGEL_PROTECT,Angel's Protection
-695,0,6,4,0,0x01,0,1,1,no,0,0x2,0,none,0,	ALL_DREAM_SUMMERNIGHT,Summer Night Dream
+694,6,6,16,0,0x1,0,1,0,no,0,0x202,0,magic,0,	ALL_ANGEL_PROTECT,ÌìÊ¹µÄ¼Ó»¤
+695,0,6,4,0,0x01,0,1,1,no,0,0x2,0,none,0,	ALL_DREAM_SUMMERNIGHT,ÖÙÏÄÒ¹Ö®ÃÎ
 //696,0,0,0,0,0,0,9,0,no,0,0x2,0,none,0,	NPC_CHANGEUNDEAD2,Change Undead
 697,0,6,4,0,0x1,0,1,1,yes,0,0x2,0,magic,0,	ALL_REVERSEORCISH,Reverse Orcish
 698,0,6,4,0,0x01,0,1,1,no,0,0x2,0,none,0,	ALL_WEWISH,Ê¥µ®ËÌ¸è
