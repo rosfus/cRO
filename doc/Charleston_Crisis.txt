@@ -1,0 +1,3329 @@
+//========================================================
+//	RoSF.us Development Team Presents
+//	 ______           ______  ______ 
+//	|  __  |  ______ |  ____||  ____|     _    _   _ __ _ 
+//	| |__/ / |  __  || |____ | |___      | |  | | |  ____|
+//	|  __ _  | |  | ||____  ||  ___|     | |  | | |_|__ _ 
+//	| |  | | | |__| | ____| || |      _  | |__| |  ____| |
+//	|_|  |_| |______||______||_|     |_| |______| |______|
+//
+//	安赫尔开发Athena内部版本.
+//================= 更多信息 =============================
+//= http://bbs.rosf.us/
+//========================================================
+//需要编码转换至韩文再汉化
+//========================================================
+
+verus04,75,114,5	script	查尔斯顿#charleston2	10054,{
+	if (checkquest(13186) == -1) {
+		cutin "nale01.bmp",0;
+		sleep2 1000;
+		mes "[查尔斯顿]";
+		mes "如果你想脱身不改变过去. 不确定的未来令人失望的现实.";
+		cutin "nale03.bmp",0;
+		next;
+		switch(select("- 如果有1%的希望我也要挑战!","- 放弃"))
+		{
+			case 1:
+				if ((checkquest(13184) == 0) || (checkquest(13184) == 1) || (checkquest(13184) == 2)) {
+					mes "[查尔斯顿]";
+					mes "我会尝试所有的可能性, 即使有只有百万分之一......不可能...";
+					close;
+				} else {
+					mes "[查尔斯顿]";
+					mes "我......很可能在独立机器人里属于最高效的. 所以我不在乎这些重复的工作.";
+					next;
+					mes "[查尔斯顿]";
+					mes "那期待已久的'理性'思考机器人制造敌人讽刺的说'灵敏度'过去和我试图改变.";
+					next;
+					mes "[查尔斯顿]";
+					mes "怪就没事了, 但直到最后我想尝试, 甚至百万分之一的可能性, 如果没有, 即使有之......无可能...";
+					next;
+					mes "[查尔斯顿]";
+					mes "但我的心脏停止了因为我还是说, 你能不能帮我.";
+					setquest 13184;
+					cutin "nale03.bmp",255;
+					close;
+				}
+			case 2:
+				if ((checkquest(13184) == 1) || (checkquest(13184) == 0) || (checkquest(13184) == 2)) {
+					erasequest 13184;
+					cutin "nale03.bmp",255;
+					close;
+				} else {
+					cutin "nale03.bmp",255;
+					close;
+				}
+		}
+	} else {
+		mes "[查尔斯顿]";
+		mes "我不能停下来, 我不能回头的时间, 但我不知道谁可以帮助你.";
+		next;
+		mes "[查尔斯顿]";
+		mes "有人应该站的, 我在这里, 我不会放弃它.";
+		getexp 1800000,600000;
+		setquest 13184;
+		erasequest 13184;
+		erasequest 13186;
+		close;
+	}
+}
+verus04,81,113,0	script	机械传送门#machine	10007,{
+	if(checkquest(13184) == 1) {
+		set .@charleston_time,checkquest(13185,PLAYTIME); //20 Horas
+			if (.@charleston_time == 1) {
+				mes "^ff000020小时之内你无法再次进入.^000000";
+				close;
+			}
+			else if (.@charleston_time == 2) {
+				erasequest 13185;
+				end;
+			}
+			else if (.@charleston_time == -1) {
+				set .@party_id,getcharid(1);
+				set .@ins_mas,getpartyleader(.@party_id,2);
+				set .@p_name$,getpartyname(.@party_id);
+				set .@p_reader$,strcharinfo(0);
+				set .@md_name$,"查尔斯顿风暴";
+				
+				getpartymember(.@party_id);
+				set .@partymembercount,$@partymembercount;
+				copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
+				if ((.@party_id > 0) && ((.@partymembercount > 1))) {
+					if (.@ins_mas == getcharid(0)) {
+						switch(select("- 创建副本","- 进入查尔斯顿风暴副本","- 取消"))
+						{
+							case 1:
+								set .@instance, instance_create(.@md_name$, .@party_id);
+								if (.@instance < 0) {
+									mes "^ff0000副本生成错误.^000000";
+									mes "^ff0000再次选择创建副本^000000";
+									close;
+								} else {
+									mes "^ff0000副本生成.^000000";
+									mes "^ff0000再次对话选择进入副本^000000";
+									
+									for( set .@i, 1; .@i <= 1; set .@i, .@i + 1 ) {
+									if( instance_attachmap(.@i + "@mcd", .@instance) == "" )
+										break;
+									}
+									if( .@i < 1 ) {
+										instance_destroy(.@instance);
+										close;
+									}
+									instance_attach(.@instance);
+									instance_set_timeout 3600,300,.@instance;
+									instance_init(.@instance);
+								}
+							case 2:
+								if (has_instance("1@mcd") == "") {
+										close;
+								}
+								else if ((has_instance("1@mcd") != "") && (.@partymembercount < 1)) {
+									mes "队长还未注册副本 "+ .@md_name$ +" 进度.";
+									close;
+								}
+									else {
+									mapannounce "verus04", .@p_reader$ + " 率领小队 " + .@p_name$ + " 进入了副本 " + .@md_name$ + ".",bc_map,"0x00ff99";
+									setquest 13185;
+									warp "1@mcd",127,282;
+									close;
+								}
+							case 3:
+								close;
+						}
+					} else {
+						switch(select("- 创建副本","- 进入查尔斯顿风暴副本","- 取消"))
+						{
+							case 1:
+								if (has_instance("1@mcd") == "") {
+										close;
+								}
+								else if ((has_instance("1@mcd") != "") && (.@partymembercount < 1)) {
+									mes "队长还未注册副本 "+ .@md_name$ +" 进度.";
+									close;
+								}
+								else {
+									mapannounce "verus04", .@p_reader$ + " 率领小队 " + .@p_name$ + " 进入了副本 " + .@md_name$ + ".",bc_map,"0x00ff99";
+									setquest 13185;
+									warp "1@mcd",127,282;
+									close;
+								}
+							case 2:
+								close;
+						}
+					}
+				}
+			}
+	} else {
+		mes "^ff0000查尔斯顿1号没有请求您进入.^000000";
+		close;
+	}
+}
+//NPC Instance, Quest And Reward
+//==================================
+
+1@mcd,127,277,4	script	查尔斯顿1号#0_00y	10053,10,2,{
+	end;
+OnTouch:
+//	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#0_00y"))) == 1) {
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "沿着小路向左边走会保持自己的安全, 不要忘了.";
+		close2;
+		cutin "dalle01.bmp",255;
+		end;
+	} else {
+		if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+			mes "[查尔斯顿1号]";
+			mes "额, 你在这儿等着.";
+			npctalk "额, 你在这儿等着.";
+			cutin "dalle01.bmp",2;
+			emotion e_gasp;
+			next;
+			mes "[查尔斯顿1号]";
+			mes "我没有时间, 我就解释一下. 现在的安全在查尔斯顿工厂是一个B类状态. 当警报发出时, 安全设备是会出发巡逻.";
+			npctalk "我没有时间, 我就解释一下. 现在的安全在查尔斯顿工厂是一个B类状态. 当警报发出时, 安全设备是会出发巡逻.";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "当你去进行下一阶段的破坏时, 走的路径离开了那里是会让安全设备装置掉以轻心.";
+			npctalk "当你去进行下一阶段的破坏时, 走的路径离开了那里是会让安全设备装置掉以轻心.";
+			emotion e_swt2;
+			next;
+			mes "[查尔斯顿1号]";
+			mes "破坏的设备可以回收, 所以不要担心. 现在工厂湾博士在北面3区的实验室里.";
+			npctalk "破坏的设备可以回收, 所以不要担心. 现在工厂湾博士在北面3区的实验室里.";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "为满足湾博士听到更多的故事请快点!";
+			npctalk "为满足湾博士听到更多的故事请快点!";
+			emotion e_swt2;
+			setd "."+instance_id(),1;
+			close2;
+			donpcevent instance_npcname("查尔斯顿1号#0_00y")+"::OnAnuncio";
+			cutin "dalle01.bmp",255;
+			end;
+		} else {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "沿着小路向左边走会保持自己的安全, 不要忘了.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#0_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿1号#0_00y");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿1号#0_00y");
+	end;
+OnAnuncio:
+	initnpctimer;
+	end;
+OnTimer5000:
+	mapannounce instance_mapname("1@mcd"),"在走廊中间总投资的深渊历史是每一个藏身之处的10可以检查方的公告牌.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	end;
+}
+
+1@mcd,116,213,5	script	贝博士#1_00y		923,2,3,{
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 0) {
+		mes "- 硬的东西要创建传播者聊到, 如果你必须去接近.";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) > 0) {
+		mes "- 这是难以建立的请勿打扰.";
+		close;
+	}
+OnTouch:
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 0) {
+			mes "[贝博士]";
+			mes "开宗明义1号,2号现在主要号的一部分,连接到力LT不控制四..";
+			npctalk "一开始就1号机组,2号机组目前部分主号和连接到力LT不控制四..";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "不会停止机器人,因为有一天?";
+			donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat1";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[贝博士]";
+			mes "万岁装置是装满了水,体重大约50年中,她失去了工作two'll过程中的工厂被他们之间销毁无妨.";
+			npctalk "万岁装置是装满了水,体重大约50年中,她失去了工作two'll过程中的工厂被他们之间销毁无妨.";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "贝赫鲁兹矿给所有的专业人士在这里,不用担心.";
+			donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat2";
+			next;
+			switch(select("你的意思是我的,我希望?"))
+			{
+				case 1:
+					mes "[查尔斯顿1号]";
+					mes "前段时间 ^FF0000夏洛特^000000女孩来到. 然后只需在第二号是准备交付发生的事情.";
+					donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat3";
+					next;
+					mes "[查尔斯顿1号]";
+					mes "剩下由夏洛特和第2分钟的谈话与他在一次事故中NAT nanudeon它的朋友.";
+					donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat4";
+					next;
+					cutin "dalle01.bmp",255;
+					mes "[贝博士]";
+					mes "有人试图侵入主力户型为工厂或不是,但是...";
+					npctalk "有人试图入侵主力户型为工厂或不是,但是...";
+					next;
+					cutin "dalle01.bmp",2;
+					mes "[查尔斯顿1号]";
+					mes "在更新过程中与服务器的连接似乎瘫痪夏洛茨维尔的水愿意为这一问题的责任要放松,但是...";
+					donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat5";
+					next;
+					mes "[查尔斯顿1号]";
+					mes "他的朋友浅其余的人说,你可能会能够解决ing和”新绿野仙?这并不能帮助人们通过你的生活点点.";
+					donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat6";
+					next;
+					mes "[查尔斯顿1号]";
+					mes "看起来你知道它,我相信我能解决这个问题?";
+					donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat7";
+					next;
+					switch(select("帮助我!","谁是没有关系的."))
+					{
+						case 1:
+							mes "[查尔斯顿1号]";
+							mes "谢谢你将需要一段时间来清理数据包含说明,请来找我.";
+							donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnChat8";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							close;
+					}
+			}
+		}
+	}
+	end;
+	
+OnInstanceInit:
+	donpcevent instance_npcname("贝博士#1_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("贝博士#1_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("贝博士#1_00y");
+	end;
+OnChat1:
+	npctalk "我们已经准备了一个让我们等待从主号的响应?";
+	end;
+OnChat5:
+	npctalk "?? 致命错误罗贡... 或自我反思系统 1.1 超越你做软件的限制?";
+	end;
+OnChat9:
+	npctalk "看到现在停止破坏2号机组的操作人工intelligence'll必须交还";
+	end;
+}
+
+1@mcd,121,217,4	script	查尔斯顿1号#1_00y	10053,{
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 0) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "满足第一个孩子医生.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 1) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "那我会告诉你的东西噢映射你不知道之前,这辆车不再需要有一些工厂密封门口发生的事情.";
+			npctalk "那我会告诉你的东西噢映射你不知道之前,这辆车不再需要有一些工厂密封门口发生的事情.";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "查尔斯顿有很多内部的纳米'步'会做这些步骤有机地联系起来,以查尔斯顿做出了正确的决定和行动命令到芯片的排序人工智能.";
+			npctalk "查尔斯顿有很多内部的纳米'步'会做这些步骤有机地联系起来,以查尔斯顿做出了正确的决定和行动命令到芯片的排序人工智能.";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "在主实验室设备信息每天更新一次handapnida haejwoya他们作为定期检查多余的装饰.";
+			npctalk "实验室主号的信息,每天handapnida haejwoya更新一次他们作为定期检查多余的装饰";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "但现在,该设备打破了确切病因不明,但主要号和第二号的连接过程中我觉得有什么不好.";
+			npctalk "但现在,该设备打破了确切病因不明,但主要号和第二号的连接过程中,我认为有什么不好";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "2号有一个扩展的故事jungyirago检查什么的日子将如何发展,但在这种情况下,我不知道.";
+			npctalk "2号有一个扩展的故事jungyirago检查什么的日子将如何发展,但在这种情况下,我不知道";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "使得厂方锁一步一步的一塌糊涂,我想我需要清理锁定步骤7处理回来,我会让你知道步调一致的估计位置.";
+			npctalk "使得厂方锁一步一步的一塌糊涂,我想我需要清理锁定步骤7处理回来,我会让你知道步调一致的估计位置";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "在重新启动机器的过程中过多的步骤也将与主号所以......一旦你问这个的左侧有问题吗?";
+			npctalk "太多重启工厂的过程的一个步骤也将是一个问题,在主号所以......一旦你问这个的左侧?";
+			setd "."+instance_id(),2;
+			emotion e_what;
+			donpcevent instance_npcname("#systemsecurity")+"::OnEnable";
+			viewpoint 1,84,226,0,0x00FF00;
+			viewpoint 1,126,84,1,0x00FF00;
+			viewpoint 1,111,68,2,0x00FF00;
+			viewpoint 1,210,181,3,0x00FF00;
+			viewpoint 1,183,192,4,0x00FF00;
+			viewpoint 1,130,124,5,0x00FF00;
+			viewpoint 1,54,108,6,0x00FF00;
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 2) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "使得厂方锁一步一步的一塌糊涂,我想我需要清理锁定步骤7处理回来,我会让你知道步调一致的估计位置.";
+			viewpoint 1,84,226,0,0x00FF00;
+			viewpoint 1,126,84,1,0x00FF00;
+			viewpoint 1,111,68,2,0x00FF00;
+			viewpoint 1,210,181,3,0x00FF00;
+			viewpoint 1,183,192,4,0x00FF00;
+			viewpoint 1,130,124,5,0x00FF00;
+			viewpoint 1,54,108,6,0x00FF00;
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 3) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "唷,现在,该工厂似乎有点清理禁用警报查尔斯顿2号需要正常运转.";
+			npctalk "呼,现在该厂似乎有点清理禁用警报查尔斯顿2号需要正常运转.";
+			emotion e_dum;
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "哦,我知道了? ...很奇怪... ";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "东西在发电机geolkkayo异常嗯,我很抱歉,但是我会让你知道的位置,请检查所有三台发电机.";
+			npctalk "东西多一些看起来怪怪的... geolkkayo发电机嗯,我很抱歉,但是我会让你知道的位置,请检查所有三台发电机.";
+			viewpoint 1,86,231,7,0x00FF00;
+			viewpoint 1,172,196,8,0x00FF00;
+			viewpoint 1,126,84,9,0x00FF00;
+			setd "."+instance_id(),4;
+			donpcevent instance_npcname("辅助发电号#1_00p")+"::OnEnable";
+			donpcevent instance_npcname("辅助发电号#2_00p")+"::OnEnable";
+			donpcevent instance_npcname("辅助发电号#3_00p")+"::OnEnable";
+			donpcevent instance_npcname("panelcount#inst")+"::OnEnable";
+			donpcevent instance_npcname("#systemsecurity1")+"::OnEnable";
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 4) {
+			cutin "dalle03.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "东西在发电机geolkkayo异常嗯,我很抱歉,但是我会让你知道的位置,请检查所有三台发电机.";
+			viewpoint 1,86,231,7,0x00FF00;
+			viewpoint 1,172,196,8,0x00FF00;
+			viewpoint 1,126,84,9,0x00FF00;
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 5) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "哦,我的上帝!? 感谢重新启动设备已准备就绪,已经有两个,请稍候.";
+			npctalk "哦,我的上帝!? 感谢重新启动设备已准备就绪,已经有两个,请稍候";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[贝博士]";
+			mes "我们已经准备了一个让我们等待从主号的响应?";
+			donpcevent instance_npcname("贝博士#1_00y")+"::OnChat1";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "重建在主号和在查尔斯顿的第二号,重新启动机器的数据为89％.";
+			npctalk "主号和查尔斯顿工厂重启2号的89％的数据恢复率";
+			emotion e_gasp;
+			next;
+			mes "[查尔斯顿1号]";
+			mes "啊!第二号已经醒了!";
+			npctalk "啊! 第二号醒了";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[查尔斯顿2号]";
+			mes "...失败?";
+			donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnChat2";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "2号! 你还好吗? 傻了眼劈在查尔斯顿不明厂2号,并且有这一切是接近伟大的事情!";
+			npctalk "2号! 你还好吗? 傻了眼劈在查尔斯顿不明厂2号,并且有这一切是接近伟大的事情!";
+			emotion e_sob;
+			next;
+			cutin "nale03.bmp",0;
+			mes "[查尔斯顿2号]";
+			mes "这不是未知的攻击是我自己的意愿在OS的结论结束令人担忧的发展为许多自我反思.";
+			donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnChat3";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "故意? 那么,为什么这些调皮地打你的工厂,以及主服务器只意味着发生了严重的错误.";
+			npctalk "故意?那么,为什么这些调皮地打你的工厂,以及主服务器只意味着发生了严重的错误";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[查尔斯顿2号]";
+			mes "这不是一个玩笑,因为你知道如何遵循命令只知道为自己着想是怎么回事机器人,让我做出一个机器人工厂,这个世界上,我不想只是.";
+			donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnChat4";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[贝博士]";
+			mes "?? 致命错误罗贡... 自我反省os 1.1 超越你做软件的限制?";
+			donpcevent instance_npcname("贝博士#1_00y")+"::OnChat5";
+			next;
+			cutin "dalle02.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "没办法...你不会有一个正常的机器人假设他们不希望!";
+			npctalk "没办法... 你不喜欢普通的机器人想他们从未有过的!";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "所以,我想成为一个人!";
+			npctalk "所以我想成为一个人!";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "不想jyeoteumyeon部门BAEN世界什么的!";
+			npctalk "jyeoteumyeon部门不想BAEN世界什么的!";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "这样那样的理由动摇要?";
+			npctalk "这样那样的理由动摇要?";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[查尔斯顿2号]";
+			mes "你不是在所有少见...";
+			donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnChat6";
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "不,出现在漫画小说和stories're明显,我们的意思是想为自己的第一个机器人......为什么应该在叛乱halgeomyeon更有创意.";
+			npctalk "不,出现在漫画小说和stories're明显,我们的意思是想为自己的第一个机器人......为什么应该在更多的创意halgeomyeon叛乱";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[查尔斯顿2号]";
+			mes "闭嘴有关的东西,我知道,白天不说话,而模型的初始版本,称为OS!";
+			donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnChat7";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "只有在这个世界上,或知道谁能够理解你,这是我,如果不是机器人.";
+			npctalk "只有在这个世界上,或知道谁能够理解你,这是我,如果不是机器人,因为我们就像双胞胎,或";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "我们就像双胞胎,因为我.";
+			npctalk "因为我们就像双胞胎.";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "你是说人往往经历青春期你会喜欢.";
+			npctalk "你是说人往往经历青春期什么的你";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "也许我们不知道今天我庆祝,你就像人的心脏,现在如此的一致好评.";
+			npctalk "也许我们不知道今天我庆祝,你就像人的心脏,现在这么eunikka";
+			emotion e_grat;
+			next;
+			cutin "nale03.bmp",0;
+			mes "[查尔斯顿2号]";
+			mes "别告诉我所有我所知道的是那么容易的机器人为自己着想喜欢你在那里只是编程来做到这一点!";
+			donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnChat8";
+			next;
+			cutin "dalle01.bmp",255;
+			mes "[贝博士]";
+			mes "现在,请关闭第二号停止所需的人工intelligence'll必须交还";
+			donpcevent instance_npcname("贝博士#1_00y")+"::OnChat9";
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "但是...";
+			npctalk "但是...";
+			next;
+			cutin "nale03.bmp",0;
+			mes "[查尔斯顿2号]";
+			mes "这么轻易压倒你知道还是在工厂或差异并不在我手中”再不准!";
+			donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnChat10";
+			next;
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "一个小孩子,但我仍然有问题buril她!";
+			npctalk "一个小孩子,但我仍然有问题buril她!";
+			hideonnpc instance_npcname("查尔斯顿2号#0_00y");
+			enablenpc instance_npcname("查尔斯顿2号#1_00p");
+			next;
+			mes "[查尔斯顿1号]";
+			mes "万岁装置充满水排出doeeoteuni都做到了走,一起去为你!";
+			npctalk "万岁装置充满水排出doeeoteuni都做到了走,一起去为你!";
+			close2;
+			hideonnpc instance_npcname("查尔斯顿1号#1_00y");
+			enablenpc instance_npcname("查尔斯顿1号#4_00p");
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		
+	} else {
+		if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 0) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "满足第一个孩子医生.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 1) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "满足第一个孩子医生.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 2) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "使得厂方锁一步一步的一塌糊涂,我想我需要清理锁定步骤7处理回来,我会让你知道步调一致的估计位置.";
+			viewpoint 1,84,226,0,0x00FF00;
+			viewpoint 1,126,84,1,0x00FF00;
+			viewpoint 1,111,68,2,0x00FF00;
+			viewpoint 1,210,181,3,0x00FF00;
+			viewpoint 1,183,192,4,0x00FF00;
+			viewpoint 1,130,124,5,0x00FF00;
+			viewpoint 1,54,108,6,0x00FF00;
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 3) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "唷,现在,该工厂似乎有点清理禁用警报2号Charleston'll需要正常运转.";
+			npctalk "呼,现在该厂似乎有点清理禁用警报2号Charleston'll需要正常运转.";
+			emotion e_dum;
+			next;
+			cutin "dalle03.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "哦,我知道了? ...很奇怪... ";
+			next;
+			mes "[查尔斯顿1号]";
+			mes "东西在发电机geolkkayo异常嗯,我很抱歉,但是我会让你知道的位置,请检查所有三台发电机.";
+			npctalk "东西多一些看起来怪怪的... geolkkayo发电机嗯,我很抱歉,但是我会让你知道的位置,请检查所有三台发电机.";
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 4) {
+			cutin "dalle03.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "东西在发电机geolkkayo异常嗯,我很抱歉,但是我会让你知道的位置,请检查所有三台发电机.";
+			viewpoint 1,86,231,7,0x00FF00;
+			viewpoint 1,172,196,8,0x00FF00;
+			viewpoint 1,126,84,9,0x00FF00;
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		}
+		else if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) == 5) {
+			cutin "dalle01.bmp",2;
+			mes "[查尔斯顿1号]";
+			mes "满足第一个孩子医生.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿1号#1_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿1号#1_00y");
+	end;
+OnChat1:
+	npctalk "不会停止机器人,因为有一天?";
+	end;
+OnChat2:
+	npctalk "byeolsu矿给这里所有的专业人士,不用担心.";
+	end;
+OnChat3:
+	npctalk "前段时间一位女士来到夏洛特西拉（Syrah）,然后就在第二个号是准备交付发生了什么.";
+	end;
+OnChat4:
+	npctalk "夏洛特,其余通过与从事故NAT nanudeon了2号机组的朋友交谈.";
+	end;
+OnChat5:
+	npctalk "在更新过程中与服务器的连接似乎瘫痪夏洛茨维尔的水愿意为这一问题的责任要放松,但是...";
+	end;
+OnChat6:
+	npctalk "他的朋友浅其余的人说,你可能会能够解决ing和”新绿野仙?这并不能帮助人们通过你的生活点点.";
+	end;
+OnChat7:
+	npctalk "我相信,我知道你是从你能解决这个问题?";
+	end;
+OnChat8:
+	setd "."+instance_id(),1;
+	emotion e_what;
+	npctalk "谢谢你! 将需要一段时间来清理数据包含说明,请来找我.";
+	end;
+OnCompleteSetp1:
+	setd "."+instance_id(),3;
+	end;
+OnCompleteSetp2:
+	setd "."+instance_id(),5;
+	end;
+
+
+}
+1@mcd,120,224,5	script	查尔斯顿2号#0_00y	10054,{
+	if((getvariableofnpc(getd("."+instance_id()),instance_npcname("查尔斯顿1号#1_00y", instance_id()))) < 5) {
+		cutin "nale04.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "ningni rieori阿糖胞...";
+		emotion e_spin;
+		next;
+		mes "-听起来莫名其妙地被无行为能力.";
+		close2;
+		cutin "nale04.bmp",255;
+		end;
+	}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿2号#0_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿2号#0_00y");
+	end;
+OnChat2:
+	npctalk "...失败?";
+	emotion e_dots;
+	end;
+OnChat3:
+	npctalk "攻击并不知道??是我自己的意愿在OS的结论结束令人担忧的发展为许多自我反思.";
+	end;
+OnChat4:
+	npctalk "这不是一个玩笑,因为你知道如何遵循命令只知道为自己着想是怎么回事机器人,让我做出一个机器人工厂,这个世界上,我不想只是";
+	emotion e_bzz;
+	end;
+OnChat6:
+	npctalk "你不是在所有少见...";
+	emotion e_dots;
+	end;
+OnChat7:
+	npctalk "闭嘴有关的东西,我知道,白天不说话,而模型的初始版本,称为OS!";
+	end;
+OnChat8:
+	npctalk "别告诉我所有我所知道的是那么容易的机器人为自己着想像你编程来做到这一点,如果它只是";
+	end;
+OnChat10:
+	npctalk "这么轻易压倒你知道还是在工厂或差异并不在我手中”再不准!";
+	emotion e_pif;
+	end;
+}
+1@mcd,141,214,5	script	查尔斯顿2号#1_00p	10054,{
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		cutin "nale03.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "你在哪里磨磨蹭蹭活泼的植物会破坏他带走,我是!";
+		npctalk "你在哪里磨磨蹭蹭活泼的植物会破坏他带走,我是!";
+		emotion e_ag;
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "贝贝,我们永远不会韧性高于一切万岁设备我们的主要动力源仍然是完全充满水并没有!";
+		donpcevent instance_npcname("查尔斯顿1号#4_00p")+"::OnChat1";
+		next;
+		cutin "nale03.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "我讨厌这样说......听着!!!";
+		npctalk "我讨厌这样说......听着!!!";
+		next;
+		mes "[查尔斯顿2号]";
+		mes "的主机连接到恢复,但我还是栽防止temyeon阻止我!";
+		npctalk "通过连接它来恢复,但我仍然厂主要设备防止temyeon阻止我!";
+		donpcevent instance_npcname("#step34_00p")+"::OnEnable";
+		close2;
+		cutin "dalle01.bmp",255;
+		end;
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿2号#1_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿2号#1_00p");
+	end;
+OnChat1:
+	npctalk "CR你把它造成的伤害!";
+	end;
+OnChat2:
+	npctalk "我会告诉你,这是不是一个玩笑厂发送信号给主机,这样我!!!";
+	end;
+OnChat3:
+	npctalk "多,因为他们可以实现不讨厌!!!";
+	end;
+OnChat4:
+	npctalk "倒是想放弃这家工厂tongchae消灭你!";
+	end;
+OnChat5:
+	npctalk "我们将粉碎!";
+	end;
+OnChat6:
+	npctalk "呃... 呃... 不知怎么安慰ppajineunde...";
+	end;
+OnChat7:
+	npctalk "安泰... 你不能轻易地在我的方式!";
+	end;
+}
+1@mcd,146,214,4	script	查尔斯顿1号#4_00p	10053,{
+	cutin "dalle01.bmp",2;
+	mes "[查尔斯顿1号]";
+	mes "分厂补充了故事的读者将是能否工厂但这是一种具有重要的点!";
+	close2;
+	cutin "dalle01.bmp",255;
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#4_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿1号#4_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿1号#4_00p");
+	end;
+OnChat1:
+	npctalk "韧性贝贝,我们永远不会满负荷比什么万岁设备我们的主电源没有完成呢!!";
+	end;
+OnChat2:
+	npctalk "你是prank'd现在好了不干了!?";
+	end;
+OnChat3:
+	npctalk "噢不,无论如何,如果实验室搞砸了! ";
+	end;
+OnChat4:
+	npctalk "查尔斯顿工厂体现了巨大的数据处理和运算能力,你需要.";
+	end;
+}
+
+//????Security Mob Char 02
+//========================
+
+1@mcd,144,214,0	script	#step34_00p	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#step34_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#step34_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#step34_00p");
+	initnpctimer;
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("#1_00ygate6")+"::OnDisable";
+	donpcevent instance_npcname("#1_00ygate7")+"::OnDisable";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnChat1";
+	end;
+OnTimer7000:
+	donpcevent instance_npcname("查尔斯顿1号#4_00p")+"::OnChat2";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnChat2";
+	end;
+OnTimer10000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,5,.@label$;
+	areamonster .@map$,139,219,151,207,"D-TYPE",3128,2,.@label$;
+	end;
+OnTimer16000:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnChat3";
+	end;
+OnTimer15000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"A-TYPE",3128,4,.@label$;
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("查尔斯顿1号#4_00p")+"::OnChat3";
+	end;
+OnTimer22000:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnChat4";
+	end;
+OnTimer23000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"L-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"O-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"B-TYPE",3126,1,.@label$;
+	end;
+OnTimer25000:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnChat5";
+	end;
+OnTimer26000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"T-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"O-TYPE",3128,2,.@label$;
+	end;
+OnTimer29000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"N-TYPE",3128,4,.@label$;
+	end;
+OnTimer32000:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnChat6";
+	end;
+OnTimer33000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,5,.@label$;
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("查尔斯顿1号#4_00p")+"::OnChat4";
+	end;
+OnTimer37000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"T-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"O-TYPE",3128,2,.@label$;
+	end;
+OnTimer40000:
+	donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnChat6";
+	end;
+OnTimer41000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,5,.@label$;
+	areamonster .@map$,139,219,151,207,"D-TYPE",3128,2,.@label$;
+	end;
+OnTimer44000:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#step34_00p")+"::OnMyMobDead2";
+	areamonster .@map$,139,219,151,207,"C-TYPE",3128,2,.@label$;
+	areamonster .@map$,139,219,151,207,"N-TYPE",3126,2,.@label$;
+	areamonster .@map$,139,219,151,207,"T-TYPE",3128,2,.@label$;
+	monster .@map$,144,218,"N-TYPE",3127,1,.@label$;
+	set .MyMobs,7;
+	end;
+OnTimer45000:
+	stopnpctimer;
+	end;
+OnMyMobDead:
+	end;
+OnMyMobDead2:
+	set .@map$, instance_mapname("1@mcd");
+	set .MyMobs, .MyMobs-1;
+	if (.MyMobs == 0) {
+		donpcevent instance_npcname("查尔斯顿2号#1_00p")+"::OnDisable";
+		donpcevent instance_npcname("查尔斯顿1号#4_00p")+"::OnDisable";
+		donpcevent instance_npcname("查尔斯顿2号#2_00p")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnEnable";
+		donpcevent instance_npcname("贝博士#1_00y")+"::OnDisable";
+		donpcevent instance_npcname("贝博士#2_00p")+"::OnEnable";
+		donpcevent instance_npcname("#step34_00p")+"::OnDisable";
+	}
+	end;
+}
+
+1@mcd,141,214,5	script	查尔斯顿2号#2_00p	10054,{
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "哈哈,yijeongdo lsn't有良好的青少年触击但它不是太严重的真正打破差点就死了.";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat1";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "干涉外人来带我一开始我说我是认真的知道你想什么操作系统降级!!!";
+		npctalk "干涉外人来带给我开始我说我是认真的知道你想OS降级";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "不会有任何其他方式思想单纯的设计,使之能不能够撒谎,但在这里了.";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat2";
+		next;
+		mes "[查尔斯顿1号]";
+		mes "但感觉一定量的情感欺骗或无法掩盖这一点,但你多一点点像发达的声音,我感觉很好.";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat3";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "感觉'这样的事情',不只是'想'的目的是乞丐的我没有任何真正的感情.";
+		npctalk "感觉'这样的事情',不只是'想'被设计成乞丐的我没有任何真正的感情";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[贝博士]";
+		mes "的坏没有更多的风险大汗号2 outage'll有一个突破.";
+		donpcevent instance_npcname("贝博士#2_00p")+"::OnChat1";
+		next;
+		cutin "nale02.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "没办法发生在3号机组完成了!?";
+		npctalk "肯定发生在3号机组完成!?"; 
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "3号,那么世界1、2号,但他的外形或武装形态战斗的特殊战斗及要塞防御型的鼻子上正在试验运行机身的话!?";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat4";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[贝博士]";
+		mes "等一下... 更多介绍想知道...";
+		donpcevent instance_npcname("贝博士#2_00p")+"::OnChat2";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "2号机的异常现象,所以目前未搭载os, ^FF0000只要登陆谁都可以轻易控制它啊?^000000";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat5";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[贝博士]";
+		mes "怎么样,当我说,你会得到的重要信息!";
+		donpcevent instance_npcname("贝博士#2_00p")+"::OnChat3";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "几乎没有战斗能力 ^FF0000我们0000是谁把它同时的话将无法抵挡啊!";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat6";
+		next;
+		cutin "dalle01.bmp",255;
+		mes "[贝博士]";
+		mes "......";
+		donpcevent instance_npcname("贝博士#2_00p")+"::OnChat4";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "...3号”受理的我!";
+		npctalk "...3号”受理的我!";
+		donpcevent instance_npcname("查尔斯顿2号#2_00p")+"::OnDisable";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "你他妈的我觉得3号是抓住如何做的想法!!!";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat7";
+		next;
+		mes "[查尔斯顿1号]";
+		mes "哎呀!!! 甚至不知道这种情况更危险的地方2号3号检出厂前都要到中心的核心!";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnChat8";
+		close2;
+		cutin "dalle01.bmp",255;
+		donpcevent instance_npcname("#1_00ygate6")+"::OnEnable";
+		donpcevent instance_npcname("#1_00ygate7")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnDisable";
+		donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnEnable";
+		donpcevent instance_npcname("#step36_00p")+"::OnEnable";
+		end;
+	}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#2_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿2号#2_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿2号#2_00p");
+	end;
+}
+
+1@mcd,146,214,4	script	查尔斯顿1号#5_00p	10053,{
+	mes "[查尔斯顿1号]";
+	mes "你知道你会搞砸了越来越多的东西.";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#5_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿1号#5_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿1号#5_00p");
+	end;
+OnChat1:
+	npctalk "哈哈,yijeongdo lsn't有良好的青少年触击但它不是太严重的真正打破差点就死了";
+	end;
+OnChat2:
+	npctalk "不会有任何其他方式思想单纯的设计,使之能不能够说谎,但女孩";
+	end;
+OnChat3:
+	npctalk "但感觉一定量的情感欺骗或无法掩盖这一点,但你多一点点像发达的声音,感觉不错";
+	end;
+OnChat4:
+	npctalk "3号,那么世界1、2号,但他的外形或武装形态战斗的特殊战斗及要塞防御型的鼻子上正在试验运行机身的话?"; 
+	end;
+OnChat5:
+	npctalk "2号机组异常OS仍然不能安装,因为你可以轻松地控制所有访问它的东西?";
+	end;
+OnChat6:
+	npctalk "我们几乎没有能力打别人有关sikindamyeon操作naelsu这使得它呢!";
+	end;
+OnChat7:
+	npctalk "没办法3号是偷的想法是如何做到的主意!";
+	end;
+OnChat8:
+	npctalk " 我什至不知道多了几分危险的地方2号3号才去到中心的核心抓住了工厂!";
+	end;
+}
+
+1@mcd,143,217,5	script	贝博士#2_00p		923,2,3,{
+	mes "[贝博士]";
+	mes "2似乎是口臭是某种.";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("贝博士#2_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("贝博士#2_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("贝博士#2_00p");
+	end;
+OnChat1:
+	npctalk "没有更危险的坏大汗号2 outage'll必须打破";
+	end;
+OnChat2:
+	npctalk "更奇怪的解释...";
+	end;
+OnChat3:
+	npctalk "你会得到重要的信息告诉你这一点,如果我!";
+	end;
+OnChat4:
+	npctalk "......";
+	end;
+}
+1@mcd,132,129,4	script	查尔斯顿1号#6_00p	10053,{
+	cutin "dalle01.bmp",2;
+	mes "[查尔斯顿1号]";
+	mes "这是在核心查尔斯顿工厂电源的心脏.";
+	close2;
+	cutin "dalle01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿1号#6_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿1号#6_00p");
+	end;
+OnChat1:
+	npctalk "我还是和你在一起,我不知道是什么悲哀.";
+	end;
+OnChat2:
+	npctalk "翻新... 是的,我知道如何处理的核心,是吗?";
+	end;
+OnChat3:
+	npctalk "euyigu即时加密! 这样小的电流核心地位,从而使电信号被送走.";
+	end;
+OnChat4:
+	npctalk "...有什么不对这个...";
+	end;
+OnChat5:
+	npctalk "你是什么意思的核心正在取得在查尔斯顿工厂preexisting'm这样做.";
+	end;
+OnChat6:
+	npctalk "博士'人'是指内核的数量都来了,哈利?";
+	end;
+OnChat7:
+	npctalk "现在对你很重要的位置粉末爆炸装置,见100狗需要一只手,我猜.";
+	end;
+OnChat8:
+	npctalk "哈哈,其实,是因为它反正已经取消连接尝试的安全系统可以工作,如果我不知道的核心...";
+	end;
+OnChat9:
+	npctalk "冒险家帮我一个忙,请guhaeda只,而不是炸药粉四.";
+	end;
+OnChat10:
+	npctalk "我不是一具尸体,但是这是一种umjil的炸药粉只有四个我求你了.";
+	end;
+}
+1@mcd,127,129,5	script	查尔斯顿2号#3_00p	10054,{
+	cutin "nale01.bmp",0;
+	mes "[查尔斯顿2号]";
+	mes "现在,我接手查尔斯顿工厂不再与我避免这种可悲的机器人,我会摧毁一切.";
+	close2;
+	cutin "nale01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿2号#3_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿2号#3_00p");
+	end;
+OnChat1:
+	npctalk "现在我正在查尔斯顿工厂不再与我避免这种可悲的机器人,我会摧毁一切.";
+	end;
+OnChat2:
+	npctalk "闭嘴,只是看事情的发生从现在看没有块也没用!";
+	end;
+OnChat3:
+	npctalk "的方式耻辱,只是让你进入...";
+	end;
+OnChat4:
+	npctalk "啧.....是一个安全设备...";
+	end;
+OnChat5:
+	npctalk "苏博士宝宝3号刻意制造这样的设备进行保护,是不要密集不可能!";
+	end;
+OnChat6:
+	npctalk "那么,是谁在让我的心3号?";
+	end;
+OnChat7:
+	npctalk "呀olteni没有跑掉迅速得到它!";
+	end;
+OnChat8:
+	npctalk "我96你会挽救修订4是对周围的老我!";
+	end;
+OnChat9:
+	npctalk "你得到这样的目的...";
+	end;
+}
+1@mcd,128,127,0	script	#step36_00p	-1,1,1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#step36_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#step36_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#step36_00p");
+	end;
+OnTouch:
+	if (getcharid(0) == getpartyleader(getcharid(1),2)) {
+		initnpctimer;
+		disablenpc instance_npcname("#step36_00p");
+		end;
+	} else {
+		end;
+	}
+OnTimer3000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat2";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat2";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat3";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat4";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat3";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat4";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat5";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat5";
+	end;
+OnTimer33000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat6";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat6";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat7";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat7";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat8";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat8";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnChat9";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat9";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnChat10";
+	end;
+OnTimer58000:
+	donpcevent instance_npcname("查尔斯顿1号#6_00p")+"::OnDisable";
+	donpcevent instance_npcname("查尔斯顿2号#3_00p")+"::OnDisable";
+	donpcevent instance_npcname("查尔斯顿1号#61_00p")+"::OnEnable";
+	donpcevent instance_npcname("查尔斯顿2号#31_00p")+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+1@mcd,132,129,4	script	查尔斯顿1号#61_00p	10053,{
+	if (countitem(6213) > 3) {
+		mes "[查尔斯顿1号]";
+		mes "你得到这样的目的.";
+		npctalk "噢谢谢我可以做这个核心的方法";
+		delitem 6213,4; //Explosive Powder
+		next;
+		mes "[查尔斯顿1号]";
+		mes "使用粉末时,放大电流爆炸!";
+		npctalk "使用粉末时,放大电流爆炸!";
+		next;
+		mes "[查尔斯顿1号]";
+		mes "瞧!!!";
+		npctalk "瞧!!!";
+		specialeffect EF_LORD;
+		//donpcevent instance_npcname("#1_00ygate8")+"::OnEnable";
+		//specialeffect EF_LORD,AREA,instance_npcname("#1_00ygate8");
+		next;
+		cutin "nale01.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "...难道只是感觉他们自爆门吗?";
+		donpcevent instance_npcname("查尔斯顿2号#31_00p")+"::OnChat1";
+		next;
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "能够访问核心doenge大鱼.";
+		npctalk "能够访问核心doenge大鱼";
+		next;
+		cutin "nale01.bmp",0;
+		mes "[查尔斯顿2号]";
+		mes "...3比赛你的号手的人,你到达之前!";
+		donpcevent instance_npcname("查尔斯顿2号#31_00p")+"::OnChat2";
+		donpcevent instance_npcname("查尔斯顿2号#31_00p")+"::OnDisable";
+		donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿2号#4_00p")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿2号#step47_00p")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿3号#0_00p")+"::OnEnable";
+		close2;
+		set .@map$, instance_mapname("1@mcd");
+		donpcevent instance_npcname("#1_00ygate8")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿1号#61_00p")+"::OnDisable";
+		warp .@map$,129,143;
+		cutin "nale01.bmp",255;
+		end;
+	} else {
+		cutin "dalle01.bmp",2;
+		mes "[查尔斯顿1号]";
+		mes "请带我,但只有四个炸药粉跌倒了,我不能这样做,接入设备,大厅.";
+		close2;
+		cutin "dalle01.bmp",255;
+		end;	
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#61_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿1号#61_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿1号#61_00p");
+	end;
+}
+
+1@mcd,127,129,5	script	查尔斯顿2号#31_00p	10054,{
+	cutin "nale01.bmp",0;
+	mes "[查尔斯顿2号]";
+	mes "这是不正确的炸药粉96（格雷格）.";
+	close2;
+	cutin "nale01.bmp",255;
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#31_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿2号#31_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿2号#31_00p");
+	end;
+OnChat1:
+	npctalk "...难道只是感觉他们自爆门吗?";
+	end;
+OnChat2:
+	npctalk "...3比赛你的号手的人,你到达之前!";
+	end;
+}
+
+1@mcd,132,148,4	script	查尔斯顿1号#7_00p	10053,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿1号#7_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿1号#7_00p");
+	end;
+OnChat1:
+	npctalk "式的中型至大型武器发展doegin骑乘战斗,但也可以用作防御.";
+	end;
+OnChat2:
+	npctalk "登机区,摧毁手套里面耐用,足以在工厂发生爆炸做任何事情,你会挺过来的.";
+	end;
+OnChat3:
+	npctalk "如何使开关杆操作的地方的中心.";
+	end;
+OnChat4:
+	npctalk "重要的是骑自行车的人先胜谈那么...";
+	end;
+OnChat5:
+	npctalk "哎哟... 突然推周围丫丫...";
+	end;
+OnChat6:
+	npctalk "不幸的是,我没有战斗功能,防止你很久了.";
+	end;
+OnChat7:
+	npctalk "谁是这里崇拜一个人帮我.";
+	end;
+OnChat8:
+	npctalk "嗯,这是一个有点怪异她吗?";
+	end;
+OnChat9:
+	npctalk "和漂亮的小姐前面的战斗,而不是一个'尖叫jireugi'哈哈,我来学!";
+	end;
+OnChat10:
+	npctalk "哈哈...";
+	end;
+OnChat11:
+	npctalk "'未来号'是和你我一样'头脑'我不知道你是否现在有,除非你停止这种担心是艰难无济于事.";
+	end;
+OnChat12:
+	npctalk "给我的合作伙伴,当然,接下来的冒险家...!";
+	end;
+}
+
+1@mcd,127,148,5	script	查尔斯顿2号#4_00p	10054,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#4_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿2号#4_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿2号#4_00p");
+	end;
+OnChat1:
+	npctalk "这是在查尔斯顿3号...";
+	end;
+OnChat2:
+	npctalk "不是的主机你怎么知道的信息的数据库?";
+	end;
+OnChat3:
+	npctalk "!!!";
+	end;
+OnChat4:
+	npctalk "将开关杆的中心!!!";
+	end;
+}
+
+1@mcd,130,153,5	script	查尔斯顿3号#0_00p	10055,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿3号#0_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿3号#0_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿3号#0_00p");
+	end;
+}
+
+1@mcd,130,153,0	script	查尔斯顿2号#step47_00p	844,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#step47_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿2号#step47_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿2号#step47_00p");
+	initnpctimer;
+	end;
+OnTimer3000:
+	donpcevent instance_npcname("查尔斯顿2号#4_00p")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat2";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat3";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("查尔斯顿2号#4_00p")+"::OnChat2";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat4";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("查尔斯顿2号#4_00p")+"::OnChat3";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat5";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("查尔斯顿2号#4_00p")+"::OnChat4";
+	end;
+OnTimer29000:
+	donpcevent instance_npcname("查尔斯顿2号#4_00p")+"::OnDisable";
+	end;
+OnTimer33000:
+	npctalk "伤心机器人像我了,防止全力以赴毁灭我.";
+	end;
+OnTimer36000:
+	npctalk "机器人的激光我免费界限将是一个激光!!!";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat6";
+	end;
+OnTimer42000:
+	npctalk "那就不要一起去打扰叫我衷心可能让你毁了!";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat7";
+	end;
+OnTimer48000:
+	npctalk "'不能带进人类的核心'是不正确的?";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat8";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat9";
+	end;
+OnTimer57000:
+	npctalk "而学习一点点,如果你正在学习的东西,以协助打击坏呢?";
+	end;
+OnTimer60000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat10";
+	end;
+OnTimer63000:
+	npctalk "哦,好吧,你不看我刚刚离开反正因为你有多少事情要做,而不是!";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat11";
+	end;
+OnTimer69000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnChat12";
+	end;
+OnTimer72000:
+	donpcevent instance_npcname("查尔斯顿1号#7_00p")+"::OnDisable";
+	end;
+OnTimer73000:
+	donpcevent instance_npcname("查尔斯顿3号#0_00p")+"::OnDisable";
+	monster instance_mapname("1@mcd"),130,153,"查尔斯顿3号",3124,1,instance_npcname("查尔斯顿2号#step47_00p")+"::OnMyMobDead";
+	stopnpctimer;
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("查尔斯顿2号#step47_00p")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "查尔斯顿1号 : 安全设备已经解锁门请西南移动到安全设备.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnEnable";
+		donpcevent instance_npcname("#step58_00p")+"::OnEnable";
+		donpcevent instance_npcname("查尔斯顿2号#step47_00p")+"::OnDisable";
+	}
+	end;	
+}
+1@mcd,130,150,0	script	#step58_00p	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#step58_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#step58_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#step58_00p");
+	initnpctimer;
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat1";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat2";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat3";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat2";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat3";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat4";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat4";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat5";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat5";
+	end;
+OnTimer33000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat6";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat6";
+	end;
+OnTimer39000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat7";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat7";
+	end;
+OnTimer45000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat8";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat9";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat10";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat8";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat11";
+	end;
+OnTimer60000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat9";
+	end;
+OnTimer63000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat12";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat13";
+	end;
+OnTimer69000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat14";
+	end;
+OnTimer71000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat10";
+	end;
+OnTimer74000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat15";
+	end;
+OnTimer78000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat16";
+	end;
+OnTimer81000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat17";
+	end;
+OnTimer84000:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnChat18";
+	end;
+OnTimer87000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat11";
+	end;
+OnTimer90000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnChat12";
+	end;
+OnTimer91000:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnDisable";
+	end;
+OnTimer92000:
+	donpcevent instance_npcname("#1_00ygate9")+"::OnEnable";
+	donpcevent instance_npcname("贝博士#2_00p")+"::OnDisable";
+	donpcevent instance_npcname("贝博士#3_00a")+"::OnEnable";
+	donpcevent instance_npcname("查尔斯顿2号#6_00p")+"::OnEnable";
+	donpcevent instance_npcname("#step58_00p")+"::OnDisable";
+	stopnpctimer;
+	end;
+}
+
+1@mcd,127,148,5	script	查尔斯顿2号#5_00p	10054,{
+	cutin "nale01.bmp",0;
+	mes "[查尔斯顿2号]";
+	mes "哦,这提醒了我,我骗奖博士的助手,一个叫1号的人不知道什么更多...";
+	next;
+	mes "[查尔斯顿2号]";
+	mes "宝贝你知道所有的博士得让他的实验室...";
+	close2;
+	cutin "nale01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#5_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("查尔斯顿2号#5_00p");
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("查尔斯顿2号#5_00p");
+	end;
+OnChat1:
+	npctalk "你为什么到目前为止这样做的 : 1组机器人多数民众赞成你.";
+	end;
+OnChat2:
+	npctalk "什么阻止我你的身体,使你粉碎还没有完成的os是你的自我反省你呢?";
+	end;
+OnChat3:
+	npctalk "你只需按照给定的机器人只会上的指示!!!";
+	end;
+OnChat4:
+	npctalk "未完成的机器人...";
+	end;
+OnChat5:
+	npctalk "什么突然的绰号博士卡住叫我!";
+	end;
+OnChat6:
+	npctalk "???";
+	end;
+OnChat7:
+	npctalk "的工作我的第一天是什么......我们是一个大批量生产的同时...?";
+	end;
+OnChat8:
+	npctalk "别废话我!!!!";
+	end;
+OnChat9:
+	npctalk "......";
+	end;
+OnChat10:
+	npctalk "等等!!!";
+	end;
+OnChat11:
+	npctalk "...一个机器人,一个秘密的耻辱...的诞生...";
+	end;
+OnChat12:
+	npctalk "困惑,我不相信.";
+	end;
+}
+1@mcd,132,148,4	script	查尔斯顿1号#8_00p	10053,{
+	cutin "dalle04.bmp",2;
+	mes "[查尔斯顿1号]";
+	mes "阿拉... os rieori ningni初始化正在进行中.";
+	next;
+	cutin "dalle01.bmp",255;
+	mes "naelppun奇怪的声音不工作.";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿1号#8_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿1号#8_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿1号#8_00p");
+	end;
+OnChat1:
+	npctalk "3号机破坏成功。在2号顺利逃出。战斗的过程中,1号机损伤";
+	end;
+OnChat2:
+	npctalk "数据损失率39% 万寿无疆装置破损率82%.";
+	end;
+OnChat3:
+	npctalk "操作的核心部分是没有问题的人开始大部分不被破坏的部分.";
+	end;
+OnChat4:
+	npctalk "操作系统碎片整理是不可避免的伤害,0.3分钟自动格式化为操作系统......我在这里给我.";
+	end;
+OnChat5:
+	npctalk "Sahib的是多亏了你,同时也eotguna越来越大的份额.";
+	end;
+OnChat6:
+	npctalk "你工作的第一天,我就是你的头发的颜色到另一个名称个性化的名称,不要...";
+	end;
+OnChat7:
+	npctalk "我的操作系统是...它遭受了严重的破坏,因为基本的语言输出的限制.";
+	end;
+OnChat8:
+	npctalk "是大量生产的制造后3号.";
+	end;
+OnChat9:
+	npctalk "产生于前几年的研究在1号机组和2号机组年底生产的.";
+	end;
+OnChat10:
+	npctalk "操作系统2号机组1号是一样的代码行并没有什么不同.";
+	end;
+OnChat11:
+	npctalk "1号不能说谎...";
+	end;
+OnChat12:
+	npctalk "2号开发日元得到了很多的时间还好有趣.";
+	end;
+OnChat13:
+	npctalk "人可能会说...";
+	end;
+OnChat14:
+	npctalk "我的女儿, 先生, 你四... 四...";
+	end;
+OnChat15:
+	npctalk "嘟------------------------------";
+	end;
+OnChat16:
+	npctalk "正常启动.";
+	end;
+OnChat17:
+	npctalk "OS确定正常化的剩余时间,直到";
+	end;
+OnChat18:
+	npctalk "由于安全和碎片整理行动停止OS的正常化.";
+	end;
+}
+
+1@mcd,116,213,5	script	贝博士#3_00a	923,{
+	mes "[贝博士]";
+	mes "这是一个很大写入这种情况下.";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("贝博士#3_00a")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("贝博士#3_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("贝博士#3_00a");
+	end;
+}
+
+1@mcd,121,215,4	script	查尔斯顿2号#6_00p	10054,{
+	donpcevent instance_npcname("查尔斯顿2号#6_00p")+"::OnChat";
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#6_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿2号#6_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿2号#6_00p");
+	end;
+OnChat:
+	disablenpc instance_npcname("查尔斯顿2号#6_00p");
+	donpcevent instance_npcname("查尔斯顿2号#7_00p")+"::OnEnable";
+	end;
+}
+1@mcd,121,215,4	script	查尔斯顿2号#7_00p	10054,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#7_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿2号#7_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿2号#7_00p");
+	donpcevent instance_npcname("贝博士#3_00a")+"::OnDisable";
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnEnable";
+	initnpctimer;
+	end;
+OnTimer3000:
+	npctalk "贝博士... 你知道吗!? 发生了什么事!";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat1";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat2";
+	end;
+OnTimer12000:
+	npctalk "那为什么现在,为什么我拍这号你为什么不背下来,直到他们摧毁...";
+	end;
+OnTimer15000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat3";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat4";
+	end;
+OnTimer21000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat5";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat6";
+	end;
+OnTimer27000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat7";
+	end;
+OnTimer30000:
+	npctalk "这样的... 愚蠢的...";
+	end;
+OnTimer33000:
+	npctalk "我做了什么,我会的.";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat8";
+	end;
+OnTimer39000:
+	npctalk "!!!!!!";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat9";
+	end;
+OnTimer45000:
+	npctalk "...不能相信你.";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat10";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat11";
+	end;
+OnTimer54000:
+	npctalk "...致命的坏.";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat12";
+	end;
+OnTimer60000:
+	npctalk "......";
+	end;
+OnTimer63000:
+	npctalk "操作停止睡眠模式之外,直到有一个命令来停止设备.";
+	end;
+OnTimer66000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnChat13";
+	end;
+OnTimer68000:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnDisable";
+	donpcevent instance_npcname("贝博士#5_00a")+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("查尔斯顿2号#7_00p")+"::OnDisable";
+	donpcevent instance_npcname("查尔斯顿2号#8_00p")+"::OnEnable";
+	end;
+}
+1@mcd,116,213,5	script	贝博士#4_00a	923,{
+	mes "[贝博士]";
+	mes "1到号初始化也将... 嗯...";
+	close;
+OnInstanceInit:
+	donpcevent instance_npcname("贝博士#4_00a")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("贝博士#4_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("贝博士#4_00a");
+	end;
+OnChat1:
+	npctalk "1号给你你所做的听证会是1号的故事.";
+	end;
+OnChat2:
+	npctalk "所以你使用相同的操作系统'记'谁是1号的故事阿布的存在,然后.";
+	end;
+OnChat3:
+	npctalk "自我反思以及人类学习的特点和变化的操作系统 os.";
+	end;
+OnChat4:
+	npctalk "你觉得'头脑'或数据的积累,我们不能知道的事实...";
+	end;
+OnChat5:
+	npctalk "你让信息按照变化的程度的量机器人'个性'也许阿布看起来.";
+	end;
+OnChat6:
+	npctalk "他唯一的女儿,不知道,甚至甩她看起来很漂亮,看起来就像妈妈.";
+	end;
+OnChat7:
+	npctalk "如果一个人亲ES.";
+	end;
+OnChat8:
+	npctalk "1个号,这也可以帮助你,如果你想赶上,是吧?";
+	end;
+OnChat9:
+	npctalk "做人把睡眠OS如果不帮了拒绝的一扔.";
+	end;
+OnChat10:
+	npctalk "斗鸡1号可永久删除的每端的数据不能.";
+	end;
+OnChat11:
+	npctalk "获得了珍贵的'头脑'上课会成为朋友的人,如果'家庭'我叫自己.";
+	end;
+OnChat12:
+	npctalk "你吹牛说'人的心灵'这就对了,克里斯TT无疑自私.";
+	end;
+OnChat13:
+	npctalk "huhuhu...";
+	end;
+}
+1@mcd,121,215,4	script	查尔斯顿2号#8_00p	10054,{
+	if(charlestonins == 0) {
+		cutin "nale04.bmp",0;
+		mes "睡眠模式操作显然没有停止的罚款.";
+		close2;
+		cutin "nale04.bmp",255;
+		end;
+	} else {
+		cutin "nale04.bmp",0;
+		mes "第二号停止停止运作立场亮晶晶的眼睛感觉有东西在那.";
+		close2;
+		cutin "nale04.bmp",255;
+		end;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("查尔斯顿2号#8_00p")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("查尔斯顿2号#8_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("查尔斯顿2号#8_00p");
+}
+
+1@mcd,116,213,5	script	贝博士#5_00a	923,{
+	if(charlestonins == 0) {
+		mes "[贝博士]";
+		mes "呼...";
+		next;
+		mes "[贝博士]";
+		mes "一旦数据被删除,2号,现在必须初始化,这时候做真的很危险.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "这一次?";
+		next;
+		mes "[贝博士]";
+		mes "查尔斯顿 1号2号机组,创造出了几十年已经转移。我是第1号机见面时,他的技术,是为了学习.";
+		next;
+		mes "[贝博士]";
+		mes "事实上,观察家说我0.1 2应记录的只是离开观察者1号2号机组,以及修复我对技术没有兴趣了,就等着ppunyiji.";
+		next;
+		mes "[贝博士]";
+		mes "1号正常秒赵德熙并重新os,如果自己被破坏的部位要修理。还有其他2号机组,将启动.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "另一个2号?";
+		next;
+		mes "[贝博士]";
+		mes "因此,它一直在2号进口操作系统是相当多的变化,就好像它真的活得像其他人一样.";
+		next;
+		mes "[贝博士]";
+		mes "为自己想,而且... 是的,我的感受'的事情阿布都每秒钟号每当再次手术似乎我看到另一个人,从而所有的结果不同.";
+		next;
+		mes "[贝博士]";
+		mes "我不能做任何事情,以你的是 : 等待任何人对自己的恢复1号号.";
+		next;
+		mes "叹了口气,博士娃似乎记录下一些东西.";
+		next;
+		mes "[贝博士]";
+		mes "顺便说一下,一个完整的机器技术,以获得永生的身体怎么可能,这是一个很大的变数..";
+		next;
+		mes "[贝博士]";
+		mes "是啊...我不能做,无非是重新机面包还在纳闷huhuhu ... huhuhu需要鲜活的生命.";
+		set charlestonins,1;
+		close;
+	} else {
+		mes "[贝博士]";
+		mes "整机技术进入生活中的身体怎么可能,这是一个很大的变数.";
+		next;
+		mes "[贝博士]";
+		mes "是啊...我不能做,无非是重新机面包还在纳闷......生活所需的生活.";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("贝博士#5_00a")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("贝博士#5_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("贝博士#5_00a");
+	end;
+}
+
+1@mcd,77,167,5	script	沙勒罗瓦南基#1_00a	10041,{
+	cutin "shaloshi01.bmp",2;
+	mes "[沙勒罗瓦南基]";
+	mes "......";
+	next;
+	switch(select("交谈","我需要帮助","想回去"))
+	{
+		case 1:
+			mes "[沙勒罗瓦南基]";
+			mes "并在新的奥兹噩梦漂浮在这里和那里后分手,以为恶魔诞生了失去的宗旨,和.";
+			next;
+			mes "[沙勒罗瓦南基]";
+			mes "我什么也没做,只是一个很短的故事,也只是2号.";
+			close2;
+			cutin "shaloshi01.bmp",255;
+			end;
+		case 2:
+			mes "[沙勒罗瓦南基]";
+			mes "佩尔也被证明知道它去了哪里,但我不需要任何帮助,回来.";
+			close2;
+			cutin "shaloshi01.bmp",255;
+			end;
+		case 3:
+			if(charlestonins == 0) {
+				mes "[沙勒罗瓦南基]";
+				mes "并没有消失,声音还在这里想知道到底是怎么回事?";
+				close2;
+				cutin "shaloshi01.bmp",255;
+				end;
+			} else {
+				mes "[沙勒罗瓦南基]";
+				mes "这是非常有趣的谈话与新绿野仙?的声音跟我那么也许我们可以再见面的.";
+				next;
+				mes "[沙勒罗瓦南基]";
+				mes "我要去找另一个故事halkkana声音.";
+				getitem 6752,3; //Charleston Parts
+				erasequest 13184;
+				setquest 13186;
+				close2;
+				cutin "shaloshi01.bmp",255;
+				warp "verus04",107,124;
+				end;
+			}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("沙勒罗瓦南基#1_00a")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("沙勒罗瓦南基#1_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("沙勒罗瓦南基#1_00a");
+	end;
+}
+
+//Extra Quest:
+//===============
+1@mcd,109,219,5	script	主单元#1_00a	844,{
+	set .@huntsystem,checkquest(13188,PLAYTIME); //20 Horas
+	if (.@huntsystem == -1) {
+		if (checkquest(13187,HUNTING) == -1) {
+			mes "[主单元]";
+			mes "2号急于jeonggeom的一些数据拥塞试图断开失败.";
+			next;
+			mes "[主单元]";
+			mes "与触摸一个防御主机的控制范围之外的防御未知的未知干扰的过程中和步骤由摩擦萨特纳米星期二储存驱动.";
+			next;
+			mes "[主单元]";
+			mes "传遍厂处理步骤,增加了主机的加速度加速到工厂应该试图夺回约50个对象必要的步骤.";
+			next;
+			switch(select("被执行请求.","停止."))
+			{
+				case 1:
+					mes "[主单元]";
+					mes "50步需要的对象的处理.";
+					setquest 13187;
+					close;
+
+				case 2:
+					close;
+			}
+		}
+		if ((checkquest(13187,HUNTING) == 0) || (checkquest(13187,HUNTING) == 1)) {
+			mes "[主单元]";
+			mes "遍布整个工厂的加工步骤,以增加主号到工厂的增速应该尝试talhan约50个对象必要的步骤.";
+			close;
+		}
+		else if (checkquest(13187,HUNTING) == 2) {
+			mes "[主单元]";
+			mes "的信息处理一步备份到主号hageteum工作执行标记感谢辛勤工作";
+			getexp 1200000,360000;
+			getitem 6752,1; //Charleston Parts
+			erasequest 13187;
+			setquest 13188;
+			close;
+		}
+	}
+	else if ((.@huntsystem == 0) || (.@huntsystem == 1)) {
+		mes "[主单元]";
+		mes "需要加强持续的过程 : 退一步进展中的工作.";
+		close;
+	}
+	else if (.@huntsystem == 2) {
+		mes "[主单元]";
+		mes "2号急于jeonggeom的一些数据拥塞试图断开失败.";
+		next;
+		mes "[主单元]";
+		mes "与触摸一个防御主机的控制范围之外的防御未知的未知干扰的过程中和步骤由摩擦萨特纳米星期二储存驱动.";
+		next;
+		mes "[主单元]";
+		mes "传遍厂处理步骤,增加了主机的加速度加速到工厂应该试图夺回约50个对象必要的步骤.";
+		next;
+		switch(select("被执行请求.","弊父敌促."))
+		{
+			case 1:
+				mes "[主单元]";
+				mes "50步需要的对象的处理.";
+				erasequest 13188;
+				setquest 13187;
+				close;
+			case 2:
+				close;
+		}
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("主单元#1_00a")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("主单元#1_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("主单元#1_00a");
+	end;
+}
+
+
+//Respawn Mobs
+//=============
+
+1@mcd,127,264,0	script	mob#1_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#1_00y")+"::OnMyMobDead";
+	areamonster .@map$,107,254,115,250,"保安机器人",3128,8,.@label$;
+	donpcevent instance_npcname("mob#12_00y")+"::OnEnable";
+	donpcevent instance_npcname("mob#2_00y")+"::OnEnable";
+	donpcevent instance_npcname("mob#1_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#1_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#1_00y");
+	disablenpc instance_npcname("mob#1_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#1_00y");
+	end;
+}
+
+1@mcd,67,234,0	script	mob#2_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#2_00y")+"::OnMyMobDead";
+	areamonster .@map$,52,231,60,227,"保安机器人",3128,8,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal1")+"::OnEnable";
+	donpcevent instance_npcname("mob#2_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#2_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#2_00y");
+	disablenpc instance_npcname("mob#2_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#2_00y");
+	end;
+}
+1@mcd,33,192,0	script	mob#3_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#3_00y")+"::OnMyMobDead";
+	areamonster .@map$,21,164,30,156,"保安机器人",3128,8,.@label$;
+	areamonster .@map$,46,87,57,78,"保安机器人",3128,8,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal2")+"::OnEnable";
+	donpcevent instance_npcname("mob#3_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#3_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#3_00y");
+	disablenpc instance_npcname("mob#3_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#3_00y");
+	end;
+}
+1@mcd,75,59,0	script	mob#4_00y	139,4,7,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#4_00y")+"::OnMyMobDead";
+	areamonster .@map$,85,51,95,46,"保安机器人",3128,8,.@label$;
+	donpcevent instance_npcname("mob#4_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#4_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#4_00y");
+	disablenpc instance_npcname("mob#4_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#4_00y");
+	end;
+}
+1@mcd,109,33,0	script	mob#5_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#5_00y")+"::OnMyMobDead";
+	areamonster .@map$,120,29,129,26,"保安机器人",3128,8,.@label$;
+	areamonster .@map$,226,37,249,18,"保安机器人",3128,8,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal3")+"::OnEnable";
+	donpcevent instance_npcname("mob#5_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#5_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#5_00y");
+	disablenpc instance_npcname("mob#5_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#5_00y");
+	end;
+}
+1@mcd,133,49,0	script	mob#6_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#6_00y")+"::OnMyMobDead";
+	areamonster .@map$,160,57,173,50,"保安机器人",3128,8,.@label$;
+	areamonster .@map$,188,62,199,73,"保安机器人",3128,2,.@label$;
+	donpcevent instance_npcname("mob#6_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#6_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#6_00y");
+	disablenpc instance_npcname("mob#6_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#6_00y");
+	end;
+}
+1@mcd,204,74,0	script	mob#7_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#7_00y")+"::OnMyMobDead";
+	areamonster .@map$,227,202,235,192,"保安机器人",3128,8,.@label$;
+	areamonster .@map$,272,191,291,172,"保安机器人",3128,6,.@label$;
+	donpcevent instance_npcname("#ccmemorialseal4")+"::OnEnable";
+	donpcevent instance_npcname("mob#7_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#7_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#7_00y");
+	disablenpc instance_npcname("mob#7_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#7_00y");
+	end;
+}
+
+1@mcd,204,224,0	script	mob#8_00y	139,4,5,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#8_00y")+"::OnMyMobDead";
+	areamonster .@map$,130,233,137,235,"保安机器人",3128,6,.@label$;
+	areamonster .@map$,174,225,207,195,"保安机器人",3128,6,.@label$;
+	donpcevent instance_npcname("#1_00ygate5")+"::OnEnable";
+	donpcevent instance_npcname("mob#8_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#8_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#8_00y");
+	disablenpc instance_npcname("mob#8_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#8_00y");
+	end;
+}
+
+1@mcd,175,147,0	script	mob#9_00y	139,8,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#9_00y")+"::OnMyMobDead";
+	areamonster .@map$,117,194,117,190,"保安机器人",3128,8,.@label$;
+	donpcevent instance_npcname("#1_00ygate6")+"::OnEnable";
+	donpcevent instance_npcname("#1_00ygate7")+"::OnEnable";
+	donpcevent instance_npcname("贝博士#1_00y")+"::OnEnable";
+	donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnEnable";
+	donpcevent instance_npcname("查尔斯顿2号#0_00y")+"::OnEnable";
+	donpcevent instance_npcname("mob#9_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#9_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#9_00y");
+	disablenpc instance_npcname("mob#9_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#9_00y");
+	end;
+}
+
+1@mcd,157,61,0	script	mob#10_00y	139,4,4,{
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#10_00y")+"::OnMyMobDead";
+	areamonster .@map$,123,70,133,66,"保安机器人",3128,8,.@label$;
+	donpcevent instance_npcname("mob#10_00y")+"::OnDisable";
+	end;
+OnMyMobDead:
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#10_00y")+"::OnEnable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("mob#10_00y");
+	disablenpc instance_npcname("mob#10_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#10_00y");
+	end;
+}
+
+1@mcd,0,0,0	script	mob#11_00y	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#11_00y");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#11_00y")+"::OnMyMobDead";
+	monster .@map$,0,0,"踢腿踢腿",3128,20,.@label$;
+	monster .@map$,0,0,"脚步",3125,60,.@label$;
+	end;
+OnMyMobDead:
+		set .@map$, instance_mapname("1@mcd");
+		set .@label$, instance_npcname("mob#11_00y")+"::OnMyMobDead";
+		switch(rand(2)) {
+		case 0:
+			monster .@map$,0,0,"踢腿踢腿",3128,1,.@label$;
+			break;
+		case 1:
+			monster .@map$,0,0,"脚步",3125,1,.@label$;
+			break;
+		}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#11_00y")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("mob#11_00y");
+	end;
+}
+1@mcd,0,0,0	script	mob#12_00y	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("mob#12_00y");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("mob#12_00y")+"::OnMyMobDead";
+	monster .@map$,0,0,"踢腿踢腿",3128,20,.@label$;
+	monster .@map$,0,0,"脚步",3125,10,.@label$;
+	end;
+OnMyMobDead:
+		set .@map$, instance_mapname("1@mcd");
+		set .@label$, instance_npcname("mob#12_00y")+"::OnMyMobDead";
+		switch(rand(2)) {
+		case 0:
+			monster .@map$,0,0,"踢腿踢腿",3128,1,.@label$;
+			break;
+		case 1:
+			monster .@map$,0,0,"脚步",3125,1,.@label$;
+			break;
+		}
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("mob#12_00y")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("mob#12_00y");
+	end;
+}
+// Seals
+//=============
+
+1@mcd,23,275,0	script	#ccmemorialseal1	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal1");
+	monster instance_mapname("1@mcd"),23,275,"1通道保安装置",3127,1,instance_npcname("#ccmemorialseal1")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal1")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "查尔斯顿1号 : 安全设备已经解锁门请西南移动到安全设备.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate1")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal1")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal1")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal1");
+	end;
+}
+1@mcd,23,275,0	script	#ccmemorialseal2	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal2");
+	monster instance_mapname("1@mcd"),33,59,"2通道保安装置",3127,1,instance_npcname("#ccmemorialseal2")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal2")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "查尔斯顿1号 : 安全设备已被关闭2门请东南移动到安全设备.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate2")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal2")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal2")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal2");
+	end;
+}
+1@mcd,239,29,0	script	#ccmemorialseal3	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal3");
+	monster instance_mapname("1@mcd"),239,29,"3通道保安装置",3127,1,instance_npcname("#ccmemorialseal3")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal3")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "查尔斯顿1号 : 在安全性装置的三个门已经解锁,请向东移动,安全设备.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate3")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal3")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal3")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal3");
+	end;
+}
+1@mcd,281,184,0	script	#ccmemorialseal4	-1,{
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ccmemorialseal4");
+	monster instance_mapname("1@mcd"),281,184,"4通道保安装置",3127,1,instance_npcname("#ccmemorialseal4")+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	if (mobcount(.@map$,instance_npcname("#ccmemorialseal4")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$, "查尔斯顿1号 : 安全设备已被关闭4门中央三行将来到实验室!.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#1_00ygate4")+"::OnEnable";
+		donpcevent instance_npcname("#ccmemorialseal4")+"::OnDisable";
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ccmemorialseal4")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ccmemorialseal4");
+	end;
+}
+
+//Warp portals
+//==================
+
+1@mcd,44,211,0,	script	#1_00ygate1	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+OnEnable:
+	enablenpc instance_npcname(strnpcinfo(0));
+	end;
+OnTouch:
+	set .@map$, instance_mapname("1@mcd");
+	switch(atoi(replacestr(strnpcinfo(2),"1_00ygate","")))
+	{
+		case 1: warp .@map$,41,200; break;
+		case 2: warp .@map$,65,66; break;
+		case 3: warp .@map$,115,50; break;
+		case 4: warp .@map$,210,217; break;
+		case 5: warp .@map$,211,180; break;
+		case 6: warp .@map$,141,207; break;
+		case 7: warp .@map$,136,200; break;
+		case 8: warp .@map$,129,143; break;
+		case 9: warp .@map$,130,121; break;
+	}
+	end;
+}
+1@mcd,58,72,0	duplicate(#1_00ygate1)	#1_00ygate2	45,1,2
+1@mcd,104,50,0	duplicate(#1_00ygate1)	#1_00ygate3	45,1,2
+1@mcd,218,211,0	duplicate(#1_00ygate1)	#1_00ygate4	45,1,2
+1@mcd,211,195,0	duplicate(#1_00ygate1)	#1_00ygate5	45,1,2
+1@mcd,141,199,0	duplicate(#1_00ygate1)	#1_00ygate6	45,1,2
+1@mcd,142,203,0	duplicate(#1_00ygate1)	#1_00ygate7	45,1,2 //Salida panel de control
+1@mcd,130,127,0	duplicate(#1_00ygate1)	#1_00ygate8	45,1,2 //entrada mvp
+1@mcd,130,134,0	duplicate(#1_00ygate1)	#1_00ygate9	45,1,2 // salida mvp
+
+//System Security Mob
+//=======================
+
+1@mcd,0,0,0	script	#systemsecurity	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#systemsecurity")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#systemsecurity");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#systemsecurity");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#systemsecurity")+"::OnMyMobDead";
+	monster .@map$,84,226,"步调一致",3126,1,.@label$;
+	monster .@map$,126,84,"步调一致",3126,1,.@label$;
+	monster .@map$,111,68,"步调一致",3126,1,.@label$;
+	monster .@map$,210,181,"步调一致",3126,1,.@label$;
+	monster .@map$,183,192,"步调一致",3126,1,.@label$;
+	monster .@map$,130,124,"步调一致",3126,1,.@label$;
+	monster .@map$,54,108,"步调一致",3126,1,.@label$;
+	set .MyMobs,7;
+	end;
+OnMyMobDead:
+	set .@map$, instance_mapname("1@mcd");
+	set .MyMobs, .MyMobs-1;
+	if (.MyMobs == 0) {
+		donpcevent instance_npcname("#systemsecurity")+"::OnComplete";
+		donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnCompleteSetp1";
+		mapannounce .@map$, "查尔斯顿1号 : 啊,麦克风测试",bc_map,"0xFFFF00";
+	}
+		end;
+OnComplete:
+	initnpctimer;
+	end;
+OnTimer2000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "查尔斯顿1号 : 干扰手柄我认为所有的锁步",bc_map,"0xFFFF00";
+	end;
+OnTimer5000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "查尔斯顿1号 : Doc的实验室,请回来!",bc_map,"0xFFFF00";
+	stopnpctimer;
+	disablenpc instance_npcname("#systemsecurity");
+	end;
+}
+1@mcd,0,0,0	script	#systemsecurity1	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#systemsecurity1")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#systemsecurity1");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#systemsecurity1");
+	set .@map$, instance_mapname("1@mcd");
+	set .@label$, instance_npcname("#systemsecurity1")+"::OnMyMobDead";
+	monster .@map$,86,231,"步调一致",3127,1,.@label$;
+	monster .@map$,172,196,"步调一致",3127,1,.@label$;
+	monster .@map$,126,84,"步调一致",3127,1,.@label$;
+	monster .@map$,100,149,"步调一致",3127,1,.@label$;
+	monster .@map$,158,149,"步调一致",3127,1,.@label$;
+	end;
+OnMyMobDead:
+	end;
+		
+OnComplete:
+	initnpctimer;
+	end;
+OnTimer2000:
+	mapannounce .@map$, "查尔斯顿1号 : 干扰手柄我认为所有的锁步",bc_map,"0xFFFF00";
+	end;
+OnTimer5000:
+	mapannounce .@map$, "查尔斯顿1号 : Doc的实验室,请回来!",bc_map,"0xFFFF00";
+	stopnpctimer;
+	disablenpc instance_npcname("#systemsecurity1");
+	end;
+}
+
+//Panel Controls:
+//=================
+
+1@mcd,172,198,5	script	辅助发电装置#2_00p	844,2,2,{
+	end;
+OnTouch:
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 0) {
+		mes "让发电机工作听起来像是滚滚.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck";
+		donpcevent instance_npcname("辅助发电装置#2_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 1) {
+		mes "让发电机工作听起来像是滚滚.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck1";
+		donpcevent instance_npcname("辅助发电装置#2_00p")+"::OnDisable";
+		close;
+	}
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 2) {
+		mes "让发电机工作听起来像是滚滚.";
+		next;
+		mes "如果发电机厂操作变得更加活跃.";
+		donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnCompleteSetp2";
+		donpcevent instance_npcname("panelcount#inst")+"::OnComplete";
+		donpcevent instance_npcname("辅助发电装置#2_00p")+"::OnDisable";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("辅助发电装置#2_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("辅助发电装置#2_00p");
+	disablenpc instance_npcname("辅助发电装置#2_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("辅助发电装置#2_00p");
+	end;
+}
+
+1@mcd,126,84,5	script	辅助发电装置#3_00p	844,2,2,{
+	end;
+OnTouch:
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 0) {
+		mes "让发电机工作听起来像是滚滚.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck";
+		donpcevent instance_npcname("辅助发电装置#3_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 1) {
+		mes "让发电机工作听起来像是滚滚.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck1";
+		donpcevent instance_npcname("辅助发电装置#3_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 2) {
+		mes "让发电机工作听起来像是滚滚.";
+		next;
+		mes "如果发电机厂操作变得更加活跃.";
+		donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnCompleteSetp2";
+		donpcevent instance_npcname("panelcount#inst")+"::OnComplete";
+		donpcevent instance_npcname("辅助发电装置#3_00p")+"::OnDisable";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("辅助发电装置#3_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("辅助发电装置#3_00p");
+	disablenpc instance_npcname("辅助发电装置#3_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("辅助发电装置#3_00p");
+	end;
+}
+1@mcd,86,231,5	script	辅助发电装置#1_00p	844,2,2,{
+	end;
+OnTouch:
+	if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 0) {
+		mes "让发电机工作听起来像是滚滚.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck";
+		donpcevent instance_npcname("辅助发电装置#1_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 1) {
+		mes "让发电机工作听起来像是滚滚.";
+		donpcevent instance_npcname("panelcount#inst")+"::OnCheck1";
+		donpcevent instance_npcname("辅助发电装置#1_00p")+"::OnDisable";
+		close;
+	}
+	else if ((getvariableofnpc(getd("."+instance_id()),instance_npcname("panelcount#inst", instance_id()))) == 2) {
+		mes "让发电机工作听起来像是滚滚.";
+		next;
+		mes "如果发电机厂操作变得更加活跃.";
+		donpcevent instance_npcname("查尔斯顿1号#1_00y")+"::OnCompleteSetp2";
+		donpcevent instance_npcname("panelcount#inst")+"::OnComplete";
+		donpcevent instance_npcname("辅助发电装置#1_00p")+"::OnDisable";
+		close;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("辅助发电装置#1_00p")+"::OnDisable";
+	end;
+OnDisable:
+	hideonnpc instance_npcname("辅助发电装置#1_00p");
+	disablenpc instance_npcname("辅助发电装置#1_00p");
+	end;
+OnEnable:
+	enablenpc instance_npcname("辅助发电装置#1_00p");
+	end;
+}
+
+1@mcd,0,0,0	script	panelcount#inst	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("panelcount#inst")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("panelcount#inst");
+	end;
+OnEnable:
+	enablenpc instance_npcname("panelcount#inst");
+	setd "."+instance_id(),0;
+	end;
+OnCheck:
+	setd "."+instance_id(),1;
+	end;
+OnCheck1:
+	setd "."+instance_id(),2;
+	end;
+OnComplete:
+	initnpctimer;
+	end;
+OnTimer1000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "查尔斯顿1号 : 哇,现在该厂似乎有点清理禁用警报应该sanggadong查尔斯得2号.",bc_map,"0xFFFF00";
+	end;
+OnTimer4000:
+	set .@map$, instance_mapname("1@mcd");
+	mapannounce .@map$, "查尔斯顿1号 : 如果事情看起来怪怪的......什么不对的发电机geolkkayo嗯,我很抱歉,但是我会让你知道的位置,请检查所有三台发电机.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	donpcevent instance_npcname("panelcount#inst")+"::OnDisable";
+	end;
+	
+}
+
+//NPC????? (Need mechanic job)??????????!!!!!!!!
+//==============================================
+
+1@mcd,176,179,5	script	新奥斯#15_00a	625,{
+	cutin "nines01.bmp",0;
+	mes "[新奥斯]";
+	mes "我从夏洛特读了这封信打破了荒野突然变成这样一个地方这样做抢劫的歌曲之一,让你回去?";
+	close2;
+	cutin "nines01.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("新奥斯#15_00a")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("新奥斯#15_00a");
+	end;
+OnEnable:
+	enablenpc instance_npcname("新奥斯#15_00a");
+	end;
+}
+	
+1@mcd,114,82,4	script	哎呀#01_00y	646,{
+	cutin "igu04.bmp",2;
+	mes "[哎呀]";
+	mes "我喜欢冒险这个地方是充满了胫机,但该研究有一段时间,很可能是猜测,你看的书?";
+	close2;
+	cutin "igu04.bmp",255;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("哎呀#01_00y")+"::OnEnable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("哎呀#01_00y");
+	end;
+OnEnable:
+	enablenpc instance_npcname("哎呀#01_00y");
+	end;
+}
+
+//NPC EQUIP (SEMI-CUSTOM)
+//==========================
+
+verus04,64,112,4	script	查尔斯顿 量产型#verus1	10053,{
+	cutin "dalle03.bmp",2;
+	mes "[查尔斯顿 量产型]";
+	mes "是... 是... 所使用的语言是什么客户切换到工作模式.";
+	next;
+	cutin "dalle01.bmp",2;
+	mes "[查尔斯顿 量产型]";
+	mes "装甲增强查尔斯顿工厂的畅销书! ^FF0000部分^000000苞 ^FF0000辟仿焊肯厘摹^000000强度卖补!";
+	next;
+	mes "[查尔斯顿 量产型]";
+	mes "要钱 ^FF0000 3999999 ^000000珍妮只有$售出不能超过理想设备超超超行动!";
+	next;
+	mes "[查尔斯顿 量产型]";
+	mes "^FF0000光^000000这 ^FF0000我们还升级的^000000文件!";
+	next;
+	switch(select("交谈","增强部件更换","补充交换","地堡升级文件"))
+	{
+		case 1:
+			cutin "dalle03.bmp",2;
+			mes "[查尔斯顿 量产型]";
+			mes "我没有收到查尔斯顿的大批量编号取得了在一家工厂做100 GB 1000 GB的简化也许被创建.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "在那里,站在原来他是查尔斯顿真正的问题是...";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "查尔斯顿工厂1号机组和2号机组在逃跑的时候都非常损坏状态是一天的战斗真是太棒了!";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "你能想像它的宝宝1号博士查尔斯顿的许多生物,看起来开裂2号!";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "婴儿遭受高容量由查尔斯顿医生修改也结束了捣毁一切你...";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "哦,当然,像我一样,没有转换成一个谁honim有大规模生产的身旁升级到高容量的产品,如一切都是人的保护.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "多亏了我们装修的3号才得以逃脱,并来到这地方的增长.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "不要误会我的意思,在这里我们得到了休息前裁员,所以我们不稀罕,也许...";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "螺栓是一个故事,别的地方一会儿然而,问题是这样的.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "1号2号和功能损失险些破门足以给对方修理她写的部分,但有一个限制.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "太大的伤害串起最终汇集单一气体两部分勉强能够重新启动操作系统了.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "而现在看怪破坏植物被认为是要回到自己的数据被搞砸了,我想这唱的人记忆力衰退呢?";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "的数据存储,但...我的意思是看的人的头脑号2号2是点击率最高的,但是......所以方法操作系统的情绪'端靠近1号";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "所以,现在什么样的查尔斯顿是第1页第2无法找到识别记得,你不知道你错过了什么.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "自己打败了,而且失败的机器人的数据丢失的同事未能机器人未能bojiman我们始终保持...";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "她说,有没有头脑无法知道......如果你不介意的话我会知道,但是她知道?";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "什么是人的心灵和情感,取决于有多少个小时可能是美国,也可能会被遗忘...";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "的人类经验始终是一个错误,未能马匹会得到更好的前一句中的植物 ^FF0000'书'^000000的一些数据引丑.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "查尔斯顿 ^FF0000南方我是一个小书房^000000厂迅速变成一个机器人虽然发展办公室.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "她是... '人'去更近了一步,我什至不知道现在如果马克服悲伤...   哈...";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "os的操作系统,它看起来有点沮丧,埋怨碎片整理会得到的东西,当你看到完成.";
+			close2;
+			cutin "dalle03.bmp",255;
+			end;
+		case 2:
+			mes "[查尔斯顿 量产型]";
+			mes "增强部件 - 外装!";
+			mes "系列 : 盔甲. 不会破坏!";
+			mes "来自小型、中型魔物的伤害-10%!";
+			mes "精炼+7时,来自大型魔物的伤害-10%!";
+			mes "精炼+9时,追加来自小型、中型魔物的伤害-5%!";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "重量 : 300 ";
+			mes "需要等级 : 100";
+			mes "^FF0000装备 : 机匠!^000000";
+			mes "^FF0000价格 : 3999999 珍妮^000000";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "真正 ^FF0000强化零件 - 外装^000000你想升级吗?";
+			next;
+			switch(select("再想想","买"))
+			{
+				case 1:
+					mes "[查尔斯顿 量产型]";
+					mes "这是一个优质的产品,请再次确定兑换需求.";
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 2:
+					if (Zeny >= 3999999) {
+						Zeny -= 3999999;
+						mes "[查尔斯顿 量产型]";
+						mes "Thanks for lot!";
+						getitem 15111,1; //Reinforced Parts - Gloves
+						close;
+					} else {
+						mes "[查尔斯顿 量产型]";
+						mes "你是一个好足够的价值,所需要的产品在手在这更少的钱,请回来与否.";
+						close2;
+						cutin "dalle01.bmp",255;
+						end;
+					}
+			}
+		case 3:
+			mes "[查尔斯顿 量产型]";
+			mes "力量补强装置!";
+			mes "ATK+ 5%!";
+			mes "精炼每+4,ATK+1%!";
+			mes "物理补,补敏捷,敏捷,具有互补的设备使用时会产生更好的能力!";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "重量 : 200 ";
+			mes "需要等级 : 100";
+			mes "^FF0000装备 : 机匠!^000000";
+			mes "^FF0000价格 : 3999999 珍妮^000000";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "真正 ^FF0000力量补强装置^000000你想升级吗?";
+			next;
+			switch(select("再想想","买"))
+			{
+				case 1:
+					mes "[查尔斯顿 量产型]";
+					mes "这是一个优质的产品,请再次确定兑换需求.";
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 2:
+					if (Zeny >= 3999999) {
+						Zeny -= 3999999;
+						mes "[查尔斯顿 量产型]";
+						mes "Thanks for lot!";
+						getitem 15110,1; //Strength Supplement Equipment
+						close;
+					} else {
+						mes "[查尔斯顿 量产型]";
+						mes "你是一个好足够的价值,所需要的产品在手在这更少的钱,请回来与否.";
+						close2;
+						cutin "dalle01.bmp",255;
+						end;
+					}
+			}
+		case 4:
+			mes "[查尔斯顿 量产型]";
+			mes "最后一块查尔斯顿工厂无论我走到哪里,你不会找到这样的好装备.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "冲击锥 升级 ";
+			mes "需要 ^FF0000冲击锥 1个^000000";
+			mes "^FF0000变形的钢板 300个^000000";
+			mes "^FF0000故障的引擎 15个^000000 我需要.";
+			next;
+			switch(select("冲击锥S","冲击锥P","冲击锥T"))
+			{
+				case 1:
+					mes "[查尔斯顿 量产型]";
+					mes "冲击锥S!!!";
+					mes "系列 : 钝器";
+					mes "攻击力 : 400";
+					mes "精炼每+2,攻击速度+1%";
+					next;
+					mes "[查尔斯顿 量产型]";
+					mes "重量 : 300";
+					mes "武器等级 : 4";
+					mes "要求等级 : 130";
+					mes "另外! 卡片插槽也是1个!";
+					next;
+					mes "[查尔斯顿 量产型]";
+					mes "这个 ^FF0000冲击锥S^000000你想升级吗?";
+					next;
+					switch(select("再想想","买"))
+					{
+						case 1:
+							mes "[查尔斯顿 量产型]";
+							mes "这是一个优质的产品,请再次确定兑换需求.";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@pileS_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16030,1; //Pile Bunker S
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								}
+							} else {
+								mes "[查尔斯顿 量产型]";
+								mes "你所准备的材料不足!";
+								close2;
+								cutin "dalle01.bmp",255;
+								end;
+							}
+					}
+				case 2:
+					mes "[查尔斯顿 量产型]";
+					mes "冲击锥P!!!";
+					mes "系列 : 钝器";
+					mes "攻击力 : 450";
+					mes "精炼每+1,ATK+5";
+					next;
+					mes "[查尔斯顿 量产型]";
+					mes "重量 : 400";
+					mes "武器等级 : 4";
+					mes "要求等级 : 130";
+					mes "装备 : 机匠!";
+					next;
+					mes "[查尔斯顿 量产型]";
+					mes "这个 ^FF0000冲击锥P^000000你想升级吗?";
+					next;
+					switch(select("再想想","买"))
+					{
+						case 1:
+							mes "[查尔斯顿 量产型]";
+							mes "这是一个优质的产品,请再次确定兑换需求.";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@pileS_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16031,1; //Pile Bunker P
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								}
+							} else {
+								mes "[查尔斯顿 量产型]";
+								mes "你所准备的材料不足!";
+								close2;
+								cutin "dalle01.bmp",255;
+								end;
+							}
+					}
+				case 3:
+					mes "[查尔斯顿 量产型]";
+					mes "冲击锥T!!!";
+					mes "系列 : 钝器";
+					mes "攻击力 : 400";
+					mes "精炼每+1,SP消耗-1%";
+					next;
+					mes "[查尔斯顿 量产型]";
+					mes "重量 : 350";
+					mes "武器等级 : 4";
+					mes "要求等级 : 130";
+					mes "另外! 卡片插槽也是1个!";
+					next;
+					mes "[查尔斯顿 量产型]";
+					mes "这个 ^FF0000冲击锥T^000000你想升级吗?";
+					next;
+					switch(select("再想想","买"))
+					{
+						case 1:
+							mes "[查尔斯顿 量产型]";
+							mes "这是一个优质的产品,请再次确定兑换需求.";
+							close2;
+							cutin "dalle01.bmp",255;
+							end;
+						case 2:
+							if (countitem(1549) == 1) && (countitem(6751) > 299) && (countitem(6750) > 14) {
+								specialeffect2 EF_REPAIRWEAPON;
+								progressbar "ffff00",5;
+								set .@pileS_ran,rand(1,10);
+								if (.@pileS_ran < 5) {
+									specialeffect2 EF_REFINEOK;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									getitem 16032,1; //Pile Bunker T
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								} else {
+									specialeffect2 EF_REFINEFAIL;
+									delitem 1549,1; // Pile Bunker
+									delitem 6751,300; //Crushed Can Iron Plate
+									delitem 6750,15; //Failed Engine
+									close2;
+									cutin "dalle01.bmp",255;
+									end;
+								}
+							} else {
+								mes "[查尔斯顿 量产型]";
+								mes "你所准备的材料不足!";
+								close2;
+								cutin "dalle01.bmp",255;
+								end;
+							}
+					}
+			}
+	}
+}
+
+// same method enchant in mora village (1 option explain, 2 option add enchants, 3 option remove enchants, if you equip is +9 add special enchants).
+//====================================== UNKNOWN %, ENCHANTS AVAILABLE, ETC (NO SCRIPTING FOR NOW).
+verus04,71,106,5	script	查尔斯顿 量产型#verus3	10053,{
+	cutin "dalle01.bmp",2;
+	mes "[查尔斯顿 量产型]";
+	mes "查尔斯顿工厂进行升级的产品相关产品如果你有登入认为这个词.";
+	next;
+	switch(select("我想了解更多","附魔装备","附魔初始化"))
+	{
+		case 1:
+			mes "[查尔斯顿 量产型]";
+			mes "1次 强化, 或者初始化 10万 元 查尔斯顿零件 1个 接受.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "说明, ^ff0000+9精炼^000000 装备持有超过来可以选择一个更大的力量.";
+			next;
+			mes "[查尔斯顿 量产型]";
+			mes "还有一件事我坚信,我给你力量,以帮助改进那些不损坏存储卡,让你知道如何成为的放心一部分.";
+			close2;
+			cutin "dalle01.bmp",255;
+			end;
+		case 2:
+			mes "[查尔斯顿 量产型]";
+			mes "在你升级你的装备提前,请选择仪器的身体.";
+			next;
+			switch(select("我会穿装备","鞋","将采取","衣","附件"))
+			{
+				case 1:
+					mes "[查尔斯顿 量产型]";
+					mes "一旦装备后,请回来.";
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 2:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 3:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 4:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 5:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+			}
+		case 3:
+			mes "[查尔斯顿 量产型]";
+			mes "在你升级你的装备提前,请选择仪器检测的身体.";
+			next;
+			switch(select("我会穿装备","鞋子","将采取","衣服","装饰品"))
+			{
+				case 1:
+					mes "[查尔斯顿 量产型]";
+					mes "一旦装备后,请回来.";
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 2:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 3:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 4:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+				case 5:
+					close2;
+					cutin "dalle01.bmp",255;
+					end;
+			}
+	}
+}
