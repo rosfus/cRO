@@ -522,7 +522,9 @@ JobExp      - Amount of job experience points.
 NextBaseExp - Amount of base experience points needed to reach next level.
 NextJobExp  - Amount of job experience points needed to reach next level.
 Weight      - Amount of weight the character currently carries.
+              Display as in Weight/10.
 MaxWeight   - Maximum weight the character can carry.
+              Display as in MaxWeight/10.
 Sex         - 0 if female, 1 if male.
 Class       - Character's job.
 Upper       - 0 if the character is normal class, 1 if advanced, 2 if baby.
@@ -725,6 +727,12 @@ other, but you can not compare numbers to strings.
  >   - True if the first value greater than the second value.
  <   - True if the first value is less than the second value.
  !=  - True if the first value IS NOT equal to the second one.
+ ~=  - True if the second value (as regular expression) matches the first
+       value. Both values must be strings. See the script function pcre_match
+       for more details and advanced features.
+ ~!  - True if the second value (as regular expression) DOES NOT match the
+       first value. Both values must be strings. See script function pcre_match
+       for more details and advanced features.
 
 Examples:
 
@@ -732,9 +740,9 @@ Examples:
  1<2 is True while 1>2 is False.
  @x>2 is True if @x is equal to 3. But it isn't true if @x is 2.
 
-Only '==' and '!=' have been tested for comparing strings. Since there's 
-no way to code a seriously complex data structure in this language, trying 
-to sort strings by alphabet would be pointless anyway.
+Only '==', '!=', '~=' and '~!' have been tested for comparing strings. Since
+there's no way to code a seriously complex data structure in this language,
+trying to sort strings by alphabet would be pointless anyway.
 
 Comparisons can be stacked in the same condition:
 
@@ -910,6 +918,8 @@ Precedence  |  Description                                  | Associativity
 ---------------------------------------------------------------------------
 7           | ==  Equal to                                  | Left to right
             | !=  Not equal to                              |
+            | ~=  Regexp match                              |
+            | ~!  Regexp non-match                          |
 ---------------------------------------------------------------------------
 8           |  &  Bitwise AND                               | Left to right
 ---------------------------------------------------------------------------
@@ -2353,20 +2363,25 @@ All of these also behave as variables, but don't expect to be able to just
 
 Example 1:
 
-	// Returns how many status points you haven't spent yet.
-	mes "Unused status points: "+readparam(9);
+    // Returns how many status points you haven't spent yet.
+    mes "Unused status points: "+readparam(9);
 
 Using this particular information as a function call is not required. 
 Typing this will return the same result:
 
-	mes "Unused status points: "+StatusPoint;
+    mes "Unused status points: "+StatusPoint;
 
 Example 2:
 
 You can also use this command to get stat values.
 
-	if (readparam(bVit) > 77)
-		mes "Only people with over 77 Vit are reading this!";
+    if (readparam(bVit) > 77)
+        mes "Only people with over 77 Vit are reading this!";
+
+Example 3:
+
+    // Display your current weight
+    mes "Your current weight is "+( Weight/10 )+"/"+( MaxWeight/10 );
 
 ---------------------------------------
 
@@ -4167,17 +4182,26 @@ character and produces no other output whatsoever.
 
 *itemheal <hp>,<sp>;
 
-This command heals given absolute amounts of HP and/or SP on the invoking 
+This command heals given relative amounts of HP and/or SP on the invoking 
 character. Unlike heal, this command is intended for use in item scripts. 
-It applies potion-related bonuses, such as alchemist ranking, cards and 
-status changes. When used inside an NPC script, certain bonuses are 
-omitted.
+It applies potion-related bonuses, such as alchemist ranking, cards, 
+status changes.
+It also applies a sp/vit-related bonus that is calculated by:
+	heal = heal*[(100+STATUS*2)/100]
+So if a player has 99 vit and the script is 'itemheal 5,0':
+	heal(hp) = 5*[(100+99*2)/100]
+	heal(hp) = 14,9
+	heal(hp) = 14
+	heal(sp) = 0
+
+When used inside an NPC script, potion-related bonuses are omitted.
 
 There is also a nice example on using this with the 'rand' function, to 
 give you a random amount of healing.
 
-	// This will heal anything thing from 100 to 150 HP and no SP
-	itemheal rand(100,150),0;
+	// If the player has 50 vit and no bonuses this will heal
+	// anything from 200 to 300 HP and 5 SP
+	itemheal rand(100,150),5;
 
 ---------------------------------------
 
@@ -5553,10 +5577,6 @@ Flag 3 is the same as flag 0 in that it saves to the database. However,
 these skills are ignored when any action is taken that adjusts the skill 
 tree (reset/job change).
 
-Flag 4 is the same as flag 1 in that it saves to the database. However, 
-these skills are ignored when any action is taken that adjusts the skill 
-tree (reset/job change).
-
 ---------------------------------------
 
 *nude;
@@ -5976,12 +5996,11 @@ and will return the following values:
 ---------------------------------------
 
 *unitwalk <GID>,<x>,<y>;
-*unitwalk <GID>,<mapid>;
+*unitwalk <GID>,<target_GID>;
 
 This is one command, but can be used in two ways. If only the first 
 argument is given, the unit whose GID is given will start walking towards 
-the map with the given mapid (we believe these are the map-indexes found 
-in db/map_index.txt).
+the target whose GID is given.
 
 When 2 arguments are passed, the given unit will walk to the given x,y 
 coordinates on the map where the unit currently is.
@@ -5991,9 +6010,8 @@ Examples:
 //Will move/walk the poring we made to the coordinates 150,150
 	unitwalk .GID,150,150;
 
-//Will move the poring towards alberta (if my assumed map-indexes are 
-//correct).
-	unitwalk .GID,3;
+//NPC will move towards the attached player.
+	unitwalk .GID,getcharid(3);//a player's GID is their account ID
 
 ---------------------------------------
 
@@ -7286,15 +7304,54 @@ script is used.
 
 ---------------------------------------
 
+*pcre_match("<string>","<regex>");
+
+This command is only available if the server is compiled with regular
+expressions library enabled.
+
+The string <string> will be searched for a match to the regular expression
+<regex>, and the number of matches will be returned.
+
+An alternative way to invoke this command is to use the operators '~=' or '~!'.
+The operator '~=' is exactly the same as pcre_match, while the operator '~!'
+will return 1 if no matches were found, or 0 if at least a match was found.
+
+	if (pcre_match("string", "regex")) mes "There was a match.";
+	if ("string" ~= "regex") mes "There was a match.";
+	if ("string" ~! "regex") mes "There were no matches.";
+
+You can find more usage examples in the test script npc/custom/test.txt.
+
+Using regular expressions is high wizardry. But with this high wizardry
+comes unparalleled power of text manipulation. For an explanation of what
+a regular expression pattern is, see a few web pages:
+
+http://www.regular-expressions.info/
+http://www.weitz.de/regex-coach/
+
+Additionally, the following temporary variables will be filled (unless the
+command is invoked as '~!'):
+
+- $@regexmatchcount: The number of matches detected, including any
+  parenthesized capture-groups.
+- $@regexmatch$[0]: The part of <string> That matched the full <regex> pattern.
+- $@regexmatch$[1 .. $@regexmatchcount]: The parts of <string> that matched
+  each of the parenthesized capture-groups in <pattern>.
+
+A capture group is a part of a regex enclosed in (parentheses) in order to
+store in a variable the part of the expression that was matched by that part of
+the regex. For more details, see the links above, as this is not intended to be
+a regex tutorial.
+
+---------------------------------------
+
 *defpattern <set number>,"<regular expression pattern>","<event label>";
 *activatepset <set number>;
 *deactivatepset <set number>;
 *deletepset <set number>;
 
 This set of commands is only available if the server is compiled with 
-regular expressions library enabled. Default compilation and most binary 
-distributions aren't, which is probably bad, since these, while complex to 
-use, are quite fascinating.
+regular expressions library enabled.
 
 They will make the NPC object listen for text spoken publicly by players 
 and match it against regular expression patterns, then trigger labels 
@@ -7317,13 +7374,6 @@ pattern set number in this case will deactivate all pattern sets defined.
 
 'deletepset' will delete a pattern set from memory, so you can create a 
 new pattern set in its place.
-
-Using regular expressions is high wizardry. But with this high wizardry 
-comes unparalleled power of text manipulation. For an explanation of what 
-a regular expression pattern is, see a few web pages:
-
-http://www.regular-expressions.info/
-http://www.weitz.de/regex-coach/
 
 For an example of this in use, see doc/sample/npc_test_pcre.txt
 
