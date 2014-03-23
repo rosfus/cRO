@@ -1,7 +1,7 @@
-//===== RoSF.us R&D Team. ====================================
+//===== Hercules Script ======================================
 //= Mapflag: Disable auto-save.
 //===== By: ==================================================
-//= RoSF.us R&D Team.
+//= Hercules Dev Team
 //===== Current Version: =====================================
 //= 1.7
 //===== Description: =========================================
@@ -322,6 +322,36 @@ que_lhz	mapflag	nosave	SavePoint
 
 // Inside Eclage ===========
 1@ecl	mapflag	nosave	SavePoint
+
+// Palace of Ghost ===========
+1@spa	mapflag	nosave	SavePoint
+
+// OldGlastHeim ===========
+1@gl_k	mapflag	nosave	SavePoint
+2@gl_k	mapflag	nosave	SavePoint
+
+// Sara's Memory ===========
+1@sara	mapflag	nosave	SavePoint
+
+// Airship Assault ===========
+1@air1	mapflag	nosave	SavePoint
+1@air2	mapflag	nosave	SavePoint
+
+// Charleston Crisis ===========
+1@mcd	mapflag	nosave	SavePoint
+
+// Geffen Magic Match ===========
+1@gef	mapflag	nosave	SavePoint
+1@ge_st	mapflag	nosave	SavePoint
+
+// BioIsland Instances ===========
+1@dth1	mapflag	nosave	SavePoint
+1@dth2	mapflag	nosave	SavePoint
+1@dth3	mapflag	nosave	SavePoint
+
+// OldGlastHeim Nightmare ===========
+1@gl_kh	mapflag	nosave	SavePoint
+2@gl_kh	mapflag	nosave	SavePoint
 
 //evt_zombie	mapflag	nosave	SavePoint
 

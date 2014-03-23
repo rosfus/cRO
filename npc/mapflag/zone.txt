@@ -1,7 +1,7 @@
-//===== RoSF.us R&D Team. ====================================
+//===== Hercules==============================================
 //= Mapflag: Zone.
 //===== By: ==================================================
-//= RoSF.us R&D Team.
+//= Ind/Hercules
 //===== Current Version: =====================================
 //= 1.0
 //===== Description: =========================================
@@ -77,6 +77,36 @@ prt_are_in	mapflag	zone	Izlude Battle Arena
 // Inside Eclage ===========
 1@ecl	mapflag	zone	Memorial Dungeon
 
+// Palace of Ghost ===========
+1@spa	mapflag	zone	Memorial Dungeon
+
+// OldGlastHeim ===========
+1@gl_k	mapflag	zone	Memorial Dungeon
+2@gl_k	mapflag	zone	Memorial Dungeon
+
+// Sara's Memory ===========
+1@sara	mapflag	zone	Memorial Dungeon
+
+// Airship Assault ===========
+1@air1	mapflag	zone	Memorial Dungeon
+1@air2	mapflag	zone	Memorial Dungeon
+
+// Charleston Crisis ===========
+1@mcd	mapflag	zone	Memorial Dungeon
+
+// Geffen Magic Match ===========
+1@gef	mapflag	zone	Memorial Dungeon
+1@ge_st	mapflag	zone	Geffen Magic Match
+
+// BioIsland Instances ===========
+1@dth1	mapflag	zone	Memorial Dungeon
+1@dth2	mapflag	zone	Memorial Dungeon
+1@dth3	mapflag	zone	Memorial Dungeon
+
+// OldGlastHeim Nightmare ===========
+1@gl_kh	mapflag	zone	Memorial Dungeon
+2@gl_kh	mapflag	zone	Memorial Dungeon
+
 //Towns
 alberta	mapflag	zone	Towns
 aldebaran	mapflag	zone	Towns
@@ -114,3 +144,6 @@ bossnia_01	mapflag	zone	Bossnia 01
 bossnia_02	mapflag	zone	Bossnia 02
 bossnia_03	mapflag	zone	Bossnia 03
 bossnia_04	mapflag	zone	Bossnia 04
+
+// Fighting Myself
+guild_vs24	mapflag	zone	Fighting

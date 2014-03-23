@@ -1,7 +1,7 @@
-//===== RoSF.us R&D Team. ====================================
+//===== Hercules Script ======================================
 //= Mapflag: Disable Warp Portal memory.
 //===== By: ==================================================
-//= RoSF.us R&D Team.
+//= Hercules Dev Team
 //===== Current Version: =====================================
 //= 1.8b
 //===== Description: =========================================
@@ -482,6 +482,16 @@ guild_vs2	mapflag	nomemo
 guild_vs3	mapflag	nomemo
 guild_vs4	mapflag	nomemo
 guild_vs5	mapflag	nomemo
+guild_vs11	mapflag	nomemo
+guild_vs12	mapflag	nomemo
+guild_vs13	mapflag	nomemo
+guild_vs14	mapflag	nomemo
+guild_vs15	mapflag	nomemo
+guild_vs21	mapflag	nomemo
+guild_vs22	mapflag	nomemo
+guild_vs23	mapflag	nomemo
+guild_vs24	mapflag	nomemo
+guild_vs25	mapflag	nomemo
 
 // Arenas ====================
 arena_room	mapflag	nomemo
@@ -605,6 +615,7 @@ pvp_n_8-3	mapflag	nomemo
 pvp_n_8-4	mapflag	nomemo
 pvp_n_8-5	mapflag	nomemo
 pvp_2vs2	mapflag	nomemo
+prt_pvp	mapflag	nomemo
 
 //Aldebaran Turbo Track
 turbo_room	mapflag	nomemo
@@ -780,3 +791,19 @@ bossnia_01	mapflag	nomemo
 bossnia_02	mapflag	nomemo
 bossnia_03	mapflag	nomemo
 bossnia_04	mapflag	nomemo
+
+// Palace of Ghost ===========
+1@spa	mapflag	nomemo
+
+// Sara's Memory ===========
+1@sara	mapflag	nomemo
+
+// Airship Assault ===========
+1@air1	mapflag	nomemo
+1@air2	mapflag	nomemo
+
+// Charleston Crisis ===========
+1@mcd	mapflag	nomemo
+
+// Devil Square ===========
+ordeal_1-1	mapflag	nomemo

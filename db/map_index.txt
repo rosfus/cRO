@@ -1060,3 +1060,5 @@ un_bunker	//地下掩体
 un_myst	//地下隧道
 1@uns	//最后一个房间
 1@lab	//中心实验室
+
+paramk	//帕马市场

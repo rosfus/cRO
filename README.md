@@ -128,27 +128,26 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 ##### 您可以从下述链接中下载到kRO客户端以及客户端补丁 #####
 
-* 完整客户端 [2.61Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.02.19
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKpPgC3ugRTd93  [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1sjHERz3   [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbbzzov7axd    [115网盘]
-       * 下载点四:   http://url.cn/PAruDu  [微云]
-       * 下载点五:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar  [DropBox]
+* 完整客户端 [2.27Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.03.19
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKjDAAoOyxT2cd  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1bnxjC8B  [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbbz0op5rf2  [115网盘]
+       * 下载点四:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar  [DropBox]
        * MD5: 8BD4D535B1A546D8F591A38542EF003B
-* 2014 版本最新韩服补丁 [280.3Mb] for韩国客户端.
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKcHwAhd-VSd62    [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1bn4Aqnl   [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbcqz7q9yr7    [115网盘]
-       * 下载点四:   http://url.cn/LT0C8Y  [微云]
-       * MD5: 89CDC6B4330FD58AB19425C5F38B1D2B
+* 2014 版本最新韩服补丁 [311.1Mb] for韩国客户端.
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwJGRQDIiSpT52c   [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1o6jVVU6  [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbcqtu9xlsg  [115网盘]
+       * 下载点四:   http://url.cn/RWTFv1   [微云]
+       * MD5: 640EDED4BEA96F7C3F98DE74270FCF69
 * 2014版本自动更新器[副节点|包含测试服Sakray与单机版登陆器]
-       * http://pan.baidu.com/s/1c0in7Ni
-       * MD5: 77762FCE8607C08B913A58E9A2470A7C
+       * http://pan.baidu.com/s/1jG0Zib8
+       * MD5: DF8A5EA357D1D40889B56A9B9EF368D6
 * 更新客户端:
       * 由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. 
       * 运行客户端目录中的[韩服Data更新.exe]与[韩服rData更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[AutoUpdate.exe], 在一番更新后即可成为完美的单机版客户端了. 
 
-本版本使用了Microsoft Visual Studio 2010开发, 部分功能会调用VS10的一些dll组件. 
+本版本使用了Microsoft Visual Studio 2010开发, 部分功能会调用Visual Studio 2010的一些dll组件. 
 
 ##### 这些组件通常会跟随Microsoft的部分产品被安装到您的电脑 ##### 
 

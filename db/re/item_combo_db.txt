@@ -610,4 +610,17 @@
 5782:1456,{ bonus bAtkRate,3; }
 5782:2105,{ bonus bDef,2; bonus bDefRate,3; }
 5782:2106,{ bonus bDef,2; bonus bDefRate,3; }
-
+//普隆德拉军靴 军袍 军装 22053 20754 15132
+15132:20754:22053,{ bonus bMaxHPrate,30; bonus2 bSubRace,RC_DemiHuman,2; bonus bLongAtkDef,10; bonus2 bSubEle,0,5; bonus2 bSubEle,1,5; bonus2 bSubEle,2,5; bonus2 bSubEle,3,5; bonus2 bSubEle,4,5; bonus2 bSubEle,5,5; bonus2 bSubEle,6,5; bonus2 bSubEle,7,5; bonus2 bSubEle,8,5; bonus2 bSubEle,9,5;}
+//普隆德拉军团长靴 军袍 军装 22054 20755 15133
+15133:20755:22054,{ bonus bMaxHPrate,30; bonus2 bSubRace,RC_DemiHuman,2; bonus bLongAtkDef,10; bonus2 bSubEle,0,5; bonus2 bSubEle,1,5; bonus2 bSubEle,2,5; bonus2 bSubEle,3,5; bonus2 bSubEle,4,5; bonus2 bSubEle,5,5; bonus2 bSubEle,6,5; bonus2 bSubEle,7,5; bonus2 bSubEle,8,5; bonus2 bSubEle,9,5;}
+//普隆德拉军装 15132 泥人卡片 4101 异变鱼卡片 4089 土人卡片 4098 帕莎纳卡片 4099
+15132:4101,{ bonus2 bResEff,Eff_Freeze,10000; }
+15132:4089,{ bonus2 bResEff,Eff_Freeze,10000; }
+15132:4098,{ bonus2 bResEff,Eff_Freeze,10000; }
+15132:4099,{ bonus2 bResEff,Eff_Freeze,10000; }
+//普隆德拉军团长装 15133 泥人卡片 4101 异变鱼卡片 4089 土人卡片 4098 帕莎纳卡片 4099
+15133:4101,{ bonus2 bResEff,Eff_Freeze,10000; }
+15133:4089,{ bonus2 bResEff,Eff_Freeze,10000; }
+15133:4098,{ bonus2 bResEff,Eff_Freeze,10000; }
+15133:4099,{ bonus2 bResEff,Eff_Freeze,10000; }

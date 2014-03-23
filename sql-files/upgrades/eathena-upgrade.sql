@@ -1,7 +1,7 @@
 #####
-#Upgrade file to be used when going from eAthena to RoSF.us
+#Upgrade file to be used when going from eAthena to Hercules
 #Note: If you're not up to date with eAthena, go through their upgrade files first and run them before this file.
-#Note: After runing this file run RoSF.us upgrade files.
+#Note: After runing this file run Hercules upgrade files.
 #####
 ALTER TABLE `global_reg_value` MODIFY `type` TINYINT(1) UNSIGNED NOT NULL DEFAULT '3';
 -- Adds 'I' and 'X' to `type` in `picklog` table
