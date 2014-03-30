@@ -70,10 +70,11 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
 * 并且导入6个更新文件. 方可完成MySQL数据库创建. 
       * sql-files\upgrades\2013-11-15--00-06.sql
       * sql-files\upgrades\2013-11-18--08-23.sql 
-      * sql-files\upgrades\2013-12-24--00-15.sql (v3升级到v4 同样适用)
+      * sql-files\upgrades\2013-12-24--00-15.sql (v3升级到v4同样适用)
       * sql-files\upgrades\2014-01-04--16-47.sql
       * sql-files\upgrades\2014-01-06--17-22.sql
       * sql-files\upgrades\2014-02-19--17-57.sql
+      * sql-files\upgrades\2014-03-25--23-57.sql
 * 更新至最新版本后, 如果global_reg_value表依然存在, 请选择Drop该表.
 
 ##### Files #####
@@ -128,14 +129,14 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 ##### 您可以从下述链接中下载到kRO客户端以及客户端补丁 #####
 
-* 完整客户端 [2.27Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.03.19
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKjDAAoOyxT2cd  [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1bnxjC8B  [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbbz0op5rf2  [115网盘]
+* 完整客户端 [2.07Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.03.19
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKMMwADyi9Td19  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1ntx5rEL  [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbcfce60iqb  [115网盘]
        * 下载点四:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar  [DropBox]
-       * MD5: 8BD4D535B1A546D8F591A38542EF003B
+       * MD5: 63C313B2D2007D834723B925EB17665F
 * 2014 版本最新韩服补丁 [311.1Mb] for韩国客户端.
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwJGRQDIiSpT52c   [迅雷快传]
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwJGRQDIiSpT52c  [迅雷快传]
        * 下载点二:   http://pan.baidu.com/s/1o6jVVU6  [百度云盘]
        * 下载点三:   http://115.com/lb/5lbcqtu9xlsg  [115网盘]
        * 下载点四:   http://url.cn/RWTFv1   [微云]
@@ -173,10 +174,10 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 如果您也是一位仙境爱好者的话:
 
-* 您可以立即参与到 RoSF.us™ Forum: http://bbs.rosf.us , 让爱好者群体更大, 让我们更有动力.
+* 您可以立即参与到 RoSF.us™ Forum: http://bbs.rosf.us , 爱好者群体更大, 我们更有动力. 反馈Bug与官方行为, 让我们的开发更有目标.
 * 您也许可以参与到 RoSF.us™ Wiki: http://wiki.rosf.us , 协助我们收集转载一些仙境相关的资讯信息, 您可以方便的编辑或者汉化我们的Wiki内容.
 * 您或许能够找出 RoSF.us™ rDB: http://db.rosf.us 数据库中存在的错误.
-* 您同样也可以加入Github, 并观察我们的项目 SVN: https://github.com/rosfus/cRO.git/
+* 您同样也可以加入Github, 并观察我们的项目 SVN: https://github.com/rosfus/cRO.git
 
 上述这些都是我们需要的.
 
@@ -190,7 +191,9 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 * RoSF.us™ Forum: http://bbs.rosf.us
 * RoSF.us™ Wiki: http://wiki.rosf.us
 * RoSF.us™ rDB: http://db.rosf.us
-* SVN: https://github.com/rosfus/cRO.git/
+* SVN: https://github.com/rosfus/cRO.git
+* Baidu Cloud: http://pan.baidu.com/share/home?uk=1446334293
+* Gravity: http://ro.gnjoy.com
 
 * 如果您还需要更多的文件资料, 请访问下述链接或者加入我们的QQ交流群:
       * 我们的开发论坛: http://bbs.rosf.us/forum.php?mod=forumdisplay&fid=47
@@ -200,6 +203,6 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 ======================
 
-#### 感谢使用我们的程序. ####
+#### 感谢使用我们的程序! ####
 
 ======================

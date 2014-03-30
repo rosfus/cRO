@@ -2742,7 +2742,7 @@ See 'getequipid' for a full list of valid equipment slots.
 *getitemname(<item id>)
 
 Given the database ID number of an item, this function will return the 
-text stored in the 'japanese name' field (which, in Hercules, stores an 
+text stored in the 'japanese name' field (which, in RoSF.us, stores an 
 English name the players would normally see on screen).
 
 ---------------------------------------
@@ -3139,7 +3139,7 @@ characters. For a full description see, for example, the description of
 All the format characters given in there should properly work.
 Max length is the maximum length of a time string to generate.
 
-The example given in Hercules sample scripts works like this:
+The example given in RoSF.us sample scripts works like this:
 
 	mes gettimestr("%Y-%m/%d %H:%M:%S",21);
 
@@ -4443,7 +4443,7 @@ sprites, which is essential for making custom headgear.
 
 Since a lot of people have different palettes for hair and clothes, it's 
 impossible to tell you what all the color numbers are. If you want a 
-serious example, there is a Stylist script inside the default Hercules 
+serious example, there is a Stylist script inside the default RoSF.us 
 installation that you can look at: 'npc/custom/stylist.txt'
 
 ---------------------------------------
