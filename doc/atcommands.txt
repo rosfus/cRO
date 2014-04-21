@@ -93,6 +93,12 @@ Output Example:
 
 ---------------------------------------
 
+@showmobs
+
+Display coordinates by search of monsters on SmallMap.
+
+---------------------------------------
+
 @noask
 
 Toggles automatic rejection of deals and invites.
@@ -102,6 +108,12 @@ Toggles automatic rejection of deals and invites.
 @noks
 
 Toggles Kill Steal Protection.
+
+---------------------------------------
+
+@clearcart
+
+Quick clear cart.
 
 ---------------------------------------
 

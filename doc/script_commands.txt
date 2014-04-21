@@ -1,4 +1,4 @@
-//===== RoSF.us Documentation ===============================
+	//===== RoSF.us Documentation ===============================
 //= RoSF.us Script Commands
 //===== By: ==================================================
 //= RoSF.us Dev Team
@@ -243,9 +243,11 @@ and to make it look southeast it's facing 5.)
 Sprite id is the sprite number used to display this particular NPC. For a 
 full list of sprite id numbers see http://kalen.s79.xrea.com/npc/npce.shtml
 You may also use a monster's ID number instead to display a monster sprite 
-for this NPC. It is possible to use a job sprite as well, but you must 
-first define it as a monster sprite in 'mob_avail.txt', a full description 
-on how to do this is not in the scope of this manual.
+for this NPC, in npcs that have view ids of mobs it's encouraged to use
+OnTouch events with a 2,2 range and with an 'end' after the header to avoid
+bugs (for more info on why see npc_click@map/npc.c). It is possible to use a job
+sprite as well, but you must first define it as a monster sprite in 'mob_avail.txt',
+a full description on how to do this is not in the scope of this manual.
 A '-1' sprite id will make the NPC invisible (and unclickable). 
 A '111' sprite id will make an NPC which does not have a sprite, but is 
 still clickable, which is useful if you want to make a clickable object of 
@@ -2742,7 +2744,7 @@ See 'getequipid' for a full list of valid equipment slots.
 *getitemname(<item id>)
 
 Given the database ID number of an item, this function will return the 
-text stored in the 'japanese name' field (which, in RoSF.us, stores an 
+text stored in the 'japanese name' field (which, in Hercules, stores an 
 English name the players would normally see on screen).
 
 ---------------------------------------
@@ -3139,7 +3141,7 @@ characters. For a full description see, for example, the description of
 All the format characters given in there should properly work.
 Max length is the maximum length of a time string to generate.
 
-The example given in RoSF.us sample scripts works like this:
+The example given in Hercules sample scripts works like this:
 
 	mes gettimestr("%Y-%m/%d %H:%M:%S",21);
 
@@ -4443,7 +4445,7 @@ sprites, which is essential for making custom headgear.
 
 Since a lot of people have different palettes for hair and clothes, it's 
 impossible to tell you what all the color numbers are. If you want a 
-serious example, there is a Stylist script inside the default RoSF.us 
+serious example, there is a Stylist script inside the default Hercules 
 installation that you can look at: 'npc/custom/stylist.txt'
 
 ---------------------------------------
@@ -5355,6 +5357,10 @@ re-apply).
 You can see the full list of status effects caused by skills in 
 'src/map/status.h' - they are currently not fully documented, but most of 
 that should be rather obvious.
+Note: to use SC_NOCHAT you should alter Manner
+	set Manner, -5;	// Will mute a user for 5 minutes
+	set Manner, 0;	// Will unmute a user
+	set Manner, 5;	// Will unmute a user and prevent the next use of 'Manner'
 
 ---------------------------------------
 
@@ -5452,8 +5458,9 @@ will retain the default behavior of the command.
 *statusup <stat>;
 
 This command will bump a specified stat of the invoking character up by 
-one permanently. Stats are to be given as number, but you can use these 
-constants to replace them:
+one permanently using status points to do so, if there aren't enough to perform
+the change nothing will happen.
+Stats are to be given as number, but you can use these constants to replace them:
 
 bStr -  Strength
 bVit -  Vitality
@@ -5467,7 +5474,8 @@ bLuk -  Luck
 *statusup2 <stat>,<amount>;
 
 This command will bump a specified stat of the invoking character up by 
-the specified amount permanently. Amount can be negative. See 'statusup'.
+the specified amount permanently without using status points.
+Amount can be negative. See 'statusup'.
 
 // This will decrease a character's Vit forever.
 	statusup bVit,-1;

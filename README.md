@@ -75,6 +75,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
       * sql-files\upgrades\2014-01-06--17-22.sql
       * sql-files\upgrades\2014-02-19--17-57.sql
       * sql-files\upgrades\2014-03-25--23-57.sql
+      * sql-files\upgrades\2014-04-07--22-04.sql
 * 更新至最新版本后, 如果global_reg_value表依然存在, 请选择Drop该表.
 
 ##### Files #####
