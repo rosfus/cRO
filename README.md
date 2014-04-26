@@ -76,6 +76,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
       * sql-files\upgrades\2014-02-19--17-57.sql
       * sql-files\upgrades\2014-03-25--23-57.sql
       * sql-files\upgrades\2014-04-07--22-04.sql
+      * sql-files\upgrades\2014-04-26--10-00.sql
 * 更新至最新版本后, 如果global_reg_value表依然存在, 请选择Drop该表.
 
 ##### Files #####
@@ -143,13 +144,13 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
        * 下载点四:   http://url.cn/RWTFv1   [微云]
        * MD5: 640EDED4BEA96F7C3F98DE74270FCF69
 * 2014版本自动更新器[副节点|包含测试服Sakray与单机版登陆器]
-       * http://pan.baidu.com/s/1jG0Zib8
-       * MD5: DF8A5EA357D1D40889B56A9B9EF368D6
+       * http://pan.baidu.com/s/1pJNku2f
+       * MD5: 3CC97E9F5046793964957FE78A99E325
 * 更新客户端:
       * 由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. 
-      * 运行客户端目录中的[韩服Data更新.exe]与[韩服rData更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[AutoUpdate.exe], 在一番更新后即可成为完美的单机版客户端了. 
+      * 运行客户端目录中的[韩服Data更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[AutoUpdate.exe], 在一番更新后即可成为完美的单机版客户端了. 
 
-本版本使用了Microsoft Visual Studio 2010开发, 部分功能会调用Visual Studio 2010的一些dll组件. 
+本版本使用了Microsoft Visual Studio 2010/2012开发, 部分功能会调用Visual Studio 2010/2012的一些dll组件. 
 
 ##### 这些组件通常会跟随Microsoft的部分产品被安装到您的电脑 ##### 
 
@@ -178,7 +179,7 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 * 您可以立即参与到 RoSF.us™ Forum: http://bbs.rosf.us , 爱好者群体更大, 我们更有动力. 反馈Bug与官方行为, 让我们的开发更有目标.
 * 您也许可以参与到 RoSF.us™ Wiki: http://wiki.rosf.us , 协助我们收集转载一些仙境相关的资讯信息, 您可以方便的编辑或者汉化我们的Wiki内容.
 * 您或许能够找出 RoSF.us™ rDB: http://db.rosf.us 数据库中存在的错误.
-* 您同样也可以加入Github, 并观察我们的项目 SVN: https://github.com/rosfus/cRO.git
+* 您同样也可以加入Github, 并Fork观察我们的项目 SVN: https://github.com/rosfus/cRO.git
 
 上述这些都是我们需要的.
 
