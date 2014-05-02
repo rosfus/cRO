@@ -238,30 +238,32 @@
 //强化天使的温气
 20710:15068,{ bonus bAgi,5; bonus bFlee,10;}
 //破产面具
-18824:18825,{bonus2 bSubRace,0,getequiprefinerycnt(1);bonus bMaxHP,getequiprefinerycnt(1)*100;} 
-18824:5021,{bonus2 bSubRace,0,getequiprefinerycnt(1);bonus bMaxHP,getequiprefinerycnt(1)*100;} 
+18824:18825,{ bonus2 bSubRace,0,getequiprefinerycnt(1);bonus bMaxHP,getequiprefinerycnt(1)*100; } 
+18824:5021,{ bonus2 bSubRace,0,getequiprefinerycnt(1);bonus bMaxHP,getequiprefinerycnt(1)*100; } 
 //帝国羽饰
 18823:1433:2153,{ bonus2 bSkillAtk,"LG_CANNONSPEAR",20; bonus2 bSkillAtk,"LG_SHIELDPRESS",20; bonus2 bSkillAtk,"LG_BANISHINGPOINT",20; } 
-//RWC2012纪念头针
-18821:2967,{ bonus2 bAddSize,0,(getequiprefinerycnt(1)/2); bonus2 bAddSize,1,(getequiprefinerycnt(1)/2); bonus2 bAddSize,2,(getequiprefinerycnt(1)/2);}
-18821:2969,{ bonus bMatkRate,(getequiprefinerycnt(1)/2);}
-18821:2966,{ bonus2 bAddSize,0,(getequiprefinerycnt(1)/2); bonus2 bAddSize,1,(getequiprefinerycnt(1)/2); bonus2 bAddSize,2,(getequiprefinerycnt(1)/2);}
-18821:2968,{ bonus bMatkRate,(getequiprefinerycnt(1)/2);}
+//RWC2012纪念头针 (补充扣除了双持有洞/无洞时的加成)
+18821:2967,{ bonus2 bAddSize,0,(getequiprefinerycnt(1)/2); bonus2 bAddSize,1,(getequiprefinerycnt(1)/2); bonus2 bAddSize,2,(getequiprefinerycnt(1)/2); }
+18821:2969,{ bonus bMatkRate,(getequiprefinerycnt(1)/2); }
+18821:2967,{ bonus2 bAddSize,0,-(getequiprefinerycnt(1)/2); bonus2 bAddSize,1,-(getequiprefinerycnt(1)/2); bonus2 bAddSize,2,-(getequiprefinerycnt(1)/2); bonus bMatkRate,-(getequiprefinerycnt(1)/2);}
+18821:2966,{ bonus2 bAddSize,0,(getequiprefinerycnt(1)/2); bonus2 bAddSize,1,(getequiprefinerycnt(1)/2); bonus2 bAddSize,2,(getequiprefinerycnt(1)/2); }
+18821:2966:2967,{ bonus2 bAddSize,0,-(getequiprefinerycnt(1)/2); bonus2 bAddSize,1,-(getequiprefinerycnt(1)/2); bonus2 bAddSize,2,-(getequiprefinerycnt(1)/2); bonus bMatkRate,-(getequiprefinerycnt(1)/2);}
+18821:2968:2969,{ bonus bMatkRate,-(getequiprefinerycnt(1)/2); }
 //荆棘发圈
-18804:1636,{ bonus bMatk,10*getequiprefinerycnt(4);}
-18804:1662,{ bonus bMatk,10*getequiprefinerycnt(4);}
-18804:1664,{ bonus bMatk,10*getequiprefinerycnt(4);}
+18804:1636,{ bonus bMatk,10*getequiprefinerycnt(4); }
+18804:1662,{ bonus bMatk,10*getequiprefinerycnt(4); }
+18804:1664,{ bonus bMatk,10*getequiprefinerycnt(4); }
 //强化天使之吻
-18776:20710,{bonus bBaseAtk,10;}
-18776:22015,{bonus bMatk,20;}
+18776:20710,{ bonus bBaseAtk,10; }
+18776:22015,{ bonus bMatk,20; }
 //教皇人偶帽
-18673:5040,{bonus bSPrecovRate,3;}
+18673:5040,{ bonus bSPrecovRate,3; }
 //伊格尼斯圆帽
-18651:5421,{bonus bAspdRate,(getrefine()/2);}
+18651:5421,{ bonus bAspdRate,(getrefine()/2); }
 //男人的勋章
-18618:2201,{ bonus3 bAutoSpell,"SM_PROVOKE",.@rate,20;} 
-18618:2202,{ bonus3 bAutoSpell,"SM_PROVOKE",.@rate,20;} 
-18618:2267,{ bonus3 bAutoSpell,"SM_PROVOKE",.@rate,20;}
+18618:2201,{ bonus3 bAutoSpell,"SM_PROVOKE",.@rate,20; } 
+18618:2202,{ bonus3 bAutoSpell,"SM_PROVOKE",.@rate,20; } 
+18618:2267,{ bonus3 bAutoSpell,"SM_PROVOKE",.@rate,20; }
 //强化天使的礼服
 15068:22015,{ bonus bMaxHP,900; bonus bMaxSP,100; bonus3 bAutoSpellWhenHit,1,"HP_ASSUMPTIO",10; }
 15068:2925,{ bonus2 bSubEle,0,5; } 
@@ -341,12 +343,26 @@
 18727:4326,{ bonus2 bAddItemHealRate,544,50; bonus2 bAddItemHealRate,551,50; }
 //海神套装2495AEGIR的鞋子15061AEGIR的铠甲18728AEGIR的头盔20700AEGIR的披风
 2495:15061:18728:20700,{ bonus bAllStats,1; bonus2 bSubEle,1,20; }
-//16026RWC锤子:2966/2967
+//16026RWC锤子:2966/2967 (补充扣除了双持有洞/无洞时的加成)
 16026:2966,{ bonus bBaseAtk,5*getequiprefinerycnt(EQI_HAND_R); }
 16026:2967,{ bonus bBaseAtk,5*getequiprefinerycnt(EQI_HAND_R); }
-//1670RWC单手杖:2968/2969
+16026:2966:2967,{ bonus bBaseAtk,-5*getequiprefinerycnt(EQI_HAND_R); }
+//1670RWC单手杖:2968/2969 (补充扣除了双持有洞/无洞时的加成)
 1670:2968,{ bonus bMatk,5*getequiprefinerycnt(EQI_HAND_R); }
 1670:2969,{ bonus bMatk,5*getequiprefinerycnt(EQI_HAND_R); }
+1670:2968:2969,{ bonus bMatk,-5*getequiprefinerycnt(EQI_HAND_R); }
+//13092RWC短剑 (补充扣除了双持有洞/无洞时的加成)
+13092:2966,{ bonus bBaseAtk,10*getequiprefinerycnt(EQI_HAND_R); }
+13092:2967,{ bonus bBaseAtk,10*getequiprefinerycnt(EQI_HAND_R); }
+13092:2966:2967,{ bonus bBaseAtk,-10*getequiprefinerycnt(EQI_HAND_R); }
+13092:2968,{ bonus bMatk,10*getequiprefinerycnt(EQI_HAND_R); }
+13092:2969,{ bonus bMatk,10*getequiprefinerycnt(EQI_HAND_R); }
+13092:2968:2969,{ bonus bMatk,-10*getequiprefinerycnt(EQI_HAND_R); }
+//RWC纪念戒指2966 2967 RWC纪念坠饰2968 2969
+//2966:2968,{ bonus bAtkRate,4; bonus bMatkRate,4; }
+//2966:2969,{ bonus bAtkRate,4; bonus bMatkRate,4; }
+//2967:2968,{ bonus bAtkRate,4; bonus bMatkRate,4; }
+//2967:2969,{ bonus bAtkRate,4; bonus bMatkRate,4; }
 //18906圣十字:4077剑鱼卡片
 18906:4077,{ bonus2 bSkillHeal,"AL_HEAL",2; bonus2 bSkillHeal,"PR_SANCTUARY",2; bonus2 bSkillHeal,"AM_POTIONPITCHER",2; bonus2 bSkillHeal,"AB_HIGHNESSHEAL",2; bonus2 bSkillHeal,"AB_CHEAL",2; bonus2 bCastrate,"AL_HEAL",-15; bonus2 bCastrate,"PR_SANCTUARY",-15; bonus2 bCastrate,"AM_POTIONPITCHER",-15; bonus2 bCastrate,"AB_HIGHNESSHEA",-15; bonus2 bCastrate,"AB_CHEAL",-15;}
 //18564一片爱心:18563心型羽翼发夹
@@ -610,6 +626,32 @@
 5782:1456,{ bonus bAtkRate,3; }
 5782:2105,{ bonus bDef,2; bonus bDefRate,3; }
 5782:2106,{ bonus bDef,2; bonus bDefRate,3; }
+//蓝玫瑰戒指 28325 花情气球 5913
+5913:28325,{ bonus bMatkRate,2; bonus bHPGainValue,100; }
+//幸福的气球 19004 碎花帽 18993
+18993:19004,{ bonus bFlee,2; }
+//派对气球 19005  X头饰 18998
+18998:19005,{ bonus bHit,2; }
+//飞马项链 28328 飞马徽章 28329
+28328:28329,{ bonus bAspd,1; }
+//狩猎之笛 18985 狩猎之爪 28321 狩猎之弦 28322
+18985:28321,{ bonus2 bSkillAtk,"HT_BLITZBEAT",100; }
+18985:28322,{ bonus2 bSkillAtk,"HT_BLITZBEAT",50; }
+18985:28321:28322,{ bonus2 bSkillAtk,"HT_BLITZBEAT",200; }
+// 香格里拉战靴 22051 香格里拉盾牌 2195 香格里拉披风 20753
+22051:2195,{ bonus2 bSubEle,9,5; bonus2 bSubEle,9,getequiprefinerycnt(EQI_HAND_L)*2;}
+22051:20753,{ bonus2 bAddEle,9,5; bonus bMaxHPrate,getequiprefinerycnt(EQI_GARMENT); bonus bMaxSPrate,getequiprefinerycnt(EQI_GARMENT); }
+// 香格里拉盾牌 2195 香格里拉披风 20753
+2195:20753,{ bonus2 bSubRace,0,getequiprefinerycnt(EQI_GARMENT); bonus2 bAddEle,0,getequiprefinerycnt(EQI_HAND_L); }
+// 时装:酷酷帽子 10820 围巾 10821 10822 10823 10824
+10820:10821,{ bonus bAllStats,2; }
+10820:10822,{ bonus bBaseAtk,25; bonus bMatk,25; bonus bAtkRate,5; bonus bMatkRate,5; }
+10820:10823,{ bonus bMaxHPrate,5; bonus bMaxSPrate,5; }
+10820:10824,{ bonus bAspd,1; bonus bSpeedAddRate,5; }
+//夏奈尔之靴 22055 夏奈尔披肩 2596 夏奈尔之盾 2159
+2159:2596,{ bonus2 bSubRace,6,getequiprefinerycnt(EQI_GARMENT); bonus2 bAddEle,3,getequiprefinerycnt(EQI_HAND_L); }
+2159:22055,{ bonus2 bSubEle,3,5+(getequiprefinerycnt(EQI_HAND_L)*2); }
+2596:22055,{ bonus2 bAddEle,3,5; bonus bMaxHPrate,getequiprefinerycnt(EQI_GARMENT); bonus bMaxSPrate,getequiprefinerycnt(EQI_GARMENT); }
 //普隆德拉军靴 军袍 军装 22053 20754 15132
 15132:20754:22053,{ bonus bMaxHPrate,30; bonus2 bSubRace,RC_DemiHuman,2; bonus bLongAtkDef,10; bonus2 bSubEle,0,5; bonus2 bSubEle,1,5; bonus2 bSubEle,2,5; bonus2 bSubEle,3,5; bonus2 bSubEle,4,5; bonus2 bSubEle,5,5; bonus2 bSubEle,6,5; bonus2 bSubEle,7,5; bonus2 bSubEle,8,5; bonus2 bSubEle,9,5;}
 //普隆德拉军团长靴 军袍 军装 22054 20755 15133
@@ -624,3 +666,29 @@
 15133:4089,{ bonus2 bResEff,Eff_Freeze,10000; }
 15133:4098,{ bonus2 bResEff,Eff_Freeze,10000; }
 15133:4099,{ bonus2 bResEff,Eff_Freeze,10000; }
+//无限的影之耳环 24150  无限的影之垂饰 24151
+24150:24151,{ bonus bAtkRate,1; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L))>=15){bonus bNoSizeFix,0;} }
+//固体的影之武器 24152 固体的影之耳环 24153
+24152:24153,{ bonus bAtk,(getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_WEAPON)); if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=15){ bonus bUnstripableWeapon,n; } }
+//不朽的影之铠甲 24154 不朽的影之垂饰 24155
+24154:24155,{ bonus bDef,(getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_ARMOR));  bonus bMdef,(getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_ARMOR)); if((getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_ARMOR))>=15){ bonus bUnbreakableArmor,n; }}
+//渗透10武器+渗透装饰品
+24166:24167:24156,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,7,100; }}
+24166:24167:24157,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,6,100; }}
+24166:24167:24158,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,2,100; }}
+24166:24167:24159,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,4,100; }}
+24166:24167:24160,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,5,100; }}
+24166:24167:24161,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,9,100; }}
+24166:24167:24162,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,8,100; }}
+24166:24167:24163,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,0,100; }}
+24166:24167:24164,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,1,100; }}
+24166:24167:24165,{ bonus bBaseAtk,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_R)+getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_WEAPON))>=25){ bonus2 bIgnoreDefRate,3,100; }}
+//弗鲁瓦之盾 2197 弗鲁瓦之靴 22057 流动披风 2593
+2197:22057,{ bonus2 bSubEle,1,5+2*getequiprefinerycnt(EQI_SHOES); }
+22057:2593,{ bonus2 bSubEle,1,5; bonus bMaxHPrate,getequiprefinerycnt(EQI_GARMENT); bonus bMaxSPrate,getequiprefinerycnt(EQI_GARMENT); }
+//古老的楯无之铠 15136  阿克坦卡片 4371
+4371:15136,{ bonus2 bSkillAtk,CR_SHIELDBOOMERANG,5; bonus2 bSkillAtk,CR_DEVOTION,5; }
+//楯无之铠 15137 卡那多斯卡片 4061 RSX-0806卡片 4342 楯无之盔 18661
+15137:4061,{ bonus bVit,15; }
+15137:4342,{ bonus bVit,5*getequiprefinerycnt(EQI_ARMOR); bonus bMaxHPrate,5*getequiprefinerycnt(EQI_ARMOR); }
+15137:18661,{ bonus bDef,15*getequiprefinerycnt(EQI_ARMOR); bonus bDef,15*getequiprefinerycnt(EQI_HEAD_TOP); }
