@@ -76,6 +76,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
       * sql-files\upgrades\2014-02-19--17-57.sql
       * sql-files\upgrades\2014-03-25--23-57.sql
       * sql-files\upgrades\2014-04-07--22-04.sql
+      * sql-files\upgrades\2014-04-25--10-00.sql
       * sql-files\upgrades\2014-04-26--10-00.sql
 * 更新至最新版本后, 如果global_reg_value表依然存在, 请选择Drop该表.
 
@@ -131,26 +132,26 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 
 ##### 您可以从下述链接中下载到kRO客户端以及客户端补丁 #####
 
-* 完整客户端 [2.07Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.03.19
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwKMMwADyi9Td19  [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1ntx5rEL  [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbcfce60iqb  [115网盘]
+* 完整客户端 [2.09Gb] 下载解压后可直接进行游戏，主体为韩国客户端可独立更新已更新至2014.04.26
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwImRgDNRmBT3b9  [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1c0qxccg  [百度云盘]
+       * 下载点三:   http://115.com/lb/5lber2dhwqus  [115网盘]
        * 下载点四:   https://www.dropbox.com/s/mzlovl6h7v5v7ax/FullCleanRO.rar  [DropBox]
-       * MD5: 63C313B2D2007D834723B925EB17665F
+       * MD5: D3511A42F1A0CEE76ECB746EE3658164
 * 2014 版本最新韩服补丁 [311.1Mb] for韩国客户端.
-       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwJGRQDIiSpT52c  [迅雷快传]
-       * 下载点二:   http://pan.baidu.com/s/1o6jVVU6  [百度云盘]
-       * 下载点三:   http://115.com/lb/5lbcqtu9xlsg  [115网盘]
-       * 下载点四:   http://url.cn/RWTFv1   [微云]
-       * MD5: 640EDED4BEA96F7C3F98DE74270FCF69
+       * 下载点一:   http://kuai.xunlei.com/d/ODDDDwIYRgC3RWBT1c3   [迅雷快传]
+       * 下载点二:   http://pan.baidu.com/s/1o62nXiU  [百度云盘]
+       * 下载点三:   http://115.com/lb/5lbdes05aabx   [115网盘]
+       * 下载点四:   http://url.cn/LJWeMq   [微云]
+       * MD5: EC3B51B21322E7C54F96243AFE5726D8
 * 2014版本自动更新器[副节点|包含测试服Sakray与单机版登陆器]
-       * http://pan.baidu.com/s/1pJNku2f
-       * MD5: 3CC97E9F5046793964957FE78A99E325
+       * http://pan.baidu.com/s/1u4OYM
+       * MD5: 652E45B135049D57086C012D534FD2E9
 * 更新客户端:
       * 由于长期使用可能会发生RO单机版与客户端资料不匹配的情况. 此时可能会导致游戏运行碰到各种问题, 这种事我们需要更新的不仅是SVN的服务端资料, 需要更新客户端和客户端补丁. 
       * 运行客户端目录中的[韩服Data更新.exe], 以更新客户端至最终版本. 此时客户端会恢复成韩国kRO的登陆初始状态. 此时我们再运行[AutoUpdate.exe], 在一番更新后即可成为完美的单机版客户端了. 
 
-本版本使用了Microsoft Visual Studio 2010/2012开发, 部分功能会调用Visual Studio 2010/2012的一些dll组件. 
+本版本使用了Microsoft Visual Studio 2010/2013开发, 部分功能会调用Visual Studio 2010/2013的一些dll组件. 
 
 ##### 这些组件通常会跟随Microsoft的部分产品被安装到您的电脑 ##### 
 

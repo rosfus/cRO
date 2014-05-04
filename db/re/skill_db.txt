@@ -697,7 +697,7 @@
 2005,1,6,2,4,0x2,2,5,1,no,0,0,0,weapon,3,	RK_WINDCUTTER,裂风之刃
 2006,0,6,4,-1,0x2,5,5,1,no,0,0,0,weapon,0,	RK_IGNITIONBREAK,爆裂之刃
 2007,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		RK_DRAGONTRAINING,训龙术
-2008,9,6,2,3,0x2,1:1:1:2:2:2:3:3:4:4,10,1,no,0,0,0,weapon,0,	RK_DRAGONBREATH,龙之吐息
+2008,9,6,2,3,0x42,1:1:1:2:2:2:3:3:4:4,10,1,no,0,0,0,weapon,0,	RK_DRAGONBREATH,龙之吐息
 2009,0,6,4,0,0x3,3:4:5:6:7,5,1,yes,0,0,0,none,0,	RK_DRAGONHOWLING,龙之咆哮
 2010,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		RK_RUNEMASTERY,符文掌握
 2011,0,6,4,0,0x1,0,1,1,yes,0,0,0,none,0,	RK_MILLENNIUMSHIELD,千年之盾
@@ -1262,20 +1262,20 @@
 8441,5,6,1,2,0,1,1,1,no,0,0,0,magic,0,		EL_ROCK_CRUSHER_ATK,碎石(攻击)
 8442,9,6,1,2,0,1,1,-5,no,0,0,0,weapon,0,	EL_STONE_RAIN,岩石风暴
 
-10000,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_APPROVAL,正式工会认证
+10000,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_APPROVAL,正式公会认证
 10001,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_KAFRACONTRACT,和卡普拉订契约
 10002,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_GUARDRESEARCH,研究监护人
 10003,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_GUARDUP,监护人魔物强化
 10004,0,0,0,0,0,0,10,0,no,0,0x10,0,none,0,	GD_EXTENSION,扩充组合体制
-10005,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_GLORYGUILD,工会的荣耀
-10006,0,0,0,0,0,2,1,0,no,0,0x10,0,none,0,	GD_LEADERSHIP,伟大的指导力
+10005,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_GLORYGUILD,公会的荣耀
+10006,0,0,0,0,0,2,1,0,no,0,0x10,0,none,0,	GD_LEADERSHIP,伟大的领导力
 10007,0,0,0,0,0,2,1,0,no,0,0x10,0,none,0,	GD_GLORYWOUNDS,光荣的伤口
 10008,0,0,0,0,0,2,1,0,no,0,0x10,0,none,0,	GD_SOULCOLD,冷漠之心
 10009,0,0,0,0,0,2,1,0,no,0,0x10,0,none,0,	GD_HAWKEYES,尖锐的视线
 10010,0,0,4,0,0x3,15,1,0,yes,0,0x10,0,none,0,	GD_BATTLEORDER,下达战斗命令
-10011,0,0,4,0,0x3,15,3,0,yes,0,0x10,0,none,0,	GD_REGENERATION,复兴公会员体力
-10012,0,0,4,0,0x3,15,1,0,yes,0,0x10,0,none,0,	GD_RESTORE,恢复公会员体力
+10011,0,0,4,0,0x3,15,3,0,yes,0,0x10,0,none,0,	GD_REGENERATION,复活公会成员
+10012,0,0,4,0,0x3,15,1,0,yes,0,0x10,0,none,0,	GD_RESTORE,恢复公会成员体力
 10013,0,0,4,0,0x3,0,1,0,yes,0,0x10,0,none,0,	GD_EMERGENCYCALL,紧急呼叫
 10014,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_DEVELOPMENT,永久的发展
 //10015,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_ITEMEMERGENCYCALL,未知技能
-//10016,0,0,0,0,0,0,5,0,no,0,0x10,0,none,0,	GD_GUILD_STORAGE,公会仓库扩容
+10016,0,0,0,0,0,0,5,0,no,0,0x10,0,none,0,	GD_GUILD_STORAGE,公会仓库扩容

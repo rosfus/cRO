@@ -38,4 +38,3 @@ dewata	mapflag	town
 malangdo	mapflag	town
 malaya	mapflag	town
 eclage	mapflag	town
-prontera	mapflag	snow
