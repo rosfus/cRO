@@ -568,7 +568,7 @@
 522,0,0,0,0,0,0,10,1,no,0,0,0,weapon,0,		NJ_TOBIDOUGU,飞刀修练
 523,9,6,1,-1,0x40,0,10,1,no,0,0,0,weapon,0,	NJ_SYURIKEN,投掷飞镖
 524,9,8,1,-1,0x40,0,5,-3,no,0,0,0,weapon,0,	NJ_KUNAI,投掷飞刀
-525,9,8,2,-1,0x2,0,5,-3:-3:-4:-4:-5,no,0,0,0,weapon,0,	NJ_HUUMA,投掷风魔飞镖
+525,9,8,2,-1,0x2,0,5,-3:-3:-4:-4:-5,no,0,0,0,weapon,0,	NJ_HUUMA,风魔手里剑投掷
 526,9,6,1,0,0x50,0,10,1,no,0,0,0,misc,0,		NJ_ZENYNAGE,投掷金钱
 527,0,6,4,-1,0,0,5,1,no,0,0,0,weapon,4,		NJ_TATAMIGAESHI,榻榻米攻击
 528,-1,6,1,-1,0,0,10,1,no,0,0,0,weapon,0,	NJ_KASUMIKIRI,影子跳跃
@@ -956,10 +956,10 @@
 2428,0,6,4,0,0x3,5:6:7:8:9,5,1,yes,0,0x4000,0,none,0,	WM_DANCE_WITH_WUG,与狼共舞
 2429,9,6,2,0,0x42,4:4:5:5:6,5,1,yes,0,0x4000,0,none,0,	WM_SOUND_OF_DESTRUCTION,毁灭之歌	//Using clif damage to deal the fixed damage for now. Testing needed to see how it dealed.
 2430,0,6,4,0,0x3,3:4:5:6:7,5,1,yes,0,0x4000,0,none,0,	WM_SATURDAY_NIGHT_FEVER,狂热的周末
-2431,0,6,4,0,0x3,5,5,1,yes,0,0x4000,0,none,0,	WM_LERADS_DEW,雷拉德的晨露
-2432,0,6,4,0,0x3,5,5,1,yes,0,0x4000,0,none,0,	WM_MELODYOFSINK,夕阳之歌
-2433,0,6,4,0,0x3,5,5,1,yes,0,0x4000,0,none,0,	WM_BEYOND_OF_WARCRY,远古呐喊
-2434,0,6,4,0,0x3,5,5,1,yes,0,0x4000,0,none,0,	WM_UNLIMITED_HUMMING_VOICE,无限吟唱
+2431,0,6,4,0,0x3,5:5:6:6:7,5,1,yes,0,0x4000,0,none,0,	WM_LERADS_DEW,雷拉德的晨露
+2432,0,6,4,0,0x3,5:5:6:6:7,5,1,yes,0,0x4000,0,none,0,	WM_MELODYOFSINK,夕阳之歌
+2433,0,6,4,0,0x3,5:5:6:6:7,5,1,yes,0,0x4000,0,none,0,	WM_BEYOND_OF_WARCRY,远古呐喊
+2434,0,6,4,0,0x3,5:5:6:6:7,5,1,yes,0,0x4000,0,none,0,	WM_UNLIMITED_HUMMING_VOICE,无限吟唱
 
 //****
 // SO Sorcerer
@@ -1154,9 +1154,9 @@
 8021,1,6,1,0,0x1,0,5,1,no,0,0,0,none,0,		MH_PAIN_KILLER,镇痛剂
 8022,0,6,4,0,0,0x1,5,1,no,0,0,0,none,0,		MH_LIGHT_OF_REGENE,重生之光
 8023,0,6,4,0,0,0x1,5,1,no,0,0,0,none,0,		MH_OVERED_BOOST,极速爆发
-8024,7,6,1,4:0:4:0:4,0,0,5,1,no,0,0,0,magic,0,	MH_ERASER_CUTTER,音速切割
-8025,7,6,2,4:0:4:0:4,0,0,5,1,no,0,0,0,magic,0,	MH_XENO_SLASHER,幻象斩击
-8026,5:5:7:7:9,6,16,0,0x1,0,5,1,no,0,0,0,magic,0,	MH_SILENT_BREEZE,静寂微风
+8024,7,8,1,4:0:4:0:4,0,0,5,-6,yes,0,0,0,magic,0,	MH_ERASER_CUTTER,音速切割
+8025,7,8,2,4:0:4:0:4,0x2,2:2:3:3:4,5,-6,no,0,0,0,magic,0,	MH_XENO_SLASHER,幻象斩击
+8026,5:5:7:7:9,6,1,0,0x1,0,5,1,no,0,0,0,magic,0,	MH_SILENT_BREEZE,静寂微风
 8027,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		MH_STYLE_CHANGE,风格切换
 8028,1,8,1,0,0,0,5,1,no,0,0,0,weapon,0,		MH_SONIC_CRAW,疯狂乱抓
 8029,1,6,4,0,0,0,5,1,no,0,0x200,0,weapon,0,	MH_SILVERVEIN_RUSH,银光突击
@@ -1278,4 +1278,4 @@
 10013,0,0,4,0,0x3,0,1,0,yes,0,0x10,0,none,0,	GD_EMERGENCYCALL,紧急呼叫
 10014,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_DEVELOPMENT,永久的发展
 //10015,0,0,0,0,0,0,1,0,no,0,0x10,0,none,0,	GD_ITEMEMERGENCYCALL,未知技能
-10016,0,0,0,0,0,0,5,0,no,0,0x10,0,none,0,	GD_GUILD_STORAGE,公会仓库扩容
+//10016,0,0,0,0,0,0,5,0,no,0,0x10,0,none,0,	GD_GUILD_STORAGE,公会仓库扩容

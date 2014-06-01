@@ -78,6 +78,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
       * sql-files\upgrades\2014-04-07--22-04.sql
       * sql-files\upgrades\2014-04-25--10-00.sql
       * sql-files\upgrades\2014-04-26--10-00.sql
+      * sql-files\upgrades\2014-05-17--00-06.sql
 * 更新至最新版本后, 如果global_reg_value表依然存在, 请选择Drop该表.
 
 ##### Files #####
@@ -113,7 +114,7 @@ RO单机版, 是模拟知名(MMO RPG)网络游戏 仙境传说(Ragnarok Online)�
            * \..
       * \plugins\
            * \HPMHooking.dll
-           * \MobDropQty.dll
+           * \sendmail.dll
            * \npc_loader.dll
       * \sql-files\
            * \...

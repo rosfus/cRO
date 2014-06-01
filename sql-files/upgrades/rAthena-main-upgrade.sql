@@ -1,18 +1,18 @@
--- rAthena to RoSF.us main database upgrade query.
--- This upgrades a FULLY UPGRADED rAthena to a FULLY UPGRADED RoSF.us
--- Please don't use if either rAthena or RoSF.us launched a SQL update after last revision date of this file.
+-- rAthena to Hercules main database upgrade query.
+-- This upgrades a FULLY UPGRADED rAthena to a FULLY UPGRADED Hercules
+-- Please don't use if either rAthena or Hercules launched a SQL update after last revision date of this file.
 -- Remember to make a backup before applying.
 -- We are not liable for any data loss this may cause.
 -- Apply in the same database you applied your main.sql
--- Last revised: March 26, 2014 12:57 GMT
+-- Last revised: April 26, 2014 12:29 GMT
 
--- Drop table contents from ´sc_data´ since we use a different status order than rAthena
+-- Drop table contents from `sc_data` since we use a different status order than rAthena
 -- /!\ WARNING /!\ This will remove _ALL_ of the status effects active on the server
 -- You can disable this, but this is a SECURITY MEASURE
 -- This will remove even jailed status from users!
 TRUNCATE TABLE `sc_data`;
 
--- Drop table `skillcooldown` since it's not used in RoSF.us
+-- Drop table `skillcooldown` since it's not used in Hercules
 DROP TABLE IF EXISTS `skillcooldown`;
 
 
@@ -23,7 +23,8 @@ ALTER TABLE `cart_inventory` MODIFY `bound` tinyint(1) unsigned NOT NULL default
 -- Upgrades for table `char`
 ALTER TABLE `char` CHANGE `moves` `slotchange` SMALLINT(3) UNSIGNED NOT NULL default '0',
 	ADD `char_opt` INT( 11 ) UNSIGNED NOT NULL default '0' AFTER `slotchange`,
-	ADD `font` TINYINT( 3 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `char_opt`;
+	ADD `font` TINYINT( 3 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `char_opt`,
+	MODIFY `uniqueitem_counter` BIGINT(20) UNSIGNED NOT NULL DEFAULT '0';
 
 
 -- Upgrades for table `charlog`
@@ -47,6 +48,10 @@ ALTER TABLE `mapreg` MODIFY `varname` varchar(32) BINARY NOT NULL,
 	DROP KEY `varname`,
 	DROP KEY `index`,
 	ADD PRIMARY KEY  (`varname`,`index`);
+
+
+-- Upgrades for table `sc_data`
+ALTER TABLE `pet` CHANGE `incuvate` `incubate` int(11) unsigned NOT NULL default '0';
 
 
 -- Upgrades for table `sc_data`
@@ -88,6 +93,9 @@ INSERT INTO `sql_updates` (`timestamp`) VALUES (1388854043); -- 2014-01-04--16-4
 INSERT INTO `sql_updates` (`timestamp`) VALUES (1389028967); -- 2014-01-06--17-22.sql
 INSERT INTO `sql_updates` (`timestamp`) VALUES (1392832626); -- 2014-02-19--17-57.sql
 INSERT INTO `sql_updates` (`timestamp`) VALUES (1395789302); -- 2014-03-25--23-57.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1396893866); -- 2014-04-07--22-04.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1398477600); -- 2014-04-26--10-00.sql
+INSERT INTO `sql_updates` (`timestamp`) VALUES (1400256139); -- 2014-05-17--00-06.sql
 
 
 -- Updates to table `storage`
