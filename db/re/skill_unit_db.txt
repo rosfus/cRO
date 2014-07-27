@@ -154,7 +154,7 @@
 2490,0xea,    ,  0, 1,1000,all,   0x002	//GN_HELLS_PLANT
 
 2555,0x104,   ,  0, 1:2:2:3:3,500,enemy,0x006	//RL_B_TRAP	黑暗地狱
-2567,0x105,   ,  2, 2,1000,enemy, 0x0  //RL_FIRE_RAIN		火雨
+//2567,0x105,   ,  2, 2,1000,enemy, 0x0  //RL_FIRE_RAIN		火雨
 
 3006,0x86,    ,  0, 2, 100,enemy, 0x018	//KO_BAKURETSU		爆炸苦无
 3008,0x86,    ,  0, 2, 100,enemy, 0x018	//KO_MUCHANAGE		乾坤一掷
@@ -179,9 +179,9 @@
 8212,0x97,    ,  0, 1,1000,enemy, 0x006	//MA_FREEZINGTRAP	霜冻陷阱
 
 8403,0xed,    , -1, 1,1000,enemy, 0x018 //EL_FIRE_MANTLE	火焰披风
-8406,0xee,    ,  0, 1,  -1,friend,0x018	//EL_WATER_BARRIER	水之障壁
-8409,0xef,    ,  0, 1,1000,friend,0x018	//EL_ZEPHYR			风之结界
-8412,0xf0,    ,  0, 1,  -1,friend,0x018	//EL_POWER_OF_GAIA	天神下凡
+8406,0xee,    ,  0, 1,  -1,friend,0x2018	//EL_WATER_BARRIER	水之障壁
+8409,0xef,    ,  0, 1,	-1,friend,0x2018	//EL_ZEPHYR			风之结界
+8412,0xf0,    ,  0, 1,  -1,friend,0x2018	//EL_POWER_OF_GAIA	天神下凡
 
 10006,0xc1,   ,  2, 0,  -1,sameguild, 0x040  //GD_LEADERSHIP	伟大的指导力
 10007,0xc2,   ,  2, 0,  -1,sameguild, 0x040  //GD_GLORYWOUNDS 	光荣的伤口

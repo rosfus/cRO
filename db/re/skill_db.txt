@@ -542,7 +542,7 @@
 496,0,6,4,0,0x1,0,1,0,no,0,0x8,0,none,0,		AM_TWILIGHT1,宽广配药
 497,0,6,4,0,0x1,0,1,0,no,0,0x8,0,none,0,		AM_TWILIGHT2,宽广配药
 498,0,6,4,0,0x1,0,1,0,no,0,0x8,0,none,0,		AM_TWILIGHT3,宽广配药
-499,-9,8,4,-1,0,0,1,2,no,0,0x208,0,weapon,0,	HT_POWER,动物猛击
+499,-9,8,1,-1,0,0,1,2,no,0,0x8,0,weapon,0,	HT_POWER,动物猛击
 500,0,6,4,0,0x40,0,5,1,no,0,0,0,misc,0,		GS_GLITTERING,装满硬币
 501,9,6,1,-1,0x50,0,1,1,no,0,0,0,misc,0,		GS_FLING,投掷硬币
 502,-9,8,1,-1,0,0,1,3,no,0,0,0,weapon,0,		GS_TRIPLEACTION,三连攻击
@@ -716,7 +716,7 @@
 //****
 2021,10,6,1,0,0x1,0,5,1,no,0,0,0,none,0,		GC_VENOMIMPRESS,毒抗性弱化
 2022,3,8,1,-1,0,0,5,-7,no,0,0,0,weapon,0,	GC_CROSSIMPACT,十字斩
-2023,3:4:5:6:7,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,GC_DARKILLUSION,暗影步
+2023,5:6:7:8:9,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,GC_DARKILLUSION,暗影步
 2024,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		GC_RESEARCHNEWPOISON,新毒研究
 2025,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		GC_CREATENEWPOISON,新毒制造
 2026,5,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	GC_ANTIDOTE,高级解毒
@@ -1099,9 +1099,9 @@
 3029,7,6,1,0,0x1,0,5,0,no,0,0,0,none,0,		OB_AKAITSUKI,赤月
 
 // Eclage Skills
-3031,7,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	ECL_SNOWFLIP,雪花翻滚
-3032,7,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	ECL_PEONYMAMY,芍药真身
-3033,7,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	ECL_SADAGUI,购买耳朵
+3031,7,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	ECL_SNOWFLIP,冰雪花环
+3032,7,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	ECL_PEONYMAMY,温馨牡丹
+3033,7,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	ECL_SADAGUI,帕香草
 3034,7,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	ECL_SEQUOIADUST,天地树的尘埃
 3035,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		ECLAGE_RECALL,回到艾卡拉奇
 
@@ -1125,10 +1125,10 @@
 5012,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		WL_TELEKINESIS_INTENSE,强念传动
 5013,0,6,4,0,0x3,5,5,1,no,0,0,0,none,0,		LG_KINGS_GRACE,王者的守护
 5014,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		ALL_FULL_THROTTLE,限界突破
-5015,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP1,闪光连击攻击步骤1
-5016,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP2,闪光连击攻击步骤2
-5017,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP3,闪光连击攻击步骤3
-5018,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP4,闪光连击攻击步骤4
+5015,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP1,双龙摆尾-闪光连击1
+5016,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP2,大锤崩坠-闪光连击2
+5017,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP3,虎炮-闪光连击3
+5018,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP4,天罗地网-闪光连击4
 
 
 8001,9,6,4,0,0x1,0,5,1,no,0,0,0,magic,0,	HLIF_HEAL,治愈之手
@@ -1156,7 +1156,7 @@
 8023,0,6,4,0,0,0x1,5,1,no,0,0,0,none,0,		MH_OVERED_BOOST,极速爆发
 8024,7,8,1,4:0:4:0:4,0,0,5,-6,yes,0,0,0,magic,0,	MH_ERASER_CUTTER,音速切割
 8025,7,8,2,4:0:4:0:4,0x2,2:2:3:3:4,5,-6,no,0,0,0,magic,0,	MH_XENO_SLASHER,幻象斩击
-8026,5:5:7:7:9,6,1,0,0x1,0,5,1,no,0,0,0,magic,0,	MH_SILENT_BREEZE,静寂微风
+8026,5:5:7:7:9,6,16,0,0x1,0,5,1,no,0,0,0,magic,0,	MH_SILENT_BREEZE,静寂微风
 8027,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		MH_STYLE_CHANGE,风格切换
 8028,1,8,1,0,0,0,5,1,no,0,0,0,weapon,0,		MH_SONIC_CRAW,疯狂乱抓
 8029,1,6,4,0,0,0,5,1,no,0,0x200,0,weapon,0,	MH_SILVERVEIN_RUSH,银光突击
@@ -1255,8 +1255,8 @@
 8434,11,6,1,4,0,0,1,1,no,0,0,0,weapon,0,	EL_WIND_SLASH,风之刃
 8435,11,6,1,4,0,1,1,1,no,0,0,0,weapon,0,	EL_HURRICANE,飓风肆虐
 8436,7,6,1,4,0,0,1,1,no,0,0,0,magic,0,		EL_HURRICANE_ATK,飓风肆虐(攻击)
-8437,11,8,1,4,0,1,1,-3,no,0,0,0,weapon,0,	EL_TYPOON_MIS,台风飞弹
-8438,11,8,1,4,0,1,1,-3,no,0,0,0,magic,0,		EL_TYPOON_MIS_ATK,台风飞弹(攻击)
+8437,11,6,1,4,0,1,1,1,no,0,0,0,weapon,0,	EL_TYPOON_MIS,台风飞弹
+8438,11,6,1,4,0,1,1,1,no,0,0,0,magic,0,		EL_TYPOON_MIS_ATK,台风飞弹(攻击)
 8439,5,6,1,2,0,0,1,1,no,0,0,0,weapon,0,		EL_STONE_HAMMER,石锤
 8440,3,6,1,2,0,1,1,1,no,0,0,0,weapon,0,		EL_ROCK_CRUSHER,碎石
 8441,5,6,1,2,0,1,1,1,no,0,0,0,magic,0,		EL_ROCK_CRUSHER_ATK,碎石(攻击)
