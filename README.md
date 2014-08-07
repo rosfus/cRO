@@ -157,8 +157,8 @@ RO单机版需要配合使用的客户端最佳选择为kRO客户端, 配套RoSF
 ##### 这些组件通常会跟随Microsoft的部分产品被安装到您的电脑 ##### 
 
 如果您还是不幸被程序提醒缺少dll文件, 也请不用担心. 请按下面的提示操作. 
-* 压缩包中的dll目录里存放这3个最常见的DLL文件. 我们将它们复制到 Windows系统的工作目录下即可. 无须注册.
-       * 复制我们压缩包内trunk\plugins\msvcr100.dll( msvcr100d.dll msvcr110.dll )
+* 压缩包中的dll目录里存放这4个最常见的DLL文件. 我们将它们复制到 Windows系统的工作目录下即可. 无须注册.
+       * 复制我们压缩包内trunk\plugins\msvcr100.dll( msvcr100d.dll msvcr110.dll msvcr120d.dll )
        * 32位Windows的工作目录一般是 C:\Windows\System32\
        * 64位Windows的工作目录一般是 C:\Windows\SysWOW64\
        * 您无需重启计算机, 无需使用regsrv的注册指令, 仅需重启我们的单机服务端即可.

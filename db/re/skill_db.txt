@@ -101,12 +101,12 @@
 54,9,6,16,6,0x1,0,4,1,yes,0,0,0,magic,0,		ALL_RESURRECTION,复活术
 55,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		KN_SPEARMASTERY,长矛使用熟练度
 56,-2,8,1,-1,0,0,10,3,no,0,0,0,weapon,0,		KN_PIERCE,连刺攻击
-57,-2,6,1,-1,0x1,0,10,1,no,33,0,0,weapon,3,	KN_BRANDISHSPEAR,骑乘攻击
+57,-2,6,1,-1,0x1,0,10,1,no,0,0,0,weapon,3,	KN_BRANDISHSPEAR,骑乘攻击
 58,-4,6,1,-1,0x2,0,10,1,no,0,0,0,weapon,6,	KN_SPEARSTAB,长矛刺击
 59,3:5:7:9:11,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	KN_SPEARBOOMERANG,投掷长矛攻击
 60,0,6,4,0,0x1,0,10,1,no,0,0,0,weapon,0,		KN_TWOHANDQUICKEN,双手剑攻击速度增加
 61,0,6,4,-1,0x20,0,5,1,no,0,0,0,weapon,0,	KN_AUTOCOUNTER,反击
-62,-2,6,1,-1,0x2,1,10,1,no,33,0,0,weapon,1,	KN_BOWLINGBASH,怪物互击
+62,-2,6,1,-1,0x2,1,10,1,no,0,0,0,weapon,1,	KN_BOWLINGBASH,怪物互击
 63,0,0,0,0,0,0,1,0,no,0,0,0,weapon,0,		KN_RIDING,骑乘术
 64,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		KN_CAVALIERMASTERY,骑兵修练
 65,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		PR_MACEMASTERY,权杖使用熟练度
@@ -179,7 +179,7 @@
 133,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		AS_LEFT,左手-修练
 134,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		AS_KATAR,拳刃-修练
 135,0,6,4,0,0x1,0,10,1,no,0,0,0,weapon,0,	AS_CLOAKING,伪装
-136,-1,8,1,-1,0,0,10,-8,no,0,0,0,weapon,0,	AS_SONICBLOW,音速投掷
+136,1,8,1,-1,0,0,10,-8,no,0,0,0,weapon,0,	AS_SONICBLOW,音速投掷
 137,3:4:5:6:7,6,1,-1,0x2,1,5,1,no,0,0,0,weapon,0,AS_GRIMTOOTH,无影之牙
 138,1,6,16,5,0x1,0,10,1,no,0,0x400,0,weapon,0,	AS_ENCHANTPOISON,涂毒
 139,0,6,4,0,0,0,10,1,no,0,0,0,weapon,0,		AS_POISONREACT,毒性反弹
@@ -382,7 +382,7 @@
 336,9,6,4,0,0x1,3,1,1,yes,0,0x4,1,none,0,	WE_CALLPARTNER,想念你
 337,9,6,1,-1,0,0,1,1,no,0,0x2,0,weapon,0,	ITM_TOMAHAWK,投掷风灵之斧
 338,-1,8,1,7,0,0,10,-2,no,0,0x2,0,weapon,0,	NPC_DARKCROSS,暗十字攻击
-339,5,6,4,7,0x48,0,10,1,no,33,0x102,0,magic,0,	NPC_GRANDDARKNESS,暗十字审判
+339,5,6,4,7,0x48,0,10,1,no,0,0x102,0,magic,0,	NPC_GRANDDARKNESS,暗十字审判
 340,9,8,1,7,0,0,10,1:1:2:2:3:3:4:4:5:5,yes,0,0x2,0,magic,0,	NPC_DARKSTRIKE,暗灵召唤
 341,9,8,1,7,0,0,10,3:4:5:6:7:8:9:10:11:12,yes,0,0x2,0,magic,2:3:3:4:4:5:5:6:6:7,	NPC_DARKTHUNDER,暗鸣术
 342,9,6,1,0,0x1,0,1,0,no,0,0x2,0,none,0,		NPC_STOP,束缚之网
@@ -449,7 +449,7 @@
 403,0,0,4,0,0x1,0,1,1,yes,0,0,0,magic,0,		PF_MEMORIZE,速读术
 404,9,6,2,2,0x1,0,5,1,yes,0,0x100,2,magic,0,	PF_FOGWALL,薄雾墙
 405,7,6,1,0,0x1,0,1,1,no,0,0,3,magic,0,		PF_SPIDERWEB,易燃之网
-406,0,6,4,-1,0xA,2,10,1,no,33,0,0,weapon,0,	ASC_METEORASSAULT,黑暗瞬间
+406,0,6,4,-1,0xA,2,10,1,no,0,0,0,weapon,0,	ASC_METEORASSAULT,黑暗瞬间
 407,0,6,4,0,0x1,0,1,0,no,0,0,0,none,0,		ASC_CDP,毒液制作
 408,9,6,4,0,0x1,0,1,1,yes,0,0x4,0,none,0,	WE_BABY,爸妈我爱您
 409,9,6,4,0,0x1,3,1,1,yes,0,0x4,1,none,0,	WE_CALLPARENT,爸妈我想念您
@@ -716,7 +716,7 @@
 //****
 2021,10,6,1,0,0x1,0,5,1,no,0,0,0,none,0,		GC_VENOMIMPRESS,毒抗性弱化
 2022,3,8,1,-1,0,0,5,-7,no,0,0,0,weapon,0,	GC_CROSSIMPACT,十字斩
-2023,5:6:7:8:9,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,GC_DARKILLUSION,暗影步
+2023,3:4:5:6:7,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,GC_DARKILLUSION,暗影步
 2024,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		GC_RESEARCHNEWPOISON,新毒研究
 2025,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		GC_CREATENEWPOISON,新毒制造
 2026,5,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	GC_ANTIDOTE,高级解毒
@@ -1130,7 +1130,6 @@
 5017,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP3,虎炮-闪光连击3
 5018,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_FLASHCOMBO_ATK_STEP4,天罗地网-闪光连击4
 
-
 8001,9,6,4,0,0x1,0,5,1,no,0,0,0,magic,0,	HLIF_HEAL,治愈之手
 8002,0,6,4,0,0x3,-1,5,1,no,0,0,0,none,0,	HLIF_AVOID,轻捷移动
 8003,0,0,0,0,0,1,5,0,no,0,0,0,none,0,		HLIF_BRAIN,脑手术
@@ -1178,7 +1177,7 @@
 // Mercenary Skill Place holders
 8201,-1,6,1,-1,0,0,10,1,no,0,0,0,weapon,0,	MS_BASH,狂击
 8202,0,6,4,3,0x2,2,10,1,no,0,0,0,weapon,2,	MS_MAGNUM,怒爆
-8203,-2,6,1,-1,0x2,1,10,1,no,33,0,0,weapon,1,	MS_BOWLINGBASH,怪物互击
+8203,-2,6,1,-1,0x2,1,10,1,no,0,0,0,weapon,1,	MS_BOWLINGBASH,怪物互击
 8204,0,6,4,0,0x1,0,10,1,no,0,0,0,weapon,0,	MS_PARRYING,双剑挌挡
 8205,0,6,4,0,0,0,10,1,no,0,0,0,weapon,0,	MS_REFLECTSHIELD,反射盾
 8206,0,6,4,0,0x1,0,1,1,no,0,0,0,weapon,0,	MS_BERSERK,狂怒之枪
@@ -1192,7 +1191,7 @@
 8214,-9,6,1,-1,0x2,0,1,1,no,0,0x1,0,weapon,6,	MA_CHARGEARROW,冲锋箭
 8215,9,8,1,-1,0,2,5,1,yes,0,0,13,weapon,0,	MA_SHARPSHOOTING,锐利射击
 8216,-2,8,1,-1,0,0,10,3,no,0,0,0,weapon,0,	ML_PIERCE,连刺攻击
-8217,-2,6,1,-1,0x1,0,10,1,no,33,0,0,weapon,3,	ML_BRANDISH,骑乘攻击
+8217,-2,6,1,-1,0x1,0,10,1,no,0,0,0,weapon,3,	ML_BRANDISH,骑乘攻击
 8218,5,8,1,-1,0x20,0,5,5,no,0,0,0,weapon,0,	ML_SPIRALPIERCE,螺旋击刺
 8219,0,6,4,0,0x1,0,5,1,no,0,0,0,weapon,0,	ML_DEFENDER,光之盾
 8220,0,6,4,0,0x1,0,10,1,no,0,0,0,weapon,0,	ML_AUTOGUARD,自动防御
