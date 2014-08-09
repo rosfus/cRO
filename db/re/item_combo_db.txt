@@ -122,7 +122,7 @@
 2472:2570:15030:16013,{ bonus2 bAddRace,RC_Undead,15; bonus2 bMagicAddRace,RC_Undead,15; bonus2 bSkillAtk,AB_ADORAMUS,100; }
 2472:2570:15030:16018,{ bonus2 bAddRace,RC_Undead,30; bonus2 bMagicAddRace,RC_Undead,30; bonus2 bSkillAtk,AB_ADORAMUS,200; bonus bVariableCastrate,-50; }
 2475:2574:2883:15036,{ bonus bMaxHPrate,14; bonus2 bSkillAtk,RK_HUNDREDSPEAR,50; skill CR_AUTOGUARD,1; }
-2476:2575:2884:15037,{ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus2 bSkillAtk,RK_SONICWAVE,100; bonus2 bSkillAtk,RK_WINDCUTTER,100; autobonus "{ sc_start SC_LKCONCENTRATION,10000,getskilllv(LK_CONCENTRATION)?getskilllv(LK_CONCENTRATION):1; bonus bAspd,2; }",1,10000,BF_WEAPON,"{}"; }
+2476:2575:2884:15037,{ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus2 bSkillAtk,RK_SONICWAVE,100; bonus2 bSkillAtk,RK_WINDCUTTER,100; bonus3 bAutoSpell,RK_STORMBLAST,1,20; autobonus3 "{ bonus bAspd,2; }",1000,10000,LK_CONCENTRATION,"{ specialeffect2 EF_ENHANCE; }"; }
 2477:2577:2886:15038,{ bonus bCritical,15; bonus bFlee,10; bonus bCritAtkRate,40; bonus2 bSkillAtk,GC_CROSSIMPACT,20; }
 2478:2578:2887:15039,{ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus bMatk,10; if(readparam(bStr)>119) { bonus bBaseAtk,30; } bonus3 bAutoSpell,ASC_BREAKER,getskilllv(ASC_BREAKER),10; bonus bCritical,-20; }
 2479:2580:2890:15042,{ bonus bAspd,2; bonus bLongAtkRate,30; bonus3 bAutoSpell,AC_DOUBLE,3,10; bonus2 bSkillAtk,RA_ARROWSTORM,50; }
@@ -811,9 +811,10 @@
 //女王甲虫卡片 4507 黄金女王甲虫卡片 4509 女王甲虫的皇冠 19023
 19023:4507,{ bonus2 bAddRace,RC_Insect,30; }
 19023:4509,{ bonus2 bSubRace,RC_Insect,10; }
-//邪骸浪人卡片 4210 刺尾蜻蜓卡片 4178 氧气瓶 20759
+//邪骸浪人卡片 4210 刺尾蜻蜓卡片 4178 氧气瓶 20759 鸟人哈比卡片 4325
 4178:20759,{ bonus bAspdRate,getequiprefinerycnt(EQI_GARMENT); }
 4210:20759,{ bonus bUseSPrate,-5; }
+4325:20759,{ bonus2 bSkillAtk,MG_FIREWALL,getequiprefinerycnt(EQI_GARMENT); }
 //匆匆的影之战靴 24196  匆匆的影之护甲 24197
 24196:24197,{ bonus bFlee,5; if((getequiprefinerycnt(EQI_SHADOW_ACC_L)+getequiprefinerycnt(EQI_SHADOW_SHOES))>15){ bonus bSpeedRate,25; }}
 //基础的影之盾牌 24198 基础的影之护甲 24186
