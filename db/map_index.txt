@@ -1062,3 +1062,7 @@ un_myst	//地下隧道
 1@lab	//中心实验室
 
 paramk	//帕马市场
+
+pud_land	//神秘岛
+1@pda	
+1@pdb	

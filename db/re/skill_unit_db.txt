@@ -35,10 +35,10 @@
  79,0x84,    , -1, 1,3000,enemy, 0x018	//PR_MAGNUS			Ê®×ÖÇýÄ§¹¥»÷
  80,0x87,0x88,  0, 1,2000,enemy, 0x006	//WZ_FIREPILLAR		»ðÖù¹¥»÷
  83,0x86,    ,  0, 3,1000,enemy, 0x010	//WZ_METEOR			ÔÉÊ¯Êõ
- 85,0x86,    ,  0, 6:6:6:6:6:6:6:6:6:6:8,1250,enemy,0x018	//WZ_VERMILION	Å­À×Ç¿»÷
+ 85,0x86,    ,  5, 1:1:1:1:1:1:1:1:1:1:3,1250,enemy,0x018	//WZ_VERMILION	Å­À×Ç¿»÷
  87,0x8d,    , -1, 0,  -1,all,   0x010	//WZ_ICEWALL		±ùÈÐÖ®Ç½
- 89,0x86,    ,  0, 5, 450,enemy, 0x018	//WZ_STORMGUST		±©·çÑ©
- 91,0x86,    ,  0, 2,1000,enemy, 0x010	//WZ_HEAVENDRIVE	±ÀÁÑÊõ
+ 89,0x86,    ,  4, 1, 450,enemy, 0x018	//WZ_STORMGUST		±©·çÑ©
+ 91,0x86,    ,  2, 0,1000,enemy, 0x010	//WZ_HEAVENDRIVE	±ÀÁÑÊõ
  92,0x8e,    ,  2, 0,  -1,enemy, 0x010	//WZ_QUAGMIRE		ÄàÕÓµØ
 115,0x90,    ,  0, 1,1000,enemy, 0x006	//HT_SKIDTRAP		»¬¶¯ÏÝÚå
 116,0x93,    ,  0, 1,1000,enemy, 0x006	//HT_LANDMINE		µØÀ×ÏÝÚå
@@ -50,9 +50,9 @@
 122,0x8f,    ,  0, 1,1000,enemy, 0x006	//HT_BLASTMINE		¶¨Ê±±¬Õ¨ÏÝÚå
 123,0x98,    ,  0, 1,1000,enemy, 0x006	//HT_CLAYMORETRAP	±¬É¢ÏÝÚå
 125,0x99,    ,  0, 1,1000,all,   0x000	//HT_TALKIEBOX		ÏÝÚåÌ½²é
-140,0x92,    , -1, 0,1000,enemy, 0x000	//AS_VENOMDUST		²¡¶¾É¢²¦
+140,0x92,    , -1, 1,1000,enemy, 0x000	//AS_VENOMDUST		²¡¶¾É¢²¦
 220,0xb0,    ,  0, 0,  -1,all,   0x002	//RG_GRAFFITI		Í¿Ñ»
-229,0xb1,    ,  0, 1,1000,enemy, 0x006	//AM_DEMONSTRATION	»ðÑÌÆ¿Í¶ÖÀ
+229,0xb1,    ,  0, 1, 500,enemy, 0x006	//AM_DEMONSTRATION	»ðÑÌÆ¿Í¶ÖÀ
 254,0x86,    , -1, 0, 300,enemy, 0x010	//CR_GRANDCROSS		Ê¥Ê®×ÖÉóÅÐ
 285,0x9a,    ,  3, 0,  -1,all,   0x010	//SA_VOLCANO		»ðÔªËØÁìÓò
 286,0x9b,    ,  3, 0,  -1,all,   0x010	//SA_DELUGE			Ë®ÔªËØÁìÓò
@@ -148,6 +148,7 @@
 
 2479,0xe5,    ,  0, 1,1000,enemy, 0x006	//GN_THORNS_TRAP	¾£¼¬ÏÝÚå
 2482,0xe6,0x7f, -1, 2,  -1,all,   0x000	//GN_WALLOFTHORN	¾£¼¬Ö®Ç½
+2484,0x86,    ,  0, 2, 100,enemy, 0x080	//GN_CRAZYWEED_ATK	·è¿ñÒ°²Ý
 2485,0xe7,    ,  0, 3,2000,enemy, 0x098	//GN_DEMONIC_FIRE	·è¿ñ»ðÑæ
 2487,0xe8,    ,  0, 3,1000,enemy, 0x000	//GN_FIRE_EXPANSION_SMOKE_POWDER	»ðÑæ±¬Õ¨ ÑÌÎí
 2488,0xe9,    ,  0, 3,1000,enemy, 0x000	//GN_FIRE_EXPANSION_TEAR_GAS	»ðÑæ±¬Õ¨ ÍßË¹

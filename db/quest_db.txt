@@ -21,17 +21,6 @@
 1015,0,0,0,0,0,0,0,"Your first quest"
 1016,0,0,0,0,0,0,0,"Gaining base levels"
 
-// 2010 Headgear Quests
-1100,0,1178,20,0,0,0,0,"Solo in the Sphinx Dungeon!"
-1101,0,1164,20,0,0,0,0,"Soloing Sphinx Dungeon!"
-1102,0,1194,40,0,0,0,0,"Soloing Clock Tower!"
-1103,0,1213,30,0,0,0,0,"Soloing Clock Tower!"
-1104,0,1519,20,0,0,0,0,"Solo at Louyang!"
-1105,0,1513,50,0,0,0,0,"Solo at Louyang!"
-1106,0,1375,20,0,0,0,0,"Solo at Amatsu Dungeon!"
-1107,0,1403,40,0,0,0,0,"Solo at Amatsu Dungeon!"
-1108,0,1631,20,0,0,0,0,"Solo at Louyang!"
-
 // Ropewa & Yuridi Quest
 1109,0,0,0,0,0,0,0,"Ropewa & Yuridi - Survivors of the Labyrinth"
 1110,0,0,0,0,0,0,0,"Ropewa & Yuridi - Victims of the Labyrinth"
@@ -323,9 +312,6 @@
 2302,0,0,0,0,0,0,0,"Training Center: Formation"
 
 2315,0,0,0,0,0,0,0,""
-
-//PoringBlessing
-2351,0,0,0,0,0,0,0,"达到10级!"
 
 3000,0,0,0,0,0,0,0,"Job Change to Bard"
 3001,0,0,0,0,0,0,0,"Job Change to Bard"
@@ -2570,6 +2556,24 @@
 14400,0,0,0,0,0,0,0,"熟成的嗯嗯"
 14401,86400,0,0,0,0,0,0,"一天的时间"
 14402,0,0,0,0,0,0,0,"慌张的费塔"
+
+// 2014 Halloween Event
+14450,0,0,0,0,0,0,0,"Let's help the priest"
+14451,0,0,0,0,0,0,0,"To Church"
+14452,0,0,0,0,0,0,0,"Material of holy stuff"
+14453,0,0,0,0,0,0,0,"To Niflheim"
+14454,0,0,0,0,0,0,0,"To Lutie"
+14455,0,0,0,0,0,0,0,"Back to Church"
+14456,0,0,0,0,0,0,0,"Preparing for recall"
+14457,0,0,0,0,0,0,0,"Back to Niflheim"
+14458,0,0,0,0,0,0,0,"Request of Loru"
+14459,0,0,0,0,0,0,0,"Request of Devi"
+14460,0,3382,10,0,0,0,0,"Favor of Loru"
+14461,0,0,0,0,0,0,0,"Favor of Loru"
+14462,0,3381,10,0,0,0,0,"Favor of Devi"
+14463,0,1510,20,1507,20,0,0,"Favor of Devi"
+14464,82800,0,0,0,0,0,0,"Party is going for a day"
+14465,82800,0,0,0,0,0,0,"They are still quiet"
 
 15002,86400,0,0,0,0,0,0,"副本: 莎拉的回忆"
 15003,0,0,0,0,0,0,0,"冒险家们受到伯哈顿博士的赞许"

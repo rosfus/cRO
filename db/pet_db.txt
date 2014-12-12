@@ -43,10 +43,6 @@
 //Casts a support skill when the health levels are below the specified hp% and
 //sp%. Delay is the minimum time in seconds before the skill can be cast again
 
-//petheal amount, delay, hp%, sp%
-//Similar to petskillsupport, but the skill is fixed to heal (28) and the
-//heal-amount is fixed to the value given.
-
 //petrecovery type, delay: Cures the "type" status effect after "delay" seconds
 
 //petskillbonus type, value, duration, delay
@@ -55,8 +51,7 @@
 //delay is the time elapsed after the bonus ends and before it starts again.
 
 //A single pet can have petloot, petskillbonus, petskillattack (or
-//petskillattack2) and petskillsupport (or petheal) at the same time,
-//but only one of each.
+//petskillattack2) and petskillsupport at the same time, but only one of each.
 
 1002,PORING,²¨Àû,619,9001,10013,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; }
 1113,DROPS,ÍÁ²¨Àû,620,9002,10013,508,80,60,40,100,250,20,1500,150,1,0,300,400,500,{ petloot 10; },{ bonus bHit,3; bonus bAtk,3; }
@@ -77,7 +72,7 @@
 1023,ORK_WARRIOR,ÊÞÈËÕ½Ê¿,635,9017,10009,537,80,60,20,100,250,20,500,150,1,0,600,200,300,{ petskillattack2 "NPC_PIERCINGATT",100,1,0,10; },{ bonus bAtk,10; bonus bDef,-3; }
 1026,MUNAK,½©Ê¬,636,9018,10008,537,80,60,20,100,250,20,500,150,0,0,300,750,300,{ petskillattack2 "NPC_DARKNESSATTACK",444,1,0,10; },{ bonus bInt,1; bonus bDef,1; }
 1110,DOKEBI,ÍÁÈË,637,9019,10005,537,80,60,20,100,250,20,500,150,0,0,300,300,800,{ petskillattack "BS_HAMMERFALL",1,0,10; },{ bonus bMatkRate,1; bonus bAtkRate,-1; }
-1170,SOHEE,¹íÅ®,638,9020,10016,537,80,60,10,100,250,20,500,150,0,0,100,1000,200,{ petheal 400,60,33,100; },{ bonus bStr,1; bonus bDex,1; }
+1170,SOHEE,¹íÅ®,638,9020,10016,537,80,60,10,100,250,20,500,150,0,0,100,1000,200,{ petskillsupport AL_HEAL,10,60,33,100; },{ bonus bStr,1; bonus bDex,1; }
 1029,ISIS,ÉßÅ®ÒÁË¿,639,9021,10006,537,80,60,10,100,250,20,500,150,0,0,650,450,150,{ petskillsupport "PR_MAGNIFICAT",2,60,50,50; },{ bonus bMatkRate,-1; bonus bAtkRate,1; }
 1155,PETIT,±ÏµÛÌØµØÁú,640,9022,10011,537,80,60,20,100,250,20,500,150,0,0,800,400,100,{ petskillattack2 "WZ_HEAVENDRIVE",500,1,0,10; },{ bonus bDef,-2; bonus bMdef,-2; bonus bAspdRate,1; }
 1109,DEVIRUCHI,Ð¡¶ñÄ§,641,9023,10004,711,80,60,10,100,250,20,500,150,0,0,800,200,100,{ petskillbonus bAgiDexStr,6,20,40; },{ bonus bMatkRate,1; bonus bAtkRate,1; bonus bMaxHPrate,-3; bonus bMaxSPrate,-3; }
@@ -90,12 +85,13 @@
 
 // Newest pets.
 1519,CHUNG_E,Ð¡Çà,12395,9030,0,6115,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "CR_SHIELDCHARGE",5,5,5; },{ bonus bDef,1; bonus2 bSubRace,RC_DemiHuman,1; }
-1879,ECLIPSE_P,¿É°®Ð¡ÓñÍÃ,0,9031,0,7766,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "TF_THROWSTONE",1,5,5; },{}
+1631,CHUNG_E_,Ð¡Çà,12395,9030,0,6115,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "CR_SHIELDCHARGE",5,5,5; },{ bonus bDef,1; bonus2 bSubRace,RC_DemiHuman,1; }
+1879,ECLIPSE_P,¿É°®Ð¡ÓñÍÃ,0,9031,0,7766,80,60,50,100,250,20,800,150,0,0,300,300,800,{ petskillattack "TF_THROWSTONE",1,5,5; },{}
 1122,GOBLIN_1,´Ìµ¶¸ç²¼Áé,14569,9032,0,7821,80,60,50,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_WINDATTACK",5,5,5; },{}
 1123,GOBLIN_2,Á´´¸¸ç²¼Áé,14570,9033,0,7821,80,60,50,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_FIREATTACK",5,5,5; },{}
-1125,GOBLIN_4,ÀÆÍ·¸ç²¼Áé,14571,9034,0,7821,80,60,50,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_GROUNDATTACK",5,5,5; },{}
-1385,DELETER_,Æß²ÊµØÁú,14572,9035,0,7822,80,60,20,100,250,20,800,150,0,0,300,300,800,{ petskillattack "SM_MAGNUM",5,5,5; },{}
-1382,DIABOLIC,³àÑæÐ¡¶ñÄ§,14573,9036,0,7823,80,60,10,100,250,20,800,150,0,0,300,300,800,{ petskillattack "WZ_METEOR",2,5,5; },{}
+1125,GOBLIN_4,ÀÆÍ·¸ç²¼Áé,14571,9034,0,7821,80,60,20,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_GROUNDATTACK",5,5,5; },{}
+1385,DELETER_,Æß²ÊµØÁú,14572,9035,0,7822,80,60,10,100,250,20,800,150,0,0,300,300,800,{ petskillattack "SM_MAGNUM",5,5,5; },{}
+1382,DIABOLIC,³àÑæÐ¡¶ñÄ§,14573,9036,0,7823,80,60,20,100,250,20,800,150,0,0,300,300,800,{ petskillattack "WZ_METEOR",2,5,5; },{}
 1208,WANDER_MAN,Ð°º¡ÀËÈË,14574,9037,0,7824,80,60,20,100,250,20,800,150,0,0,300,300,800,{ petskillattack "NPC_UNDEADATTACK",5,5,5; },{}
 
 1963,P_CHUNG_E,ÐÂÄêÍÞÍÞ,0,9038,0,554,80,60,30,100,250,20,800,150,0,0,300,300,800,{ petskillattack "CR_SHIELDCHARGE",5,5,5; },{}
@@ -121,8 +117,8 @@
 1837,IMP,ÈÛÑÒÄ§,12374,9056,10038,6114,80,60,10,100,250,20,200,150,0,0,300,300,800,{},{ bonus2 bSubEle,Ele_Fire,2; bonus2 bAddEle,Ele_Fire,2; }
 
 // Brasilis Quest - Suspicious Beach [UNHATCHABLE]
-2057,E_CRAMP,Strange Cramp,12408,6221,0,0,0,0,0,0,0,0,50,0,0,0,350,400,800,{},{} // kRO version
-2081,E_HYDRA,Strange Hydra,12408,6221,0,0,0,0,0,0,0,0,50,0,0,0,350,400,800,{},{} // iRO/cRO version
+2057,E_CRAMP,±äÒìÀÏÊó,12408,6221,0,0,0,0,0,0,0,0,50,0,0,0,350,400,800,{},{} // kRO version
+2081,E_HYDRA,±äÒìº£¿û,12408,6221,0,0,0,0,0,0,0,0,50,0,0,0,350,400,800,{},{} // iRO/cRO version
 
 // 2012 New Pets jRO
 2200,TAINI,Ì©µÏÐÜ,9617,9057,10057,518,80,60,10,100,250,20,2000,150,1,1,300,300,800,{},{}
@@ -141,4 +137,12 @@
 // 2014 New Year Pet kRO
 3261,BLUE_UNICORN,À¶É«¶À½ÇÊÞ,0,9068,0,6768,80,60,10,100,250,20,200,150,0,0,300,300,800,{ petskillbonus bMaxHP,100,20,40; },{ bonus bInt,3; bonus bMdef,5; }
 2398,LITTLE_PORING,±¦±´²¨Àû,619,9062,0,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bHPrecovRate,50; }
-3306,PAD_TAMADORA,¶àÄ¦¶äÀ­,619,9062,0,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bHPrecovRate,50; }
+
+// 2014 New Year Pet jRO
+3306,PAD_TAMADORA,¶àÄ¦¶ßÀ²,0,9080,0,537,80,60,50,100,250,20,2000,150,1,1,350,400,800,{},{ bonus5 bAutoSpell,AL_HEAL,1,getpetinfo(3),BF_NORMAL,0; }
+3317,PAD_RUBYLIT,ºì±¦Ê¯ÉñÁú,0,9074,0,537,80,60,50,100,250,20,2000,150,1,1,350,400,800,{},{ bonus bBaseAtk,((getpetinfo(3)>999)?20:10); }
+3318,PAD_SAPPHILIT,À¶±¦Ê¯ÉñÁú,0,9075,0,537,80,60,50,100,250,20,2000,150,1,1,350,400,800,{},{ bonus bMaxHP,((getpetinfo(3)>999)?200:100); }
+3319,PAD_EMELIT,ÂÌ±¦Ê¯ÉñÁú,0,9076,0,537,80,60,50,100,250,20,2000,150,1,1,350,400,800,{},{ bonus bMaxHP,((getpetinfo(3)>999)?100:50); bonus bMaxSP,((getpetinfo(3)>999)?50:25); }
+3320,PAD_TOPALIT,½ð¸ÕÊ¯ÉñÁú,0,9077,0,537,80,60,50,100,250,20,2000,150,1,1,350,400,800,{},{ bonus bMaxSP,((getpetinfo(3)>999)?100:50); }
+3321,PAD_AMELIT,×Ï±¦Ê¯ÉñÁú,0,9078,0,537,80,60,50,100,250,20,2000,150,1,1,350,400,800,{},{ bonus bMatk,((getpetinfo(3)>999)?20:10); }
+3349,PAD_MYTHLIT,ÉñÃØÊ¯ÉñÁú,0,9079,0,537,80,60,50,100,250,20,2000,150,1,1,350,400,800,{},{ bonus bAllStats,((getpetinfo(3)>999)?2:1); }

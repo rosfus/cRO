@@ -27,7 +27,7 @@ if (job_kagero==7){
 	mes "Looks like you've taken care of the target. Hmm.";
 	next;
 	mes "[Guide Gion]";
-	if (ismounting()){
+	if (hascashmount()){
 		mes "Please get down from the frog";
 		cutin "",255;
 		close;
@@ -57,8 +57,8 @@ if (job_kagero==7){
 	mes "[Someone's Voice]";
 	mes "Wait for a while, Gion.";
 	next;
-	cmdothernpc "Cougar#ko2","OnCommandEnable";
-	cmdothernpc "Red Leopard Joe#ko2","OnCommandEnable";
+	donpcevent "Cougar#ko2::OnCommandEnable";
+	donpcevent "Red Leopard Joe#ko2::OnCommandEnable";
 	cutin "job_ko04",2;
 	mes "[Guide Gion]";
 	mes "I'm sorry I almost forgot about you two. Do you have anything to share with "+strcharinfo(0)+"?";
@@ -74,7 +74,7 @@ if (job_kagero==7){
 	mes "^777777(Gai's voice fades out.)^000000.";
 	mes "I'm sorry I strangled you when we first met.";
 	next;
-	cmdothernpc "Cougar#ko2","OnCommandDisable";
+	donpcevent "Cougar#ko2::OnCommandDisable";
 	mes "[Red Leopard Joe]";
 	mes "Puhahaha! Gai is all talk. I know I was know valuable to you than that Gai.";
 	next;
@@ -91,7 +91,7 @@ if (job_kagero==7){
 	mes "Guide Gion, Please Continue.";
 	next;
 	cutin "job_ko01",2;
-	cmdothernpc "Red Leopard Joe#ko2","OnCommandDisable";
+	donpcevent "Red Leopard Joe#ko2::OnCommandDisable";
 	mes "[Guide Gion]";
 	mes "I don't have much to add because Gai and Joe said it all.";
 	next;
@@ -101,14 +101,14 @@ if (job_kagero==7){
 	mes "[Guide Gion]";
 	mes "You only need to look forward and never turn back.";
 	for (.i=5131; .i<5147; .i++ ){
-		if (checkquest(.i) != -1){erasequest .i;}
+		if (questprogress(.i) != -1){erasequest .i;}
 	}
 	job_kagero = 9;
 	if (KO_OPT==1){getnameditem 13075,strcharinfo(0);}
 	else{getnameditem 13311,strcharinfo(0);}
 	if(Sex){jobchange Job_Kagerou;}else{jobchange Job_Oboro;}
 	resetlvl(1);
-	cmdothernpc "Summon Target#ko","OnCommandEnable";
+	donpcevent "Summon Target#ko::OnCommandEnable";
 	mes "[Guide Gion]";
 	mes "I hope the blessings of Kagerou, dancing sun and Oboro, misty moonlight will be with you on your journey ahead.";
 	close2;

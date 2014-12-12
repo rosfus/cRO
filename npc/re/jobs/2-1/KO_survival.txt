@@ -211,7 +211,7 @@ callfunc("KO_DL",0);
 OnTouch:
 	mes "There are tiny letters on the sign.";
 	next;
-	if (checkquest(5137)==1 && checkquest(5140)==-1){
+	if (questprogress(5137)==1 && questprogress(5140)==-1){
 		while (select("Read the description.:Start the test.")==1){
 			mes "The Test of Survival starts from here and you use ^FD0260100 Life Points (LP)^000000 and roll dice to advance forward through the test.";
 			next;
@@ -340,11 +340,11 @@ job_ko,17,16,1	script	Sight#ko_05	4_BULLETIN_BOARD2,1,1,{
 callfunc("KO_DL",5);
 
 OnTouch:
-	if (checkquest(5141,PLAYTIME) == 0){
+	if (questprogress(5141,PLAYTIME) == 0){
 		mes "You are cursed and cannot move to any other block for 2 minutes.";
 		close;
 	}
-	if (checkquest(5141,PLAYTIME) == 2){
+	if (questprogress(5141,PLAYTIME) == 2){
 		mes "The immobilize curse lasted for 2 minutes and then was removed.";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
@@ -506,11 +506,11 @@ job_ko,46,60,1	script	Sight#ko_14	4_BULLETIN_BOARD2,1,1,{
 callfunc("KO_DL",14);
 
 OnTouch:
-	if (checkquest(5141,PLAYTIME) == 0){
+	if (questprogress(5141,PLAYTIME) == 0){
 		mes "You are cursed and cannot move to any other block for 2 minutes.";
 		close;
 	}
-	if (checkquest(5141,PLAYTIME) == 2){
+	if (questprogress(5141,PLAYTIME) == 2){
 		mes "The immobilize curse lasted for 2 minutes and then was removed.";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
@@ -537,11 +537,11 @@ job_ko,54,60,1	script	Sight#ko_15	4_BULLETIN_BOARD2,1,1,{
 callfunc("KO_DL",15);
 
 OnTouch:
-	if (checkquest(5141,PLAYTIME) == 0){
+	if (questprogress(5141,PLAYTIME) == 0){
 		mes "You are cursed and cannot move to any other block for 2 minutes.";
 		close;
 	}
-	if (checkquest(5141,PLAYTIME) == 2){
+	if (questprogress(5141,PLAYTIME) == 2){
 		mes "The immobilize curse lasted for 2 minutes and then was removed.";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
@@ -703,11 +703,11 @@ job_ko,25,23,1	script	Sight#ko_25	4_BULLETIN_BOARD2,1,1,{
 callfunc("KO_DL",25);
 
 OnTouch:
-	if (checkquest(5141,PLAYTIME) == 0){
+	if (questprogress(5141,PLAYTIME) == 0){
 		mes "Cannot move because you are cursed.";
 		close;
 	}
-	if (checkquest(5141,PLAYTIME) == 2){
+	if (questprogress(5141,PLAYTIME) == 2){
 		mes "The immobilize curse lasted for 2 minutes and then was removed.";
 		erasequest 5141;
 		callfunc("KO_SL",25,1);
@@ -834,11 +834,11 @@ job_ko,46,52,1	script	Sight#ko_31	4_BULLETIN_BOARD2,1,1,{
 callfunc("KO_DL",31);
 
 OnTouch:
-	if (checkquest(5141,PLAYTIME) == 0){
+	if (questprogress(5141,PLAYTIME) == 0){
 		mes "You are cursed and cannot move to any other block for 2 minutes.";
 		close;
 	}
-	if (checkquest(5141,PLAYTIME) == 2){
+	if (questprogress(5141,PLAYTIME) == 2){
 		mes "The immobilize curse lasted for 2 minutes and then was removed.";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
@@ -1042,7 +1042,7 @@ job_ko,46,41,1	script	Sight#ko_40	4_BULLETIN_BOARD2,1,1,{
 callfunc("KO_DL",40);
 
 OnTouch:
-	if (checkquest(5137)!=1 || checkquest(5140) != 1){
+	if (questprogress(5137)!=1 || questprogress(5140) != 1){
 		mes "You should not be here";
 		close2;
 		warp "amatsu",147,136;

@@ -1,5 +1,5 @@
 @ECHO OFF
-title v4 rTools Checker   Powered by RoSF.us cRO Development Team Presents.
+
 REM Copyright (c) RoSF.us R&D Team, licensed under GNU GPL.
 REM See the LICENSE file
 REM Base Author: Yuri @ http://rosf.us

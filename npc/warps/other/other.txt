@@ -31,17 +31,3 @@
 //guild_vs5,0,0,0	warp	warp4	0,0,hoge,0,0
 //guild_vs5,0,0,0	warp	warp4	0,0,hoge,0,0
 //guild_vs5,0,0,0	warp	warp4	0,0,hoge,0,0
-
-//Map
-prontera,166,100,0	warp	prontera_paramk	1,1,paramk,54,65
-paramk,50,64,0	warp	paramk_prontera	1,1,prontera,163,100
-
-//ParaMarket Map
-paramk,98,4,0	warp	paramk_paramk1	1,1,paramk,183,175
-paramk,183,178,0	warp	paramk1_paramk	1,1,paramk,98,7
-
-paramk,166,166,0	warp	paramk5_paramk	1,1,paramk,133,156
-paramk,135,156,0	warp	paramk_paramk5	1,1,paramk,168,166
-
-paramk,84,178,0	warp	paramk4_paramk	1,1,paramk,48,180
-paramk,51,180,0	warp	paramk_paramk4	1,1,paramk,86,178
